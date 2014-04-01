@@ -111,6 +111,9 @@ RUN curl https://go.googlecode.com/files/go1.2.1.linux-amd64.tar.gz | tar -C /us
 # LaTeX (disabled because this will add a 2GB layer, which can't be pushed)
 # RUN apt-get install -y texlive-full
 
+# all changes go down here:
+# RUN ...
+
 # setup the system
 RUN echo -n "" > /etc/motd && \
     echo "export PATH=/bin:/usr/bin:/sbin:/usr/sbin:/user/local/bin:/user/local/sbin" >> /root/.bashrc && \
@@ -134,6 +137,8 @@ RUN sudo -u ubuntu mkdir -p /home/ubuntu/workspace && \
     sudo -u ubuntu rm -rf /home/ubuntu/workspace/.git && \
     sudo -u ubuntu git init && \
     sudo -u ubuntu chmod -R g+w /home/ubuntu/workspace
+
+
 
 # re-enable service startup. This line must come after all apt-get installs
 RUN rm -f /usr/sbin/policy-rc.d
