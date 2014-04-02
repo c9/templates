@@ -16,6 +16,4 @@ RUN mkdir -p /home/ubuntu/workspace && \
     chmod -R g+w /home/ubuntu/workspace && \
     chown -R 1000:1000 /home/ubuntu/workspace
     
-EXPOSE 8080 22
-
 CMD /bin/bash -l

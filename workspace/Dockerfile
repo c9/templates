@@ -143,6 +143,4 @@ RUN sudo -u ubuntu mkdir -p /home/ubuntu/workspace && \
 # re-enable service startup. This line must come after all apt-get installs
 RUN rm -f /usr/sbin/policy-rc.d
 
-EXPOSE 8080 22
-
 CMD /bin/bash -l
