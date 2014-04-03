@@ -1,4 +1,5 @@
 export C9_FULLNAME=
+export C9_HOSTNAME=
 export C9_EMAIL=
 export C9_USER=
 export C9_PROJECT=
