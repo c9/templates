@@ -6,7 +6,7 @@ export C9_PID=
 export C9_UID=
 
 export C9_PORT=8080
-export C9_IP=127.0.0.1
+export C9_IP=0.0.0.0
 export C9_SHARED=/mnt/shared
 
 export PATH=/mnt/shared/bin:$HOME/.nada-nix-profile/bin:$HOME/workspace/node_modules/.bin:$HOME/bin:/sbin:/usr/sbin:/bin:/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/local/go:/bin/mnt/shared/sbin
