@@ -130,16 +130,6 @@ RUN cp /tmp/home/.gitignore /tmp/home/.hgignore && \
     chmod 644 /etc/profile.d/cloud9.sh && \
     sudo -u ubuntu -i bash -c "mkdir -p /home/ubuntu/.ssh"
 
-# initialize default project
-RUN sudo -u ubuntu mkdir -p /home/ubuntu/workspace && \
-    cd /home/ubuntu/workspace && \
-    sudo -u ubuntu git clone --depth 1 git://github.com/ajaxorg/c9-template-default.git . && \
-    sudo -u ubuntu rm -rf /home/ubuntu/workspace/.git && \
-    sudo -u ubuntu git init && \
-    sudo -u ubuntu chmod -R g+w /home/ubuntu/workspace
-
-
-
 # re-enable service startup. This line must come after all apt-get installs
 RUN rm -f /usr/sbin/policy-rc.d
 
