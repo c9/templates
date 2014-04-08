@@ -108,8 +108,9 @@ RUN apt-get install -y python3 python3-dev python3-setuptools ipython3 \
 # GO
 RUN curl https://go.googlecode.com/files/go1.2.1.linux-amd64.tar.gz | tar -C /usr/local -xzf -
 
-# LaTeX (disabled because this will add a 2GB layer, which can't be pushed)
-# RUN apt-get install -y texlive-full
+# LaTeX
+RUN apt-get install -y texlive
+RUN apt-get install -y texlive-full
 
 # all changes go down here:
 # RUN ...
