@@ -76,7 +76,7 @@ RUN apt-get install -y ant maven2
 
 # LaTeX
 RUN apt-get install -y texlive
-RUN apt-get install -y texlive-full
+# RUN apt-get install -y texlive-full
 
 # editors
 RUN apt-get install -y vim vim-addon-manager vim-vimoutliner vim-doc 
