@@ -89,7 +89,8 @@ RUN apt-get install -y apache2 php5 php5-fpm apache2-doc php-pear
 
 # tools
 RUN apt-get install -y dnsutils bash-completion man-db xsltproc \
-    build-essential fakeroot tmux duplicity lftp
+    build-essential fakeroot tmux duplicity lftp htop apt-file \
+    parallel
 
 # Version control
 RUN apt-get install -y git-all tig subversion subversion-tools cvs \
@@ -112,6 +113,9 @@ RUN apt-get install -y python3 python3-dev python3-setuptools ipython3 \
 
 # GO
 RUN curl https://go.googlecode.com/files/go1.2.1.linux-amd64.tar.gz | tar -C /usr/local -xzf -
+
+# apt-file cache
+RUN apt-file update
 
 # all changes go down here:
 # RUN ...
