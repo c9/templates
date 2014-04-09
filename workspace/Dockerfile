@@ -4,7 +4,7 @@ MAINTAINER Fabian Jakobs <fabian@c9.io>
 ENV DEBIAN_FRONTEND noninteractive
 
 # increment version to force flushing the cache
-RUN echo "Version 1.3"
+RUN echo "Version 1.4"
 
 RUN echo "enable universe packages" && \
     sed -r 's/#\s*(.*universe)$/\1/' -i /etc/apt/sources.list && \
@@ -73,6 +73,11 @@ RUN apt-get install -y mono-devel mono-utils mono-xbuild nant
 RUN apt-get install -y openjdk-7-doc openjdk-7-jdk
 RUN apt-get install -y ant maven2
 
+
+# LaTeX
+RUN apt-get install -y texlive
+RUN apt-get install -y texlive-full
+
 # editors
 RUN apt-get install -y vim vim-addon-manager vim-vimoutliner vim-doc 
 RUN apt-get install -y emacs ctags indent
@@ -107,10 +112,6 @@ RUN apt-get install -y python3 python3-dev python3-setuptools ipython3 \
 
 # GO
 RUN curl https://go.googlecode.com/files/go1.2.1.linux-amd64.tar.gz | tar -C /usr/local -xzf -
-
-# LaTeX
-RUN apt-get install -y texlive
-RUN apt-get install -y texlive-full
 
 # all changes go down here:
 # RUN ...
