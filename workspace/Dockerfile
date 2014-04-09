@@ -127,13 +127,14 @@ RUN echo -n "" > /etc/motd && \
     HOME=/root bash -l /etc/bash_completion
 
 ADD ./files/cloud9.sh /etc/profile.d/cloud9.sh
+ADD ./files/nada-nix-compat.sh /etc/profile.d/nada-nix-compat.sh
 ADD ./files/homedir /tmp/homedir
 RUN cp /tmp/homedir/.gitignore /tmp/homedir/.hgignore && \
     chown -R ubuntu:ubuntu /tmp/homedir && \
     bash -c "shopt -s dotglob && cp -a /tmp/homedir/* /home/ubuntu" && \
     rm -rf /tmp/homedir && \
-    chown root:root /etc/profile.d/cloud9.sh && \
-    chmod 644 /etc/profile.d/cloud9.sh && \
+    chown root:root /etc/profile.d/{nada-nix-compat,cloud9}.sh && \
+    chmod 644 /etc/profile.d/{nada-nix-compat,cloud9}.sh && \
     sudo -u ubuntu -i bash -c "mkdir -p /home/ubuntu/.ssh"
 
 # re-enable service startup. This line must come after all apt-get installs
