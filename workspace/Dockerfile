@@ -90,7 +90,7 @@ RUN apt-get install -y apache2 php5 php5-fpm apache2-doc php-pear
 # tools
 RUN apt-get install -y dnsutils bash-completion man-db xsltproc \
     build-essential fakeroot tmux duplicity lftp htop apt-file \
-    parallel
+    parallel nano
 
 # Version control
 RUN apt-get install -y git-all tig subversion subversion-tools cvs \
