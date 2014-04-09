@@ -123,11 +123,11 @@ RUN echo -n "" > /etc/motd && \
     HOME=/root bash -l /etc/bash_completion
 
 ADD ./files/cloud9.sh /etc/profile.d/cloud9.sh
-ADD ./files/home /tmp/home
-RUN cp /tmp/home/.gitignore /tmp/home/.hgignore && \
-    chown -R ubuntu:ubuntu /tmp/home && \
-    bash -c "shopt -s dotglob && cp -a /tmp/home/* /home/ubuntu" && \
-    rm -rf /tmp/home && \
+ADD ./files/homedir /tmp/homedir
+RUN cp /tmp/homedir/.gitignore /tmp/homedir/.hgignore && \
+    chown -R ubuntu:ubuntu /tmp/homedir && \
+    bash -c "shopt -s dotglob && cp -a /tmp/homedir/* /home/ubuntu" && \
+    rm -rf /tmp/homedir && \
     chown root:root /etc/profile.d/cloud9.sh && \
     chmod 644 /etc/profile.d/cloud9.sh && \
     sudo -u ubuntu -i bash -c "mkdir -p /home/ubuntu/.ssh"
