@@ -73,7 +73,6 @@ RUN apt-get install -y mono-devel mono-utils mono-xbuild nant
 RUN apt-get install -y openjdk-7-doc openjdk-7-jdk
 RUN apt-get install -y ant maven2
 
-
 # LaTeX
 RUN apt-get install -y texlive
 # RUN apt-get install -y texlive-full
@@ -129,12 +128,16 @@ RUN echo -n "" > /etc/motd && \
 ADD ./files/cloud9.sh /etc/profile.d/cloud9.sh
 ADD ./files/nada-nix-compat.sh /etc/profile.d/nada-nix-compat.sh
 ADD ./files/homedir /tmp/homedir
+ADD ./files/envvars /etc/apache2/envvars
 RUN cp /tmp/homedir/.gitignore /tmp/homedir/.hgignore && \
     chown -R ubuntu:ubuntu /tmp/homedir && \
+    mkdir -p /home/ubuntu/lib/apache2/lock /home/ubuntu/lib/apache2/log /home/ubuntu/lib/apache2/run && \
     bash -c "shopt -s dotglob && cp -a /tmp/homedir/* /home/ubuntu" && \
     rm -rf /tmp/homedir && \
-    chown root:root /etc/profile.d/nada-nix-compat.sh /etc/profile.d/cloud9.sh && \
-    chmod 644 /etc/profile.d/nada-nix-compat.sh /etc/profile.d/cloud9.sh && \
+    sudo sed -i 's/Listen 80/Listen 8080/'  /etc/apache2/ports.conf && \
+    chown -R ubuntu:ubuntu /home/ubuntu/lib && \
+    chown root:root /etc/profile.d/nada-nix-compat.sh /etc/profile.d/cloud9.sh /etc/apache2/envvars && \
+    chmod 644 /etc/profile.d/nada-nix-compat.sh /etc/profile.d/cloud9.sh /etc/apache2/envvars && \
     sudo -u ubuntu -i bash -c "mkdir -p /home/ubuntu/.ssh"
 
 # re-enable service startup. This line must come after all apt-get installs

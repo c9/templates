@@ -49,3 +49,5 @@ xterm*|rxvt*)
 *)
     ;;
 esac
+
+. /etc/apache2/envvars
