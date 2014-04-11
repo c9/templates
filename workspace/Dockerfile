@@ -110,8 +110,9 @@ RUN apt-get install -y python3 python3-dev python3-setuptools ipython3 \
 #     apt-get update && \
 #     apt-get -y install julia
 
-# GO
-RUN curl https://go.googlecode.com/files/go1.2.1.linux-amd64.tar.gz | tar -C /usr/local -xzf -
+# /opt packages
+RUN curl https://go.googlecode.com/files/go1.2.1.linux-amd64.tar.gz | tar -C /opt -xz
+RUN git clone https://github.com/lennartcl/gitl.git /opt/gitl
 
 # apt-file cache
 RUN apt-file update
