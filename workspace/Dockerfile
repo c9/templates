@@ -4,7 +4,7 @@ MAINTAINER Fabian Jakobs <fabian@c9.io>
 ENV DEBIAN_FRONTEND noninteractive
 
 # increment version to force flushing the cache
-RUN echo "Version 1.4"
+RUN echo "Version 1.5"
 
 RUN echo "enable universe packages" && \
     sed -r 's/#\s*(.*universe)$/\1/' -i /etc/apt/sources.list && \
@@ -89,7 +89,7 @@ RUN apt-get install -y apache2 php5 php5-fpm apache2-doc php-pear
 # tools
 RUN apt-get install -y dnsutils bash-completion man-db xsltproc \
     build-essential fakeroot tmux duplicity lftp htop apt-file \
-    parallel nano
+    parallel nano strace ltrace
 
 # Version control
 RUN apt-get install -y git-all tig subversion subversion-tools cvs \
@@ -126,8 +126,8 @@ RUN echo -n "" > /etc/motd && \
     sudo -i -u ubuntu HOME=/home/ubuntu bash -i /etc/bash_completion && \
     HOME=/root bash -l /etc/bash_completion
 
-ADD ./files/cloud9.sh /etc/profile.d/cloud9.sh
-ADD ./files/nada-nix-compat.sh /etc/profile.d/nada-nix-compat.sh
+ADD ./files/profile.d/cloud9.sh /etc/profile.d/cloud9.sh
+ADD ./files/profile.d/nada-nix-compat.sh /etc/profile.d/nada-nix-compat.sh
 ADD ./files/homedir /tmp/homedir
 ADD ./files/envvars /etc/apache2/envvars
 RUN cp /tmp/homedir/.gitignore /tmp/homedir/.hgignore && \
