@@ -128,13 +128,14 @@ RUN echo -n "" > /etc/motd && \
 
 ADD ./files/etc /etc
 ADD ./files/home/ubuntu /tmp/homedir
-RUN cp /home/ubuntu/.gitignore /home/ubuntu/.hgignore && \
+RUN cp /tmp/homedir/.gitignore /tmp/homedir/.hgignore && \
     mkdir -p /tmp/homedir/lib/apache2/lock /tmp/homedir/lib/apache2/log /tmp/homedir/lib/apache2/run && \
     chown -R ubuntu:ubuntu /tmp/homedir && \
     bash -c "shopt -s dotglob && cp -a /tmp/homedir/* /home/ubuntu" && \
     rm -rf /tmp/homedir && \
     sudo sed -i 's/Listen 80/Listen 8080/'  /etc/apache2/ports.conf && \
     ln -s /etc/apache2/sites-available/001-cloud9.conf /etc/apache2/sites-enabled && \
+    chmod 644 /etc/apache2/sites-available/001-cloud9.conf && \
     chown -R ubuntu:ubuntu /home/ubuntu/lib && \
     chown root:root /etc/profile.d/nada-nix-compat.sh /etc/profile.d/cloud9.sh /etc/apache2/envvars && \
     chmod 644 /etc/profile.d/nada-nix-compat.sh /etc/profile.d/cloud9.sh /etc/apache2/envvars && \
