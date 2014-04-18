@@ -9,7 +9,7 @@ RUN echo "Version 1.5"
 RUN echo "enable universe packages" && \
     sed -r 's/#\s*(.*universe)$/\1/' -i /etc/apt/sources.list && \
     apt-get update && \
-    apt-get install -y console-setup sudo wget curl git python software-properties-common && \
+    apt-get install -y console-setup sudo wget curl git python software-properties-common man-db && \
     echo "make sure services are not started during package install" && \
     echo exit 101 > /usr/sbin/policy-rc.d && \ 
     chmod +x /usr/sbin/policy-rc.d && \
@@ -87,9 +87,9 @@ RUN apt-get install -y mysql-server phpmyadmin mongodb rabbitmq-server couchdb
 RUN apt-get install -y apache2 php5 php5-fpm apache2-doc php-pear
 
 # tools
-RUN apt-get install -y dnsutils bash-completion man-db xsltproc \
+RUN apt-get install -y dnsutils bash-completion xsltproc \
     build-essential fakeroot tmux duplicity lftp htop apt-file \
-    parallel nano strace ltrace
+    parallel nano strace ltrace flex jq
 
 # Version control
 RUN apt-get install -y git-all tig subversion subversion-tools cvs \
