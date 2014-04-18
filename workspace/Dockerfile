@@ -89,7 +89,7 @@ RUN apt-get install -y apache2 php5 php5-fpm apache2-doc php-pear
 # tools
 RUN apt-get install -y dnsutils bash-completion xsltproc \
     build-essential fakeroot tmux duplicity lftp htop apt-file \
-    parallel nano strace ltrace flex jq
+    parallel nano strace ltrace flex jq ack-grep
 
 # Version control
 RUN apt-get install -y git-all tig subversion subversion-tools cvs \
@@ -126,16 +126,15 @@ RUN echo -n "" > /etc/motd && \
     sudo -i -u ubuntu HOME=/home/ubuntu bash -i /etc/bash_completion && \
     HOME=/root bash -l /etc/bash_completion
 
-ADD ./files/profile.d/cloud9.sh /etc/profile.d/cloud9.sh
-ADD ./files/profile.d/nada-nix-compat.sh /etc/profile.d/nada-nix-compat.sh
-ADD ./files/homedir /tmp/homedir
-ADD ./files/envvars /etc/apache2/envvars
-RUN cp /tmp/homedir/.gitignore /tmp/homedir/.hgignore && \
+ADD ./files/etc /etc
+ADD ./files/home/ubuntu /tmp/homedir
+RUN cp /home/ubuntu/.gitignore /home/ubuntu/.hgignore && \
+    mkdir -p /tmp/homedir/lib/apache2/lock /tmp/homedir/lib/apache2/log /tmp/homedir/lib/apache2/run && \
     chown -R ubuntu:ubuntu /tmp/homedir && \
-    mkdir -p /home/ubuntu/lib/apache2/lock /home/ubuntu/lib/apache2/log /home/ubuntu/lib/apache2/run && \
     bash -c "shopt -s dotglob && cp -a /tmp/homedir/* /home/ubuntu" && \
     rm -rf /tmp/homedir && \
     sudo sed -i 's/Listen 80/Listen 8080/'  /etc/apache2/ports.conf && \
+    ln -s /etc/apache2/sites-available/001-cloud9.conf /etc/apache2/sites-enabled && \
     chown -R ubuntu:ubuntu /home/ubuntu/lib && \
     chown root:root /etc/profile.d/nada-nix-compat.sh /etc/profile.d/cloud9.sh /etc/apache2/envvars && \
     chmod 644 /etc/profile.d/nada-nix-compat.sh /etc/profile.d/cloud9.sh /etc/apache2/envvars && \
