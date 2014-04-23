@@ -1,3 +1,5 @@
+#!/bin/sh
+
 export C9_FULLNAME=
 export C9_HOSTNAME=
 export C9_EMAIL=
