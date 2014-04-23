@@ -12,7 +12,7 @@ export C9_SHARED=/mnt/shared
 
 export PATH=/mnt/shared/bin:$HOME/workspace/node_modules/.bin:$HOME/bin\
 :/sbin:/usr/sbin:/bin:/usr/bin:/usr/local/sbin:/usr/local/bin\
-:/bin/mnt/shared/sbin:/opt/gitl:/opt/go/bin
+:/bin/mnt/shared/sbin:/opt/gitl:/opt/go/bin:/mnt/shared-space/c9/app.nw/bin
 
 export HGUSER=$C9_FULLNAME
 export EMAIL=$C9_EMAIL
