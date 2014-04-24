@@ -34,14 +34,14 @@ echo "- sudo apt-cache search TEXT     # search for a package"
 echo
 echo "This message will self-destruct once you run one of the commands above ;)"
 
-apt_get() {
+_apt_get() {
     echo done > $PROFILE/done &> /dev/null
     command apt-get "$@"
 }
-apt_cache() {
+_apt_cache() {
     echo done > $PROFILE/done &> /dev/null
     command apt-cache "$@"
 }
-export -f apt_get apt_cache
-alias apt-get=apt_get
-alias apt-cache=apt_cache
+export -f _apt_get _apt_cache
+alias apt-get=_apt_get
+alias apt-cache=_apt_cache
