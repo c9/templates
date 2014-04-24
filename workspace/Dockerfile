@@ -1,32 +1,12 @@
-FROM cloud9/ubuntu:trusty
+FROM ubuntu:trusty
 MAINTAINER Fabian Jakobs <fabian@c9.io>
 
 ENV DEBIAN_FRONTEND noninteractive
 
 # increment version to force flushing the cache
-RUN echo "Version 1.5"
+RUN echo "Version 1.6"
 
-RUN echo "enable universe packages" && \
-    sed -r 's/#\s*(.*universe)$/\1/' -i /etc/apt/sources.list && \
-    apt-get update && \
-    apt-get install -y console-setup sudo wget curl git python software-properties-common man-db && \
-    echo "make sure services are not started during package install" && \
-    echo exit 101 > /usr/sbin/policy-rc.d && \ 
-    chmod +x /usr/sbin/policy-rc.d && \
-    echo "Keep upstart from complaining" && \
-    dpkg-divert --local --rename --add /sbin/initctl && \
-    ln -sf /bin/true /sbin/initctl && \
-    echo "Fake a fuse install" && \
-    apt-get install libfuse2 && \
-    cd /tmp && \
-    apt-get download fuse && \
-    dpkg-deb -x fuse_* . && \
-    dpkg-deb -e fuse_* && \
-    rm fuse_*.deb && \
-    echo -en '#!/bin/bash\nexit 0\n' > DEBIAN/postinst && \
-    dpkg-deb -b . /fuse.deb && \
-    dpkg -i /fuse.deb && \
-    rm -rf /fuse.deb && \
+RUN apt-get install -y console-setup sudo wget curl git python software-properties-common man-db && \
     echo "install console-setup" && \
     echo "console-setup   console-setup/codeset47 select  # Latin1 and Latin5 - western Europe and Turkic languages" | debconf-set-selections && \
     echo "console-setup   console-setup/fontface47        select  Fixed" | debconf-set-selections && \
@@ -97,7 +77,7 @@ RUN apt-get install -y git-all tig subversion subversion-tools cvs \
 
 # libraries and headers
 RUN apt-get install -y libcairo2-dev libjpeg62-dev libgif-dev libpq-dev \
-    libboost1.55-all-dev libzmq-dev libwww-curl-perl libbz2-dev dpkg-dev
+    libboost-all-dev libzmq-dev libwww-curl-perl libbz2-dev dpkg-dev
 
 # Python
 RUN apt-get install -y python3 python3-dev python3-setuptools ipython3 \
