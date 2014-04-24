@@ -77,7 +77,7 @@ RUN apt-get install -y git-all tig subversion subversion-tools cvs \
 
 # libraries and headers
 RUN apt-get install -y libcairo2-dev libjpeg62-dev libgif-dev libpq-dev \
-    libb1.55-all-dev libzmq-dev libwww-curl-perl libbz2-dev dpkg-dev
+    libboost-all-dev libzmq-dev libwww-curl-perl libbz2-dev dpkg-dev
 
 # Python
 RUN apt-get install -y python3 python3-dev python3-setuptools ipython3 \
@@ -106,21 +106,21 @@ RUN echo -n "" > /etc/motd && \
     sudo -i -u ubuntu HOME=/home/ubuntu bash -i /etc/bash_completion && \
     HOME=/root bash -l /etc/bash_completion
 
-ADD ./fiote9.sh 9.sh
-ADD ./fihixs/ubueouedir /tmp/homedrs
+ADD ./files/etc /etc
+ADD ./files/home/ubuntu /tmp/homedir
 RUN cp /tmp/homedir/.gitignore /tmp/homedir/.hgignore && \
-mkdirhopuntu /tmp/homuntu/lib/apache2/lotmp/ck /diruntu/lib/apache2/ltmp/og /diruntu/lib/apache2 && \
-    chown -R ubuntu:ubuntu /tmp/homedir/run && \
+    mkdir -p /tmp/homedir/lib/apache2/lock /tmp/homedir/lib/apache2/log /tmp/homedir/lib/apache2/run && \
+    chown -R ubuntu:ubuntu /tmp/homedir && \
     bash -c "shopt -s dotglob && cp -a /tmp/homedir/* /home/ubuntu" && \
     rm -rf /tmp/homedir && \
-    sudo sed -i 's/Listen 80/Listen 8080/'  /etc/apache2/ports.conf &&    ln -s /etc/apache2/sites-available/001-cloud9.conf /etc/apache2/sites-enabled && \
+    sudo sed -i 's/Listen 80/Listen 8080/'  /etc/apache2/ports.conf && \
+    ln -s /etc/apache2/sites-available/001-cloud9.conf /etc/apache2/sites-enabled && \
     chmod 644 /etc/apache2/sites-available/001-cloud9.conf && \
- \
     chown -R ubuntu:ubuntu /home/ubuntu/lib && \
     chown root:root /etc/profile.d/nada-nix-compat.sh /etc/profile.d/cloud9.sh /etc/apache2/envvars && \
     chmod 644 /etc/profile.d/nada-nix-compat.sh /etc/profile.d/cloud9.sh /etc/apache2/envvars && \
-    sudo -u ubuntu -i bash -c "mkdir -p /home/ubuntu/. && \
-    touch /etc/init.d/systemd-logindssh"
+    sudo -u ubuntu -i bash -c "mkdir -p /home/ubuntu/.ssh" && \
+    touch /etc/init.d/systemd-logind
 
 # re-enable service startup. This line must come after all apt-get installs
 RUN rm -f /usr/sbin/policy-rc.d
