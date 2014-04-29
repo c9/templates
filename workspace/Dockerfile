@@ -42,7 +42,7 @@ RUN sudo -u ubuntu -i bash -l -c "rvm use 1.9.3 && rvm gemset create rails3.2 &&
     /usr/local/rvm/bin/rvm cleanup all
 
 # node.js and nvm
-RUN sudo -u ubuntu -i bash -l -c "curl https://raw.github.com/creationix/nvm/master/install.sh | sh"
+RUN sudo -u ubuntu -i bash -l -c "curl -L https://raw.github.com/creationix/nvm/master/install.sh | sh -e"
 RUN sudo -u ubuntu -i bash -l -c "nvm install 0.6"
 RUN sudo -u ubuntu -i bash -l -c "nvm install 0.8" && \
     sudo -u ubuntu -i bash -l -c "nvm install 0.10" && \
