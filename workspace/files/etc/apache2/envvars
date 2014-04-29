@@ -1,3 +1,5 @@
+. /etc/profile.d/cloud9.sh
+
 # envvars - default environment variables for apache2ctl
 
 # Since there is no sane way to get the parsed apache2 config in scripts, some

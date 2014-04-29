@@ -1,32 +1,12 @@
-FROM cloud9/ubuntu:trusty
+FROM ubuntu:trusty
 MAINTAINER Fabian Jakobs <fabian@c9.io>
 
 ENV DEBIAN_FRONTEND noninteractive
 
 # increment version to force flushing the cache
-RUN echo "Version 1.5"
+RUN echo "Version 1.6"
 
-RUN echo "enable universe packages" && \
-    sed -r 's/#\s*(.*universe)$/\1/' -i /etc/apt/sources.list && \
-    apt-get update && \
-    apt-get install -y console-setup sudo wget curl git python software-properties-common && \
-    echo "make sure services are not started during package install" && \
-    echo exit 101 > /usr/sbin/policy-rc.d && \ 
-    chmod +x /usr/sbin/policy-rc.d && \
-    echo "Keep upstart from complaining" && \
-    dpkg-divert --local --rename --add /sbin/initctl && \
-    ln -sf /bin/true /sbin/initctl && \
-    echo "Fake a fuse install" && \
-    apt-get install libfuse2 && \
-    cd /tmp && \
-    apt-get download fuse && \
-    dpkg-deb -x fuse_* . && \
-    dpkg-deb -e fuse_* && \
-    rm fuse_*.deb && \
-    echo -en '#!/bin/bash\nexit 0\n' > DEBIAN/postinst && \
-    dpkg-deb -b . /fuse.deb && \
-    dpkg -i /fuse.deb && \
-    rm -rf /fuse.deb && \
+RUN apt-get install -y console-setup sudo wget curl git python software-properties-common man-db && \
     echo "install console-setup" && \
     echo "console-setup   console-setup/codeset47 select  # Latin1 and Latin5 - western Europe and Turkic languages" | debconf-set-selections && \
     echo "console-setup   console-setup/fontface47        select  Fixed" | debconf-set-selections && \
@@ -48,9 +28,11 @@ RUN echo "enable universe packages" && \
 # install ruby/rails/rvm (this comes early because it takes very long to rebuild)
 RUN sudo -u ubuntu -i bash -l -c "curl -L https://get.rvm.io | sudo bash -s" && \
     usermod -a -G rvm ubuntu
-RUN sudo -u ubuntu -i bash -l -c "rvm install ruby-2.1.1 && rvm --default use 2.1.1" && \
+RUN sudo -u ubuntu -i bash -l -c "rvm install ruby-1.8.7" && \
     /usr/local/rvm/bin/rvm cleanup all
 RUN sudo -u ubuntu -i bash -l -c "rvm install ruby-1.9.3" && \
+    /usr/local/rvm/bin/rvm cleanup all
+RUN sudo -u ubuntu -i bash -l -c "rvm install ruby-2.1.1 && rvm --default use 2.1.1" && \
     /usr/local/rvm/bin/rvm cleanup all
 RUN sudo -u ubuntu -i bash -l -c "rvm use 2.1.1 && rvm gemset create rails4 && rvm gemset use rails4 && gem install rails -v 4.0.2" && \
     sudo -u ubuntu -i bash -l -c "rvm use 2.1.1 && rvm gemset use rails4 && gem install bundler -v '>= 1.5.1'" && \
@@ -58,9 +40,10 @@ RUN sudo -u ubuntu -i bash -l -c "rvm use 2.1.1 && rvm gemset create rails4 && r
     /usr/local/rvm/bin/rvm cleanup all
 RUN sudo -u ubuntu -i bash -l -c "rvm use 1.9.3 && rvm gemset create rails3.2 && rvm gemset use rails3.2 && gem install rails -v 3.2.16" && \
     /usr/local/rvm/bin/rvm cleanup all
+RUN sudo -u ubuntu -i bash -l -c "rvm get stable --auto-dotfiles"
 
 # node.js and nvm
-RUN sudo -u ubuntu -i bash -l -c "curl https://raw.github.com/creationix/nvm/master/install.sh | sh"
+RUN sudo -u ubuntu -i bash -l -c "curl -L https://raw.github.com/creationix/nvm/master/install.sh | sh -e"
 RUN sudo -u ubuntu -i bash -l -c "nvm install 0.6"
 RUN sudo -u ubuntu -i bash -l -c "nvm install 0.8" && \
     sudo -u ubuntu -i bash -l -c "nvm install 0.10" && \
@@ -87,9 +70,9 @@ RUN apt-get install -y mysql-server phpmyadmin mongodb rabbitmq-server couchdb
 RUN apt-get install -y apache2 php5 php5-fpm apache2-doc php-pear
 
 # tools
-RUN apt-get install -y dnsutils bash-completion man-db xsltproc \
+RUN apt-get install -y dnsutils bash-completion xsltproc \
     build-essential fakeroot tmux duplicity lftp htop apt-file \
-    parallel nano strace ltrace
+    parallel nano strace ltrace flex jq ack-grep gdb valgrind
 
 # Version control
 RUN apt-get install -y git-all tig subversion subversion-tools cvs \
@@ -97,7 +80,19 @@ RUN apt-get install -y git-all tig subversion subversion-tools cvs \
 
 # libraries and headers
 RUN apt-get install -y libcairo2-dev libjpeg62-dev libgif-dev libpq-dev \
-    libboost1.55-all-dev libzmq-dev libwww-curl-perl libbz2-dev dpkg-dev
+    libboost-all-dev libzmq-dev libwww-curl-perl libbz2-dev dpkg-dev \
+    ruby1.9.1-dev dialog
+
+# Deployment
+RUN wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh -e && \
+    sudo -u ubuntu -i bash -l -c "npm install jitsu@0.13.15 -g" && \
+    sudo -u ubuntu -i bash -l -c "npm in stall azure-cli@0.8.2 -g" && \
+    gem install rhc:1.23.7 && \
+    wget -O /tmp/deb.deb http://go-cli.s3-website-us-east-1.amazonaws.com/releases/latest/cf-cli_amd64.deb && \
+    dpkg -i /tmp/deb.deb && \
+    wget -O /tmp/deb.deb https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_1.6.0_amd64.deb && \
+    dpkg -i /tmp/deb.deb && \
+    rm /tmp/deb.deb
 
 # Python
 RUN apt-get install -y python3 python3-dev python3-setuptools ipython3 \
@@ -105,10 +100,7 @@ RUN apt-get install -y python3 python3-dev python3-setuptools ipython3 \
     python-scipy python-matplotlib python-virtualenv virtualenvwrapper
 
 # Julia
-# TODO no binaries for trusty yet
-# RUN add-apt-repository -y ppa:staticfloat/juliareleases && \
-#     apt-get update && \
-#     apt-get -y install julia
+apt-get -y install julia julia-doc
 
 # /opt packages
 RUN curl https://go.googlecode.com/files/go1.2.1.linux-amd64.tar.gz | tar -C /opt -xz
@@ -126,20 +118,21 @@ RUN echo -n "" > /etc/motd && \
     sudo -i -u ubuntu HOME=/home/ubuntu bash -i /etc/bash_completion && \
     HOME=/root bash -l /etc/bash_completion
 
-ADD ./files/profile.d/cloud9.sh /etc/profile.d/cloud9.sh
-ADD ./files/profile.d/nada-nix-compat.sh /etc/profile.d/nada-nix-compat.sh
-ADD ./files/homedir /tmp/homedir
-ADD ./files/envvars /etc/apache2/envvars
+ADD ./files/etc /etc
+ADD ./files/home/ubuntu /tmp/homedir
 RUN cp /tmp/homedir/.gitignore /tmp/homedir/.hgignore && \
+    mkdir -p /tmp/homedir/lib/apache2/lock /tmp/homedir/lib/apache2/log /tmp/homedir/lib/apache2/run && \
     chown -R ubuntu:ubuntu /tmp/homedir && \
-    mkdir -p /home/ubuntu/lib/apache2/lock /home/ubuntu/lib/apache2/log /home/ubuntu/lib/apache2/run && \
     bash -c "shopt -s dotglob && cp -a /tmp/homedir/* /home/ubuntu" && \
     rm -rf /tmp/homedir && \
     sudo sed -i 's/Listen 80/Listen 8080/'  /etc/apache2/ports.conf && \
+    ln -s /etc/apache2/sites-available/001-cloud9.conf /etc/apache2/sites-enabled && \
+    chmod 644 /etc/apache2/sites-available/001-cloud9.conf && \
     chown -R ubuntu:ubuntu /home/ubuntu/lib && \
     chown root:root /etc/profile.d/nada-nix-compat.sh /etc/profile.d/cloud9.sh /etc/apache2/envvars && \
     chmod 644 /etc/profile.d/nada-nix-compat.sh /etc/profile.d/cloud9.sh /etc/apache2/envvars && \
-    sudo -u ubuntu -i bash -c "mkdir -p /home/ubuntu/.ssh"
+    sudo -u ubuntu -i bash -c "mkdir -p /home/ubuntu/.ssh" && \
+    touch /etc/init.d/systemd-logind
 
 # re-enable service startup. This line must come after all apt-get installs
 RUN rm -f /usr/sbin/policy-rc.d
