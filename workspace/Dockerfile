@@ -40,6 +40,7 @@ RUN sudo -u ubuntu -i bash -l -c "rvm use 2.1.1 && rvm gemset create rails4 && r
     /usr/local/rvm/bin/rvm cleanup all
 RUN sudo -u ubuntu -i bash -l -c "rvm use 1.9.3 && rvm gemset create rails3.2 && rvm gemset use rails3.2 && gem install rails -v 3.2.16" && \
     /usr/local/rvm/bin/rvm cleanup all
+RUN sudo -u ubuntu -i bash -l -c "rvm get stable --auto-dotfiles"
 
 # node.js and nvm
 RUN sudo -u ubuntu -i bash -l -c "curl -L https://raw.github.com/creationix/nvm/master/install.sh | sh -e"
