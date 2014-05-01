@@ -81,13 +81,14 @@ RUN apt-get install -y git-all tig subversion subversion-tools cvs \
 # libraries and headers
 RUN apt-get install -y libcairo2-dev libjpeg62-dev libgif-dev libpq-dev \
     libboost-all-dev libzmq-dev libwww-curl-perl libbz2-dev dpkg-dev \
-    ruby1.9.1-dev dialog
+    ruby1.9.1-dev dialog python-gtk2  libpango1.0 libpango1.0-dev
 
 # Deployment
 RUN wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh -e && \
     sudo -u ubuntu -i bash -l -c "npm install jitsu@0.13.15 -g" && \
-    sudo -u ubuntu -i bash -l -c "npm in stall azure-cli@0.8.2 -g" && \
-    gem install rhc:1.23.7 && \
+    sudo -u ubuntu -i bash -l -c "npm install azure-cli@0.8.2 -g" && \
+    sudo -u ubuntu -i bash -l -c "npm install grunt@0.4.4 -g" && \
+    gem install rhc -v 1.23.7 && \
     wget -O /tmp/deb.deb http://go-cli.s3-website-us-east-1.amazonaws.com/releases/latest/cf-cli_amd64.deb && \
     dpkg -i /tmp/deb.deb && \
     wget -O /tmp/deb.deb https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_1.6.0_amd64.deb && \
@@ -100,7 +101,7 @@ RUN apt-get install -y python3 python3-dev python3-setuptools ipython3 \
     python-scipy python-matplotlib python-virtualenv virtualenvwrapper
 
 # Julia
-apt-get -y install julia julia-doc
+RUN apt-get install -y julia julia-doc
 
 # /opt packages
 RUN curl https://go.googlecode.com/files/go1.2.1.linux-amd64.tar.gz | tar -C /opt -xz
