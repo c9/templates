@@ -72,7 +72,7 @@ RUN apt-get install -y apache2 php5 php5-fpm apache2-doc php-pear
 # tools
 RUN apt-get install -y dnsutils bash-completion xsltproc \
     build-essential fakeroot tmux duplicity lftp htop apt-file \
-    parallel nano strace ltrace flex jq ack-grep gdb valgrind
+    parallel nano strace ltrace flex jq ack-grep gdb valgrind locate
 
 # Version control
 RUN apt-get install -y git-all tig subversion subversion-tools cvs \
@@ -81,7 +81,7 @@ RUN apt-get install -y git-all tig subversion subversion-tools cvs \
 # libraries and headers
 RUN apt-get install -y libcairo2-dev libjpeg62-dev libgif-dev libpq-dev \
     libboost-all-dev libzmq-dev libwww-curl-perl libbz2-dev dpkg-dev \
-    ruby1.9.1-dev dialog python-gtk2  libpango1.0 libpango1.0-dev
+    ruby1.9.1-dev dialog python-gtk2 libpango1.0 libpango1.0-dev
 
 # Deployment
 RUN wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh -e && \
