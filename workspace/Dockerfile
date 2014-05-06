@@ -72,7 +72,7 @@ RUN apt-get install -y apache2 php5 php5-fpm apache2-doc php-pear
 # tools
 RUN apt-get install -y dnsutils bash-completion xsltproc \
     build-essential fakeroot tmux duplicity lftp htop apt-file \
-    parallel nano strace ltrace flex jq ack-grep gdb valgrind locate
+    parallel nano strace ltrace flex jq ack-grep gdb valgrind locate tree time
 
 # Version control
 RUN apt-get install -y git-all tig subversion subversion-tools cvs \
