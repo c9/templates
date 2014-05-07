@@ -2,7 +2,9 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-# If not running interactively, don't do anything
+. /etc/apache2/envvars
+
+# If not running interactively, don't do anything else
 [ -z "$PS1" ] && return
 
 # don't put duplicate lines or lines starting with space in the history.
@@ -49,5 +51,3 @@ xterm*|rxvt*)
 *)
     ;;
 esac
-
-. /etc/apache2/envvars
