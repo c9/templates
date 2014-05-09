@@ -112,6 +112,7 @@ RUN apt-file update
 
 # all changes go down here:
 # RUN ...
+RUN nvm install 0.10.28
 
 # setup the system
 RUN echo -n "" > /etc/motd && \
