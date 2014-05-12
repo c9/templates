@@ -1,5 +1,10 @@
 #!/bin/sh
 
+if [ "$C9_PORT" ]; then
+    # We already executed, let's not overwrite the path
+    return
+fi
+
 export C9_FULLNAME=
 export C9_HOSTNAME=
 export C9_EMAIL=
@@ -13,7 +18,7 @@ export C9_IP=0.0.0.0
 export C9_SHARED=/mnt/shared
 
 export PATH=/mnt/shared/bin:$HOME/workspace/node_modules/.bin:$HOME/bin\
-:/sbin:/usr/sbin:/bin:/usr/bin:/usr/local/sbin:/usr/local/bin\
+:$PATH\
 :/bin/mnt/shared/sbin:/opt/gitl:/opt/go/bin:/mnt/shared/c9/app.nw/bin
 
 export HGUSER=$C9_FULLNAME
