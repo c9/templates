@@ -128,6 +128,10 @@ RUN cp /tmp/homedir/.gitignore /tmp/homedir/.hgignore && \
     chown -R ubuntu:ubuntu /tmp/homedir && \
     bash -c "shopt -s dotglob && cp -a /tmp/homedir/* /home/ubuntu" && \
     rm -rf /tmp/homedir && \
+    echo "Configure mongodb" && \
+    sudo sed -i 's/journal=true/journal=false\nnojournal=true\nsmallfiles=true/' /etc/mongodb.conf && \
+    echo "Configure apache2" && \
+    sudo sed -i 's/Listen 80/Listen 8080/'  /etc/apache2/ports.conf && \
     sudo sed -i 's/Listen 80/Listen 8080/'  /etc/apache2/ports.conf && \
     ln -s /etc/apache2/sites-available/001-cloud9.conf /etc/apache2/sites-enabled && \
     chmod 644 /etc/apache2/sites-available/001-cloud9.conf && \
