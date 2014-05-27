@@ -32,6 +32,8 @@ export GOROOT=/usr/local/go
 export METEOR_IP=$IP
 export METEOR_PORT=$PORT
 
+[ "$BASH_VERSION" ] || return 0
+
 _xdgopen() {
     if [ -e "$@" ]; then
         c9 "$@"
