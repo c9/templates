@@ -138,6 +138,7 @@ RUN cp /tmp/homedir/.gitignore /tmp/homedir/.hgignore && \
     chown root:root /etc/profile.d/nada-nix-compat.sh /etc/profile.d/cloud9.sh /etc/apache2/envvars && \
     chmod 644 /etc/profile.d/nada-nix-compat.sh /etc/profile.d/cloud9.sh /etc/apache2/envvars && \
     sudo -u ubuntu -i bash -c "mkdir -p /home/ubuntu/.ssh" && \
+    sed -Ei 's/(.*)secure_path.*/\1!secure_path/' /etc/sudoers && \
     touch /etc/init.d/systemd-logind
 
 # re-enable service startup. This line must come after all apt-get installs
