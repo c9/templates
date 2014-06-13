@@ -14,9 +14,11 @@ installedPackages() {
   mv -f $TEMPFILE $PROFILE/list
 }
 
-if [ ! -e $PROFILE ] || [ -e $PROFILE/done ]; then
+if [ ! -e $PROFILE ] || [ -e $PROFILE/done ] || [ "$NADA_CHECKED" ]; then
   return
 fi
+
+export NADA_CHECKED=1
 
 INSTALLED=`installedPackages`
 
