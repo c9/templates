@@ -14,7 +14,7 @@ installedPackages() {
   mv -f $TEMPFILE $PROFILE/list
 }
 
-if [ ! -e $PROFILE ] || [ -e $PROFILE/done ] || [ "$NADA_CHECKED" ] || [ ! $ISOUTPUTPANE ]; then
+if [ ! -e $PROFILE ] || [ -e $PROFILE/done ] || [ "$NADA_CHECKED" ] || [ $ISOUTPUTPANE ]; then
   return
 fi
 
