@@ -17,4 +17,5 @@ export LANG=C
 ## Uncomment the following line to use the system default locale instead:
 #. /etc/default/locale
 
-export LANG
+# make php.ini be read from workspace dir
+export PHPRC=/home/ubuntu/workspace
