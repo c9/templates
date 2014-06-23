@@ -34,6 +34,12 @@ export METEOR_PORT=$PORT
 
 [ "$BASH_VERSION" ] || return 0
 
+rm -f /etc/profile.d/nada-nix-compat.sh # remove nada-nix-compat.sh in old workspaces
+
+for S in /mnt/shared/profile.d/*; do
+    [ -e $S ] && . $S
+done
+
 _xdgopen() {
     if [ -e "$@" ]; then
         c9 "$@"

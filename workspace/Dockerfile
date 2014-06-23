@@ -135,8 +135,8 @@ RUN cp /tmp/homedir/.gitignore /tmp/homedir/.hgignore && \
     ln -s /etc/apache2/sites-available/001-cloud9.conf /etc/apache2/sites-enabled && \
     chmod 644 /etc/apache2/sites-available/001-cloud9.conf && \
     chown -R ubuntu:ubuntu /home/ubuntu/lib && \
-    chown root:root /etc/profile.d/nada-nix-compat.sh /etc/profile.d/cloud9.sh /etc/apache2/envvars && \
-    chmod 644 /etc/profile.d/nada-nix-compat.sh /etc/profile.d/cloud9.sh /etc/apache2/envvars && \
+    chown root:root /etc/profile.d/cloud9.sh /etc/apache2/envvars && \
+    chmod 644 /etc/profile.d/cloud9.sh /etc/apache2/envvars && \
     sudo -u ubuntu -i bash -c "mkdir -p /home/ubuntu/.ssh" && \
     sed -Ei 's/(.*)secure_path.*/\1!secure_path/' /etc/sudoers && \
     touch /etc/init.d/systemd-logind
