@@ -113,7 +113,7 @@ RUN apt-file update
 # all changes go down here:
 # RUN ...
 RUN sudo -u ubuntu -i bash -l -c "nvm install 0.10"
-RUN apt-get install -y pylint
+RUN apt-get install -y pylint zip
 
 # setup the system
 RUN echo -n "" > /etc/motd && \
