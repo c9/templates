@@ -9,3 +9,7 @@ if [ "$C9_PROJECT_SANITIZED" == "django" ]; then
 fi
 
 django-admin.py startproject $C9_PROJECT_SANITIZED .
+sed -i '2ifrom socket import gethostname
+        2iif "_" in gethostname():
+        2i\ \ \ \ print "Error: your username/workspace name has an underscore, which is not allowed in django"
+        2i\ \ \ \ print "See https://code.djangoproject.com/ticket/20264"' manage.py
