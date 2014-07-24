@@ -114,6 +114,7 @@ RUN apt-file update
 # RUN ...
 RUN sudo -u ubuntu -i bash -l -c "nvm install 0.10"
 RUN apt-get install -y pylint zip
+RUN sudo a2enmod rewrite
 
 # setup the system
 RUN echo -n "" > /etc/motd && \
