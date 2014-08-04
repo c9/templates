@@ -28,9 +28,10 @@ export IP=$C9_IP
 export PYTHONPATH=$PYTHONPATH:$HOME/lib/python/site-packages
 export GEM_PATH=$GEM_PATH:/mnt/shared/lib/ruby
 
-export GOROOT=/usr/local/go
 export METEOR_IP=$IP
 export METEOR_PORT=$PORT
+
+[ "$GOROOT" ] || export GOROOT=/opt/go
 
 [ "$BASH_VERSION" ] || return 0
 
