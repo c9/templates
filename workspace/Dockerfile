@@ -119,6 +119,7 @@ RUN sudo a2enmod rewrite
 RUN sudo -u ubuntu -i bash -l -c "nvm install 0.11"
 RUN curl -sS https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/bin/composer
+RUN apt-get install php5-mcrypt
 
 # setup the system
 RUN echo -n "" > /etc/motd && \
