@@ -116,6 +116,10 @@ RUN sudo -u ubuntu -i bash -l -c "nvm install 0.10"
 RUN apt-get install -y pylint zip
 RUN sudo a2enmod rewrite
 
+RUN sudo -u ubuntu -i bash -l -c "nvm install 0.11"
+RUN curl -sS https://getcomposer.org/installer | php
+RUN mv composer.phar /usr/bin/composer
+
 # setup the system
 RUN echo -n "" > /etc/motd && \
     echo "export PATH=/bin:/usr/bin:/sbin:/usr/sbin:/user/local/bin:/user/local/sbin" >> /root/.bashrc && \
