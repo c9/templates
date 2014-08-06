@@ -66,8 +66,8 @@ RUN apt-get install -y vim vim-addon-manager vim-vimoutliner vim-doc
 RUN apt-get install -y emacs ctags indent
 
 # servers
-RUN apt-get install -y redis-server redis-tools nginx mongodb postgresql-9.3 phppgadmin 
-RUN apt-get install -y mysql-server phpmyadmin mongodb rabbitmq-server couchdb
+RUN apt-get install -y redis-server redis-tools nginx postgresql-9.3 phppgadmin
+RUN apt-get install -y mysql-server phpmyadmin rabbitmq-server couchdb
 RUN apt-get install -y apache2 php5 php5-fpm apache2-doc php-pear
 
 # tools
@@ -119,6 +119,10 @@ RUN curl -sS https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/bin/composer
 RUN apt-get install -y php5-mcrypt
 RUN apt-get install -y python3-pip
+RUN sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 && \
+    echo "deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen" | sudo tee /etc/apt/sources.list.d/mongodb.list && \
+    sudo apt-get update && \
+    sudo apt-get install -y mongodb-org
 
 # setup the system
 RUN echo -n "" > /etc/motd && \
