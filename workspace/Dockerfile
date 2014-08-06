@@ -44,10 +44,11 @@ RUN sudo -u ubuntu -i bash -l -c "rvm get stable --auto-dotfiles"
 
 # node.js and nvm
 RUN sudo -u ubuntu -i bash -l -c "curl -L https://raw.github.com/creationix/nvm/master/install.sh | sh -e"
-RUN sudo -u ubuntu -i bash -l -c "nvm install 0.6"
-RUN sudo -u ubuntu -i bash -l -c "nvm install 0.8" && \
-    sudo -u ubuntu -i bash -l -c "nvm install 0.10" && \
-    sudo -u ubuntu -i bash -l -c "nvm alias default 0.10"
+RUN sudo -u ubuntu -i bash -l -c "nvm install 0.6.21"
+RUN sudo -u ubuntu -i bash -l -c "nvm install 0.8.28" && \
+    sudo -u ubuntu -i bash -l -c "nvm install 0.10.30" && \
+    sudo -u ubuntu -i bash -l -c "nvm install 0.11.13" && \
+    sudo -u ubuntu -i bash -l -c "nvm alias default 0.10.30"
 
 # mono
 RUN apt-get install -y mono-devel mono-utils mono-xbuild nant
@@ -112,11 +113,8 @@ RUN apt-file update
 
 # all changes go down here:
 # RUN ...
-RUN sudo -u ubuntu -i bash -l -c "nvm install 0.10"
 RUN apt-get install -y pylint zip
 RUN sudo a2enmod rewrite
-
-RUN sudo -u ubuntu -i bash -l -c "nvm install 0.11"
 RUN curl -sS https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/bin/composer
 RUN apt-get install -y php5-mcrypt
