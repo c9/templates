@@ -68,7 +68,15 @@ RUN apt-get install -y emacs ctags indent
 # servers
 RUN apt-get install -y redis-server redis-tools nginx postgresql-9.3 phppgadmin
 RUN apt-get install -y mysql-server phpmyadmin rabbitmq-server couchdb
-RUN apt-get install -y apache2 php5 php5-fpm apache2-doc php-pear
+RUN apt-get install -y apache2 php5 php5-fpm php5-mcrypt apache2-doc php-pear
+RUN curl -sS https://getcomposer.org/installer | php && \
+    mv composer.phar /usr/bin/composer
+
+# Mongodb
+RUN sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 && \
+    echo "deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen" | sudo tee /etc/apt/sources.list.d/mongodb.list && \
+    sudo apt-get update && \
+    sudo apt-get install -y mongodb-org
 
 # tools
 RUN apt-get install -y dnsutils bash-completion xsltproc \
@@ -98,7 +106,7 @@ RUN wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh -e && \
 
 # Python
 RUN apt-get install -y python3 python3-dev python3-setuptools ipython3 \
-    python3-scipy python python-dev python-pip python-setuptools ipython \
+    python3-scipy python3-pip python python-dev python-pip python-setuptools ipython \
     python-scipy python-matplotlib python-virtualenv virtualenvwrapper
 
 # Julia
@@ -115,14 +123,6 @@ RUN apt-file update
 # RUN ...
 RUN apt-get install -y pylint zip
 RUN sudo a2enmod rewrite
-RUN curl -sS https://getcomposer.org/installer | php
-RUN mv composer.phar /usr/bin/composer
-RUN apt-get install -y php5-mcrypt
-RUN apt-get install -y python3-pip
-RUN sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 && \
-    echo "deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen" | sudo tee /etc/apt/sources.list.d/mongodb.list && \
-    sudo apt-get update && \
-    sudo apt-get install -y mongodb-org
 
 # setup the system
 RUN echo -n "" > /etc/motd && \
@@ -138,7 +138,7 @@ RUN cp /tmp/homedir/.gitignore /tmp/homedir/.hgignore && \
     bash -c "shopt -s dotglob && cp -a /tmp/homedir/* /home/ubuntu" && \
     rm -rf /tmp/homedir && \
     echo "Configure mongodb" && \
-    sudo sed -i 's/journal=true/journal=false\nnojournal=true\nsmallfiles=true/' /etc/mongodb.conf && \
+    sudo sed -i 's/journal=true/journal=false\nnojournal=true\nsmallfiles=true/' /etc/mongod.conf && \
     echo "Configure apache2" && \
     sudo sed -i 's/Listen 80\b/Listen 8080/' /etc/apache2/ports.conf && \
     ln -s /etc/apache2/sites-available/001-cloud9.conf /etc/apache2/sites-enabled && \
