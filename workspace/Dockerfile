@@ -72,12 +72,6 @@ RUN apt-get install -y apache2 php5 php5-fpm php5-mcrypt apache2-doc php-pear
 RUN curl -sS https://getcomposer.org/installer | php && \
     mv composer.phar /usr/bin/composer
 
-# Mongodb
-RUN sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 && \
-    echo "deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen" | sudo tee /etc/apt/sources.list.d/mongodb.list && \
-    sudo apt-get update && \
-    sudo apt-get install -y mongodb-org
-
 # tools
 RUN apt-get install -y dnsutils bash-completion xsltproc \
     build-essential fakeroot tmux duplicity lftp htop apt-file \
@@ -112,6 +106,11 @@ RUN apt-get install -y python3 python3-dev python3-setuptools ipython3 \
 # Julia
 RUN apt-get install -y julia julia-doc
 
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 && \
+    echo "deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen" | sudo tee /etc/apt/sources.list.d/mongodb.list && \
+    apt-get update && \
+    apt-get install -y mongodb-org
+
 # /opt packages
 RUN curl https://go.googlecode.com/files/go1.2.1.linux-amd64.tar.gz | tar -C /opt -xz
 RUN git clone https://github.com/lennartcl/gitl.git /opt/gitl
@@ -138,7 +137,8 @@ RUN cp /tmp/homedir/.gitignore /tmp/homedir/.hgignore && \
     bash -c "shopt -s dotglob && cp -a /tmp/homedir/* /home/ubuntu" && \
     rm -rf /tmp/homedir && \
     echo "Configure mongodb" && \
-    sudo sed -i 's/journal=true/journal=false\nnojournal=true\nsmallfiles=true/' /etc/mongod.conf && \
+    mkdir -p /data/db && \
+    sudo chown ubuntu:ubuntu /data/db && \
     echo "Configure apache2" && \
     sudo sed -i 's/Listen 80\b/Listen 8080/' /etc/apache2/ports.conf && \
     ln -s /etc/apache2/sites-available/001-cloud9.conf /etc/apache2/sites-enabled && \
