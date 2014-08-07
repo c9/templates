@@ -17,9 +17,9 @@ export C9_PORT=8080
 export C9_IP=0.0.0.0
 export C9_SHARED=/mnt/shared
 
-export PATH=/mnt/shared/bin:/mnt/shared/sbin:$HOME/workspace/node_modules/.bin:$HOME/bin\
+export PATH=/mnt/shared/bin:$HOME/workspace/node_modules/.bin:$HOME/bin\
 :$PATH\
-:/opt/gitl:/opt/go/bin:/mnt/shared/c9/app.nw/bin
+:/mnt/shared/sbin:/opt/gitl:/opt/go/bin:/mnt/shared/c9/app.nw/bin
 
 export LC_ALL=C.UTF-8
 export HGUSER=$C9_FULLNAME
