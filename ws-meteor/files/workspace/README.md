@@ -9,8 +9,8 @@
 
 Welcome to your Meteor project on Cloud9 IDE!
 
-To run your new app open yout terminal and type:
-   $ meteor -port=$PORT
+To run your new app open your terminal and type:
+   $ meteor --port=$PORT
 
 
 Happy coding!
