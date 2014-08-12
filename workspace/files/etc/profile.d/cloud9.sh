@@ -40,6 +40,11 @@ if [ -e /etc/profile.d/nada-nix-compat.sh ]; then
     sudo rm -f /etc/profile.d/nada-nix-compat.sh & 
 fi
 
+# fix broken .gitconfig
+if grep -q "askpass = /bin/echo" ~/.gitconfig; then
+    sed -i 's!askpass = /bin/echo/!!' ~/.gitconfig
+fi
+
 for S in /mnt/shared/profile.d/*; do
     [ -e $S ] && . $S
 done
