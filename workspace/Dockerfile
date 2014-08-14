@@ -69,9 +69,8 @@ RUN apt-get install -y emacs ctags indent
 RUN apt-get install -y redis-server redis-tools nginx postgresql-9.3 phppgadmin
 RUN apt-get install -y mysql-server phpmyadmin rabbitmq-server couchdb
 RUN apt-get install -y apache2 php5 php5-fpm php5-mcrypt apache2-doc php-pear && \
-    cd /etc/php5/mods-available && ls *.ini | sed 's/\.ini$//' | xargs sudo php5enmod
-
-RUN curl -sS https://getcomposer.org/installer | php && \
+    cd /etc/php5/mods-available && ls *.ini | sed 's/\.ini$//' | xargs php5enmod && \
+    curl -sS https://getcomposer.org/installer | php && \
     mv composer.phar /usr/bin/composer
 
 # tools
