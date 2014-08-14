@@ -12,13 +12,18 @@ Welcome to your Django project on Cloud9 IDE!
 Here are some steps to get you started:
 
 1) Use your terminal to install and start MySQL:
-$ mysql-ctl start
+
+    $ mysql-ctl start
 
 2) Run syncdb command to sync models to database and create Django's default superuser and auth system
-$ python manage.py syncdb
+
+    $ python manage.py syncdb
 
 3) Run Django
-$ python manage.py runserver $IP:$PORT
+
+    $ python manage.py runserver $IP:$PORT
+    
+4) Open your project in the shape of 'https://projectname-c9-username.c9.io/'
 
 
 Happy coding!
