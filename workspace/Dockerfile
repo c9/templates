@@ -116,6 +116,9 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 && \
 RUN curl https://go.googlecode.com/files/go1.2.1.linux-amd64.tar.gz | tar -C /opt -xz
 RUN git clone https://github.com/lennartcl/gitl.git /opt/gitl
 
+# Haskell
+RUN apt-get install -y ghc ghc-doc cabal-install haskell-doc llvm
+
 # apt-file cache
 RUN apt-file update
 
