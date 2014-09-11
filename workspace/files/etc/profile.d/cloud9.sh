@@ -33,6 +33,7 @@ export METEOR_IP=$IP
 export METEOR_PORT=$PORT
 
 [ "$GOROOT" ] || export GOROOT=/opt/go
+[ "$GOPATH" ] || export GOPATH=/home/ubuntu/workspace
 
 [ "$BASH_VERSION" ] || return 0
 
