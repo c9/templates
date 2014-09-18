@@ -33,6 +33,7 @@ export METEOR_IP=$IP
 export METEOR_PORT=$PORT
 
 [ "$GOROOT" ] || export GOROOT=/opt/go
+[ "$GOPATH" ] || export GOPATH=/home/ubuntu/workspace
 
 [ "$BASH_VERSION" ] || return 0
 
@@ -42,7 +43,7 @@ if [ -e /etc/profile.d/nada-nix-compat.sh ]; then
 fi
 
 # fix broken .gitconfig
-if grep -q "askpass = /bin/echo" ~/.gitconfig; then
+if grep -qs "askpass = /bin/echo" ~/.gitconfig; then
     sed -i 's!askpass = /bin/echo/!!' ~/.gitconfig
 fi
 

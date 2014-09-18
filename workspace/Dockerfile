@@ -50,6 +50,9 @@ RUN sudo -u ubuntu -i bash -l -c "nvm install 0.8.28" && \
     sudo -u ubuntu -i bash -l -c "nvm install 0.11.13" && \
     sudo -u ubuntu -i bash -l -c "nvm alias default 0.10.30"
 
+# apt-get update because ubuntu caches go out of date in a matter of days
+RUN apt-get update
+
 # mono
 RUN apt-get install -y mono-devel mono-utils mono-xbuild nant
 
