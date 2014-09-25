@@ -122,6 +122,10 @@ RUN git clone https://github.com/lennartcl/gitl.git /opt/gitl
 # Haskell
 RUN apt-get install -y ghc ghc-doc cabal-install haskell-doc llvm
 
+# shellshock
+# TODO: move upward if other things at the top of this file have changed
+RUN sudo apt-get update; sudo apt-get install bash
+
 # apt-file cache
 RUN apt-file update
 
