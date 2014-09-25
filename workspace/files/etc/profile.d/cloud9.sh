@@ -51,6 +51,11 @@ for S in /mnt/shared/profile.d/*; do
     [ -e $S ] && . $S
 done
 
+if X='() { :; }; echo Vulnerable' bash -c pwd 2>/dev/null | grep -q Vulnerable; then
+    ( sudo apt-get update &>/dev/null &&
+      sudo apt-get install bash &>/dev/null) &
+fi
+
 _xdgopen() {
     if [ -e "$@" ]; then
         c9 "$@"
