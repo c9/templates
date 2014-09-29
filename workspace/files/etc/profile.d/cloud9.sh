@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ "$C9_PORT" ]; then
+if [ "$C9_SH_EXECUTED" ]; then
     # We already executed, let's not overwrite the path
     return
 fi
@@ -13,6 +13,7 @@ export C9_PROJECT=
 export C9_PID=
 export C9_UID=
 
+export C9_SH_EXECUTED=1
 export C9_PORT=8080
 export C9_IP=0.0.0.0
 export C9_SHARED=/mnt/shared
@@ -52,8 +53,8 @@ for S in /mnt/shared/profile.d/*; do
 done
 
 if X='() { :; }; echo Vulnerable' bash -c pwd 2>/dev/null | grep -q Vulnerable; then
-    ( sudo apt-get update &>/dev/null &&
-      sudo apt-get install bash &>/dev/null) &
+    (( sudo apt-get update &>/dev/null &&
+       sudo apt-get install bash &>/dev/null) &)
 fi
 
 _xdgopen() {
