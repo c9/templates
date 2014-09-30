@@ -5,7 +5,7 @@ ADD ./files /home/ubuntu
 
 RUN cd /home/ubuntu/workspace && \
     rm -rf .git* && \
-    curl http://wordpress.org/latest.tar.gz | tar xzf - && \
+    curl -L http://wordpress.org/latest.tar.gz | tar xz && \
     mv wordpress/* . && \
     mv wp-config-sample.php wp-config.php && \
     sed -i -e "s/define('DB_NAME',.*/define('DB_NAME', 'c9');/" wp-config.php && \
