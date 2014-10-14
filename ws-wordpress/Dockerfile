@@ -14,4 +14,7 @@ RUN cd /home/ubuntu/workspace && \
     sed -i -e "s/define('DB_HOST',.*/define('DB_HOST', getenv('IP'));/" wp-config.php && \
     sed -i -e '/define(.WP_DEBUG.*/ a\
     $_SERVER["HTTP_HOST"] = $_SERVER["SERVER_NAME"];' wp-config.php && \
+    sed -i -e '/define(.WP_DEBUG.*/ a\
+    $_SERVER["HTTP_HOST"] = $_SERVER["SERVER_NAME"];' wp-config.php && \
+    sed -i '2iif (isset($_SERVER["HTTP_X_FORWARDED_PROTO"]) && $_SERVER["HTTP_X_FORWARDED_PROTO"] == "https") $_SERVER["HTTPS"] = "on";' wp-config.php && \
     chown -R ubuntu:ubuntu /home/ubuntu
