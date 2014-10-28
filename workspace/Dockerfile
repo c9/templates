@@ -79,7 +79,8 @@ RUN apt-get install -y apache2 php5 php5-fpm php5-mcrypt apache2-doc php-pear &&
 # tools
 RUN apt-get install -y dnsutils bash-completion xsltproc \
     build-essential fakeroot tmux duplicity lftp htop apt-file \
-    parallel nano strace ltrace flex jq ack-grep gdb valgrind locate tree time
+    parallel nano strace ltrace flex jq ack-grep gdb valgrind locate tree time \
+    zip
 
 # Version control
 RUN apt-get install -y git-all tig subversion subversion-tools cvs \
@@ -88,7 +89,8 @@ RUN apt-get install -y git-all tig subversion subversion-tools cvs \
 # libraries and headers
 RUN apt-get install -y libcairo2-dev libjpeg62-dev libgif-dev libpq-dev \
     libboost-all-dev libzmq-dev libwww-curl-perl libbz2-dev dpkg-dev \
-    ruby1.9.1-dev dialog python-gtk2 libpango1.0 libpango1.0-dev
+    ruby1.9.1-dev dialog python-gtk2 libpango1.0 libpango1.0-dev \
+    libmysqlclient-dev
 
 # Deployment
 RUN wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh -e && \
@@ -108,7 +110,7 @@ RUN wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh -e && \
 # Python
 RUN apt-get install -y python3 python3-dev python3-setuptools ipython3 \
     python3-scipy python3-pip python python-dev python-pip python-setuptools ipython \
-    python-scipy python-matplotlib python-virtualenv virtualenvwrapper
+    python-scipy python-matplotlib python-virtualenv virtualenvwrapper pylint
 
 # Julia
 RUN apt-get install -y julia julia-doc
@@ -134,8 +136,6 @@ RUN apt-file update
 
 # all changes go down here:
 # RUN ...
-RUN apt-get install -y pylint zip
-RUN sudo a2enmod rewrite
 
 # setup the system
 RUN echo -n "" > /etc/motd && \
@@ -154,6 +154,7 @@ RUN cp /tmp/homedir/.gitignore /tmp/homedir/.hgignore && \
     mkdir -p /data/db && \
     sudo chown ubuntu:ubuntu /data/db && \
     echo "Configure apache2" && \
+    sudo a2enmod rewrite && \
     sudo sed -i 's/Listen 80\b/Listen 8080/' /etc/apache2/ports.conf && \
     ln -s /etc/apache2/sites-available/001-cloud9.conf /etc/apache2/sites-enabled && \
     chmod 644 /etc/apache2/sites-available/001-cloud9.conf && \
