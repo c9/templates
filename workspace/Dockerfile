@@ -26,29 +26,28 @@ RUN apt-get install -y console-setup sudo wget curl git python software-properti
     usermod -a -G sudo ubuntu
 
 # install ruby/rails/rvm (this comes early because it takes very long to rebuild)
-RUN sudo -u ubuntu -i bash -l -c "curl -L https://get.rvm.io | sudo bash -s" && \
+RUN sudo -u ubuntu -i bash -l -c "curl -L https://get.rvm.io | sudo bash -s # rvm 1.25.34" && \
     usermod -a -G rvm ubuntu
-RUN sudo -u ubuntu -i bash -l -c "rvm install ruby-1.8.7" && \
+RUN sudo -u ubuntu -i bash -l -c "rvm install ruby-1.8.7-p374" && \
     /usr/local/rvm/bin/rvm cleanup all
-RUN sudo -u ubuntu -i bash -l -c "rvm install ruby-1.9.3" && \
+RUN sudo -u ubuntu -i bash -l -c "rvm install ruby-1.9.3-p547" && \
     /usr/local/rvm/bin/rvm cleanup all
-RUN sudo -u ubuntu -i bash -l -c "rvm install ruby-2.1.1 && rvm --default use 2.1.1" && \
+RUN sudo -u ubuntu -i bash -l -c "rvm install ruby-2.1.3 && rvm --default use 2.1.3" && \
     /usr/local/rvm/bin/rvm cleanup all
-RUN sudo -u ubuntu -i bash -l -c "rvm use 2.1.1 && rvm gemset create rails4 && rvm gemset use rails4 && gem install rails -v 4.0.2" && \
-    sudo -u ubuntu -i bash -l -c "rvm use 2.1.1 && rvm gemset use rails4 && gem install bundler -v '>= 1.5.1'" && \
-    sudo -u ubuntu -i bash -l -c "rvm use 2.1.1@rails4 --default" && \
+RUN sudo -u ubuntu -i bash -l -c "rvm use 2.1.3 && rvm gemset create rails4 && rvm gemset use rails4 && gem install rails -v 4.1.6" && \
+    sudo -u ubuntu -i bash -l -c "rvm use 2.1.3@rails4 --default" && \
     /usr/local/rvm/bin/rvm cleanup all
-RUN sudo -u ubuntu -i bash -l -c "rvm use 1.9.3 && rvm gemset create rails3.2 && rvm gemset use rails3.2 && gem install rails -v 3.2.16" && \
+RUN sudo -u ubuntu -i bash -l -c "rvm use 1.9.3-p547 && rvm gemset create rails3.2 && rvm gemset use rails3.2 && gem install rails -v 3.2.19" && \
     /usr/local/rvm/bin/rvm cleanup all
 RUN sudo -u ubuntu -i bash -l -c "rvm get stable --auto-dotfiles"
 
 # node.js and nvm
 RUN sudo -u ubuntu -i bash -l -c "curl -L https://raw.github.com/creationix/nvm/master/install.sh | sh -e"
-RUN sudo -u ubuntu -i bash -l -c "nvm install 0.6.21"
-RUN sudo -u ubuntu -i bash -l -c "nvm install 0.8.28" && \
-    sudo -u ubuntu -i bash -l -c "nvm install 0.10.32" && \
-    sudo -u ubuntu -i bash -l -c "nvm install 0.11.14" && \
-    sudo -u ubuntu -i bash -l -c "nvm alias default 0.10.32"
+RUN HOME=/home/ubuntu sudo -u ubuntu -i bash -l -i -c "nvm install 0.6.21"
+RUN HOME=/home/ubuntu sudo -u ubuntu -i bash -l -i -c "nvm install 0.8.28" && \
+    HOME=/home/ubuntu sudo -u ubuntu -i bash -l -i -c "nvm install 0.10.32" && \
+    HOME=/home/ubuntu sudo -u ubuntu -i bash -l -i -c "nvm install 0.11.14" && \
+    HOME=/home/ubuntu sudo -u ubuntu -i bash -l -i -c "nvm alias default 0.10.32"
 
 # apt-get update because ubuntu caches go out of date in a matter of days
 RUN apt-get update
@@ -94,13 +93,13 @@ RUN apt-get install -y libcairo2-dev libjpeg62-dev libgif-dev libpq-dev \
 
 # Deployment
 RUN wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh -e && \
-    sudo -u ubuntu -i bash -l -c "npm install jitsu@0.13.15 -g" && \
-    sudo -u ubuntu -i bash -l -c "npm install azure-cli@0.8.2 -g" && \
-    sudo -u ubuntu -i bash -l -c "npm install grunt@0.4.4 -g" && \
-    sudo -u ubuntu -i bash -l -c "npm install grunt-cli@0.1.13  -g" && \
-    sudo -u ubuntu -i bash -l -c "npm install bower@1.3.12  -g" && \
-    sudo -u ubuntu -i bash -l -c "gem install rhc -v 1.28.5" && \
-    sudo -u ubuntu -i bash -l -c "gem install compass -v 1.0.1" && \
+    sudo -u ubuntu -i bash -l -i -c "npm install jitsu@0.13.15 -g" && \
+    sudo -u ubuntu -i bash -l -i -c "npm install azure-cli@0.8.2 -g" && \
+    sudo -u ubuntu -i bash -l -i -c "npm install grunt@0.4.4 -g" && \
+    sudo -u ubuntu -i bash -l -i -c "npm install grunt-cli@0.1.13  -g" && \
+    sudo -u ubuntu -i bash -l -i -c "npm install bower@1.3.12  -g" && \
+    sudo -u ubuntu -i bash -l -i -c "gem install rhc -v 1.28.5" && \
+    sudo -u ubuntu -i bash -l -i -c "gem install compass -v 1.0.1" && \
     wget -O /tmp/deb.deb http://go-cli.s3-website-us-east-1.amazonaws.com/releases/latest/cf-cli_amd64.deb && \
     dpkg -i /tmp/deb.deb && \
     wget -O /tmp/deb.deb https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_1.6.0_amd64.deb && \
