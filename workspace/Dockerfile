@@ -46,8 +46,8 @@ RUN sudo -u ubuntu -i bash -l -c "rvm get stable --auto-dotfiles"
 RUN sudo -u ubuntu -i bash -l -c "curl -L https://raw.github.com/creationix/nvm/master/install.sh | sh -e"
 RUN sudo -u ubuntu -i bash -l -c "nvm install 0.6.21"
 RUN sudo -u ubuntu -i bash -l -c "nvm install 0.8.28" && \
-    sudo -u ubuntu -i bash -l -c "nvm install 0.10.30" && \
-    sudo -u ubuntu -i bash -l -c "nvm install 0.11.13" && \
+    sudo -u ubuntu -i bash -l -c "nvm install 0.10.32" && \
+    sudo -u ubuntu -i bash -l -c "nvm install 0.11.14" && \
     sudo -u ubuntu -i bash -l -c "nvm alias default 0.10.30"
 
 # apt-get update because ubuntu caches go out of date in a matter of days
@@ -95,7 +95,10 @@ RUN wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh -e && \
     sudo -u ubuntu -i bash -l -c "npm install jitsu@0.13.15 -g" && \
     sudo -u ubuntu -i bash -l -c "npm install azure-cli@0.8.2 -g" && \
     sudo -u ubuntu -i bash -l -c "npm install grunt@0.4.4 -g" && \
+    sudo -u ubuntu -i bash -l -c "npm install grunt-cli@0.1.13  -g" && \
+    sudo -u ubuntu -i bash -l -c "npm install bower@1.3.12  -g" && \
     sudo -u ubuntu -i bash -l -c "gem install rhc -v 1.28.5" && \
+    sudo -u ubuntu -i bash -l -c "gem install compass -v 1.0.1" && \
     wget -O /tmp/deb.deb http://go-cli.s3-website-us-east-1.amazonaws.com/releases/latest/cf-cli_amd64.deb && \
     dpkg -i /tmp/deb.deb && \
     wget -O /tmp/deb.deb https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_1.6.0_amd64.deb && \
