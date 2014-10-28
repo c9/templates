@@ -45,9 +45,9 @@ RUN sudo -u ubuntu -i bash -l -c "rvm get stable --auto-dotfiles"
 RUN sudo -u ubuntu -i bash -l -c "curl -L https://raw.github.com/creationix/nvm/master/install.sh | sh -e"
 RUN HOME=/home/ubuntu sudo -u ubuntu -i bash -l -i -c "nvm install 0.6.21"
 RUN HOME=/home/ubuntu sudo -u ubuntu -i bash -l -i -c "nvm install 0.8.28" && \
-    HOME=/home/ubuntu sudo -u ubuntu -i bash -l -i -c "nvm install 0.10.32" && \
+    HOME=/home/ubuntu sudo -u ubuntu -i bash -l -i -c "nvm install 0.10.33" && \
     HOME=/home/ubuntu sudo -u ubuntu -i bash -l -i -c "nvm install 0.11.14" && \
-    HOME=/home/ubuntu sudo -u ubuntu -i bash -l -i -c "nvm alias default 0.10.32"
+    HOME=/home/ubuntu sudo -u ubuntu -i bash -l -i -c "nvm alias default 0.10.33"
 
 # apt-get update because ubuntu caches go out of date in a matter of days
 RUN apt-get update
