@@ -48,7 +48,7 @@ RUN sudo -u ubuntu -i bash -l -c "nvm install 0.6.21"
 RUN sudo -u ubuntu -i bash -l -c "nvm install 0.8.28" && \
     sudo -u ubuntu -i bash -l -c "nvm install 0.10.32" && \
     sudo -u ubuntu -i bash -l -c "nvm install 0.11.14" && \
-    sudo -u ubuntu -i bash -l -c "nvm alias default 0.10.30"
+    sudo -u ubuntu -i bash -l -c "nvm alias default 0.10.32"
 
 # apt-get update because ubuntu caches go out of date in a matter of days
 RUN apt-get update
