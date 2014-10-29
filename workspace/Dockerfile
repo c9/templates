@@ -41,8 +41,8 @@ RUN sudo -u ubuntu -i bash -l -c "rvm use 1.9.3-p547 && rvm gemset create rails3
     /usr/local/rvm/bin/rvm cleanup all
 
 # node.js and nvm
-RUN sudo -u ubuntu -i bash -li -c "curl https://raw.githubusercontent.com/creationix/nvm/v0.17.3/install.sh | sh -e"
-RUN echo '[ -s "/home/ubuntu/.nvm/nvm.sh" ] && . "/home/ubuntu/.nvm/nvm.sh" # This loads nvm' >> /home/ubuntu/.profile
+RUN sudo -u ubuntu -i bash -li -c "curl https://raw.githubusercontent.com/creationix/nvm/v0.17.3/install.sh | sh -e" && \
+    echo '[ -s "/home/ubuntu/.nvm/nvm.sh" ] && . "/home/ubuntu/.nvm/nvm.sh" # This loads nvm' >> /home/ubuntu/.profile
 RUN sudo -u ubuntu -i bash -l -c "nvm install 0.6.21"
 RUN sudo -u ubuntu -i bash -l -c "nvm install 0.8.28" && \
     sudo -u ubuntu -i bash -l -c "nvm install 0.10.33" && \
