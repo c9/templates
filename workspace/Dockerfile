@@ -26,7 +26,7 @@ RUN apt-get install -y console-setup sudo wget curl git python software-properti
     usermod -a -G sudo ubuntu
 
 # install ruby/rails/rvm (this comes early because it takes very long to rebuild)
-RUN sudo -u ubuntu -i bash -l -c "curl -L https://get.rvm.io | sudo bash -s # rvm 1.25.34" && \
+RUN sudo -u ubuntu -i bash -l -c "curl -L https://get.rvm.io | sudo bash -s -- --branch wayneeseguin/1.25.34" && \
     usermod -a -G rvm ubuntu
 RUN sudo -u ubuntu -i bash -l -c "rvm install ruby-1.8.7-p374" && \
     /usr/local/rvm/bin/rvm cleanup all
@@ -42,7 +42,7 @@ RUN sudo -u ubuntu -i bash -l -c "rvm use 1.9.3-p547 && rvm gemset create rails3
 RUN sudo -u ubuntu -i bash -l -c "rvm get stable --auto-dotfiles"
 
 # node.js and nvm
-RUN sudo -u ubuntu -i bash -l -c "curl -L https://raw.github.com/creationix/nvm/master/install.sh | sh -e"
+RUN sudo -u ubuntu -i bash -l -c "curl https://raw.githubusercontent.com/creationix/nvm/v0.17.3/install.sh | sh -e"
 RUN HOME=/home/ubuntu sudo -u ubuntu -i bash -l -i -c "nvm install 0.6.21"
 RUN HOME=/home/ubuntu sudo -u ubuntu -i bash -l -i -c "nvm install 0.8.28" && \
     HOME=/home/ubuntu sudo -u ubuntu -i bash -l -i -c "nvm install 0.10.33" && \
