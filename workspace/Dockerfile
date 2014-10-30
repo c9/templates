@@ -26,7 +26,7 @@ RUN apt-get install -y console-setup sudo wget curl git python software-properti
     usermod -a -G sudo ubuntu
 
 # install ruby/rails/rvm (this comes early because it takes very long to rebuild)
-RUN sudo -u ubuntu -i bash -l -c "curl -L https://get.rvm.io | sudo bash -s # rvm 1.25.34" && \
+RUN sudo -u ubuntu -i bash -l -c "curl -L https://get.rvm.io | sudo bash -s -- --branch wayneeseguin/1.26.0" && \
     usermod -a -G rvm ubuntu
 RUN sudo -u ubuntu -i bash -l -c "rvm install ruby-1.8.7-p374" && \
     /usr/local/rvm/bin/rvm cleanup all

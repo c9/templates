@@ -51,3 +51,6 @@ xterm*|rxvt*)
 *)
     ;;
 esac
+
+export rvm_silence_path_mismatch_check_flag=1
+
