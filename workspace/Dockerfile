@@ -67,6 +67,12 @@ RUN apt-get install -y texlive
 RUN apt-get install -y vim vim-addon-manager vim-vimoutliner vim-doc 
 RUN apt-get install -y emacs ctags indent
 
+# X11
+RUN apt-get install -y xvfb tightvncserver x11vnc novnc xterm fluxbox
+
+# Browsers
+RUN apt-get install -y firefox chromium-browser
+
 # servers
 RUN apt-get install -y redis-server redis-tools nginx postgresql-9.3 phppgadmin
 RUN apt-get install -y mysql-server phpmyadmin rabbitmq-server couchdb
