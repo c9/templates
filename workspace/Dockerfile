@@ -4,9 +4,10 @@ MAINTAINER Fabian Jakobs <fabian@c9.io>
 ENV DEBIAN_FRONTEND noninteractive
 
 # increment version to force flushing the cache
-RUN echo "Version 1.6"
+RUN echo "Version 1.7"
 
 RUN apt-get update
+RUN apt-get -y dist-upgrade
 RUN apt-get install -y console-setup sudo wget curl git python software-properties-common man-db && \
     echo "install console-setup" && \
     echo "console-setup   console-setup/codeset47 select  # Latin1 and Latin5 - western Europe and Turkic languages" | debconf-set-selections && \
@@ -33,10 +34,10 @@ RUN sudo -u ubuntu -i bash -l -c "rvm install ruby-1.8.7-p374" && \
     /usr/local/rvm/bin/rvm cleanup all
 RUN sudo -u ubuntu -i bash -l -c "rvm install ruby-1.9.3-p547" && \
     /usr/local/rvm/bin/rvm cleanup all
-RUN sudo -u ubuntu -i bash -l -c "rvm install ruby-2.1.3 && rvm --default use 2.1.3" && \
+RUN sudo -u ubuntu -i bash -l -c "rvm install ruby-2.1.4 && rvm --default use 2.1.4" && \
     /usr/local/rvm/bin/rvm cleanup all
-RUN sudo -u ubuntu -i bash -l -c "rvm use 2.1.3 && rvm gemset create rails4 && rvm gemset use rails4 && gem install rails -v 4.1.6" && \
-    sudo -u ubuntu -i bash -l -c "rvm use 2.1.3@rails4 --default" && \
+RUN sudo -u ubuntu -i bash -l -c "rvm use 2.1.4 && rvm gemset create rails4 && rvm gemset use rails4 && gem install rails -v 4.1.6" && \
+    sudo -u ubuntu -i bash -l -c "rvm use 2.1.4@rails4 --default" && \
     /usr/local/rvm/bin/rvm cleanup all
 RUN sudo -u ubuntu -i bash -l -c "rvm use 1.9.3-p547 && rvm gemset create rails3.2 && rvm gemset use rails3.2 && gem install rails -v 3.2.19" && \
     /usr/local/rvm/bin/rvm cleanup all
