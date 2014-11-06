@@ -1,5 +1,5 @@
 FROM cloud9/workspace
-MAINTAINER Fabian Jakobs <fabian@c9.io
+MAINTAINER Fabian Jakobs <fabian@c9.io>
 
 RUN pip install Django==1.7.1
 
