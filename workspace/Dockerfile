@@ -142,6 +142,8 @@ RUN apt-file update
 # all changes go down here:
 # RUN ...
 
+RUN cp /bin/true /bin/sync
+
 # setup the system
 RUN echo -n "" > /etc/motd && \
     echo "export PATH=/bin:/usr/bin:/sbin:/usr/sbin:/user/local/bin:/user/local/sbin" >> /root/.bashrc && \
