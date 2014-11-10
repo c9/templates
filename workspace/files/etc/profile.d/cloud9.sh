@@ -22,7 +22,9 @@ export PATH=/mnt/shared/bin:$HOME/workspace/node_modules/.bin:$HOME/bin\
 :$PATH\
 :/mnt/shared/sbin:/opt/gitl:/opt/go/bin:/mnt/shared/c9/app.nw/bin
 
-export LC_ALL=C.UTF-8
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8
 export HGUSER=$C9_FULLNAME
 export EMAIL=$C9_EMAIL
 export PORT=$C9_PORT
