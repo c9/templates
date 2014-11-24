@@ -117,7 +117,7 @@ RUN wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh -e && \
 # Python
 RUN apt-get install -y python3 python3-dev python3-setuptools ipython3 \
     python3-scipy python3-pip python python-dev python-pip python-setuptools ipython \
-    python-scipy python-matplotlib python-virtualenv virtualenvwrapper pylint
+    python-scipy python-matplotlib python-virtualenv virtualenvwrapper
 
 # Julia
 RUN apt-get install -y julia julia-doc
