@@ -50,8 +50,8 @@ if grep -qs "askpass = /bin/echo" ~/.gitconfig; then
     sed -i 's!askpass = /bin/echo/!!' ~/.gitconfig
 fi
 
-if grep -qs "ServerName https://${C9_HOSTNAME}:8080" /etc/apache2/sites-available/001-cloud9.conf; then
-    sed -i "s!\(ServerName https:\/\/\${C9_HOSTNAME}\):8080\b!\1:443!" /etc/apache2/sites-available/001-cloud9.conf
+if grep -qs "ServerName https://\${C9_HOSTNAME}:8080" /etc/apache2/sites-available/001-cloud9.conf; then
+    sudo sed -i "s!\(ServerName https:\/\/\${C9_HOSTNAME}\):8080\b!\1:443!" /etc/apache2/sites-available/001-cloud9.conf
 fi
 
 for S in /mnt/shared/profile.d/*; do
