@@ -7,7 +7,7 @@
     ----------------------------------------------------------------- 
 
 
-Welcome to your Wordpress website on Cloud9 IDE!
+Welcome to your WordPress website on Cloud9 IDE!
 
 To get started, do the following steps:
 
