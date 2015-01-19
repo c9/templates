@@ -37,8 +37,8 @@ RUN sudo -u ubuntu -i bash -l -c "rvm install ruby-1.9.3-p547" && \
     /usr/local/rvm/bin/rvm cleanup all
 RUN sudo -u ubuntu -i bash -l -c "rvm install ruby-2.1.5 && rvm --default use 2.1.5" && \
     /usr/local/rvm/bin/rvm cleanup all
-RUN sudo -u ubuntu -i bash -l -c "rvm use 2.1.4 && rvm gemset create rails4 && rvm gemset use rails4 && gem install rails -v 4.1.6" && \
-    sudo -u ubuntu -i bash -l -c "rvm use 2.1.4@rails4 --default" && \
+RUN sudo -u ubuntu -i bash -l -c "rvm use 2.1.5 && rvm gemset create rails4 && rvm gemset use rails4 && gem install rails -v 4.1.6" && \
+    sudo -u ubuntu -i bash -l -c "rvm use 2.1.5@rails4 --default" && \
     /usr/local/rvm/bin/rvm cleanup all
 RUN sudo -u ubuntu -i bash -l -c "rvm use 1.9.3-p547 && rvm gemset create rails3.2 && rvm gemset use rails3.2 && gem install rails -v 3.2.19" && \
     /usr/local/rvm/bin/rvm cleanup all
@@ -53,9 +53,10 @@ RUN sudo -u ubuntu -i bash -li -c "curl https://raw.githubusercontent.com/creati
     echo '[ -s "/home/ubuntu/.nvm/nvm.sh" ] && . "/home/ubuntu/.nvm/nvm.sh" # This loads nvm' >> /home/ubuntu/.profile
 RUN sudo -u ubuntu -i bash -l -c "nvm install 0.6.21"
 RUN sudo -u ubuntu -i bash -l -c "nvm install 0.8.28" && \
-    sudo -u ubuntu -i bash -l -c "nvm install 0.10.33" && \
+    sudo -u ubuntu -i bash -l -c "nvm install 0.10.35" && \
     sudo -u ubuntu -i bash -l -c "nvm install 0.11.14" && \
-    sudo -u ubuntu -i bash -l -c "nvm alias default 0.10.33"
+    sudo -u ubuntu -i bash -l -c "nvm alias default 0.10.35" && \
+    ln -s /mnt/shared/lib/iojs/bin/iojs /usr/bin/iojs
 
 # apt-get update because ubuntu caches go out of date in a matter of days
 RUN apt-get update

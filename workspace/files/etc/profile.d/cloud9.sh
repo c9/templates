@@ -45,6 +45,10 @@ if [ -e /etc/profile.d/nada-nix-compat.sh ]; then
     sudo rm -f /etc/profile.d/nada-nix-compat.sh & 
 fi
 
+if [ ! -e /usr/bin/iojs ] &&  [ ! -L /usr/bin/iojs ]; then
+    sudo ln -s /mnt/shared/lib/iojs/bin/iojs /usr/bin/iojs
+fi
+
 # fix broken .gitconfig
 if grep -qs "askpass = /bin/echo" ~/.gitconfig; then
     sed -i 's!askpass = /bin/echo/!!' ~/.gitconfig
