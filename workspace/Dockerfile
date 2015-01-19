@@ -42,6 +42,11 @@ RUN sudo -u ubuntu -i bash -l -c "rvm use 2.1.4 && rvm gemset create rails4 && r
     /usr/local/rvm/bin/rvm cleanup all
 RUN sudo -u ubuntu -i bash -l -c "rvm use 1.9.3-p547 && rvm gemset create rails3.2 && rvm gemset use rails3.2 && gem install rails -v 3.2.19" && \
     /usr/local/rvm/bin/rvm cleanup all
+    
+# 32-bit support
+RUN dpkg --add-architecture i386 && \
+    apt-get update && \
+    apt-get install -y libc6:i386 libncurses5:i386 libstdc++6:i386
 
 # node.js and nvm
 RUN sudo -u ubuntu -i bash -li -c "curl https://raw.githubusercontent.com/creationix/nvm/v0.17.3/install.sh | sh -e" && \
