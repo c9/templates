@@ -35,7 +35,7 @@ RUN sudo -u ubuntu -i bash -l -c "rvm install ruby-1.8.7-p374" && \
     /usr/local/rvm/bin/rvm cleanup all
 RUN sudo -u ubuntu -i bash -l -c "rvm install ruby-1.9.3-p547" && \
     /usr/local/rvm/bin/rvm cleanup all
-RUN sudo -u ubuntu -i bash -l -c "rvm install ruby-2.1.4 && rvm --default use 2.1.4" && \
+RUN sudo -u ubuntu -i bash -l -c "rvm install ruby-2.1.5 && rvm --default use 2.1.5" && \
     /usr/local/rvm/bin/rvm cleanup all
 RUN sudo -u ubuntu -i bash -l -c "rvm use 2.1.4 && rvm gemset create rails4 && rvm gemset use rails4 && gem install rails -v 4.1.6" && \
     sudo -u ubuntu -i bash -l -c "rvm use 2.1.4@rails4 --default" && \
