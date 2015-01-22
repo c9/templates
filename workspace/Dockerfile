@@ -28,28 +28,35 @@ RUN apt-get install -y console-setup sudo wget curl git python software-properti
     usermod -a -G sudo ubuntu
 
 # install ruby/rails/rvm (this comes early because it takes very long to rebuild)
-RUN sudo -u ubuntu -i bash -l -c "curl -L https://get.rvm.io | sudo bash -s -- --branch wayneeseguin/1.26.0" && \
+RUN chown root:root /usr/bin/sudo && chmod 4755 /usr/bin/sudo
+RUN sudo -u ubuntu -i bash -l -c "curl -L https://get.rvm.io | sudo bash -s -- --branch wayneeseguin/1.26.9" && \
     usermod -a -G rvm ubuntu
 RUN sudo -u ubuntu -i bash -l -c "rvm install ruby-1.8.7-p374" && \
     /usr/local/rvm/bin/rvm cleanup all
 RUN sudo -u ubuntu -i bash -l -c "rvm install ruby-1.9.3-p547" && \
     /usr/local/rvm/bin/rvm cleanup all
-RUN sudo -u ubuntu -i bash -l -c "rvm install ruby-2.1.4 && rvm --default use 2.1.4" && \
+RUN sudo -u ubuntu -i bash -l -c "rvm install ruby-2.1.5 && rvm --default use 2.1.5" && \
     /usr/local/rvm/bin/rvm cleanup all
-RUN sudo -u ubuntu -i bash -l -c "rvm use 2.1.4 && rvm gemset create rails4 && rvm gemset use rails4 && gem install rails -v 4.1.6" && \
-    sudo -u ubuntu -i bash -l -c "rvm use 2.1.4@rails4 --default" && \
+RUN sudo -u ubuntu -i bash -l -c "rvm use 2.1.5 && rvm gemset create rails4 && rvm gemset use rails4 && gem install rails -v 4.1.6" && \
+    sudo -u ubuntu -i bash -l -c "rvm use 2.1.5@rails4 --default" && \
     /usr/local/rvm/bin/rvm cleanup all
 RUN sudo -u ubuntu -i bash -l -c "rvm use 1.9.3-p547 && rvm gemset create rails3.2 && rvm gemset use rails3.2 && gem install rails -v 3.2.19" && \
     /usr/local/rvm/bin/rvm cleanup all
+    
+# 32-bit support
+RUN dpkg --add-architecture i386 && \
+    apt-get update && \
+    apt-get install -y libc6:i386 libncurses5:i386 libstdc++6:i386
 
 # node.js and nvm
 RUN sudo -u ubuntu -i bash -li -c "curl https://raw.githubusercontent.com/creationix/nvm/v0.17.3/install.sh | sh -e" && \
     echo '[ -s "/home/ubuntu/.nvm/nvm.sh" ] && . "/home/ubuntu/.nvm/nvm.sh" # This loads nvm' >> /home/ubuntu/.profile
 RUN sudo -u ubuntu -i bash -l -c "nvm install 0.6.21"
 RUN sudo -u ubuntu -i bash -l -c "nvm install 0.8.28" && \
-    sudo -u ubuntu -i bash -l -c "nvm install 0.10.33" && \
+    sudo -u ubuntu -i bash -l -c "nvm install 0.10.35" && \
     sudo -u ubuntu -i bash -l -c "nvm install 0.11.14" && \
-    sudo -u ubuntu -i bash -l -c "nvm alias default 0.10.33"
+    sudo -u ubuntu -i bash -l -c "nvm alias default 0.10.35" && \
+    ln -s /mnt/shared/lib/iojs/bin/iojs /usr/bin/iojs
 
 # apt-get update because ubuntu caches go out of date in a matter of days
 RUN apt-get update
