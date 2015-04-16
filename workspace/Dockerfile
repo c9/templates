@@ -6,7 +6,7 @@ ENV DEBIAN_FRONTEND noninteractive
 # increment version to force flushing the cache
 RUN echo "Version 1.7"
 
-RUN apt-get update && apt-get -y dist-upgrade
+RUN apt-get update --fix-missing && apt-get -y dist-upgrade
 RUN apt-get install -y console-setup sudo wget curl git python software-properties-common man-db && \
     echo "install console-setup" && \
     echo "console-setup   console-setup/codeset47 select  # Latin1 and Latin5 - western Europe and Turkic languages" | debconf-set-selections && \
