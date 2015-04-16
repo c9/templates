@@ -1,4 +1,4 @@
-FROM ubuntu:trusty
+FROM ubuntu:14.04.2
 MAINTAINER Fabian Jakobs <fabian@c9.io>
 
 ENV DEBIAN_FRONTEND noninteractive
