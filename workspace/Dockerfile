@@ -48,12 +48,13 @@ RUN dpkg --add-architecture i386 && \
     apt-get install -y libc6:i386 libncurses5:i386 libstdc++6:i386
 
 # node.js and nvm
-RUN sudo -u ubuntu -i bash -li -c "curl https://raw.githubusercontent.com/creationix/nvm/v0.17.3/install.sh | sh -e" && \
+RUN sudo -u ubuntu -i bash -li -c "curl https://raw.githubusercontent.com/creationix/nvm/v0.24.1/install.sh | sh -e" && \
     echo '[ -s "/home/ubuntu/.nvm/nvm.sh" ] && . "/home/ubuntu/.nvm/nvm.sh" # This loads nvm' >> /home/ubuntu/.profile
 RUN sudo -u ubuntu -i bash -l -c "nvm install 0.6.21"
 RUN sudo -u ubuntu -i bash -l -c "nvm install 0.8.28" && \
     sudo -u ubuntu -i bash -l -c "nvm install 0.10.35" && \
     sudo -u ubuntu -i bash -l -c "nvm install 0.11.14" && \
+    sudo -u ubuntu -i bash -l -c "nvm install iojs-v1.7.1" && \
     sudo -u ubuntu -i bash -l -c "nvm alias default 0.10.35" && \
     ln -s /mnt/shared/lib/iojs/bin/iojs /usr/bin/iojs
 
