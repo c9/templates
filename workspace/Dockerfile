@@ -1,4 +1,4 @@
-FROM ubuntu:trusty
+FROM ubuntu:14.04.2
 MAINTAINER Fabian Jakobs <fabian@c9.io>
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -6,7 +6,7 @@ ENV DEBIAN_FRONTEND noninteractive
 # increment version to force flushing the cache
 RUN echo "Version 1.7"
 
-RUN apt-get update && apt-get -y dist-upgrade
+RUN apt-get update --fix-missing && apt-get -y dist-upgrade
 RUN apt-get install -y console-setup sudo wget curl git python software-properties-common man-db && \
     echo "install console-setup" && \
     echo "console-setup   console-setup/codeset47 select  # Latin1 and Latin5 - western Europe and Turkic languages" | debconf-set-selections && \
@@ -48,12 +48,13 @@ RUN dpkg --add-architecture i386 && \
     apt-get install -y libc6:i386 libncurses5:i386 libstdc++6:i386
 
 # node.js and nvm
-RUN sudo -u ubuntu -i bash -li -c "curl https://raw.githubusercontent.com/creationix/nvm/v0.17.3/install.sh | sh -e" && \
+RUN sudo -u ubuntu -i bash -li -c "curl https://raw.githubusercontent.com/creationix/nvm/v0.24.1/install.sh | sh -e" && \
     echo '[ -s "/home/ubuntu/.nvm/nvm.sh" ] && . "/home/ubuntu/.nvm/nvm.sh" # This loads nvm' >> /home/ubuntu/.profile
 RUN sudo -u ubuntu -i bash -l -c "nvm install 0.6.21"
 RUN sudo -u ubuntu -i bash -l -c "nvm install 0.8.28" && \
     sudo -u ubuntu -i bash -l -c "nvm install 0.10.35" && \
     sudo -u ubuntu -i bash -l -c "nvm install 0.11.14" && \
+    sudo -u ubuntu -i bash -l -c "nvm install iojs-v1.7.1" && \
     sudo -u ubuntu -i bash -l -c "nvm alias default 0.10.35" && \
     ln -s /mnt/shared/lib/iojs/bin/iojs /usr/bin/iojs
 
