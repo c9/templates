@@ -179,6 +179,20 @@ RUN cp /tmp/homedir/.gitignore /tmp/homedir/.hgignore && \
     sed -Ei 's/(.*)secure_path.*/\1!secure_path/' /etc/sudoers && \
     touch /etc/init.d/systemd-logind && \
     cp /bin/true /bin/sync
+    
+# PHP runtime, based on defaults from
+#   http://docs.travis-ci.com/user/ci-environment/#Extensions
+#   https://devcenter.heroku.com/articles/php-support
+# PHP Xdebug, most recent PECL version
+ADD ./files/etc /etc
+RUN apt-get update \
+    && apt-get install php5 php5-cli \
+        php5-curl php5-gd php5-json php5-pgsql php5-readline php5-sqlite \
+        php5-tidy php5-xmlrpc php5-xsl php5-intl php5-mcrypt php5-mysqlnd \
+    && php5enmod c9
+RUN apt-get install php5-dev \
+    && pecl install xdebug \
+    && php5enmod xdebug
 
 # re-enable service startup. This line must come after all apt-get installs
 RUN rm -f /usr/sbin/policy-rc.d
