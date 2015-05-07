@@ -186,11 +186,11 @@ RUN cp /tmp/homedir/.gitignore /tmp/homedir/.hgignore && \
 # PHP Xdebug, most recent PECL version
 ADD ./files/etc /etc
 RUN apt-get update \
-    && apt-get install php5 php5-cli \
+    && apt-get install -y php5 php5-cli \
         php5-curl php5-gd php5-json php5-pgsql php5-readline php5-sqlite \
         php5-tidy php5-xmlrpc php5-xsl php5-intl php5-mcrypt php5-mysqlnd \
     && php5enmod c9
-RUN apt-get install php5-dev \
+RUN apt-get install -y php5-dev \
     && pecl install xdebug \
     && php5enmod xdebug
 
