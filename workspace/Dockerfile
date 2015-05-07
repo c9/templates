@@ -27,6 +27,7 @@ RUN apt-get install -y console-setup sudo wget curl git python software-properti
     usermod -a -G sudo ubuntu
 
 # install ruby/rails/rvm (this comes early because it takes very long to rebuild)
+ADD ./files/etc/gemrc /etc/gemrc
 RUN chown root:root /usr/bin/sudo && chmod 4755 /usr/bin/sudo
 RUN sudo -u ubuntu -i bash -l -c "curl -L https://get.rvm.io | sudo bash -s -- --branch wayneeseguin/1.26.9" && \
     usermod -a -G rvm ubuntu
