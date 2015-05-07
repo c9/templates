@@ -4,10 +4,12 @@ MAINTAINER Fabian Jakobs <fabian@c9.io>
 ENV DEBIAN_FRONTEND noninteractive
 
 # increment version to force flushing the cache
-RUN echo "Version 1.7"
+RUN echo "Version 1.8"
+
+ADD ./files/etc /etc
 
 RUN apt-get update --fix-missing && apt-get -y dist-upgrade
-RUN apt-get install -y console-setup sudo wget curl git python software-properties-common man-db && \
+RUN apt-get install -y bash console-setup sudo wget curl git python software-properties-common man-db && \
     echo "install console-setup" && \
     echo "console-setup   console-setup/codeset47 select  # Latin1 and Latin5 - western Europe and Turkic languages" | debconf-set-selections && \
     echo "console-setup   console-setup/fontface47        select  Fixed" | debconf-set-selections && \
@@ -85,11 +87,7 @@ RUN apt-get install -y firefox chromium-browser
 
 # servers
 RUN apt-get install -y redis-server redis-tools nginx postgresql-9.3 phppgadmin
-RUN apt-get install -y mysql-server phpmyadmin rabbitmq-server couchdb
-RUN apt-get install -y apache2 php5 php5-fpm php5-mcrypt apache2-doc php-pear && \
-    cd /etc/php5/mods-available && ls *.ini | sed 's/\.ini$//' | xargs php5enmod && \
-    curl -sS https://getcomposer.org/installer | php && \
-    mv composer.phar /usr/bin/composer
+RUN apt-get install -y mysql-server rabbitmq-server couchdb
 
 # tools
 RUN apt-get install -y dnsutils bash-completion xsltproc \
@@ -121,6 +119,23 @@ RUN wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh -e && \
     wget -O /tmp/deb.deb https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_1.6.0_amd64.deb && \
     dpkg -i /tmp/deb.deb && \
     rm /tmp/deb.deb
+    
+# PHP based on defaults from
+#   http://docs.travis-ci.com/user/ci-environment/#Extensions
+#   https://devcenter.heroku.com/articles/php-support
+# Xdebug, most recent PECL version
+RUN apt-get install -y php5 php5-cli php5-fpm \
+        php5-curl php5-gd php5-json php5-pgsql php5-readline php5-sqlite \
+        php5-tidy php5-xmlrpc php5-xsl php5-intl php5-mcrypt php5-mysqlnd \
+        php-pear \
+    && php5enmod c9 \
+    && apt-get install -y php5-dev \
+        && pecl install xdebug \
+        && php5enmod xdebug
+    && apt-get install -y apache2 apache2-doc phpmyadmin \
+    && cd /etc/php5/mods-available && ls *.ini | sed 's/\.ini$//' | xargs php5enmod \
+        && curl -sS https://getcomposer.org/installer | php \
+        && mv composer.phar /usr/bin/composer
 
 # Python
 RUN apt-get install -y python3 python3-dev python3-setuptools ipython3 \
@@ -142,10 +157,6 @@ RUN git clone https://github.com/lennartcl/gitl.git /opt/gitl
 # Haskell
 RUN apt-get install -y ghc ghc-doc cabal-install haskell-doc llvm
 
-# shellshock
-# TODO: move upward if other things at the top of this file have changed
-RUN sudo apt-get update; sudo apt-get install bash
-
 # apt-file cache
 RUN apt-file update
 
@@ -158,7 +169,6 @@ RUN echo -n "" > /etc/motd && \
     sudo -i -u ubuntu HOME=/home/ubuntu bash -i /etc/bash_completion && \
     HOME=/root bash -l /etc/bash_completion
 
-ADD ./files/etc /etc
 ADD ./files/home/ubuntu /tmp/homedir
 RUN cp /tmp/homedir/.gitignore /tmp/homedir/.hgignore && \
     mkdir -p /tmp/homedir/lib/apache2/lock /tmp/homedir/lib/apache2/log /tmp/homedir/lib/apache2/run && \
@@ -180,20 +190,6 @@ RUN cp /tmp/homedir/.gitignore /tmp/homedir/.hgignore && \
     sed -Ei 's/(.*)secure_path.*/\1!secure_path/' /etc/sudoers && \
     touch /etc/init.d/systemd-logind && \
     cp /bin/true /bin/sync
-    
-# PHP runtime, based on defaults from
-#   http://docs.travis-ci.com/user/ci-environment/#Extensions
-#   https://devcenter.heroku.com/articles/php-support
-# PHP Xdebug, most recent PECL version
-ADD ./files/etc /etc
-RUN apt-get update \
-    && apt-get install -y php5 php5-cli \
-        php5-curl php5-gd php5-json php5-pgsql php5-readline php5-sqlite \
-        php5-tidy php5-xmlrpc php5-xsl php5-intl php5-mcrypt php5-mysqlnd \
-    && php5enmod c9
-RUN apt-get install -y php5-dev \
-    && pecl install xdebug \
-    && php5enmod xdebug
 
 # re-enable service startup. This line must come after all apt-get installs
 RUN rm -f /usr/sbin/policy-rc.d
