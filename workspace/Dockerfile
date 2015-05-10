@@ -133,7 +133,7 @@ RUN apt-get install -y php5 php5-cli php5-fpm \
         && php5enmod xdebug \
     && apt-get install -y apache2 apache2-doc phpmyadmin phppgadmin \
     && cd /etc/php5/mods-available && ls *.ini | sed 's/\.ini$//' | xargs php5enmod \
-        && curl -sS https://getcomposer.org/installer | php \
+    && curl -sS https://getcomposer.org/installer | php \
         && mv composer.phar /usr/bin/composer
 
 # Python
