@@ -4,9 +4,7 @@ MAINTAINER Fabian Jakobs <fabian@c9.io>
 ENV DEBIAN_FRONTEND noninteractive
 
 # increment version to force flushing the cache
-RUN echo "Version 1.8"
-
-ADD ./files/etc /etc
+RUN echo "Version 1.9"
 
 RUN apt-get update --fix-missing && apt-get -y dist-upgrade
 RUN apt-get install -y bash console-setup sudo wget curl git python software-properties-common man-db && \
@@ -124,6 +122,7 @@ RUN wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh -e && \
 #   http://docs.travis-ci.com/user/ci-environment/#Extensions
 #   https://devcenter.heroku.com/articles/php-support
 # Xdebug, most recent PECL version
+ADD ./files/etc/php5 /etc/php5
 RUN apt-get install -y php5 php5-cli php5-fpm \
         php5-curl php5-gd php5-json php5-pgsql php5-readline php5-sqlite \
         php5-tidy php5-xmlrpc php5-xsl php5-intl php5-mcrypt php5-mysqlnd \
@@ -131,7 +130,7 @@ RUN apt-get install -y php5 php5-cli php5-fpm \
     && php5enmod c9 \
     && apt-get install -y php5-dev \
         && pecl install xdebug \
-        && php5enmod xdebug
+        && php5enmod xdebug \
     && apt-get install -y apache2 apache2-doc phpmyadmin \
     && cd /etc/php5/mods-available && ls *.ini | sed 's/\.ini$//' | xargs php5enmod \
         && curl -sS https://getcomposer.org/installer | php \
@@ -169,6 +168,7 @@ RUN echo -n "" > /etc/motd && \
     sudo -i -u ubuntu HOME=/home/ubuntu bash -i /etc/bash_completion && \
     HOME=/root bash -l /etc/bash_completion
 
+ADD ./files/etc /etc
 ADD ./files/home/ubuntu /tmp/homedir
 RUN cp /tmp/homedir/.gitignore /tmp/homedir/.hgignore && \
     mkdir -p /tmp/homedir/lib/apache2/lock /tmp/homedir/lib/apache2/log /tmp/homedir/lib/apache2/run && \
