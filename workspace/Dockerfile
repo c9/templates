@@ -4,7 +4,7 @@ MAINTAINER Fabian Jakobs <fabian@c9.io>
 ENV DEBIAN_FRONTEND noninteractive
 
 # increment version to force flushing the cache
-RUN echo "Version 1.9"
+RUN echo "Version 1.10"
 
 RUN apt-get update --fix-missing && apt-get -y dist-upgrade
 RUN apt-get install -y bash console-setup sudo wget curl git python software-properties-common man-db && \
@@ -84,7 +84,7 @@ RUN apt-get install -y xvfb tightvncserver x11vnc novnc xterm fluxbox
 RUN apt-get install -y firefox chromium-browser
 
 # servers
-RUN apt-get install -y redis-server redis-tools nginx postgresql-9.3 phppgadmin
+RUN apt-get install -y redis-server redis-tools nginx postgresql-9.3
 RUN apt-get install -y mysql-server rabbitmq-server couchdb
 
 # tools
@@ -131,7 +131,7 @@ RUN apt-get install -y php5 php5-cli php5-fpm \
     && apt-get install -y php5-dev \
         && pecl install xdebug \
         && php5enmod xdebug \
-    && apt-get install -y apache2 apache2-doc phpmyadmin \
+    && apt-get install -y apache2 apache2-doc phpmyadmin phppgadmin \
     && cd /etc/php5/mods-available && ls *.ini | sed 's/\.ini$//' | xargs php5enmod \
         && curl -sS https://getcomposer.org/installer | php \
         && mv composer.phar /usr/bin/composer
