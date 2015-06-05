@@ -105,6 +105,7 @@ RUN apt-get install -y libcairo2-dev libjpeg62-dev libgif-dev libpq-dev \
 
 # Deployment
 RUN wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh -e && \
+    sudo -u ubuntu -i bash -l -c "npm install -g npm@2.11.1" && \
     sudo -u ubuntu -i bash -l -c "npm install jitsu@0.13.15 -g" && \
     sudo -u ubuntu -i bash -l -c "npm install azure-cli@0.8.2 -g" && \
     sudo -u ubuntu -i bash -l -c "npm install grunt@0.4.4 -g" && \
