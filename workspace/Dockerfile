@@ -35,12 +35,12 @@ RUN sudo -u ubuntu -i bash -l -c "rvm install ruby-1.8.7-p374" && \
     /usr/local/rvm/bin/rvm cleanup all
 RUN sudo -u ubuntu -i bash -l -c "rvm install ruby-1.9.3-p547" && \
     /usr/local/rvm/bin/rvm cleanup all
-RUN sudo -u ubuntu -i bash -l -c "rvm install ruby-2.1.5 && rvm --default use 2.1.5" && \
+RUN sudo -u ubuntu -i bash -l -c "rvm install ruby-2.2.2 && rvm --default use 2.2.2" && \
     /usr/local/rvm/bin/rvm cleanup all
-RUN sudo -u ubuntu -i bash -l -c "rvm use 2.1.5 && rvm gemset create rails4 && rvm gemset use rails4 && gem install rails -v 4.1.6" && \
-    sudo -u ubuntu -i bash -l -c "rvm use 2.1.5@rails4 --default" && \
+RUN sudo -u ubuntu -i bash -l -c "rvm use 2.2.2 && gem install rails -v 4.2.1" && \
+    sudo -u ubuntu -i bash -l -c "rvm use 2.2.2 --default" && \
     /usr/local/rvm/bin/rvm cleanup all
-RUN sudo -u ubuntu -i bash -l -c "rvm use 1.9.3-p547 && rvm gemset create rails3.2 && rvm gemset use rails3.2 && gem install rails -v 3.2.19" && \
+RUN sudo -u ubuntu -i bash -l -c "rvm use 1.9.3-p547 && gem install rails -v 3.2.19" && \
     /usr/local/rvm/bin/rvm cleanup all
     
 # 32-bit support
