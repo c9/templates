@@ -26,22 +26,37 @@ RUN apt-get install -y bash console-setup sudo wget curl git python software-pro
     sed -i 's/%sudo\s.*/%sudo ALL=NOPASSWD:ALL/' /etc/sudoers && \
     usermod -a -G sudo ubuntu
 
-# install ruby/rails/rvm (this comes early because it takes very long to rebuild)
-ADD ./files/etc/gemrc /etc/gemrc
 RUN chown root:root /usr/bin/sudo && chmod 4755 /usr/bin/sudo
-RUN sudo -u ubuntu -i bash -l -c "curl -L https://get.rvm.io | sudo bash -s -- --branch wayneeseguin/1.26.9" && \
-    usermod -a -G rvm ubuntu
-RUN sudo -u ubuntu -i bash -l -c "rvm install ruby-1.8.7-p374" && \
-    /usr/local/rvm/bin/rvm cleanup all
-RUN sudo -u ubuntu -i bash -l -c "rvm install ruby-1.9.3-p547" && \
-    /usr/local/rvm/bin/rvm cleanup all
-RUN sudo -u ubuntu -i bash -l -c "rvm install ruby-2.1.5 && rvm --default use 2.1.5" && \
-    /usr/local/rvm/bin/rvm cleanup all
-RUN sudo -u ubuntu -i bash -l -c "rvm use 2.1.5 && rvm gemset create rails4 && rvm gemset use rails4 && gem install rails -v 4.1.6" && \
-    sudo -u ubuntu -i bash -l -c "rvm use 2.1.5@rails4 --default" && \
-    /usr/local/rvm/bin/rvm cleanup all
-RUN sudo -u ubuntu -i bash -l -c "rvm use 1.9.3-p547 && rvm gemset create rails3.2 && rvm gemset use rails3.2 && gem install rails -v 3.2.19" && \
-    /usr/local/rvm/bin/rvm cleanup all
+
+# install ruby/rails/rvm
+ADD ./files/etc/gemrc /etc/gemrc
+RUN apt-get update \
+    && apt-get install -y \
+        gawk \
+        libxml2-dev \
+        libxslt-dev \
+        libgdbm-dev \
+        sqlite3 \
+    && sudo -u ubuntu -i bash -l -c " \
+        echo 'Installing rvm...' \
+            && gpg -q --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 \
+            && (curl -sSL https://get.rvm.io | sudo bash -s stable --autolibs=enabled) \
+    " \
+    && usermod -a -G rvm ubuntu \
+    && sudo -u ubuntu -i bash -l -c " \
+        echo 'Installing stable ruby version...' \
+            && rvm install ruby-2.2 \
+                && rvm use ruby-2.2 --default \
+                && NOKOGIRI_USE_SYSTEM_LIBRARIES=1 gem install rails \
+        && echo 'Installing additional ruby versions...' \
+            && rvm install ruby-2.1.5 \
+                && rvm use 2.1.5@rails4 --create \
+                && NOKOGIRI_USE_SYSTEM_LIBRARIES=1 gem install rails -v 4.1.6 \
+            && rvm install ruby-1.9.3-p551 \
+                && rvm use 1.9.3-p551@rails3.2 --create \
+                && NOKOGIRI_USE_SYSTEM_LIBRARIES=1 gem install rails -v 3.2.19 \
+    " \
+    && /usr/local/rvm/bin/rvm cleanup all
     
 # 32-bit support
 RUN dpkg --add-architecture i386 && \
