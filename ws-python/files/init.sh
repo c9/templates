@@ -3,7 +3,7 @@
 set -e
 
 cd ~/workspace
-C9_PROJECT_SANITIZED=`echo $C9_PROJECT | sed 's/[^A-Za-z_0-9]/_/g'`
+C9_PROJECT_SANITIZED=`echo $C9_PROJECT | sed 's/[^A-Za-z_0-9]/_/g' | sed -E 's/^[^A-Za-z_]/_/`
 if [ "$C9_PROJECT_SANITIZED" == "django" ]; then
     C9_PROJECT_SANITIZED=django_project
 fi
