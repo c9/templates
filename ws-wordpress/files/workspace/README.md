@@ -9,17 +9,17 @@
 
 Welcome to your WordPress website on Cloud9 IDE!
 
-To get started, do the following steps:
+To get you started, we've already...
 
-1) Use your terminal to install and start MySQL:
+1) Started MySQL using:
 
    $ mysql-ctl start
 
-2) Open index.php
+2) Clicked the Run Project button
 
-3) Click the Run button
+3) Clicked on Preview > Preview Running Application
 
-4) Open the link in the output panel to install and access your application
+And now you are ready to configure your WordPress admin interface!
 
 Happy coding!
 The Cloud9 IDE team
