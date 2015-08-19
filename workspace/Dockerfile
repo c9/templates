@@ -182,7 +182,7 @@ RUN apt-get install -y mocha@2.2.5
 
 # setup the system
 RUN echo -n "" > /etc/motd && \
-    echo "export PATH=/bin:/usr/bin:/sbin:/usr/sbin:/user/local/bin:/user/local/sbin" >> /root/.bashrc && \
+    echo "export PATH=/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/local/sbin" >> /root/.bashrc && \
     sudo -i -u ubuntu HOME=/home/ubuntu bash -i /etc/bash_completion && \
     HOME=/root bash -l /etc/bash_completion
 
