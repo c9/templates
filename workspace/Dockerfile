@@ -178,8 +178,6 @@ RUN apt-file update
 # all changes go down here:
 # RUN ...
 
-RUN apt-get install -y mocha@2.2.5
-
 # setup the system
 RUN echo -n "" > /etc/motd && \
     echo "export PATH=/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/local/sbin" >> /root/.bashrc && \
