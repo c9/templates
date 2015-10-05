@@ -64,14 +64,15 @@ RUN dpkg --add-architecture i386 && \
     apt-get install -y libc6:i386 libncurses5:i386 libstdc++6:i386
 
 # node.js and nvm
-RUN sudo -u ubuntu -i bash -li -c "curl https://raw.githubusercontent.com/creationix/nvm/v0.24.1/install.sh | sh -e" && \
+RUN sudo -u ubuntu -i bash -li -c "curl https://raw.githubusercontent.com/creationix/nvm/v0.28.0/install.sh | sh -e" && \
     echo '[ -s "/home/ubuntu/.nvm/nvm.sh" ] && . "/home/ubuntu/.nvm/nvm.sh" # This loads nvm' >> /home/ubuntu/.profile
 RUN sudo -u ubuntu -i bash -l -c "nvm install 0.6.21"
 RUN sudo -u ubuntu -i bash -l -c "nvm install 0.8.28" && \
-    sudo -u ubuntu -i bash -l -c "nvm install 0.10.35" && \
-    sudo -u ubuntu -i bash -l -c "nvm install 0.11.14" && \
-    sudo -u ubuntu -i bash -l -c "nvm install iojs-v1.7.1" && \
-    sudo -u ubuntu -i bash -l -c "nvm alias default 0.10.35" && \
+    sudo -u ubuntu -i bash -l -c "nvm install 0.10.40" && \
+    sudo -u ubuntu -i bash -l -c "nvm install 0.12.7" && \
+    sudo -u ubuntu -i bash -l -c "nvm install iojs-v3.3.1" && \
+    sudo -u ubuntu -i bash -l -c "nvm install 4.1.1" && \
+    sudo -u ubuntu -i bash -l -c "nvm alias default 4.1.1"
     ln -s /mnt/shared/lib/iojs/bin/iojs /usr/bin/iojs
 
 # apt-get update because ubuntu caches go out of date in a matter of days
@@ -119,14 +120,14 @@ RUN apt-get install -y libcairo2-dev libjpeg62-dev libgif-dev libpq-dev \
     libmysqlclient-dev
 
 # Deployment
+# Can't include new npm since it makes "npm install -g npm" fail:
+# sudo -u ubuntu -i bash -l -c "npm install -g npm@3.3.6" && \
 RUN wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh -e && \
-    sudo -u ubuntu -i bash -l -c "npm install -g npm@3.3.4" && \
-    sudo -u ubuntu -i bash -l -c "npm install jitsu@0.13.15 -g" && \
-    sudo -u ubuntu -i bash -l -c "npm install mocha@2.3.3 -g" && \
-    sudo -u ubuntu -i bash -l -c "npm install azure-cli@0.8.2 -g" && \
-    sudo -u ubuntu -i bash -l -c "npm install grunt@0.4.4 -g" && \
+    sudo -u ubuntu -i bash -l -c "npm install jitsu@0.15.0 -g" && \
+    sudo -u ubuntu -i bash -l -c "npm install azure-cli@0.9.9 -g" && \
+    sudo -u ubuntu -i bash -l -c "npm install grunt@0.4.5 -g" && \
     sudo -u ubuntu -i bash -l -c "npm install grunt-cli@0.1.13  -g" && \
-    sudo -u ubuntu -i bash -l -c "npm install bower@1.3.12  -g" && \
+    sudo -u ubuntu -i bash -l -c "npm install bower@1.5.3  -g" && \
     sudo -u ubuntu -i bash -l -c "gem install rhc -v 1.28.5" && \
     sudo -u ubuntu -i bash -l -c "gem install compass -v 1.0.1" && \
     wget -O /tmp/deb.deb http://go-cli.s3-website-us-east-1.amazonaws.com/releases/latest/cf-cli_amd64.deb && \
