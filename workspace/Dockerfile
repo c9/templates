@@ -72,8 +72,7 @@ RUN sudo -u ubuntu -i bash -l -c "nvm install 0.8.28" && \
     sudo -u ubuntu -i bash -l -c "nvm install 0.12.7" && \
     sudo -u ubuntu -i bash -l -c "nvm install iojs-v3.3.1" && \
     sudo -u ubuntu -i bash -l -c "nvm install 4.1.1" && \
-    sudo -u ubuntu -i bash -l -c "nvm alias default 4.1.1" && \
-    ln -s /mnt/shared/lib/iojs/bin/iojs /usr/bin/iojs
+    sudo -u ubuntu -i bash -l -c "nvm alias default 4.1.1"
 
 # apt-get update because ubuntu caches go out of date in a matter of days
 RUN apt-get update
