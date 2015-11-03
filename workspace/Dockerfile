@@ -4,7 +4,7 @@ MAINTAINER Fabian Jakobs <fabian@c9.io>
 ENV DEBIAN_FRONTEND noninteractive
 
 # increment version to force flushing the cache
-RUN echo "Version 1.10"
+RUN echo "Version 1.11"
 
 RUN apt-get update --fix-missing && apt-get -y dist-upgrade
 RUN apt-get install -y bash console-setup sudo wget curl git python software-properties-common man-db && \
