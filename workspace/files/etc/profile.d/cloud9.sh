@@ -25,15 +25,15 @@ export PATH=/mnt/shared/bin:$HOME/workspace/node_modules/.bin:$HOME/bin\
 export LC_ALL=C.UTF-8
 export LANG=C.UTF-8
 export LANGUAGE=C.UTF-8
-export HGUSER=$C9_FULLNAME
-export EMAIL=$C9_EMAIL
-export PORT=$C9_PORT
-export IP=$C9_IP
-export PYTHONPATH=$PYTHONPATH:$HOME/lib/python/site-packages
-export GEM_PATH=$GEM_PATH:/mnt/shared/lib/ruby
+export HGUSER="$C9_FULLNAME"
+export EMAIL="$C9_EMAIL"
+export PORT="$C9_PORT"
+export IP="$C9_IP"
+export PYTHONPATH="$PYTHONPATH:$HOME/lib/python/site-packages"
+export GEM_PATH="$GEM_PATH:/mnt/shared/lib/ruby"
 
-export METEOR_IP=$IP
-export METEOR_PORT=$PORT
+export METEOR_IP="$IP"
+export METEOR_PORT="$PORT"
 
 [ "$GOROOT" ] || export GOROOT=/opt/go
 [ "$GOPATH" ] || export GOPATH=/home/ubuntu/workspace
