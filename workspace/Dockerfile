@@ -153,10 +153,13 @@ RUN apt-get install -y php5 php5-cli php5-fpm \
     && curl -sS https://getcomposer.org/installer | php \
         && mv composer.phar /usr/bin/composer
 
-# Python
-RUN apt-get install -y python3 python3-dev python3-setuptools ipython3 \
-    python3-scipy python3-pip python python-dev python-pip python-setuptools ipython \
-    python-scipy python-matplotlib python-virtualenv virtualenvwrapper
+# Python2
+RUN apt-get install -y python3 python3-dev python3-pip python3-setuptools \
+    ipython3 python3-scipy python3-matplotlib  python2-jedi
+
+# Python3
+RUN apt-get install -y python python-dev python-pip python-setuptools ipython \
+    python-scipy python-matplotlib python-jedi python-virtualenv virtualenvwrapper
 
 # Julia
 RUN apt-get install -y julia julia-doc
