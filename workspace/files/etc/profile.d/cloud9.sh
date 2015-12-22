@@ -29,8 +29,12 @@ export HGUSER="$C9_FULLNAME"
 export EMAIL="$C9_EMAIL"
 export PORT="$C9_PORT"
 export IP="$C9_IP"
-export PYTHONPATH="$PYTHONPATH:$HOME/lib/python/site-packages"
-export GEM_PATH="$GEM_PATH:/mnt/shared/lib/ruby"
+if [ -d "$HOME/lib/python/site-packages" ]; then
+    export PYTHONPATH="$PYTHONPATH:$HOME/lib/python/site-packages"
+fi
+if [ -d "/mnt/shared/lib/ruby" ]; then
+    export GEM_PATH="$GEM_PATH:/mnt/shared/lib/ruby"
+fi
 
 export METEOR_IP="$IP"
 export METEOR_PORT="$PORT"
