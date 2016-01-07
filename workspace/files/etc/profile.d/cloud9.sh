@@ -54,7 +54,7 @@ if [ ! -e /usr/bin/iojs ] &&  [ ! -L /usr/bin/iojs ]; then
 fi
 
 if [ "$(tail -1 /home/ubuntu/.profile)" == '[ -s "/home/ubuntu/.nvm/nvm.sh" ] && . "/home/ubuntu/.nvm/nvm.sh"  # This loads nvm' ]; then
-    WRAP_START='function npm() { if [ "$*" == "config get prefix" ]; then which node | sed s/bin\\/node//; else $(which npm) "$@"; fi } # avoid slow npm sanity check in nvm'
+    WRAP_START='function npm() { if [ "$*" == "config get prefix" ]; then which node | sed "s/bin\\/node//"; else $(which npm) "$@"; fi } # avoid slow npm sanity check in nvm'
     WRAP_END='unset npm'
     sed -iE 's!.*This loads nvm!'"$WRAP_START\n&\n$WRAP_END!" /home/ubuntu/.profile
 fi
