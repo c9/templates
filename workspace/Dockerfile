@@ -45,16 +45,19 @@ RUN apt-get update \
     && usermod -a -G rvm ubuntu \
     && sudo -u ubuntu -i bash -l -c " \
         echo 'Installing stable ruby version...' \
-            && rvm install ruby-2.2 \
-                && rvm use ruby-2.2 --default \
+            && rvm install ruby-2.3.0 \
+                && rvm use ruby-2.3.0 --default \
                 && NOKOGIRI_USE_SYSTEM_LIBRARIES=1 gem install rails \
         && echo 'Installing additional ruby versions...' \
-            && rvm install ruby-2.1.5 \
-                && rvm use 2.1.5@rails4 --create \
-                && NOKOGIRI_USE_SYSTEM_LIBRARIES=1 gem install rails -v 4.1.6 \
+            && rvm install ruby-2.3.0 \
+                && rvm use 2.3.0@rails5 --create \
+                && NOKOGIRI_USE_SYSTEM_LIBRARIES=1 gem install rails -v 5.0.0.beta1 \
+            && rvm install ruby-2.2.4 \
+                && rvm use 2.2.4@rails4 -- create \
+                && NOKOGIRI_USE_SYSTEM_LIBRARIES=1 gem install rails -v 4.2.5 \
             && rvm install ruby-1.9.3-p551 \
                 && rvm use 1.9.3-p551@rails3.2 --create \
-                && NOKOGIRI_USE_SYSTEM_LIBRARIES=1 gem install rails -v 3.2.19 \
+                && NOKOGIRI_USE_SYSTEM_LIBRARIES=1 gem install rails -v 3.2.22 \
     " \
     && /usr/local/rvm/bin/rvm cleanup all
     
