@@ -7,12 +7,46 @@
     ----------------------------------------------------------------- 
 
 
-Hi there! Welcome to Cloud9 IDE!
+This is a test of the Android SDK as an image on Cloud9.
 
-To get you started, create some files, play with the terminal,
-or visit http://docs.c9.io for our documentation.
-If you want, you can also go watch some training videos at
-http://www.youtube.com/user/c9ide.
+To test if paths are working correctly try these commands in the terminal
 
-Happy coding!
-The Cloud9 IDE team
+python --version
+
+pip list
+
+java -version
+
+javac -version
+
+ant -v
+
+android -h    (might be bash android -h)
+
+
+
+
+
+
+
+To find where the program is saved try this command with any of the above
+
+readlink -f $(which python)
+
+readlink -f $(which java)
+
+readlink -f $(which javac)
+
+
+also try
+
+$PATH
+
+or
+
+echo $PATH
+
+Possibly what may work is commands like
+
+echo $ANDROID_SDK_HOME
+
