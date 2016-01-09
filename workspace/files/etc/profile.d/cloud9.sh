@@ -54,14 +54,10 @@ if [ ! -e /usr/bin/iojs ] &&  [ ! -L /usr/bin/iojs ]; then
 fi
 
 LAST_LINE=$(tail -1 /home/ubuntu/.profile)
-if [ "$LAST_LINE" == '[ -s "/home/ubuntu/.nvm/nvm.sh" ] && . "/home/ubuntu/.nvm/nvm.sh"  # This loads nvm' ]; then
-    WRAP_START='[ "$BASH_VERSION" ] && npm() { if [ "$*" == "config get prefix" ]; then which node | sed "s/bin\\/node//"; else $(which npm) "$@"; fi } # hack: avoid slow npm sanity check in nvm'
+if [ "$LAST_LINE" == '[ -s "/home/ubuntu/.nvm/nvm.sh" ] && . "/home/ubuntu/.nvm/nvm.sh" # This loads nvm' ]; then
+    WRAP_START='[ "$BASH_VERSION" ] \&\& npm() { if [ "$*" == "config get prefix" ]; then which node | sed "s/bin\\/node//"; else $(which npm) "$@"; fi } # hack: avoid slow npm sanity check in nvm'
     WRAP_END='unset npm # end hack'
     sed -iE 's!.*This loads nvm!'"$WRAP_START\n&\n$WRAP_END!" /home/ubuntu/.profile
-fi
-if [ "$LAST_LINE" == "unset npm" ]; then
-    sed -iE 's!sed s/bin\\/node//!sed "s/bin\\/node//"!' /home/ubuntu/.profile
-    sed -iE 's!unset npm!unset npm # end hack!' /home/ubuntu/.profile
 fi
 
 # fix broken .gitconfig
