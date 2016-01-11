@@ -28,39 +28,6 @@ RUN apt-get install -y bash console-setup sudo wget curl git python software-pro
 
 RUN chown root:root /usr/bin/sudo && chmod 4755 /usr/bin/sudo
 
-# install ruby/rails/rvm
-ADD ./files/etc/gemrc /etc/gemrc
-RUN apt-get update \
-    && apt-get install -y \
-        gawk \
-        libxml2-dev \
-        libxslt-dev \
-        libgdbm-dev \
-        sqlite3 \
-    && sudo -u ubuntu -i bash -l -c " \
-        echo 'Installing rvm...' \
-            && gpg -q --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 \
-            && (curl -sSL https://get.rvm.io | sudo bash -s stable --autolibs=enabled) \
-    " \
-    && usermod -a -G rvm ubuntu \
-    && sudo -u ubuntu -i bash -l -c " \
-        echo 'Installing stable ruby version...' \
-            && rvm install ruby-2.3.0 \
-                && rvm use ruby-2.3.0 --default \
-                && NOKOGIRI_USE_SYSTEM_LIBRARIES=1 gem install rails \
-        && echo 'Installing additional ruby versions...' \
-            && rvm install ruby-2.3.0 \
-                && rvm use 2.3.0@rails5 --create \
-                && NOKOGIRI_USE_SYSTEM_LIBRARIES=1 gem install rails -v 5.0.0.beta1 \
-            && rvm install ruby-2.2.4 \
-                && rvm use 2.2.4@rails4 -- create \
-                && NOKOGIRI_USE_SYSTEM_LIBRARIES=1 gem install rails -v 4.2.5 \
-            && rvm install ruby-1.9.3-p551 \
-                && rvm use 1.9.3-p551@rails3.2 --create \
-                && NOKOGIRI_USE_SYSTEM_LIBRARIES=1 gem install rails -v 3.2.22 \
-    " \
-    && /usr/local/rvm/bin/rvm cleanup all
-    
 # 32-bit support
 RUN dpkg --add-architecture i386 && \
     apt-get update && \
@@ -92,7 +59,7 @@ RUN apt-get install -y texlive
 # RUN apt-get install -y texlive-full
 
 # editors
-RUN apt-get install -y vim vim-addon-manager vim-vimoutliner vim-doc 
+RUN apt-get install -y vim vim-addon-manager vim-vimoutliner vim-doc
 RUN apt-get install -y emacs ctags indent
 
 # X11
@@ -120,6 +87,45 @@ RUN apt-get install -y libcairo2-dev libjpeg62-dev libgif-dev libpq-dev \
     libboost-all-dev libzmq-dev libwww-curl-perl libbz2-dev dpkg-dev \
     ruby1.9.1-dev dialog python-gtk2 libpango1.0 libpango1.0-dev \
     libmysqlclient-dev
+
+# install ruby/rails/rvm
+ADD ./files/etc/gemrc /etc/gemrc
+RUN apt-get update \
+    && apt-get install -y \
+        gawk \
+        libxml2-dev \
+        libxslt-dev \
+        libgdbm-dev \
+        libgmp-dev \
+        sqlite3
+RUN sudo -u ubuntu -i bash -l -c " \
+        echo 'Installing rvm...' \
+            && gpg -q --keyserver hkp://pgp.mit.edu --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 \
+            && (curl -sSL https://get.rvm.io | sudo bash -s stable --autolibs=enabled) \
+    " \
+    && usermod -a -G rvm ubuntu
+RUN sudo -u ubuntu -i bash -l -c " \
+        echo 'Installing stable ruby version...' \
+            && rvm install ruby-2.3.0 \
+                && rvm use ruby-2.3.0 --default \
+                && NOKOGIRI_USE_SYSTEM_LIBRARIES=1 gem install rails -v 4.2.5"
+RUN sudo -u ubuntu -i bash -l -c " \
+        echo 'Installing ruby 2.3.0...' \
+            && rvm install ruby-2.3.0 \
+                && rvm use 2.3.0@rails5.0 --create \
+                && NOKOGIRI_USE_SYSTEM_LIBRARIES=1 gem install rails -v 5.0.0.beta1"
+RUN sudo -u ubuntu -i bash -l -c " \
+        echo 'Installing ruby 2.2.4...' \
+            && rvm install ruby-2.2.4 \
+                && rvm use 2.2.4@rails4.2 --create \
+                && NOKOGIRI_USE_SYSTEM_LIBRARIES=1 gem install rails -v 4.2.5"
+RUN sudo -u ubuntu -i bash -l -c " \
+        echo 'Installing ruby 1.9.3...' \
+            && rvm install ruby-1.9.3-p551 \
+                && rvm use 1.9.3-p551@rails3.2 --create \
+                && NOKOGIRI_USE_SYSTEM_LIBRARIES=1 gem install rails -v 3.2.22 \
+    " \
+    && /usr/local/rvm/bin/rvm cleanup all
 
 # Deployment
 # Can't include new npm since it makes "npm install -g npm" fail:
