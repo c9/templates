@@ -121,6 +121,11 @@ RUN sudo -u ubuntu -i bash -l -c " \
                 && rvm use 2.2.4@rails4.2 --create \
                 && NOKOGIRI_USE_SYSTEM_LIBRARIES=1 gem install rails -v 4.2.5"
 RUN sudo -u ubuntu -i bash -l -c " \
+        echo 'Installing ruby 2.1.5...' \
+            && rvm install ruby-2.1.5 \
+                && rvm use 2.1.5@rails4.2 --create \
+                && NOKOGIRI_USE_SYSTEM_LIBRARIES=1 gem install rails -v 4.2.5"
+RUN sudo -u ubuntu -i bash -l -c " \
         echo 'Installing ruby 1.9.3...' \
             && rvm install ruby-1.9.3-p551 \
                 && rvm use 1.9.3-p551@rails3.2 --create \
