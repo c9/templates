@@ -154,12 +154,17 @@ RUN apt-get install -y php5 php5-cli php5-fpm \
         && mv composer.phar /usr/bin/composer
 
 # Python2
+RUN apt-get install -y python python-dev python-pip python-setuptools ipython \
+    python-scipy python-matplotlib python-virtualenv virtualenvwrapper
+
+# Python3
 RUN apt-get install -y python3 python3-dev python3-pip python3-setuptools \
     ipython3 python3-scipy python3-matplotlib
 
-# Python3
-RUN apt-get install -y python python-dev python-pip python-setuptools ipython \
-    python-scipy python-matplotlib python-virtualenv virtualenvwrapper
+# Alternative python versions
+RUN yes | add-apt-repository ppa:fkrull/deadsnakes && \
+    apt-get update && \
+    apt-get install -y python3.5-complete
 
 # Julia
 RUN apt-get install -y julia julia-doc
