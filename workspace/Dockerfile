@@ -130,20 +130,20 @@ RUN sudo -u ubuntu -i bash -l -c " \
 # Deployment
 # Can't include new npm since it makes "npm install -g npm" fail:
 # sudo -u ubuntu -i bash -l -c "npm install -g npm@3.3.6" && \
-RUN wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh -e && \
-    sudo -u ubuntu -i bash -l -c "npm install jitsu@0.15.0 -g" && \
-    sudo -u ubuntu -i bash -l -c "npm install azure-cli@0.9.9 -g" && \
-    sudo -u ubuntu -i bash -l -c "npm install grunt@0.4.5 -g" && \
-    sudo -u ubuntu -i bash -l -c "npm install grunt-cli@0.1.13  -g" && \
-    sudo -u ubuntu -i bash -l -c "npm install bower@1.5.3  -g" && \
-    sudo -u ubuntu -i bash -l -c "gem install rhc -v 1.28.5" && \
-    sudo -u ubuntu -i bash -l -c "gem install compass -v 1.0.1" && \
-    wget -O /tmp/deb.deb http://go-cli.s3-website-us-east-1.amazonaws.com/releases/latest/cf-cli_amd64.deb && \
+RUN wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh -e
+RUN sudo -u ubuntu -i bash -l -c "npm install jitsu@0.15.0 -g && \
+                                  npm install azure-cli@0.9.9 -g && \
+                                  npm install grunt@0.4.5 -g && \
+                                  npm install grunt-cli@0.1.13  -g && \
+                                  npm install bower@1.5.3  -g && \
+                                  gem install rhc -v 1.38.4 && \
+                                  gem install compass -v 1.0.3"
+RUN wget -O /tmp/deb.deb http://go-cli.s3-website-us-east-1.amazonaws.com/releases/latest/cf-cli_amd64.deb && \
     dpkg -i /tmp/deb.deb && \
     wget -O /tmp/deb.deb https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_1.6.0_amd64.deb && \
     dpkg -i /tmp/deb.deb && \
     rm /tmp/deb.deb
-    
+
 # PHP based on defaults from
 #   http://docs.travis-ci.com/user/ci-environment/#Extensions
 #   https://devcenter.heroku.com/articles/php-support
