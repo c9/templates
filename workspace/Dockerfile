@@ -113,17 +113,17 @@ RUN sudo -u ubuntu -i bash -l -c " \
 RUN sudo -u ubuntu -i bash -l -c " \
         echo 'Installing ruby 2.3.0...' \
             && rvm install ruby-2.3.0 \
-                && rvm use 2.3.0@rails5.0 --create \
+                && rvm use 2.3.0@rails5 --create \
                 && NOKOGIRI_USE_SYSTEM_LIBRARIES=1 gem install rails -v 5.0.0.beta1"
 RUN sudo -u ubuntu -i bash -l -c " \
         echo 'Installing ruby 2.2.4...' \
             && rvm install ruby-2.2.4 \
-                && rvm use 2.2.4@rails4.2 --create \
+                && rvm use 2.2.4@rails4 --create \
                 && NOKOGIRI_USE_SYSTEM_LIBRARIES=1 gem install rails -v 4.2.5"
 RUN sudo -u ubuntu -i bash -l -c " \
         echo 'Installing ruby 2.1.5...' \
             && rvm install ruby-2.1.5 \
-                && rvm use 2.1.5@rails4.2 --create \
+                && rvm use 2.1.5@rails4 --create \
                 && NOKOGIRI_USE_SYSTEM_LIBRARIES=1 gem install rails -v 4.2.5"
 RUN sudo -u ubuntu -i bash -l -c " \
         echo 'Installing ruby 1.9.3...' \
