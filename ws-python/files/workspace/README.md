@@ -26,6 +26,11 @@ In case you want to run your Django application from the terminal just run:
 
     $ python workspace/manage.py runserver $IP:$PORT
     
+## Configuration
+
+You can configure your Python version and `PYTHONPATH` used in
+Cloud9 > Preferences > Project Settings > Language Support.
+
 ## Support & Documentation
 
 Django docs can be found at https://www.djangoproject.com/

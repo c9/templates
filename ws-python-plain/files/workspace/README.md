@@ -25,13 +25,20 @@ http://learnpythonthehardway.org/book/
 
 ## Starting from the Terminal
 
-To try the example application from the terminal, type the following in
-the terminal:
+To try the example application, type the following in the terminal:
 
 ```
 cd ex50
 python bin/app.py
 ```
+
+Alternatively, open the file in ex50/bin and click the green Run
+button!
+
+## Configuration
+
+You can configure your Python version and `PYTHONPATH` used in
+Cloud9 > Preferences > Project Settings > Language Support.
 
 ## Support & Documentation
 
