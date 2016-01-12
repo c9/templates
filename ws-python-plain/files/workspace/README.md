@@ -25,7 +25,8 @@ http://learnpythonthehardway.org/book/
 
 ## Starting from the Terminal
 
-In case you want to our example application from the terminal, try the following:
+To try the example application from the terminal, type the following in
+the terminal:
 
 ```
 cd ex50
