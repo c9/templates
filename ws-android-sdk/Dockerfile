@@ -56,29 +56,6 @@ RUN yes | (\
 # Set PATH
 ENV ANDROID_HOME=/usr/local/android-sdk-linux ANDROID_NDK_HOME=/usr/local/android-ndk-r10e JAVA_HOME=/usr/lib/jvm/java-7-oracle GRADLE_HOME=/usr/local/gradle-2.5
 ENV PATH $PATH:$ANDROID_HOME/tools:$ANDROID_NDK_HOME/platform-tools:$ANDROID_NDK_HOME:$GRADLE_HOME/bin
-
-# Flatten the image
-# https://intercityup.com/blog/downsizing-docker-containers.html
-# Cleaning APT
-RUN \
-    apt-get remove -y unzip python-software-properties software-properties-common && \
-    apt-get clean autoclean && \
-    apt-get autoremove -y && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
-    rm -rf /var/cache/oracle-jdk7-installer
-#$ rm -rf /var/lib/{apt,dpkg,cache,log}/
-
-# Define working directory.
-RUN mkdir -p /data/app
-WORKDIR /data/app
-
-# Define volume: your local app code directory can be mounted here
-# Mount with: -v /your/local/directory:/data/app
-VOLUME ["/data/app"]
-
-# Define default command
-CMD ["bash"]    
-    
     
     
     
