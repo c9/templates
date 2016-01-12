@@ -17,27 +17,28 @@ RUN \
 
 # Install Android SDK
 # https://developer.android.com/sdk/index.html#Other
-RUN \
+RUN SDK_VERSION=r24.3.3 && \
     cd /usr/local/ && \
-    curl -L -O http://dl.google.com/android/android-sdk_r24.3.3-linux.tgz && \
-    tar xf android-sdk_r24.3.3-linux.tgz && \
-    rm android-sdk_r24.3.3-linux.tgz
+    curl -L -O http://dl.google.com/android/android-sdk_${SDK_VERSION}-linux.tgz && \
+    tar xf android-sdk_${SDK_VERSION}-linux.tgz && \
+    rm android-sdk_${SDK_VERSION}-linux.tgz
 
 # Install Android NDK
 # https://developer.android.com/tools/sdk/ndk/index.html
 # https://developer.android.com/ndk/index.html
-RUN \
+RUN NDK_VERSION=r10e && \
     cd /usr/local && \
-    curl -L -O http://dl.google.com/android/ndk/android-ndk-r10e-linux-x86_64.bin && \
-    chmod a+x android-ndk-r10e-linux-x86_64.bin && \
-    ./android-ndk-r10e-linux-x86_64.bin && \
-    rm -f android-ndk-r10e-linux-x86_64.bin
-
+    curl -L -o android-ndk.bin http://dl.google.com/android/ndk/android-ndk-${NDK_VERSION}-linux-x86_64.bin && \
+    chmod a+x android-ndk.bin && \
+    ./android-ndk.bin && \
+    rm -f android-ndk.bin
 
 # Install Gradle
-RUN cd /usr/local && \
-    curl -L https://services.gradle.org/distributions/gradle-2.5-bin.zip -o gradle-2.5-bin.zip && \
-    unzip gradle-2.5-bin.zip
+RUN GRADLE_VERSION=2.5 && \
+    cd /usr/local && \
+    curl -L https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip -o gradle-bin.zip && \
+    unzip gradle-bin.zip && \
+    rm gradle-bin.zip
 
 # Update & Install Android Tools
 # Cloud message, billing, licensing, play services, admob, analytics
