@@ -15,15 +15,6 @@ RUN \
     apt-get update && \
     apt-get -y install curl unzip python-software-properties software-properties-common lib32stdc++6 lib32z1
 
-# Install Oracle Java JDK
-# https://www.digitalocean.com/community/tutorials/how-to-install-java-on-ubuntu-with-apt-get
-# https://github.com/dockerfile/java/blob/master/oracle-java7/Dockerfile
-RUN \
-    echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \
-    add-apt-repository -y ppa:webupd8team/java && \
-    apt-get update && \
-    apt-get install -y oracle-java7-installer
-
 # Install Android SDK
 # https://developer.android.com/sdk/index.html#Other
 RUN \
