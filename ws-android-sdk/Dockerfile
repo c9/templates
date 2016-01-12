@@ -1,29 +1,15 @@
 FROM cloud9/workspace
-
-# first attempt by Jeremy Ellis to add the Android_SDK
-
-#MAINTAINER Fabian Jakobs <fabian@c9.io>
+# Android Build Dockerfile for Parafuzo.
+#
+# This is a fork from:
+# https://github.com/lukin0110/docker-android-build
+MAINTAINER Jeremy Ellis <keyfreemusic@gmail.com>
 
 ADD ./files/workspace /home/ubuntu/workspace
 
 RUN chmod -R g+w /home/ubuntu/workspace && \
     chown -R ubuntu:ubuntu /home/ubuntu/workspace
     
-
-# Android Build Dockerfile for Parafuzo.
-#
-# This is a fork from:
-# https://github.com/lukin0110/docker-android-build
-#
-
-# Pull base image.
-#FROM ubuntu:14.04
-
-#MAINTAINER Parafuzo <dev@parafuzo.com>
-MAINTAINER Jeremy Ellis <keyfreemusic@gmail.com>
-
-
-
 # Update, upgrade and install packages
 RUN \
     apt-get update && \
