@@ -19,9 +19,9 @@ RUN \
 # https://developer.android.com/sdk/index.html#Other
 RUN SDK_VERSION=r24.3.3 && \
     cd /usr/local/ && \
-    curl -L -O http://dl.google.com/android/android-sdk_${SDK_VERSION}-linux.tgz && \
-    tar xf android-sdk_${SDK_VERSION}-linux.tgz && \
-    rm android-sdk_${SDK_VERSION}-linux.tgz
+    curl -L -o android-sdk.tgz http://dl.google.com/android/android-sdk_${SDK_VERSION}-linux.tgz && \
+    tar xf android-sdk.tgz && \
+    rm android-sdk.tgz
 
 # Install Android NDK
 # https://developer.android.com/tools/sdk/ndk/index.html
