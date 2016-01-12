@@ -53,9 +53,10 @@ if [ ! -e /usr/bin/iojs ] &&  [ ! -L /usr/bin/iojs ]; then
     sudo ln -s /mnt/shared/lib/iojs/bin/iojs /usr/bin/iojs
 fi
 
-if [ "$(tail -2 /home/ubuntu/.profile)" == $'fi\n[ -s "/home/ubuntu/.nvm/nvm.sh" ] && . "/home/ubuntu/.nvm/nvm.sh"  # This loads nvm' ]; then
-    WRAP_START='function npm() { if [ "$*" == "config get prefix" ]; then which node | sed s/bin\\/node//; else $(which npm) "$@"; fi } # avoid slow npm sanity check in nvm'
-    WRAP_END='unset npm'
+LAST_LINE=$(tail -1 /home/ubuntu/.profile)
+if [ "$LAST_LINE" == '[ -s "/home/ubuntu/.nvm/nvm.sh" ] && . "/home/ubuntu/.nvm/nvm.sh" # This loads nvm' ]; then
+    WRAP_START='[ "$BASH_VERSION" ] \&\& npm() { if [ "$*" == "config get prefix" ]; then which node | sed "s/bin\\/node//"; else $(which npm) "$@"; fi } # hack: avoid slow npm sanity check in nvm'
+    WRAP_END='unset npm # end hack'
     sed -iE 's!.*This loads nvm!'"$WRAP_START\n&\n$WRAP_END!" /home/ubuntu/.profile
 fi
 
