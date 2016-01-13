@@ -21,7 +21,9 @@ RUN SDK_VERSION=r24.3.3 && \
     cd /usr/local/ && \
     curl -L -o android-sdk.tgz http://dl.google.com/android/android-sdk_${SDK_VERSION}-linux.tgz && \
     tar xf android-sdk.tgz && \
-    rm android-sdk.tgz
+    rm android-sdk.tgz && \
+    chmod -R +r /usr/local/android-sdk-* && \
+    bash -c 'for file in $(find /usr/local/android-sdk-*); do [[ -x $file ]] && chmod +x "$file"; done'
 
 # Install Android NDK
 # https://developer.android.com/tools/sdk/ndk/index.html
@@ -31,7 +33,9 @@ RUN NDK_VERSION=r10e && \
     curl -L -o android-ndk.bin http://dl.google.com/android/ndk/android-ndk-${NDK_VERSION}-linux-x86_64.bin && \
     chmod a+x android-ndk.bin && \
     ./android-ndk.bin && \
-    rm -f android-ndk.bin
+    rm -f android-ndk.bin && \
+    chmod -R +r /usr/local/android-ndk-* && \
+    bash -c 'for file in $(find /usr/local/android-ndk-*); do [[ -x $file ]] && chmod +x "$file"; done'
 
 # Install Gradle
 RUN GRADLE_VERSION=2.5 && \
