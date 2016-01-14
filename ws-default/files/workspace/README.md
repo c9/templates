@@ -7,12 +7,12 @@
     ----------------------------------------------------------------- 
 
 
-Welcome to your Android SDK project on Cloud9 IDE!
+Hi there! Welcome to Cloud9 IDE!
 
-The android SDK and NDK are already setup and configured for you to use.
-
-By using this workspace you agree to the Android SDK terms of use below:
-http://developer.android.com/sdk/terms.html
+To get you started, create some files, play with the terminal,
+or visit http://docs.c9.io for our documentation.
+If you want, you can also go watch some training videos at
+http://www.youtube.com/user/c9ide.
 
 Happy coding!
 The Cloud9 IDE team
