@@ -38,12 +38,12 @@ RUN sudo -u ubuntu -i bash -li -c "curl https://raw.githubusercontent.com/creati
     echo '[ -s "/home/ubuntu/.nvm/nvm.sh" ] && . "/home/ubuntu/.nvm/nvm.sh" # This loads nvm' >> /home/ubuntu/.profile
 RUN sudo -u ubuntu -i bash -l -c " \
         nvm install 0.8.28 && \
-        nvm install 0.10.40 && \
-        nvm install 0.12.7 && \
+        nvm install 0.10.41 && \
+        nvm install 0.12.9 && \
         nvm install iojs-v3.3.1 && \
-        nvm install 4.2.1 && \
-        nvm install 5.0.0 && \
-        nvm alias default 4.2.1"
+        nvm install 4.2.4 && \
+        nvm install 5.4.1 && \
+        nvm alias default 4.2.4"
 
 # apt-get update because ubuntu caches go out of date in a matter of days
 RUN apt-get update
