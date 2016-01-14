@@ -170,7 +170,7 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 && \
     apt-get install -y mongodb-org
 
 # /opt packages
-RUN curl https://go.googlecode.com/files/go1.2.1.linux-amd64.tar.gz | tar -C /opt -xz
+RUN curl https://storage.googleapis.com/golang/go1.5.3.linux-amd64.tar.gz | tar -C /opt -xz
 RUN git clone https://github.com/lennartcl/gitl.git /opt/gitl
 
 # Haskell
