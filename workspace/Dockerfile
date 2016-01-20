@@ -106,7 +106,7 @@ RUN apt-get install -y mysql-server rabbitmq-server couchdb
 RUN apt-get install -y dnsutils bash-completion xsltproc \
     build-essential fakeroot tmux duplicity lftp htop apt-file \
     parallel nano strace ltrace flex jq ack-grep gdb valgrind locate tree time \
-    zip
+    zip unp
 
 # Version control
 RUN apt-get install -y git-all tig subversion subversion-tools cvs \
