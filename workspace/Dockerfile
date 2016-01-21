@@ -6,6 +6,11 @@ ENV DEBIAN_FRONTEND noninteractive
 # increment version to force flushing the cache
 RUN echo "Version 1.11"
 
+RUN echo "deb mirror://mirrors.ubuntu.com/mirrors.txt trusty main restricted universe multiverse" > /etc/apt/sources.list
+RUN echo "deb mirror://mirrors.ubuntu.com/mirrors.txt trusty-updates main restricted universe multiverse" >> /etc/apt/sources.list
+RUN echo "deb mirror://mirrors.ubuntu.com/mirrors.txt trusty-backports main restricted universe multiverse" >> /etc/apt/sources.list
+RUN echo "deb mirror://mirrors.ubuntu.com/mirrors.txt trusty-security main restricted universe multiverse" >> /etc/apt/sources.list
+
 RUN apt-get update --fix-missing && apt-get -y dist-upgrade
 RUN apt-get install -y bash console-setup sudo wget curl git python software-properties-common man-db && \
     echo "install console-setup" && \
