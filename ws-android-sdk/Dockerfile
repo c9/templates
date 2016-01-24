@@ -3,8 +3,8 @@ FROM cloud9/workspace
 #
 # This is a fork from:
 # https://github.com/lukin0110/docker-android-build
-MAINTAINER Jeremy Ellis <keyfreemusic@gmail.com>
-
+#MAINTAINER Jeremy Ellis <keyfreemusic@gmail.com>
+MAINTAINER ?????
 ADD ./files/workspace /home/ubuntu/workspace
 
 RUN chmod -R g+w /home/ubuntu/workspace && \
