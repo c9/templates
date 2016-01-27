@@ -11,8 +11,10 @@ RUN echo "deb mirror://mirrors.ubuntu.com/mirrors.txt trusty-updates main restri
 RUN echo "deb mirror://mirrors.ubuntu.com/mirrors.txt trusty-backports main restricted universe multiverse" >> /etc/apt/sources.list
 RUN echo "deb mirror://mirrors.ubuntu.com/mirrors.txt trusty-security main restricted universe multiverse" >> /etc/apt/sources.list
 
+RUN apt-get update --fix-missing && apt-get install -y software-properties-common
+RUN add-apt-repository -y ppa:git-core/ppa
 RUN apt-get update --fix-missing && apt-get -y dist-upgrade
-RUN apt-get install -y bash console-setup sudo wget curl git python software-properties-common man-db && \
+RUN apt-get install -y bash console-setup sudo wget curl git python man-db && \
     echo "install console-setup" && \
     echo "console-setup   console-setup/codeset47 select  # Latin1 and Latin5 - western Europe and Turkic languages" | debconf-set-selections && \
     echo "console-setup   console-setup/fontface47        select  Fixed" | debconf-set-selections && \
