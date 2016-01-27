@@ -50,6 +50,9 @@ RUN sudo -u ubuntu -i bash -l -c " \
         nvm install 5.4.1 && \
         nvm alias default 4.2.4"
 
+# Disable progress bars by default: https://github.com/npm/npm/issues/11283
+RUN sudo -u ubuntu -i bash -l -c "npm set progress=false"
+
 # apt-get update because ubuntu caches go out of date in a matter of days
 RUN apt-get update
 
