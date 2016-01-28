@@ -29,8 +29,12 @@ export HGUSER="$C9_FULLNAME"
 export EMAIL="$C9_EMAIL"
 export PORT="$C9_PORT"
 export IP="$C9_IP"
-export PYTHONPATH="$PYTHONPATH:$HOME/lib/python/site-packages"
-export GEM_PATH="$GEM_PATH:/mnt/shared/lib/ruby"
+if [ -d "$HOME/lib/python/site-packages" ]; then
+    export PYTHONPATH="$PYTHONPATH:$HOME/lib/python/site-packages"
+fi
+if [ -d "/mnt/shared/lib/ruby" ]; then
+    export GEM_PATH="$GEM_PATH:/mnt/shared/lib/ruby"
+fi
 
 export METEOR_IP="$IP"
 export METEOR_PORT="$PORT"
@@ -47,6 +51,13 @@ fi
 
 if [ ! -e /usr/bin/iojs ] &&  [ ! -L /usr/bin/iojs ]; then
     sudo ln -s /mnt/shared/lib/iojs/bin/iojs /usr/bin/iojs
+fi
+
+LAST_LINE=$(tail -1 /home/ubuntu/.profile)
+if [ "$LAST_LINE" == '[ -s "/home/ubuntu/.nvm/nvm.sh" ] && . "/home/ubuntu/.nvm/nvm.sh" # This loads nvm' ]; then
+    WRAP_START='[ "$BASH_VERSION" ] \&\& npm() { if [ "$*" == "config get prefix" ]; then which node | sed "s/bin\\/node//"; else $(which npm) "$@"; fi } # hack: avoid slow npm sanity check in nvm'
+    WRAP_END='unset npm # end hack'
+    sed -iE 's!.*This loads nvm!'"$WRAP_START\n&\n$WRAP_END!" /home/ubuntu/.profile
 fi
 
 # fix broken .gitconfig

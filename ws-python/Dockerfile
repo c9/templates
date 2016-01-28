@@ -1,7 +1,7 @@
 FROM cloud9/workspace
 MAINTAINER Fabian Jakobs <fabian@c9.io>
 
-RUN pip install Django==1.8.3
+RUN pip install Django==1.9
 
 ADD ./files /home/ubuntu
 
