@@ -24,6 +24,13 @@ For an idea on what we would expect in a basic image, see `ws-default` or a basi
 
 * Smoke tests are mandatory for all new image types
 
+## Requirements
+- Naming conventions must be followed
+- A sample project must be provided
+- A badge in the form of `badge.png` must be provided in the workspace folder
+- Smoke tests must be included
+- Guidelines should be followed
+
 ## Naming conventions
 All workspaces are named `ws-NAME` where NAME is a short and meaningful descriptor; i.e. `ws-python`, `ws-ruby` or `ws-wordpress`
 
