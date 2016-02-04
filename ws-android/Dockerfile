@@ -18,6 +18,7 @@ RUN \
 # Install Android SDK
 # https://developer.android.com/sdk/index.html#Other
 RUN SDK_VERSION=r24.3.3 && \
+    set -x && \
     cd /usr/local/ && \
     curl -L -o android-sdk.tgz http://dl.google.com/android/android-sdk_${SDK_VERSION}-linux.tgz && \
     tar xf android-sdk.tgz && \

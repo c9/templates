@@ -1,9 +1,9 @@
 #!/bin/bash
 set -ex
 
-android list &>/dev/null
-ndk-build --help >/dev/null
-ndk-depends --help >/dev/null
+android list
+ndk-build --help
+ndk-depends --help
 
 gradle --version | grep "Gradle 2.5"
 gradle
