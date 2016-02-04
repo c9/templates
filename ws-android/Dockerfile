@@ -23,7 +23,8 @@ RUN SDK_VERSION=r24.3.3 && \
     tar xf android-sdk.tgz && \
     rm android-sdk.tgz && \
     chmod -R +r /usr/local/android-sdk-* && \
-    bash -c 'for file in $(find /usr/local/android-sdk-*); do [[ -x $file ]] && chmod +x "$file"; done'
+    bash -c 'for file in $(find /usr/local/android-sdk-*); do [[ -x $file ]] && chmod +x "$file"; done'; \
+    exit 0
 
 # Install Android NDK
 # https://developer.android.com/tools/sdk/ndk/index.html
