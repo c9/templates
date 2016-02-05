@@ -1,5 +1,5 @@
 FROM ubuntu:14.04.3
-MAINTAINER Fabian Jakobs <fabian@c9.io>
+MAINTAINER Cloud9 IDE, inc. <info@c9.io>
 
 ENV DEBIAN_FRONTEND noninteractive
 
