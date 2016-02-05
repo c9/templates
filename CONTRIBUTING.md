@@ -12,7 +12,7 @@ We welcome contributions from the community and are pleased to have them. Please
 ## Guidelines
 We will review any updates to images presented in PRs; they may not all get merged. New workspace types are welcome but can take a little longer to be reviewed and released on to production systems than minor fixes.
 
-For an idea on what we would expect in a basic image, see `ws-default` or a basic language one like `ws-python`
+For an idea on what we would expect in a basic image, see `ws-default` or a basic language one like `ws-python-plain`
 
 * Any environment variables that need to be set in the user's environment should be in `/etc/profile.d/something.sh` where something is a relevant name. Using docker `ENV` tags will not work.
 
@@ -32,7 +32,7 @@ For an idea on what we would expect in a basic image, see `ws-default` or a basi
 - Guidelines should be followed
 
 ## Naming conventions
-All workspaces are named `ws-NAME` where NAME is a short and meaningful descriptor; i.e. `ws-python`, `ws-ruby` or `ws-wordpress`
+All workspaces are named `ws-NAME` where NAME is a short and meaningful descriptor; i.e. `ws-python-plain`, `ws-ruby` or `ws-wordpress`
 
 ## Smoke tests
 Create a bash script called `check-environment` in the `files` folder of your workspace, make sure it has execute permissions. Our build system will verify that the script exits with a return code of 0 before allowing any images to be pushed to docker hub. Make sure to test anything you added to the workspace and want to continue to work in the future. No tests means no reliability which means no merging :)
