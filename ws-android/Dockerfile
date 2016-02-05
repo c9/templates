@@ -61,9 +61,9 @@ RUN yes | (\
 
 # Set PATH
 RUN \
-    echo 'export ANDROID_HOME=/usr/local/android-sdk-linux' >> /home/ubuntu/.bashrc && \
-    echo 'export ANDROID_SDK_HOME=/usr/local/android-sdk-linux' >> /home/ubuntu/.bashrc && \
-    echo 'export ANDROID_NDK_HOME=/usr/local/android-ndk-r10e' >> /home/ubuntu/.bashrc && \
-    echo 'export GRADLE_HOME=/usr/local/gradle-2.5' >> /home/ubuntu/.bashrc && \
-    echo 'export NDK_PROJECT_PATH=/home/ubuntu/workspace' >> /home/ubuntu/.bashrc && \
-    echo 'export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_NDK_HOME/platform-tools:$ANDROID_NDK_HOME:$GRADLE_HOME/bin' >> /home/ubuntu/.bashrc
+    echo 'export ANDROID_HOME=/usr/local/android-sdk-linux' > /etc/profile.d/android.sh && \
+    echo 'export ANDROID_SDK_HOME=/usr/local/android-sdk-linux' >> /etc/profile.d/android.sh && \
+    echo 'export ANDROID_NDK_HOME=/usr/local/android-ndk-r10e' >> /etc/profile.d/android.sh && \
+    echo 'export GRADLE_HOME=/usr/local/gradle-2.5' >> /etc/profile.d/android.sh && \
+    echo 'export NDK_PROJECT_PATH=/home/ubuntu/workspace' >> /etc/profile.d/android.sh && \
+    echo 'export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_NDK_HOME/platform-tools:$ANDROID_NDK_HOME:$GRADLE_HOME/bin' >> /etc/profile.d/android.sh
