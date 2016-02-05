@@ -1,5 +1,5 @@
 FROM cloud9/workspace
-MAINTAINER Fabian Jakobs <fabian@c9.io>
+MAINTAINER Cloud9 IDE, inc. <info@c9.io>
 
 ADD ./files/workspace /home/ubuntu/workspace
 
