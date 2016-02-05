@@ -14,7 +14,7 @@ We will review any updates to images presented in PRs; they may not all get merg
 
 For an idea on what we would expect in a basic image, see `ws-default` or a basic language one like `ws-python`
 
-* Any environment variables that need to be set in the user's environment should be in /home/ubuntu/.bashrc; just append to the file. Using docker `ENV` tags will not work
+* Any environment variables that need to be set in the user's environment should be in `/etc/profile.d/something.sh` where something is a relevant name. Using docker `ENV` tags will not work.
 
 * Anything expected to be used by the user should be accessible on the $PATH for ubuntu user, and have permissions to access it. (enter your image and `sudo -u ubuntu -i bash -l` to simulate login and verify this.
 
