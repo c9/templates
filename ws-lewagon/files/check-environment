@@ -1,0 +1,9 @@
+#!/bin/bash
+set -ex
+
+rvm &>/dev/null && exit 1 || :
+rbenv --version
+rails -v
+#postresql
+sudo service postgresql start
+psql --command '\l' -d template1
