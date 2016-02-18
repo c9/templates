@@ -25,6 +25,10 @@ For an idea on what we would expect in a basic image, see `ws-default` or a basi
 
 * Smoke tests are mandatory for all new image types
 
+* Try to keep image sizes small
+
+* cache cleanups/rm's/etc need to be on the same `RUN` line as the command that produces them, otherwise they are stored in the docker layer anyway and it doesn't serve any purpose
+
 ## Requirements
 - Naming conventions must be followed
 - A sample project must be provided
