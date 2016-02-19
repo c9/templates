@@ -88,14 +88,7 @@ RUN apt-get install -y libcairo2-dev libjpeg62-dev libgif-dev libpq-dev \
 
 # install ruby/rails/rvm
 ADD ./files/etc/gemrc /etc/gemrc
-RUN apt-get update \
-    && apt-get install -y \
-        gawk \
-        libxml2-dev \
-        libxslt-dev \
-        libgdbm-dev \
-        libgmp-dev \
-        sqlite3
+RUN apt-get install -y gawk libxml2-dev libxslt-dev libgdbm-dev libgmp-dev sqlite3
 RUN sudo -u ubuntu -i bash -l -c " \
         echo 'Installing rvm...' \
             && gpg -q --keyserver hkp://pgp.mit.edu --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 \
@@ -105,30 +98,7 @@ RUN sudo -u ubuntu -i bash -l -c " \
 RUN sudo -u ubuntu -i bash -l -c " \
         echo 'Installing stable ruby version...' \
             && rvm install ruby-2.3.0 \
-                && rvm use ruby-2.3.0 --default \
-                && NOKOGIRI_USE_SYSTEM_LIBRARIES=1 gem install rails -v 4.2.5"
-RUN sudo -u ubuntu -i bash -l -c " \
-        echo 'Installing ruby 2.3.0...' \
-            && rvm install ruby-2.3.0 \
-                && rvm use 2.3.0@rails5 --create \
-                && NOKOGIRI_USE_SYSTEM_LIBRARIES=1 gem install rails -v 5.0.0.beta1"
-RUN sudo -u ubuntu -i bash -l -c " \
-        echo 'Installing ruby 2.2.4...' \
-            && rvm install ruby-2.2.4 \
-                && rvm use 2.2.4@rails4 --create \
-                && NOKOGIRI_USE_SYSTEM_LIBRARIES=1 gem install rails -v 4.2.5"
-RUN sudo -u ubuntu -i bash -l -c " \
-        echo 'Installing ruby 2.1.5...' \
-            && rvm install ruby-2.1.5 \
-                && rvm use 2.1.5@rails4 --create \
-                && NOKOGIRI_USE_SYSTEM_LIBRARIES=1 gem install rails -v 4.2.5"
-RUN sudo -u ubuntu -i bash -l -c " \
-        echo 'Installing ruby 1.9.3...' \
-            && rvm install ruby-1.9.3-p551 \
-                && rvm use 1.9.3-p551@rails3.2 --create \
-                && NOKOGIRI_USE_SYSTEM_LIBRARIES=1 gem install rails -v 3.2.22 \
-    " \
-    && /usr/local/rvm/bin/rvm cleanup all
+                && rvm use ruby-2.3.0 --default"
 
 # Deployment
 # Can't include new npm since it makes "npm install -g npm" fail:
