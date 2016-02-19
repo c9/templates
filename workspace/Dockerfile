@@ -75,6 +75,7 @@ RUN apt-get install -y dnsutils bash-completion xsltproc \
     build-essential fakeroot tmux duplicity lftp htop apt-file \
     parallel strace ltrace flex jq ack-grep gdb valgrind locate tree time \
     zip unp cmake
+RUN apt-file update
 
 # Version control
 RUN apt-get install -y git-all tig subversion subversion-tools cvs \
@@ -144,9 +145,6 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 && \
 # /opt packages
 RUN curl https://storage.googleapis.com/golang/go1.6.linux-amd64.tar.gz | tar -C /opt -xz
 RUN git clone https://github.com/lennartcl/gitl.git /opt/gitl
-
-# apt-file cache
-RUN apt-file update
 
 # all changes go down here:
 # RUN ...
