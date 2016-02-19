@@ -121,7 +121,7 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 && \
     echo "deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen" > /etc/apt/sources.list.d/mongodb.list && \
     apt-get update && \
     apt-get install -y mongodb-org
-RUN echo "Configure mongodb"
+RUN echo "Configure mongodb" && \
     mkdir -p /data/db && \
     chown ubuntu:ubuntu /data/db
 
@@ -139,7 +139,7 @@ ADD ./files/etc /etc
 ADD ./files/home /home
 RUN cp /home/ubuntu/.gitignore /home/ubuntu/.hgignore && \
     mkdir -p /home/ubuntu/lib/apache2/lock /home/ubuntu/lib/apache2/log /home/ubuntu/lib/apache2/run && \
-    chown -R ubuntu:ubuntu /home/ubuntu && \
+    chown -R ubuntu:ubuntu /home/ubuntu
 
 RUN echo "Configure apache2" && \
     a2enmod rewrite && \
