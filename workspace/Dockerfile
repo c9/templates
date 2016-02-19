@@ -70,8 +70,7 @@ RUN apt-get install -y texlive
 # RUN apt-get install -y texlive-full
 
 # editors
-RUN apt-get install -y vim vim-addon-manager vim-vimoutliner vim-doc
-RUN apt-get install -y emacs ctags indent
+RUN apt-get install -y nano vim vim-addon-manager vim-vimoutliner vim-doc ctags indent
 
 # X11
 RUN apt-get install -y xvfb tightvncserver x11vnc novnc xterm fluxbox
@@ -86,7 +85,7 @@ RUN apt-get install -y mysql-server rabbitmq-server couchdb
 # tools
 RUN apt-get install -y dnsutils bash-completion xsltproc \
     build-essential fakeroot tmux duplicity lftp htop apt-file \
-    parallel nano strace ltrace flex jq ack-grep gdb valgrind locate tree time \
+    parallel strace ltrace flex jq ack-grep gdb valgrind locate tree time \
     zip unp cmake
 
 # Version control
