@@ -60,10 +60,6 @@ RUN apt-get install -y mono-devel mono-utils mono-xbuild nant
 RUN apt-get install -y openjdk-7-doc openjdk-7-jdk
 RUN apt-get install -y ant maven2
 
-# LaTeX
-RUN apt-get install -y texlive
-# RUN apt-get install -y texlive-full
-
 # editors
 RUN apt-get install -y nano vim vim-addon-manager vim-vimoutliner vim-doc ctags indent
 
