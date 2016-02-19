@@ -41,16 +41,17 @@ RUN apt-get install -y bash console-setup sudo wget curl git python man-db && \
 USER ubuntu
 RUN curl https://raw.githubusercontent.com/creationix/nvm/v0.28.0/install.sh | sh -e && \
     echo '[ -s "/home/ubuntu/.nvm/nvm.sh" ] && . "/home/ubuntu/.nvm/nvm.sh" # This loads nvm' >> /home/ubuntu/.profile
-RUN nvm install 0.8.28 && \
+RUN bash -l -c " \
+    nvm install 0.8.28 && \
     nvm install 0.10.41 && \
     nvm install 0.12.9 && \
     nvm install iojs-v3.3.1 && \
     nvm install 4.2.4 && \
     nvm install 5.4.1 && \
-    nvm alias default 4.2.4
+    nvm alias default 4.2.4"
 
 # Disable progress bars by default: https://github.com/npm/npm/issues/11283
-RUN npm set progress=false
+RUN bash -l -c "npm set progress=false"
 USER root
 
 # Java
