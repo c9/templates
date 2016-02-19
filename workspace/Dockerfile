@@ -53,9 +53,6 @@ RUN nvm install 0.8.28 && \
 RUN npm set progress=false
 USER root
 
-# mono
-RUN apt-get install -y mono-devel mono-utils mono-xbuild nant
-
 # Java
 RUN apt-get install -y openjdk-7-jre
 RUN apt-get install -y ant maven2
