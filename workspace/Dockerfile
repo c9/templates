@@ -34,7 +34,6 @@ RUN apt-get install -y bash console-setup sudo wget curl git python man-db && \
     echo "console-setup   console-setup/fontsize  string  16" | debconf-set-selections && \
     echo "Create user and enable root access" && \
     useradd --uid 1000 --shell /bin/bash -m --home-dir /home/ubuntu ubuntu && \
-    chmod 777 /tmp && \
     sed -i 's/%sudo\s.*/%sudo ALL=NOPASSWD:ALL/' /etc/sudoers && \
     usermod -a -G sudo ubuntu
 
