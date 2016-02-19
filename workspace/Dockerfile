@@ -11,9 +11,14 @@ RUN apt-get install -y curl
 ADD files/auto-sources.sh /var/tmp/auto-sources.sh
 RUN bash /var/tmp/auto-sources.sh && rm /var/tmp/auto-sources.sh
 
+# Install add-apt-repository script
 RUN apt-get update --fix-missing && apt-get install -y software-properties-common
+# Add a recent version of git
 RUN add-apt-repository -y ppa:git-core/ppa
-RUN apt-get update --fix-missing && apt-get -y dist-upgrade
+# 32-bit support
+RUN dpkg --add-architecture i386 && \
+    apt-get update --fix-missing && \
+    apt-get install -y libc6:i386 libncurses5:i386 libstdc++6:i386
 RUN apt-get install -y bash console-setup sudo wget curl git python man-db && \
     echo "install console-setup" && \
     echo "console-setup   console-setup/codeset47 select  # Latin1 and Latin5 - western Europe and Turkic languages" | debconf-set-selections && \
@@ -32,13 +37,6 @@ RUN apt-get install -y bash console-setup sudo wget curl git python man-db && \
     chmod 777 /tmp && \
     sed -i 's/%sudo\s.*/%sudo ALL=NOPASSWD:ALL/' /etc/sudoers && \
     usermod -a -G sudo ubuntu
-
-RUN chown root:root /usr/bin/sudo && chmod 4755 /usr/bin/sudo
-
-# 32-bit support
-RUN dpkg --add-architecture i386 && \
-    apt-get update && \
-    apt-get install -y libc6:i386 libncurses5:i386 libstdc++6:i386
 
 # node.js and nvm
 RUN sudo -u ubuntu -i bash -li -c "curl https://raw.githubusercontent.com/creationix/nvm/v0.28.0/install.sh | sh -e" && \
