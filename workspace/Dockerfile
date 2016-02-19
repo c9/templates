@@ -110,9 +110,6 @@ RUN sudo -u ubuntu -i bash -l -c "npm install jitsu@0.15.0 -g && \
                                   npm install bower@1.5.3  -g && \
                                   gem install rhc -v 1.38.4 && \
                                   gem install compass -v 1.0.3"
-RUN wget -O /tmp/deb.deb http://go-cli.s3-website-us-east-1.amazonaws.com/releases/latest/cf-cli_amd64.deb && \
-    dpkg -i /tmp/deb.deb && \
-    rm /tmp/deb.deb
 
 RUN wget -O /tmp/deb.deb https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_1.6.0_amd64.deb && \
     dpkg -i /tmp/deb.deb && \
