@@ -1,4 +1,4 @@
-FROM cloud9/workspace
+FROM cloud9/ws-php
 MAINTAINER Cloud9 IDE, inc. <info@c9.io>
 
 ADD ./files /home/ubuntu

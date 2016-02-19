@@ -116,24 +116,7 @@ RUN wget -O /tmp/deb.deb http://go-cli.s3-website-us-east-1.amazonaws.com/releas
     dpkg -i /tmp/deb.deb && \
     rm /tmp/deb.deb
 
-# PHP based on defaults from
-#   http://docs.travis-ci.com/user/ci-environment/#Extensions
-#   https://devcenter.heroku.com/articles/php-support
-# Xdebug, most recent PECL version
-ADD ./files/etc/php5 /etc/php5
-RUN apt-get install -y php5 php5-cli php5-fpm \
-        php5-curl php5-gd php5-json php5-pgsql php5-readline php5-sqlite \
-        php5-tidy php5-xmlrpc php5-xsl php5-intl php5-mcrypt php5-mysqlnd \
-        php-pear \
-    && php5enmod c9 \
-    && apt-get install -y php5-dev \
-        && pecl install xdebug \
-        && php5enmod xdebug \
-    && apt-get install -y apache2 apache2-doc phpmyadmin phppgadmin \
-    && cd /etc/php5/mods-available && ls *.ini | sed 's/\.ini$//' | xargs php5enmod \
-    && curl -sS https://getcomposer.org/installer | php \
-        && mv composer.phar /usr/bin/composer
-
+# MongoDB
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 && \
     echo "deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen" > /etc/apt/sources.list.d/mongodb.list && \
     apt-get update && \
