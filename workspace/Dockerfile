@@ -57,7 +57,7 @@ USER root
 RUN apt-get install -y mono-devel mono-utils mono-xbuild nant
 
 # Java
-RUN apt-get install -y openjdk-7-doc openjdk-7-jdk
+RUN apt-get install -y openjdk-7-jre
 RUN apt-get install -y ant maven2
 
 # editors
@@ -70,7 +70,7 @@ RUN apt-get install -y xvfb tightvncserver x11vnc novnc xterm fluxbox
 RUN apt-get install -y redis-server redis-tools nginx postgresql-9.3
 RUN apt-get install -y mysql-server rabbitmq-server couchdb
 
-# tools
+# misc tools
 RUN apt-get install -y dnsutils bash-completion xsltproc \
     build-essential fakeroot tmux duplicity lftp htop apt-file \
     parallel strace ltrace flex jq ack-grep gdb valgrind locate tree time \
@@ -145,9 +145,6 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 && \
 # /opt packages
 RUN curl https://storage.googleapis.com/golang/go1.6.linux-amd64.tar.gz | tar -C /opt -xz
 RUN git clone https://github.com/lennartcl/gitl.git /opt/gitl
-
-# all changes go down here:
-# RUN ...
 
 # setup the system
 RUN echo -n "" > /etc/motd && \
