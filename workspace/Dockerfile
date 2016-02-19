@@ -179,19 +179,6 @@ RUN apt-get install -y php5 php5-cli php5-fpm \
     && curl -sS https://getcomposer.org/installer | php \
         && mv composer.phar /usr/bin/composer
 
-# Python2
-RUN apt-get install -y python python-dev python-pip python-setuptools ipython \
-    python-scipy python-matplotlib python-virtualenv virtualenvwrapper
-
-# Python3
-RUN apt-get install -y python3 python3-dev python3-pip python3-setuptools \
-    ipython3 python3-scipy python3-matplotlib
-
-# Alternative python versions
-RUN yes | add-apt-repository ppa:fkrull/deadsnakes && \
-    apt-get update && \
-    apt-get install -y python3.5-complete
-
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 && \
     echo "deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen" | sudo tee /etc/apt/sources.list.d/mongodb.list && \
     apt-get update && \
