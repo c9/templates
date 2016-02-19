@@ -242,6 +242,7 @@ RUN cp /tmp/homedir/.gitignore /tmp/homedir/.hgignore && \
     sed -Ei 's/(.*)secure_path.*/\1!secure_path/' /etc/sudoers && \
     touch /etc/init.d/systemd-logind && \
     cp /bin/true /bin/sync
+    touch /etc/init.d/systemd-logind
 
 # re-enable service startup. This line must come after all apt-get installs
 RUN rm -f /usr/sbin/policy-rc.d
