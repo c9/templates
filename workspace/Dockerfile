@@ -217,28 +217,20 @@ RUN echo -n "" > /etc/motd && \
     HOME=/root bash -l /etc/bash_completion
 
 ADD ./files/etc /etc
-ADD ./files/home/ubuntu /tmp/homedir
-RUN cp /tmp/homedir/.gitignore /tmp/homedir/.hgignore && \
-    mkdir -p /tmp/homedir/lib/apache2/lock /tmp/homedir/lib/apache2/log /tmp/homedir/lib/apache2/run && \
-    chown -R ubuntu:ubuntu /tmp/homedir && \
-    bash -c "shopt -s dotglob && cp -a /tmp/homedir/* /home/ubuntu" && \
-    rm -rf /tmp/homedir && \
-    echo "Configure mongodb" && \
+ADD ./files/home /home
+RUN cp /home/ubuntu/.gitignore /home/ubuntu/.hgignore && \
+    mkdir -p /home/ubuntu/lib/apache2/lock /home/ubuntu/lib/apache2/log /home/ubuntu/lib/apache2/run && \
+    chown -R ubuntu:ubuntu /home/ubuntu && \
+
+RUN echo "Configure mongodb"
     mkdir -p /data/db && \
-    sudo chown ubuntu:ubuntu /data/db && \
-    echo "Configure apache2" && \
+    sudo chown ubuntu:ubuntu /data/db
+
+RUN echo "Configure apache2" && \
     sudo a2enmod rewrite && \
     sudo sed -i 's/Listen 80\b/Listen 8080/' /etc/apache2/ports.conf && \
-    ln -s /etc/apache2/sites-available/001-cloud9.conf /etc/apache2/sites-enabled && \
-    chmod 644 /etc/apache2/sites-available/001-cloud9.conf && \
-    chown -R ubuntu:ubuntu /home/ubuntu/lib && \
-    chown root:root /etc/profile.d/cloud9.sh /etc/apache2/envvars && \
-    chmod 644 /etc/profile.d/cloud9.sh /etc/apache2/envvars && \
     chmod 777 /var/lib/phpmyadmin/tmp && \
-    sudo -u ubuntu -i bash -c "mkdir -p /home/ubuntu/.ssh" && \
     sed -Ei 's/(.*)secure_path.*/\1!secure_path/' /etc/sudoers && \
-    touch /etc/init.d/systemd-logind && \
-    cp /bin/true /bin/sync
     touch /etc/init.d/systemd-logind
 
 # re-enable service startup. This line must come after all apt-get installs
