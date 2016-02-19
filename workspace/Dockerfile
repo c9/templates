@@ -137,7 +137,7 @@ RUN apt-get install -y php5 php5-cli php5-fpm \
         && mv composer.phar /usr/bin/composer
 
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 && \
-    echo "deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen" | sudo tee /etc/apt/sources.list.d/mongodb.list && \
+    echo "deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen" > /etc/apt/sources.list.d/mongodb.list && \
     apt-get update && \
     apt-get install -y mongodb-org
 
@@ -168,11 +168,11 @@ RUN cp /home/ubuntu/.gitignore /home/ubuntu/.hgignore && \
 
 RUN echo "Configure mongodb"
     mkdir -p /data/db && \
-    sudo chown ubuntu:ubuntu /data/db
+    chown ubuntu:ubuntu /data/db
 
 RUN echo "Configure apache2" && \
-    sudo a2enmod rewrite && \
-    sudo sed -i 's/Listen 80\b/Listen 8080/' /etc/apache2/ports.conf && \
+    a2enmod rewrite && \
+    sed -i 's/Listen 80\b/Listen 8080/' /etc/apache2/ports.conf && \
     chmod 777 /var/lib/phpmyadmin/tmp && \
     sed -Ei 's/(.*)secure_path.*/\1!secure_path/' /etc/sudoers && \
     touch /etc/init.d/systemd-logind
