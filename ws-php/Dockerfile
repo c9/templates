@@ -20,6 +20,7 @@ RUN apt-get install -y php5 php5-cli php5-fpm \
         && pecl install xdebug \
         && php5enmod xdebug \
     && apt-get install -y apache2 apache2-doc phpmyadmin phppgadmin \
+    && chmod 777 /var/lib/phpmyadmin/tmp \
     && cd /etc/php5/mods-available && ls *.ini | sed 's/\.ini$//' | xargs php5enmod \
     && curl -sS https://getcomposer.org/installer | php \
         && mv composer.phar /usr/bin/composer
