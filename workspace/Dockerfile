@@ -85,6 +85,9 @@ RUN apt-get install -y libcairo2-dev libjpeg62-dev libgif-dev libpq-dev \
     ruby1.9.1-dev dialog python-gtk2 libpango1.0 libpango1.0-dev \
     libmysqlclient-dev
 
+# Enable repo for alternative python versions
+RUN yes | add-apt-repository ppa:fkrull/deadsnakes
+
 # install ruby/rails/rvm
 ADD ./files/etc/gemrc /etc/gemrc
 RUN apt-get install -y gawk libxml2-dev libxslt-dev libgdbm-dev libgmp-dev sqlite3

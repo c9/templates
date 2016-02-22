@@ -10,8 +10,7 @@ RUN apt-get install -y python3 python3-dev python3-pip python3-setuptools \
     ipython3 python3-scipy python3-matplotlib
 
 # Alternative python versions
-RUN yes | add-apt-repository ppa:fkrull/deadsnakes && \
-    apt-get update && \
+RUN apt-get update && \
     apt-get install -y python3.5-complete
 
 RUN pip install lpthw.web
