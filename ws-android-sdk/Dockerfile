@@ -46,7 +46,7 @@ RUN GRADLE_VERSION=2.5 && \
 
 # Update & Install Android Tools
 # Cloud message, billing, licensing, play services, admob, analytics
-RUN yes | (\
+RUN y | (\
     /usr/local/android-sdk-linux/tools/android update sdk --filter tools --no-ui --force -a && \
     /usr/local/android-sdk-linux/tools/android update sdk --filter platform-tools --no-ui --force -a && \
     /usr/local/android-sdk-linux/tools/android update sdk --filter android-19 --no-ui --force -a && \
