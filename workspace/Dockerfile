@@ -112,10 +112,6 @@ RUN sudo -u ubuntu -i bash -l -c "npm install jitsu@0.15.0 -g && \
                                   gem install rhc -v 1.38.4 && \
                                   gem install compass -v 1.0.3"
 
-RUN wget -O /tmp/deb.deb https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_1.6.0_amd64.deb && \
-    dpkg -i /tmp/deb.deb && \
-    rm /tmp/deb.deb
-
 # MongoDB
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 && \
     echo "deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen" > /etc/apt/sources.list.d/mongodb.list && \
