@@ -36,6 +36,7 @@ RUN NDK_VERSION=r10e && \
     chmod a+x android-ndk.bin && \
     ./android-ndk.bin && \
     rm -f android-ndk.bin && \
+    chown -R ubuntu: /usr/local/android-[sn]dk-*
     chmod -R +r /usr/local/android-ndk-* && \
     bash -c 'for file in $(find /usr/local/android-ndk-*); do [[ -x $file ]] && chmod +x "$file"; done'
 
