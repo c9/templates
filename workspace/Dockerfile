@@ -7,8 +7,8 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN echo "Version 1.11"
 
 # Set mirrors to automatic based off location
-ADD files/auto-sources.sh /etc/apt/auto-sources.sh
-RUN bash /etc/apt/auto-sources
+ADD files/auto-sources.sh /var/tmp/auto-sources.sh
+RUN bash /var/tmp/auto-sources.sh && rm /var/tmp/auto-sources.sh
 
 RUN apt-get update --fix-missing && apt-get install -y software-properties-common
 RUN add-apt-repository -y ppa:git-core/ppa
