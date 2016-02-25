@@ -46,18 +46,12 @@ RUN GRADLE_VERSION=2.5 && \
     unzip gradle-bin.zip && \
     rm gradle-bin.zip
 
+
 # Update & Install Android Tools
 # Cloud message, billing, licensing, play services, admob, analytics
-RUN yes | (\
-    /usr/local/android-sdk-linux/tools/android update sdk --filter tools --no-ui --force -a && \
-    /usr/local/android-sdk-linux/tools/android update sdk --filter platform-tools --no-ui --force -a && \
-    /usr/local/android-sdk-linux/tools/android update sdk --filter android-19 --no-ui --force -a && \
-    /usr/local/android-sdk-linux/tools/android update sdk --filter android-20 --no-ui --force -a && \
-    /usr/local/android-sdk-linux/tools/android update sdk --filter android-21 --no-ui --force -a && \
-    /usr/local/android-sdk-linux/tools/android update sdk --filter android-22 --no-ui --force -a && \
-    /usr/local/android-sdk-linux/tools/android update sdk --filter android-23 --no-ui --force -a && \
-    /usr/local/android-sdk-linux/tools/android update sdk --filter extra --no-ui --force -a && \
-    /usr/local/android-sdk-linux/tools/android update sdk --all --filter build-tools-23.0.2 --no-ui --force) 
+RUN for filter in tools platform-tools android-19 android-20 android-21 android-22 android-23 extra build-tools-23.0.2; do \
+        echo y | /usr/local/android-sdk-linux/tools/android update sdk --filter $filter --no-ui --force --all; \
+    done
 
 # Set PATH
 RUN \
