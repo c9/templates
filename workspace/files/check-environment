@@ -1,0 +1,155 @@
+#!/bin/bash -l
+
+set -e
+set -x
+
+cd
+rm -rf environment-test
+mkdir -p environment-test
+cd environment-test
+
+if X='() { :; }; echo Vulnerable' bash -c pwd | grep -q Vulnerable; then
+    echo "Vulnerable to shellshock bug: http://blog.erratasec.com/2014/09/bash-bug-as-big-as-heartbleed.html"
+    exit 1
+fi
+ 
+sudo apt-get -qq update
+sudo apt-get -qq -y install hello >/dev/null
+sudo apt-get -qq -y install hello-debhelper >/dev/null
+
+if [[ $- == *i* ]]; then
+    TMUXOUT=`/mnt/shared/sbin/tmux new ls`
+    [ "$TMUXOUT" == "" ] || [[ "$TMUXOUT" =~ exited ]]
+    /mnt/shared/sbin/tmux -V | grep 1.8
+fi
+
+pushd /mnt/shared/lib
+../sbin/node -e 'require("pty.js").createTerminal(); process.exit()'
+popd
+
+node -e 'console.log("hello")' 
+
+set +x
+set -x
+node -v
+npm --version | grep -E '^2' || { echo "Expected NPM v2. Got $(npm --version)"; exit 1; }
+nvm use 0.8
+node --version | grep 'v0.8'
+npm --version | grep -E '^1'
+nvm use 0.10
+node --version | grep 'v0.10'
+npm --version | grep -E '^1'
+nvm use 0.12
+node --version | grep 'v0.12'
+npm --version | grep -E '^2'
+nvm use default
+npm --version | grep -E '^2'
+npm install -g npm
+npm install jitsu
+
+iojs -v
+
+# We try npm commands twice since npm is so unreliable
+
+npm install coffee-script || npm install coffee-script
+node_modules/coffee-script/bin/coffee -e '1'
+
+npm install -g express-generator || npm install -g express-generator
+express --version
+
+# npm is not in a directory whitelisted for sudo usage, so it won't work
+# sudo npm install -g test || sudo npm install -g test
+
+ruby --version | grep 2\..\..
+
+rails -v
+
+set +x
+ghc --version
+set -x
+
+for rubyversion in 1.9.3 2.1.5 2.2.4 2.3.0; do
+    set +x;
+    echo "+ rvm use $rubyversion"
+    rvm use $rubyversion
+    echo "+ ruby --version | grep $rubyversion"
+    ruby --version | grep $rubyversion
+    echo "+ puts "hello" | ruby"
+    echo 'puts "hello"' | ruby
+    set -x
+done
+
+for PYTHON_VERSION in  '' 2 2.7 3 3.4 3.5; do
+    python$PYTHON_VERSION --version 2>&1 | grep "Python $PYTHON_VERSION"
+    echo 'print("hello")' | python$PYTHON_VERSION
+done
+
+mkdir -p ~/workspace
+echo "Success" > ~/workspace/file
+apache2 -X &
+START=`date +'%s'`
+while true; do
+    if curl -L http://localhost:8080/file 2>/dev/null | grep Success; then
+        break
+    fi
+    if (($START + 10 < `date +'%s'`)); then
+        echo "Can't reach localhost:8080 :( Apache seems to be b0rked"
+        exit 1
+    fi
+    sleep 1
+done
+
+cd ~/workspace
+php -S localhost:9090 &
+START=`date +'%s'`
+while true; do
+    if curl -L http://localhost:9090/file 2>/dev/null | grep Success; then
+        break
+    fi
+    if (($START + 10 < `date +'%s'`)); then
+        echo "Can't reach localhost:9090 :( php -S seems to be b0rked"
+        exit 1
+    fi
+    sleep 1
+done
+
+go version
+
+heroku version | grep toolbelt
+mongo --version | grep -E '(2\.6|3\.0\.4)'
+pip3 --version | grep 1.5
+pylint --version | grep 1.4
+
+# cloud9.sh needs to run in sh
+export C9_PORT=
+export LC_ALL=
+export C9_SH_EXECUTED=
+sh /etc/profile.d/cloud9.sh
+. /etc/profile.d/cloud9.sh
+[ "$C9_PORT" ] || (echo "cloud9.sh doesn't seem to set C9_PORT"; exit 1)
+[ "$LC_ALL" ] || (echo "cloud9.sh doesn't seem to set LC_ALL"; exit 1)
+echo $PATH | grep /mnt/shared/sbin
+
+# .bashrc & .profile should work in sh and output nothing
+sh /home/ubuntu/.profile 
+[ "$(. /home/ubuntu/.profile)" == "" ]
+bash /home/ubuntu/.profile 
+[ "$(. /home/ubuntu/.profile)" == "" ]
+
+# TODO: .profile should contain a hack to make nvm faster
+# tail -1 /home/ubuntu/.profile | grep hack
+
+# Salesforce shared space
+node /mnt/shared/plugins/salesforce.sync/bin/git-c9-query --help
+/mnt/shared/bin/kracht --help
+/mnt/shared/bin/s9 --help | grep "Cloud9 workspace synchronization"
+
+# Google shared space
+[ -e /mnt/shared/plugins/google.cloud/__installed__.js ]
+
+# Patched procps from https://github.com/cloud9ide/procps
+# [ -e /var/lib/c9/memory ]
+ps aux >/dev/null
+free >/dev/null
+
+echo "Success"
