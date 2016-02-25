@@ -44,7 +44,12 @@ RUN for filter in tools,platform-tools,android-19,android-20,android-21,android-
 
 # Set PATH
 RUN \
-    echo 'export ANDROID_HOME=/usr/local/android-sdk-linux' >> /home/ubuntu/.bashrc && \
-    echo 'export ANDROID_SDK_HOME=/usr/local/android-sdk-linux' >> /home/ubuntu/.bashrc && \
-    echo 'export GRADLE_HOME=/usr/local/gradle-2.5' >> /home/ubuntu/.bashrc && \
-    echo 'export PATH=\$PATH:\$ANDROID_HOME/tools:\$ANDROID_SDK_HOME/platform-tools:\$GRADLE_HOME/bin' >> /home/ubuntu/.bashrc
+    echo 'export ANDROID_HOME=/usr/local/android-sdk-linux' >> /home/ubuntu/workspace/.profile && \
+    echo 'export ANDROID_SDK_HOME=/usr/local/android-sdk-linux' >> /home/ubuntu/workspace/.profile && \
+    echo 'export GRADLE_HOME=/usr/local/gradle-2.5' >> /home/ubuntu/workspace/.profile && \
+    echo 'export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_SDK_HOME/platform-tools:$GRADLE_HOME/bin' >> /home/ubuntu/workspace/.profile
+
+
+
+RUN chmod a+x /home/ubuntu/workspace/.profile 
+
