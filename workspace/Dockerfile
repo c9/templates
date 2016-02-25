@@ -39,7 +39,7 @@ RUN apt-get install -y bash console-setup sudo wget curl git python man-db && \
 
 # node.js and nvm
 USER ubuntu
-RUN curl https://raw.githubusercontent.com/creationix/nvm/v0.28.0/install.sh | sh -e && \
+RUN curl https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh | sh -e && \
     echo '[ -s "/home/ubuntu/.nvm/nvm.sh" ] && . "/home/ubuntu/.nvm/nvm.sh" # This loads nvm' >> /home/ubuntu/.profile
 RUN bash -l -c " \
     nvm install 0.8.28 && \
