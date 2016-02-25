@@ -60,6 +60,20 @@ express --version
 # npm is not in a directory whitelisted for sudo usage, so it won't work
 # sudo npm install -g test || sudo npm install -g test
 
+git --version | grep 2\..\..
+hg --version | grep 3\..\..
+bzr --version | grep 2\..\..
+svn --version
+cvs --version
+
+vim --version
+nano --version
+ctags --version
+
+java -version
+ant -version
+mvn --version
+
 ruby --version | grep 2\..\..
 
 python --version 2>&1 | grep 'Python 2'
