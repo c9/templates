@@ -49,7 +49,7 @@ RUN GRADLE_VERSION=2.5 && \
 
 # Update & Install Android Tools
 # Cloud message, billing, licensing, play services, admob, analytics
-RUN for filter in tools platform-tools android-19 android-20 android-21 android-22 android-23 extra build-tools-23.0.2; do \
+RUN for filter in tools,platform-tools,android-19,android-20,android-21,android-22,android-23,extra build-tools-23.0.2; do \
         echo y | /usr/local/android-sdk-linux/tools/android update sdk --filter $filter --no-ui --force --all; \
     done
 
