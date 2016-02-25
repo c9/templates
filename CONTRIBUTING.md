@@ -6,7 +6,8 @@ We welcome contributions from the community and are pleased to have them. Please
 2. Create a new folder (See naming conventions below)
 3. Create a Dockerfile in the new folder. (See Guidelines for some conventions and guidelines)
 4. Create a `files` folder, and put a `check-environment` script in there with execute permissions. (See Smoke tests below for more information)
-5. Make a PR 
+5. Test your new workspace within docker. `docker run -it cloud9/ws-foo bash` and make sure it's how you want it. Ensure that your check-environment script runs without generating errors.
+5. Make a PR after you've completed testing
 
 
 ## Guidelines
