@@ -9,7 +9,7 @@ RUN cd /home/ubuntu/workspace && \
     mv wordpress/* . && \
     mv wp-config-sample.php wp-config.php && \
     sed -i -e "s/define('DB_NAME',.*/define('DB_NAME', 'c9');/" wp-config.php && \
-    sed -i -e "s/define('DB_USER',.*/define('DB_USER', getenv('C9_USER'));/" wp-config.php && \
+    sed -i -e "s/define('DB_USER',.*/define('DB_USER', substr(getenv('C9_USER'), 0, 16));/" wp-config.php && \
     sed -i -e "s/define('DB_PASSWORD',.*/define('DB_PASSWORD', '');/" wp-config.php && \
     sed -i -e "s/define('DB_HOST',.*/define('DB_HOST', getenv('IP'));/" wp-config.php && \
     sed -i -e '/define(.WP_DEBUG.*/ a\
