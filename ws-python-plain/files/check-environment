@@ -1,0 +1,11 @@
+#!/bin/bash
+set -ex
+
+for PYTHON_VERSION in  '' 2 2.7 3 3.4 3.5; do
+	python$PYTHON_VERSION --version 2>&1 | grep "Python $PYTHON_VERSION"
+	echo 'print("hello")' | python$PYTHON_VERSION
+done
+
+for PIP_VERSION in '' 2 3; do
+	pip$PIP_VERSION --version | grep 1.5
+done

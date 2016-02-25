@@ -62,27 +62,9 @@ express --version
 
 ruby --version | grep 2\..\..
 
-rails -v
-
-set +x
-ghc --version
-set -x
-
-for rubyversion in 1.9.3 2.1.5 2.2.4 2.3.0; do
-    set +x;
-    echo "+ rvm use $rubyversion"
-    rvm use $rubyversion
-    echo "+ ruby --version | grep $rubyversion"
-    ruby --version | grep $rubyversion
-    echo "+ puts "hello" | ruby"
-    echo 'puts "hello"' | ruby
-    set -x
-done
-
-for PYTHON_VERSION in  '' 2 2.7 3 3.4 3.5; do
-    python$PYTHON_VERSION --version 2>&1 | grep "Python $PYTHON_VERSION"
-    echo 'print("hello")' | python$PYTHON_VERSION
-done
+python --version 2>&1 | grep 'Python 2'
+pip --version | grep 1.5
+pylint --version | grep 1.4
 
 mkdir -p ~/workspace
 echo "Success" > ~/workspace/file
@@ -99,26 +81,10 @@ while true; do
     sleep 1
 done
 
-cd ~/workspace
-php -S localhost:9090 &
-START=`date +'%s'`
-while true; do
-    if curl -L http://localhost:9090/file 2>/dev/null | grep Success; then
-        break
-    fi
-    if (($START + 10 < `date +'%s'`)); then
-        echo "Can't reach localhost:9090 :( php -S seems to be b0rked"
-        exit 1
-    fi
-    sleep 1
-done
-
 go version
 
 heroku version | grep toolbelt
 mongo --version | grep -E '(2\.6|3\.0\.4)'
-pip3 --version | grep 1.5
-pylint --version | grep 1.4
 
 # cloud9.sh needs to run in sh
 export C9_PORT=
@@ -132,9 +98,9 @@ echo $PATH | grep /mnt/shared/sbin
 
 # .bashrc & .profile should work in sh and output nothing
 sh /home/ubuntu/.profile 
-[ "$(. /home/ubuntu/.profile)" == "" ]
+[[ "$(. /home/ubuntu/.profile 2>&1)" == "" ]]
 bash /home/ubuntu/.profile 
-[ "$(. /home/ubuntu/.profile)" == "" ]
+[[ "$(. /home/ubuntu/.profile 2>&1)" == "" ]]
 
 # TODO: .profile should contain a hack to make nvm faster
 # tail -1 /home/ubuntu/.profile | grep hack
@@ -145,7 +111,7 @@ node /mnt/shared/plugins/salesforce.sync/bin/git-c9-query --help
 /mnt/shared/bin/s9 --help | grep "Cloud9 workspace synchronization"
 
 # Google shared space
-[ -e /mnt/shared/plugins/google.cloud/__installed__.js ]
+[[ -e /mnt/shared/plugins/google.cloud/__installed__.js ]]
 
 # Patched procps from https://github.com/cloud9ide/procps
 # [ -e /var/lib/c9/memory ]

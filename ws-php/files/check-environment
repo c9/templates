@@ -1,0 +1,16 @@
+#!/bin/bash
+set -ex
+
+cd ~/workspace
+php -S localhost:9090 &
+START=`date +'%s'`
+while true; do
+	if curl -L http://localhost:9090/file 2>/dev/null | grep Success; then
+		break
+	fi
+	if (($START + 10 < `date +'%s'`)); then
+		echo "Can't reach localhost:9090 :( php -S seems to be b0rked"
+		exit 1
+	fi
+	sleep 1
+done
