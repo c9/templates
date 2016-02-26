@@ -1,11 +1,11 @@
 #!/bin/bash
 set -ex
 
-android list
+#android list
 #ndk-build --help
 #ndk-depends --help
 
-ant -v
+#ant -v
 
-gradle 
-gradle --version
+#gradle 
+#gradle --version
