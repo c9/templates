@@ -33,11 +33,11 @@ RUN SDK_VERSION=r24.4.1 && \
 #RUN NDK_VERSION=r10e && \
 #    cd /usr/local && \
 #    curl -L -o android-ndk.bin http://dl.google.com/android/ndk/android-ndk-${NDK_VERSION}-linux-x86_64.bin && \
- #   chmod a+x android-ndk.bin && \
-  #  ./android-ndk.bin && \
- #   rm -f android-ndk.bin && \
-  #  chown -R ubuntu: /usr/local/android-[sn]dk-* && \
- #   chmod -R +r /usr/local/android-ndk-* && \
+#    chmod a+x android-ndk.bin && \
+#    ./android-ndk.bin && \
+#    rm -f android-ndk.bin && \
+#    chown -R ubuntu: /usr/local/android-[sn]dk-* && \
+#    chmod -R +r /usr/local/android-ndk-* && \
 #    bash -c 'for file in $(find /usr/local/android-ndk-*); do [[ -x $file ]] && chmod +x "$file"; done'
 
 # Install Gradle
@@ -47,11 +47,25 @@ RUN GRADLE_VERSION=2.11 && \
     unzip gradle-bin.zip && \
     rm gradle-bin.zip
 
+
+# Set PATHS so the next command works
+ENV ANDROID_HOME=/usr/local/android-sdk-linux ANDROID_SDK_HOME=/usr/local/android-sdk-linux GRADLE_HOME=/usr/local/gradle-2.5 
+ENV PATH ${PATH}:${ANDROID_HOME}:${ANDROID_SDK_HOME}/platform-tools:${ANDROID_SDK_HOME}/tools;${GRADLE_HOME}/bin;
+
+#ENV PATH ${PATH}:/usr/local/android-sdk-linux/tools:/usr/local/android-sdk-linux/platform-tools:/usr/local/gradle-2.5/bin
+#ENV MY_FILTER tools,platform-tools,android-20,android-22,android-23,build-tools-23.0.2
+#ENV ANDROID_API_LEVELS android-16,android-17,android-18,android-19,android-20,android-21,android-22,android-23
+#RUN docker-android-sdk-install platform-tools,${ANDROID_API_LEVELS}
+
+
+
 # Update & Install Android Tools
-# Cloud message, billing, licensing, play services, admob, analytics
+
 RUN for filter in tools platform-tools android-20 android-22 android-23 build-tools-23.0.2; do \
-        echo y | /usr/local/android-sdk-linux/tools/android update sdk --filter $filter --no-ui --force --all; \
+        echo y | /usr/local/android-sdk-linux/tools/android update sdk --filter $MY_FILTER --no-ui --force --all; \
     done
 
 # Configure profile
 ADD ./files/profile.d-android.sh /etc/profile.d/android.sh
+RUN chmod a+x /etc/profile.d/android.sh
+RUN chmod a+x /home/ubuntu/workspace/profile.d-android.sh
