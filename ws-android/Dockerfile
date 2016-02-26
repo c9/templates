@@ -53,7 +53,7 @@ RUN GRADLE_VERSION=2.11 && \
 
 
 # Set PATHS so the next command works
-ENV ANDROID_HOME=/usr/local/android-sdk-linux ANDROID_SDK_HOME=/usr/local/android-sdk-linux GRADLE_HOME=/usr/local/gradle-2.5 
+ENV ANDROID_HOME=/usr/local/android-sdk-linux ANDROID_SDK_HOME=/usr/local/android-sdk-linux GRADLE_HOME=/usr/local/gradle-2.11 
 ENV PATH ${PATH}:${ANDROID_HOME}:${ANDROID_SDK_HOME}/platform-tools:${ANDROID_SDK_HOME}/tools;${GRADLE_HOME}/bin;
 
 #ENV PATH ${PATH}:/usr/local/android-sdk-linux/tools:/usr/local/android-sdk-linux/platform-tools:/usr/local/gradle-2.5/bin
@@ -66,7 +66,7 @@ ENV PATH ${PATH}:${ANDROID_HOME}:${ANDROID_SDK_HOME}/platform-tools:${ANDROID_SD
 # Update & Install Android Tools
 
 RUN for filter in tools platform-tools android-20 android-22 android-23 build-tools-23.0.2; do \
-        echo y | /usr/local/android-sdk-linux/tools/android update sdk --filter $MY_FILTER --no-ui --force --all; \
+        echo y | /usr/local/android-sdk-linux/tools/android update sdk --filter $filter --no-ui --force --all; \
     done
 
 # Configure profile
