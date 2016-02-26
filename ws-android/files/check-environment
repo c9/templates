@@ -5,5 +5,7 @@ android list
 #ndk-build --help
 #ndk-depends --help
 
+ant -v
+
 gradle --version | grep "Gradle 2.5"
 gradle
