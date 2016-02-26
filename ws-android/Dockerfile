@@ -44,16 +44,16 @@ RUN SDK_VERSION=r24.4.1 && \
 #    chmod -R +r /usr/local/android-ndk-* && \
 #    bash -c 'for file in $(find /usr/local/android-ndk-*); do [[ -x $file ]] && chmod +x "$file"; done'
 
+
 # Install Gradle
-RUN GRADLE_VERSION=2.11 && \
+RUN GRADLE_VERSION=2.5 && \
     cd /usr/local && \
     curl -L https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip -o gradle-bin.zip && \
     unzip gradle-bin.zip && \
     rm gradle-bin.zip
 
-
 # Set PATHS so the next command works
-ENV ANDROID_HOME=/usr/local/android-sdk-linux ANDROID_SDK_HOME=/usr/local/android-sdk-linux GRADLE_HOME=/usr/local/gradle-2.11 
+ENV ANDROID_HOME=/usr/local/android-sdk-linux ANDROID_SDK_HOME=/usr/local/android-sdk-linux GRADLE_HOME=/usr/local/gradle-2.5 
 ENV PATH ${PATH}:${ANDROID_HOME}:${ANDROID_SDK_HOME}/platform-tools:${ANDROID_SDK_HOME}/tools;${GRADLE_HOME}/bin;
 
 #ENV PATH ${PATH}:/usr/local/android-sdk-linux/tools:/usr/local/android-sdk-linux/platform-tools:/usr/local/gradle-2.5/bin
