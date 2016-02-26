@@ -29,7 +29,7 @@ RUN SDK_VERSION=r24.3.3 && \
     exit 0
 
 # Install Gradle
-RUN GRADLE_VERSION=2.5 && \
+RUN GRADLE_VERSION=2.11 && \
     cd /usr/local && \
     curl -L https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip -o gradle-bin.zip && \
     unzip gradle-bin.zip && \
@@ -53,7 +53,7 @@ RUN for filter in tools,platform-tools,android-20,android-22,android-23,extra,bu
 RUN \
     echo 'export ANDROID_HOME=/usr/local/android-sdk-linux' > /etc/profile.d/android.sh && \
     echo 'export ANDROID_SDK_HOME=/usr/local/android-sdk-linux' >> /etc/profile.d/android.sh && \
-    echo 'export GRADLE_HOME=/usr/local/gradle-2.5' >> /etc/profile.d/android.sh && \
+    echo 'export GRADLE_HOME=/usr/local/gradle-2.11' >> /etc/profile.d/android.sh && \
     echo 'export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_SDK_HOME/platform-tools:$ANDROID_SDK_HOME:$GRADLE_HOME/bin' >> /etc/profile.d/android.sh
 
 WORKDIR "/home/ubuntu/workspace"
