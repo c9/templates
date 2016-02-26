@@ -47,6 +47,16 @@ RUN for filter in tools,platform-tools,android-20,android-22,android-23,extra,bu
 
 
 # Set PATH
-ENV ANDROID_HOME=/usr/local/android-sdk-linux ANDROID_SDK_HOME=/usr/local/android-sdk-linux GRADLE_HOME=/usr/local/gradle-2.5 
-ENV PATH {$PATH}:/usr/local/android-sdk-linux/tools:/usr/local/android-sdk-linux/platform-tools:/usr/local/gradle-2.5/bin
+#ENV ANDROID_HOME=/usr/local/android-sdk-linux ANDROID_SDK_HOME=/usr/local/android-sdk-linux GRADLE_HOME=/usr/local/gradle-2.5 
+#ENV PATH {$PATH}:/usr/local/android-sdk-linux/tools:/usr/local/android-sdk-linux/platform-tools:/usr/local/gradle-2.5/bin
     
+# Set environment variables
+ENV ANDROID_BUILD_TOOLS_VERSION 23.0.2
+ENV GRADLE_HOME /usr/local/gradle
+ENV ANDROID_HOME /usr/local/android-sdk-linux
+ENV PATH $PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/build-tools/$ANDROID_BUILD_TOOLS_VERSION
+ENV PATH $PATH:$ANT_HOME/bin
+ENV PATH $PATH:$MAVEN_HOME/bin
+ENV PATH $PATH:$GRADLE_HOME/bin
+
+WORKDIR "/home/ubuntu/workspace"
