@@ -30,15 +30,15 @@ RUN SDK_VERSION=r24.4.1 && \
 # Install Android NDK
 # https://developer.android.com/tools/sdk/ndk/index.html
 # https://developer.android.com/ndk/index.html
-RUN NDK_VERSION=r10e && \
-    cd /usr/local && \
-    curl -L -o android-ndk.bin http://dl.google.com/android/ndk/android-ndk-${NDK_VERSION}-linux-x86_64.bin && \
-    chmod a+x android-ndk.bin && \
-    ./android-ndk.bin && \
-    rm -f android-ndk.bin && \
-    chown -R ubuntu: /usr/local/android-[sn]dk-* && \
-    chmod -R +r /usr/local/android-ndk-* && \
-    bash -c 'for file in $(find /usr/local/android-ndk-*); do [[ -x $file ]] && chmod +x "$file"; done'
+#RUN NDK_VERSION=r10e && \
+#    cd /usr/local && \
+#    curl -L -o android-ndk.bin http://dl.google.com/android/ndk/android-ndk-${NDK_VERSION}-linux-x86_64.bin && \
+ #   chmod a+x android-ndk.bin && \
+  #  ./android-ndk.bin && \
+ #   rm -f android-ndk.bin && \
+  #  chown -R ubuntu: /usr/local/android-[sn]dk-* && \
+ #   chmod -R +r /usr/local/android-ndk-* && \
+#    bash -c 'for file in $(find /usr/local/android-ndk-*); do [[ -x $file ]] && chmod +x "$file"; done'
 
 # Install Gradle
 RUN GRADLE_VERSION=2.11 && \
