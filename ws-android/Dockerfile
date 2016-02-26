@@ -47,8 +47,8 @@ RUN GRADLE_VERSION=2.5 && \
     rm gradle-bin.zip
 
 # Update & Install Android Tools
-RUN for filter in tools,platform-tools,android-19,android-20,android-21,android-22,android-23,extra,build-tools-23.0.2; do \
-        echo y | /usr/local/android-sdk-linux/tools/android update sdk --filter $filter --no-ui --force; \
+RUN for filter in tools,platform-tools,android-20,android-22,android-23,extra,build-tools-23.0.2; do \
+        echo y | /usr/local/android-sdk-linux/tools/android update sdk --filter $filter --no-ui --force --all; \
     done
 
 # Set PATH
