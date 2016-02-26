@@ -18,7 +18,7 @@ RUN \
 
 # Install Android SDK
 # https://developer.android.com/sdk/index.html#Other
-RUN SDK_VERSION=r24.3.3 && \
+RUN SDK_VERSION=r24.4.1 && \
     set -x && \
     cd /usr/local/ && \
     curl -L -o android-sdk.tgz http://dl.google.com/android/android-sdk_${SDK_VERSION}-linux.tgz && \
@@ -38,7 +38,7 @@ RUN GRADLE_VERSION=2.11 && \
 
 # Update & Install Android Tools
 # Cloud message, billing, licensing, play services, admob, analytics
-RUN for filter in tools,platform-tools,android-20,android-22,android-23,extra,build-tools-23.0.2; do \
+RUN for filter in tools,platform-tools,android-20,android-22,android-23,extra,build-tools-23.1.0; do \
         echo y | /usr/local/android-sdk-linux/tools/android update sdk --filter $filter --no-ui --force --all; \
     done
 
@@ -50,10 +50,10 @@ RUN for filter in tools,platform-tools,android-20,android-22,android-23,extra,bu
 #ENV ANDROID_HOME=/usr/local/android-sdk-linux ANDROID_SDK_HOME=/usr/local/android-sdk-linux GRADLE_HOME=/usr/local/gradle-2.5 
 #ENV PATH {$PATH}:/usr/local/android-sdk-linux/tools:/usr/local/android-sdk-linux/platform-tools:/usr/local/gradle-2.5/bin
 # Set PATH
-RUN \
-    echo 'export ANDROID_HOME=/usr/local/android-sdk-linux' > /etc/profile.d/android.sh && \
-    echo 'export ANDROID_SDK_HOME=/usr/local/android-sdk-linux' >> /etc/profile.d/android.sh && \
-    echo 'export GRADLE_HOME=/usr/local/gradle-2.11' >> /etc/profile.d/android.sh && \
-    echo 'export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_SDK_HOME/platform-tools:$ANDROID_SDK_HOME:$GRADLE_HOME/bin' >> /etc/profile.d/android.sh
+#RUN \
+#    echo 'export ANDROID_HOME=/usr/local/android-sdk-linux' > /etc/profile.d/android.sh && \
+#    echo 'export ANDROID_SDK_HOME=/usr/local/android-sdk-linux' >> /etc/profile.d/android.sh && \
+#    echo 'export GRADLE_HOME=/usr/local/gradle-2.11' >> /etc/profile.d/android.sh && \
+#    echo 'export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_SDK_HOME/platform-tools:$ANDROID_SDK_HOME:$GRADLE_HOME/bin' >> /etc/profile.d/android.sh
 
-WORKDIR "/home/ubuntu/workspace"
+#WORKDIR "/home/ubuntu/workspace"
