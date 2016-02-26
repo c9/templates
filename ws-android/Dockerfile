@@ -17,7 +17,7 @@ RUN \
 
 # Install Android SDK
 # https://developer.android.com/sdk/index.html#Other
-RUN SDK_VERSION=r24.3.3 && \
+RUN SDK_VERSION=r24.4.1 && \
     set -x && \
     cd /usr/local/ && \
     curl -L -o android-sdk.tgz http://dl.google.com/android/android-sdk_${SDK_VERSION}-linux.tgz && \
@@ -41,7 +41,7 @@ RUN NDK_VERSION=r10e && \
     bash -c 'for file in $(find /usr/local/android-ndk-*); do [[ -x $file ]] && chmod +x "$file"; done'
 
 # Install Gradle
-RUN GRADLE_VERSION=2.5 && \
+RUN GRADLE_VERSION=2.11 && \
     cd /usr/local && \
     curl -L https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip -o gradle-bin.zip && \
     unzip gradle-bin.zip && \
@@ -49,7 +49,7 @@ RUN GRADLE_VERSION=2.5 && \
 
 # Update & Install Android Tools
 # Cloud message, billing, licensing, play services, admob, analytics
-RUN for filter in tools platform-tools android-19 android-20 android-21 android-22 android-23 extra build-tools-23.0.2; do \
+RUN for filter in tools platform-tools android-20 android-22 android-23 extra build-tools-23.1.0; do \
         echo y | /usr/local/android-sdk-linux/tools/android update sdk --filter $filter --no-ui --force --all; \
     done
 
