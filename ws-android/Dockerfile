@@ -15,6 +15,10 @@ RUN \
     apt-get update && \
     apt-get -y install curl unzip python-software-properties software-properties-common lib32stdc++6 lib32z1
 
+
+
+
+
 # Install Android SDK
 # https://developer.android.com/sdk/index.html#Other
 RUN SDK_VERSION=r24.4.1 && \
