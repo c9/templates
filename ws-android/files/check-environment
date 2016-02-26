@@ -7,5 +7,5 @@ android list
 
 ant -v
 
-gradle --version | grep "Gradle 2.5"
+gradle --version 
 gradle
