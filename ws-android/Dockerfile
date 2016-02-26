@@ -46,10 +46,6 @@ RUN for filter in tools,platform-tools,android-20,android-22,android-23,extra,bu
 
 
 
-# Setup environment
-ENV ANDROID_HOME /usr/local/android-sdk-linux   && \
-    ANDROID_SDK_HOME /usr/local/android-sdk-linux  && \
-    GRADLE_HOME /usr/local/gradle-2.5  && \
-    PATH ${PATH}:${ANDROID_HOME}/tools:${ANDROID_SDK_HOME}/platform-tools:${GRADLE_HOME}/bin;
-
-
+# Set PATH
+ENV ANDROID_HOME=/usr/local/android-sdk-linux ANDROID_SDK_HOME=/usr/local/android-sdk-linux GRADLE_HOME=/usr/local/gradle-2.5
+ENV PATH $PATH:$ANDROID_HOME/tools:$ANDROID_SDK_HOME/platform-tools:$GRADLE_HOME/bin
