@@ -30,6 +30,11 @@ RUN SDK_VERSION=r24.3.3 && \
     bash -c 'for file in $(find /usr/local/android-sdk-*); do [[ -x $file ]] && chmod +x "$file"; done'; \
     exit 0
 
+# Android SDK Home and Path for in the container
+ENV ANDROID_SDK_HOME /usr/local/android-sdk-linux
+ENV PATH $PATH:$ANDROID_SDK_HOME/tools
+ENV PATH $PATH:$ANDROID_SDK_HOME/platform-tools
+
 
 # deleted as it was having a build error, would like this included in the future
 # Install Android NDK
@@ -46,6 +51,22 @@ RUN SDK_VERSION=r24.3.3 && \
 #    bash -c 'for file in $(find /usr/local/android-ndk-*); do [[ -x $file ]] && chmod +x "$file"; done'
 
 
+# Install Apache-Ant
+RUN cd /usr/local/ && \
+    curl -L -O http://ftp.meisei-u.ac.jp/mirror/apache/dist//ant/binaries/apache-ant-1.9.2-bin.tar.gz && \
+    tar xf apache-ant-1.9.2-bin.tar.gz && \
+    rm -f apache-ant-1.9.2-bin.tar.gz && \
+    chown -R ubuntu:ubuntu /usr/local/apache-ant-1.9.2 && \
+    chmod -R 774 /usr/local/apache-ant-1.9.2
+
+
+# Environment variables for Apache
+
+ENV ANT_HOME /usr/local/apache-ant-1.9.2
+
+ENV PATH $PATH:$ANT_HOME/bin
+
+
 
 
 # Install Gradle
@@ -55,6 +76,9 @@ RUN GRADLE_VERSION=2.5 && \
     unzip gradle-bin.zip && \
     rm gradle-bin.zip
 
+# Gradle Home and Path for int the container
+ENV GRADLE_HOME /usr/local/gradle-2.5
+ENV PATH $PATH:$GRADLE_HOME/bin
 
 
 
@@ -64,14 +88,7 @@ RUN for filter in tools platform-tools android-20 android-22 android-23 extra bu
     done
 
 
-# Android SDK Home and Path for in the container
-ENV ANDROID_SDK_HOME /usr/local/android-sdk-linux
-ENV PATH $PATH:$ANDROID_SDK_HOME/tools
-ENV PATH $PATH:$ANDROID_SDK_HOME/platform-tools
 
-# Gradle Home and Path for int the container
-ENV GRADLE_HOME /usr/local/gradle-2.5
-ENV PATH $PATH:$GRADLE_HOME/bin
 
 
 # Configure environment for in cloud 9 
