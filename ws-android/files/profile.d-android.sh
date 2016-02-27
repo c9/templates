@@ -1,3 +1,5 @@
+#!/bin/bash  
+
 export ANDROID_HOME=/usr/local/android-sdk-linux
 export ANDROID_SDK_HOME=/usr/local/android-sdk-linux
 #export ANDROID_NDK_HOME=/usr/local/android-ndk-r10e
