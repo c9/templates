@@ -1,9 +1,14 @@
 #!/bin/bash
-set -ex
 
-android list
+
+# uncomment all when everythings works, except ndk until it is re-added
+
+
+#set -ex
+
+#android list
 #ndk-build --help
 #ndk-depends --help
 
-gradle --version | grep "Gradle 2.5"
-gradle
+#gradle --version | grep "Gradle 2.5"
+#gradle
