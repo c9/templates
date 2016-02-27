@@ -5,9 +5,12 @@ FROM cloud9/workspace
 # https://github.com/lukin0110/docker-android-build
 MAINTAINER Jeremy Ellis <keyfreemusic@gmail.com>
 
+
+#move files from the files folder to the docker container
 ADD ./files/workspace /home/ubuntu/workspace
 
-RUN chmod -R g+w /home/ubuntu/workspace && \
+#give owner and ubuntu group: read,write,execute permissions
+RUN chmod -R 774 /home/ubuntu/workspace && \
     chown -R ubuntu:ubuntu /home/ubuntu/workspace
     
 # Update, upgrade and install packages
@@ -27,6 +30,8 @@ RUN SDK_VERSION=r24.3.3 && \
     bash -c 'for file in $(find /usr/local/android-sdk-*); do [[ -x $file ]] && chmod +x "$file"; done'; \
     exit 0
 
+
+# deleted as it was having a build error, would like this included in the future
 # Install Android NDK
 # https://developer.android.com/tools/sdk/ndk/index.html
 # https://developer.android.com/ndk/index.html
@@ -40,6 +45,9 @@ RUN SDK_VERSION=r24.3.3 && \
 #    chmod -R +r /usr/local/android-ndk-* && \
 #    bash -c 'for file in $(find /usr/local/android-ndk-*); do [[ -x $file ]] && chmod +x "$file"; done'
 
+
+
+
 # Install Gradle
 RUN GRADLE_VERSION=2.5 && \
     cd /usr/local && \
@@ -47,12 +55,34 @@ RUN GRADLE_VERSION=2.5 && \
     unzip gradle-bin.zip && \
     rm gradle-bin.zip
 
+
+
+
 # Update & Install Android Tools
-# Cloud message, billing, licensing, play services, admob, analytics
 RUN for filter in tools platform-tools android-20 android-22 android-23 extra build-tools-23.0.2; do \
         echo y | /usr/local/android-sdk-linux/tools/android update sdk --filter $filter --no-ui --force --all; \
     done
 
-# Configure profile
+
+# Android SDK Home and Path for in the container
+ENV ANDROID_SDK_HOME /usr/local/android-sdk-linux
+ENV PATH $PATH:$ANDROID_SDK_HOME/tools
+ENV PATH $PATH:$ANDROID_SDK_HOME/platform-tools
+
+# Gradle Home and Path for int the container
+ENV GRADLE_HOME /usr/local/gradle-2.5
+ENV PATH $PATH:$GRADLE_HOME/bin
+
+
+# Configure environment for in cloud 9 
 ADD ./files/profile.d-android.sh /etc/profile.d/android.sh
-# must make both runnable
+#make runnable in the container
+RUN chmod -R 775 /etc/profile.d/android.sh 
+
+
+
+
+
+
+
+
