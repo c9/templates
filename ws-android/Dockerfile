@@ -55,3 +55,4 @@ RUN for filter in tools platform-tools android-20 android-22 android-23 extra bu
 
 # Configure profile
 ADD ./files/profile.d-android.sh /etc/profile.d/android.sh
+# must make both runnable
