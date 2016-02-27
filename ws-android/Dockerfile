@@ -52,19 +52,16 @@ ENV PATH $PATH:$ANDROID_SDK_HOME/platform-tools
 
 
 # Install Apache-Ant
-RUN cd /usr/local/ && \
-    curl -L -O http://ftp.meisei-u.ac.jp/mirror/apache/dist//ant/binaries/apache-ant-1.9.2-bin.tar.gz && \
-    tar xf apache-ant-1.9.2-bin.tar.gz && \
-    rm -f apache-ant-1.9.2-bin.tar.gz && \
-    chown -R ubuntu:ubuntu /usr/local/apache-ant-1.9.2 && \
-    chmod -R 774 /usr/local/apache-ant-1.9.2
-
+#RUN cd /usr/local/ && \
+#    curl -L -O http://ftp.meisei-u.ac.jp/mirror/apache/dist//ant/binaries/apache-ant-1.9.2-bin.tar.gz && \
+#    tar xf apache-ant-1.9.2-bin.tar.gz && \
+#    rm -f apache-ant-1.9.2-bin.tar.gz && \
+#    chown -R ubuntu:ubuntu /usr/local/apache-ant-1.9.2 && \
+#    chmod -R 774 /usr/local/apache-ant-1.9.2
 
 # Environment variables for Apache
-
-ENV ANT_HOME /usr/local/apache-ant-1.9.2
-
-ENV PATH $PATH:$ANT_HOME/bin
+#ENV ANT_HOME /usr/local/apache-ant-1.9.2
+#ENV PATH $PATH:$ANT_HOME/bin
 
 
 
