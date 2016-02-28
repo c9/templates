@@ -100,8 +100,7 @@ RUN cd /usr/local && \
     unzip gradle-bin.zip && \
     rm gradle-bin.zip  && \
     chmod -R 774 /usr/local/gradle-${GRADLE_VERSION} && \
-    chown -R ubuntu:ubuntu /usr/local/gradle-${GRADLE_VERSION} && \
-    /usr/local/gradle-${GRADLE_VERSION}/gradle
+    chown -R ubuntu:ubuntu /usr/local/gradle-${GRADLE_VERSION} 
 
 
 #Gradle Home and Path for pre-cloud9 testing
@@ -134,7 +133,7 @@ RUN for filter in tools platform-tools android-20 android-22 android-23 extra bu
     
     
     
-  
+  RUN gradle
 
 
 
