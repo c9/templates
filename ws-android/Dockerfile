@@ -21,7 +21,7 @@ RUN chmod -R 774 /home/ubuntu/workspace && \
 RUN touch /etc/profile.d/android.sh && \
     chmod -R 775 /etc/profile.d/android.sh && \
     chown -R ubuntu:ubuntu /etc/profile.d/android.sh && \
-    printf "#!bin/bash\n\n" > /etc/profile.d/android.sh    
+    printf "#!/bin/bash\n\n" > /etc/profile.d/android.sh    
     
     
 # Update, upgrade and install packages
