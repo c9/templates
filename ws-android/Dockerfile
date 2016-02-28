@@ -52,10 +52,10 @@ ENV PATH $PATH:$ANDROID_SDK_HOME/tools
 ENV PATH $PATH:$ANDROID_SDK_HOME/platform-tools
 
 # Now do the same environment for Cloud 9
-RUN printf "ANDROID_SDK_HOME /usr/local/android-sdk-linux\n" >> /etc/profile.d/android.sh    && \
-    printf "ANDROID_HOME /usr/local/android-sdk-linux\n" >> /etc/profile.d/android.sh    && \
-    printf "PATH \$PATH:\$ANDROID_SDK_HOME\n" >> /etc/profile.d/android.sh    && \
-    printf "PATH \$PATH:\$ANDROID_SDK_HOME/tools\n" >> /etc/profile.d/android.sh    && \
+RUN printf "ANDROID_SDK_HOME /usr/local/android-sdk-linux\n" >>   /etc/profile.d/android.sh    && \
+    printf "ANDROID_HOME /usr/local/android-sdk-linux\n" >>       /etc/profile.d/android.sh    && \
+    printf "PATH \$PATH:\$ANDROID_SDK_HOME\n" >>                  /etc/profile.d/android.sh    && \
+    printf "PATH \$PATH:\$ANDROID_SDK_HOME/tools\n" >>            /etc/profile.d/android.sh    && \
     printf "PATH \$PATH:\$ANDROID_SDK_HOME/platform-tools\n\n" >> /etc/profile.d/android.sh    
     
 
@@ -92,21 +92,24 @@ RUN printf "ANDROID_SDK_HOME /usr/local/android-sdk-linux\n" >> /etc/profile.d/a
 
 
 # Install Gradle
-RUN GRADLE_VERSION=2.5 && \
-    cd /usr/local && \
+ENV GRADLE_VERSION 2.5
+
+RUN cd /usr/local && \
     curl -L https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip -o gradle-bin.zip && \
     unzip gradle-bin.zip && \
     rm gradle-bin.zip  && \
     chmod -R 774 /usr/local/gradle-${GRADLE_VERSION} && \
-    chown -R ubuntu:ubuntu /usr/local/gradle-${GRADLE_VERSION}
+    chown -R ubuntu:ubuntu /usr/local/gradle-${GRADLE_VERSION} && \
+    gradle
 
-# Gradle Home and Path for int the container
+
+#Gradle Home and Path for pre-cloud9 testing
 ENV GRADLE_HOME /usr/local/gradle-${GRADLE_VERSION}
 ENV PATH $PATH:$GRADLE_HOME/bin
 
 # Now do the same environment for Cloud 9
-RUN printf "GRADLE_HOME /usr/local/gradle-${GRADLE_VERSION}\n" >> /etc/profile.d/android.sh    && \
-    printf "PATH \PATH:\$GRADLE_HOME/bin\n\n" >> /etc/profile.d/android.sh     
+RUN printf "GRADLE_HOME /usr/local/gradle-${GRADLE_VERSION}\n" >>    /etc/profile.d/android.sh    && \
+    printf "PATH \$PATH:\$GRADLE_HOME/bin\n\n" >>                    /etc/profile.d/android.sh     
     
 
 
