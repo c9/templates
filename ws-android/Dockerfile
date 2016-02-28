@@ -24,7 +24,7 @@ RUN touch /etc/profile.d/android.sh && \
     printf "#!/bin/bash\n\n" > /etc/profile.d/android.sh  && \
     printf "echo 'Setting up environment variables'\n" > /etc/profile.d/android.sh     
     
-'   
+ 
 # Update, upgrade and install packages
 RUN \
     apt-get update && \
