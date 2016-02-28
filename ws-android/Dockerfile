@@ -9,31 +9,51 @@ MAINTAINER Jeremy Ellis <keyfreemusic@gmail.com>
 #move files from the files folder to the docker container
 ADD ./files/workspace /home/ubuntu/workspace
 
-#give owner and ubuntu group: read,write,execute permissions
+# Give owner and ubuntu group: read,write,execute permissions, others read only
+# Change owner to ubuntu
 RUN chmod -R 774 /home/ubuntu/workspace && \
     chown -R ubuntu:ubuntu /home/ubuntu/workspace
+    
+    
+
+# Setup a bash file to auto load environment variables when in cloud 9
+# Add to this file for every environment variable and Path used
+RUN touch /etc/profile.d/android.sh && \
+    chmod -R 775 /etc/profile.d/android.sh && \
+    chown -R ubuntu:ubuntu /etc/profile.d/android.sh && \
+    printf "#!bin/bash\n\n" > /etc/profile.d/android.sh    
+    
     
 # Update, upgrade and install packages
 RUN \
     apt-get update && \
     apt-get -y install curl unzip python-software-properties software-properties-common lib32stdc++6 lib32z1
 
+# refer to https://developer.android.com/sdk/index.html#Other
 # Install Android SDK
-# https://developer.android.com/sdk/index.html#Other
 RUN SDK_VERSION=r24.3.3 && \
     set -x && \
     cd /usr/local/ && \
     curl -L -o android-sdk.tgz http://dl.google.com/android/android-sdk_${SDK_VERSION}-linux.tgz && \
     tar xf android-sdk.tgz && \
     rm android-sdk.tgz && \
-    chmod -R +r /usr/local/android-sdk-* && \
-    bash -c 'for file in $(find /usr/local/android-sdk-*); do [[ -x $file ]] && chmod +x "$file"; done'; \
-    exit 0
+    chmod -R 774 /usr/local/android-sdk-linux && \
+    chown -R ubuntu:ubuntu /usr/local/android-sdk-linux
+  
+  #  chmod -R +r /usr/local/android-sdk-* && \
+  #  bash -c 'for file in $(find /usr/local/android-sdk-*); do [[ -x $file ]] && chmod +x "$file"; done'; \
+  #  exit 0
 
-# Android SDK Home and Path for in the container
+# Android SDK Home and Path for pre-cloud9 testing
 ENV ANDROID_SDK_HOME /usr/local/android-sdk-linux
+ENV ANDROID_HOME /usr/local/android-sdk-linux
+ENV PATH $PATH:$ANDROID_SDK_HOME
 ENV PATH $PATH:$ANDROID_SDK_HOME/tools
 ENV PATH $PATH:$ANDROID_SDK_HOME/platform-tools
+
+# Now do the same environment for Cloud 9
+RUN printf "#!bin/bash\n\n" > /etc/profile.d/android.sh    
+
 
 
 # deleted as it was having a build error, would like this included in the future
@@ -52,6 +72,7 @@ ENV PATH $PATH:$ANDROID_SDK_HOME/platform-tools
 
 
 # Install Apache-Ant
+#refer to http://www.eu.apache.org/dist//ant/binaries/apache-ant-1.9.6-bin.zip
 #RUN cd /usr/local/ && \
 #    curl -L -O http://ftp.meisei-u.ac.jp/mirror/apache/dist//ant/binaries/apache-ant-1.9.2-bin.tar.gz && \
 #    tar xf apache-ant-1.9.2-bin.tar.gz && \
@@ -71,15 +92,18 @@ RUN GRADLE_VERSION=2.5 && \
     cd /usr/local && \
     curl -L https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip -o gradle-bin.zip && \
     unzip gradle-bin.zip && \
-    rm gradle-bin.zip
+    rm gradle-bin.zip  && \
+    chmod -R 774 /usr/local/gradle-${GRADLE_VERSION} && \
+    chown -R ubuntu:ubuntu /usr/local/gradle-${GRADLE_VERSION}
 
 # Gradle Home and Path for int the container
-ENV GRADLE_HOME /usr/local/gradle-2.5
+ENV GRADLE_HOME /usr/local/gradle-${GRADLE_VERSION}
 ENV PATH $PATH:$GRADLE_HOME/bin
 
 
 
-# Update & Install Android Tools
+# Update & Install Android Tools using fancy for loop.
+# The normal method with a comma list has been failing lately
 RUN for filter in tools platform-tools android-20 android-22 android-23 extra build-tools-23.0.2; do \
         echo y | /usr/local/android-sdk-linux/tools/android update sdk --filter $filter --no-ui --force --all; \
     done
@@ -89,9 +113,16 @@ RUN for filter in tools platform-tools android-20 android-22 android-23 extra bu
 
 
 # Configure environment for in cloud 9 
-ADD ./files/profile.d-android.sh /etc/profile.d/android.sh
+#ADD ./files/profile.d-android.sh /etc/profile.d/android.sh
 #make runnable in the container
-RUN chmod -R 775 /etc/profile.d/android.sh 
+#RUN chmod -R 775 /etc/profile.d/android.sh 
+
+    
+    
+    
+    
+  
+
 
 
 
