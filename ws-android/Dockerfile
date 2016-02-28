@@ -52,8 +52,12 @@ ENV PATH $PATH:$ANDROID_SDK_HOME/tools
 ENV PATH $PATH:$ANDROID_SDK_HOME/platform-tools
 
 # Now do the same environment for Cloud 9
-RUN printf "#!bin/bash\n\n" > /etc/profile.d/android.sh    
-
+RUN printf "ANDROID_SDK_HOME /usr/local/android-sdk-linux\n" >> /etc/profile.d/android.sh    && \
+    printf "ANDROID_HOME /usr/local/android-sdk-linux\n" >> /etc/profile.d/android.sh    && \
+    printf "PATH \$PATH:\$ANDROID_SDK_HOME\n" >> /etc/profile.d/android.sh    && \
+    printf "PATH \$PATH:\$ANDROID_SDK_HOME/tools\n" >> /etc/profile.d/android.sh    && \
+    printf "PATH \$PATH:\$ANDROID_SDK_HOME/platform-tools\n\n" >> /etc/profile.d/android.sh    
+    
 
 
 # deleted as it was having a build error, would like this included in the future
@@ -100,6 +104,10 @@ RUN GRADLE_VERSION=2.5 && \
 ENV GRADLE_HOME /usr/local/gradle-${GRADLE_VERSION}
 ENV PATH $PATH:$GRADLE_HOME/bin
 
+# Now do the same environment for Cloud 9
+RUN printf "GRADLE_HOME /usr/local/gradle-${GRADLE_VERSION}\n" >> /etc/profile.d/android.sh    && \
+    printf "PATH \PATH:\$GRADLE_HOME/bin\n\n" >> /etc/profile.d/android.sh     
+    
 
 
 # Update & Install Android Tools using fancy for loop.
