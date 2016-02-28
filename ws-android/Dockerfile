@@ -100,8 +100,7 @@ RUN cd /usr/local && \
     unzip gradle-bin.zip && \
     rm gradle-bin.zip  && \
     chmod -R 774 /usr/local/gradle-${GRADLE_VERSION} && \
-    chown -R ubuntu:ubuntu /usr/local/gradle-${GRADLE_VERSION} && \
-    gradle
+    chown -R ubuntu:ubuntu /usr/local/gradle-${GRADLE_VERSION}
 
 
 #Gradle Home and Path for pre-cloud9 testing
@@ -112,6 +111,9 @@ ENV PATH $PATH:$GRADLE_HOME/bin
 RUN printf "GRADLE_HOME /usr/local/gradle-${GRADLE_VERSION}\n" >>    /etc/profile.d/android.sh    && \
     printf "PATH \$PATH:\$GRADLE_HOME/bin\n\n" >>                    /etc/profile.d/android.sh     
     
+    
+#load gradle to set it up
+RUN gradle
 
 
 # Update & Install Android Tools using fancy for loop.
