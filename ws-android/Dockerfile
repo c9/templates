@@ -5,8 +5,8 @@ FROM cloud9/workspace
 # https://github.com/lukin0110/docker-android-build
 MAINTAINER Jeremy Ellis <keyfreemusic@gmail.com>
 
-
-#move files from the files folder to the docker container
+# -------------------------- Startup Stuff -----------------------------------------
+# move files from the files folder to the docker container
 ADD ./files/workspace /home/ubuntu/workspace
 
 # Give owner and ubuntu group: read,write,execute permissions, others read only
@@ -22,16 +22,32 @@ RUN touch /etc/profile.d/android.sh && \
     chmod -R 775 /etc/profile.d/android.sh && \
     chown -R ubuntu:ubuntu /etc/profile.d/android.sh && \
     printf "#!/bin/bash\n\n" > /etc/profile.d/android.sh  && \
-    printf "echo 'Setting up environment variables'\n" >>               /etc/profile.d/android.sh     && \
-    printf "JAVA_HOME /usr/lib/jvm/java-7-openjdk-amd64\n" >>       /etc/profile.d/android.sh    && \
-    printf "PATH \$PATH:\$JAVA_HOME/bin\n\n" >>                             /etc/profile.d/android.sh    
-    
-    
+    printf "echo 'Setting up environment variables'\n" >>               /etc/profile.d/android.sh    && \
+    printf "JAVA_HOME /usr/lib/jvm/java-7-openjdk-amd64\n" >>           /etc/profile.d/android.sh    && \
+    printf "PATH \$PATH:\$JAVA_HOME/bin\n\n" >>                         /etc/profile.d/android.sh    
+
+
+# These commands just let us test the enviornment before submitting to cloud 9    
+ENV JAVA_HOME /usr/lib/jvm/java-7-openjdk-amd64
+ENV PATH $PATH:$JAVA_HOME/bin
  
+ 
+ 
+ 
+ 
+
+# -------------------------- Install Necessary packages ----------------------------------------- 
 # Update, upgrade and install packages
 RUN \
     apt-get update && \
     apt-get -y install curl unzip python-software-properties software-properties-common lib32stdc++6 lib32z1
+    
+    
+
+
+
+
+# -------------------------- Install the Android SDK -----------------------------------------
 
 # refer to https://developer.android.com/sdk/index.html#Other
 # Install Android SDK
@@ -64,6 +80,23 @@ RUN printf "ANDROID_SDK_HOME /usr/local/android-sdk-linux\n" >>   /etc/profile.d
     
 
 
+
+
+
+# -------------------------- Install the Android Platforms -----------------------------------------
+# Update & Install Android Tools using fancy for loop.
+# The normal method of doing the following with a comma list has been failing lately
+# This fancy "for" loop solves the issue
+RUN for filter in tools platform-tools android-20 android-22 android-23 extra build-tools-23.0.2; do \
+        echo y | /usr/local/android-sdk-linux/tools/android update sdk --filter $filter --no-ui --force --all; \
+    done
+
+
+
+
+
+
+# -------------------------- Android NDK not installed this docker -----------------------------------------
 # deleted as it was having a build error, would like this included in the future
 # Install Android NDK
 # https://developer.android.com/tools/sdk/ndk/index.html
@@ -79,6 +112,12 @@ RUN printf "ANDROID_SDK_HOME /usr/local/android-sdk-linux\n" >>   /etc/profile.d
 #    bash -c 'for file in $(find /usr/local/android-ndk-*); do [[ -x $file ]] && chmod +x "$file"; done'
 
 
+
+
+
+
+
+# -------------------------- Apache Ant not installed this docker -----------------------------------------
 # Install Apache-Ant
 #refer to http://www.eu.apache.org/dist//ant/binaries/apache-ant-1.9.6-bin.zip
 #RUN cd /usr/local/ && \
@@ -95,6 +134,9 @@ RUN printf "ANDROID_SDK_HOME /usr/local/android-sdk-linux\n" >>   /etc/profile.d
 
 
 
+
+
+# -------------------------- Install Gradle -----------------------------------------
 # Install Gradle
 ENV GRADLE_VERSION 2.5
 
@@ -113,19 +155,14 @@ ENV PATH $PATH:$GRADLE_HOME/bin
 # Now do the same environment for Cloud 9
 RUN printf "GRADLE_HOME /usr/local/gradle-${GRADLE_VERSION}\n" >>    /etc/profile.d/android.sh    && \
     printf "PATH \$PATH:\$GRADLE_HOME/bin\n\n" >>                    /etc/profile.d/android.sh     
-    
 
-
-
-# Update & Install Android Tools using fancy for loop.
-# The normal method with a comma list has been failing lately
-RUN for filter in tools platform-tools android-20 android-22 android-23 extra build-tools-23.0.2; do \
-        echo y | /usr/local/android-sdk-linux/tools/android update sdk --filter $filter --no-ui --force --all; \
-    done
+# activate gradle by running it once    
+RUN gradle
 
 
 
 
+# -------------------------- Final Cloud 9 stuff if needed -----------------------------------------
 
 # Configure environment for in cloud 9 
 #ADD ./files/profile.d-android.sh /etc/profile.d/android.sh
@@ -135,8 +172,7 @@ RUN for filter in tools platform-tools android-20 android-22 android-23 extra bu
     
     
     
-    
-  RUN gradle
+
 
 
 
