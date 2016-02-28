@@ -86,7 +86,7 @@ android create project \
 --path $wow4 \
 --activity MainActivity \
 --package com.example.$wow4 \
---gradle --gradle-version 0.11.+ 
+--gradle --gradle-version 2.5+ 
 
 
 
