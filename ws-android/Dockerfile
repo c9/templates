@@ -22,7 +22,10 @@ RUN touch /etc/profile.d/android.sh && \
     chmod -R 775 /etc/profile.d/android.sh && \
     chown -R ubuntu:ubuntu /etc/profile.d/android.sh && \
     printf "#!/bin/bash\n\n" > /etc/profile.d/android.sh  && \
-    printf "echo 'Setting up environment variables'\n" >> /etc/profile.d/android.sh     
+    printf "echo 'Setting up environment variables'\n" >>               /etc/profile.d/android.sh     && \
+    printf "JAVA_HOME /usr/lib/jvm/java-7-openjdk-amd64\n" >>       /etc/profile.d/android.sh    && \
+    printf "PATH \$PATH:\$JAVA_HOME/bin\n\n" >>                             /etc/profile.d/android.sh    
+    
     
  
 # Update, upgrade and install packages
