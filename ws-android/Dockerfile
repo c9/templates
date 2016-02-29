@@ -138,7 +138,7 @@ RUN for filter in tools platform-tools android-20 android-22 android-23 extra bu
 
 # -------------------------- Install Gradle -----------------------------------------
 # Install Gradle
-ENV GRADLE_VERSION 2.5
+ENV GRADLE_VERSION 2.9
 
 RUN cd /usr/local && \
     curl -L https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip -o gradle-bin.zip && \
