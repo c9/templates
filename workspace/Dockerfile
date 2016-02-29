@@ -85,7 +85,8 @@ RUN apt-get install -y mysql-server rabbitmq-server couchdb
 
 # Postgres
 RUN apt-get install -y postgresql-9.3
-RUN sudo -u postgres createuser -sd ubuntu
+RUN sudo -u postgres createuser -srd ubuntu
+RUN sudo -u postgres psql -c "create database ubuntu owner=ubuntu"
 
 # tools
 RUN apt-get install -y dnsutils bash-completion xsltproc \
