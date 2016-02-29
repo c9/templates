@@ -7,30 +7,9 @@ MAINTAINER Jeremy Ellis <keyfreemusic@gmail.com>
 
 # -------------------------- Startup Stuff -----------------------------------------
 # move files from the files folder to the docker container
-ADD ./files/workspace /home/ubuntu/workspace
+ADD ./files /home/ubuntu
+ADD ./files/profile.d-android.sh /etc/profile.d/android.sh
 
-# Give owner and ubuntu group: read,write,execute permissions, others read only
-# Change owner to ubuntu
-RUN chmod -R 774 /home/ubuntu/workspace && \
-    chown -R ubuntu:ubuntu /home/ubuntu/workspace
-    
-    
-
-# Setup a bash file to auto load environment variables when in cloud 9
-# Add to this file for every environment variable and Path used
-RUN touch /etc/profile.d/android.sh && \
-    chmod -R 775 /etc/profile.d/android.sh && \
-    chown -R ubuntu:ubuntu /etc/profile.d/android.sh && \
-    printf "#!/bin/bash\n\n" > /etc/profile.d/android.sh  && \
-    printf "echo 'Setting up environment variables'\n" >>               /etc/profile.d/android.sh    && \
-    printf "JAVA_HOME /usr/lib/jvm/java-7-openjdk-amd64\n" >>           /etc/profile.d/android.sh    && \
-    printf "PATH \$PATH:\$JAVA_HOME/bin\n\n" >>                         /etc/profile.d/android.sh    
-
-
-# These commands just let us test the enviornment before submitting to cloud 9    
-ENV JAVA_HOME /usr/lib/jvm/java-7-openjdk-amd64
-ENV PATH $PATH:$JAVA_HOME/bin
- 
  
  
  
