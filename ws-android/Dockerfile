@@ -11,6 +11,11 @@ MAINTAINER Jeremy Ellis <keyfreemusic@gmail.com>
 ADD ./files /home/ubuntu
 ADD ./files/profile.d-android.sh /etc/profile.d/android.sh
 
+# These commands just let us test the enviornment before submitting to cloud 9    
+ENV JAVA_HOME /usr/lib/jvm/java-7-openjdk-amd64
+ENV PATH $PATH:$JAVA_HOME/bin
+
+
 
 # -------------------------- Install necessary base packages ----------------------------------------- 
 
@@ -33,7 +38,12 @@ RUN SDK_VERSION=r24.3.3 && \
     bash -c 'for file in $(find /usr/local/android-sdk-*); do [[ -x $file ]] && chmod +x "$file"; done'; \
     exit 0
 
-
+# Android SDK Home and Path for pre-cloud9 testing
+ENV ANDROID_SDK_HOME /usr/local/android-sdk-linux
+ENV ANDROID_HOME /usr/local/android-sdk-linux
+ENV PATH $PATH:$ANDROID_SDK_HOME
+ENV PATH $PATH:$ANDROID_SDK_HOME/tools
+ENV PATH $PATH:$ANDROID_SDK_HOME/platform-tools
 
 # -------------------------- Install the Android Platforms -----------------------------------------
 
@@ -56,14 +66,19 @@ RUN cd /usr/local && \
     bash -c 'for file in $(find /usr/local/gradle-${GRADLE_VERSION}); do [[ -x $file ]] && chmod +x "$file"; done'; \
     exit 0
 
+#Gradle Home and Path for pre-cloud9 testing
+ENV GRADLE_HOME /usr/local/gradle-${GRADLE_VERSION}
+ENV PATH $PATH:$GRADLE_HOME/bin
+
+
 # activate gradle by running it once    
-#RUN /usr/local/gradle-${GRADLE_VERSION}/gradle
+RUN gradle
 
 
 # -------------------------- Final Cloud 9 Installation Actions -----------------------------------------
 
 RUN chown -R ubuntu:ubuntu /home/ubuntu && \
     chmod 775 /home/ubuntu/start-here && \
-    sudo bash a00-auto-ant-gradle.sh
+    cd /home/ubuntu/workspace
     
 
