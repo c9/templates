@@ -11,7 +11,7 @@ echo "Enter a folder name, no spaces, no dashes, underscore allowed, for your ap
 read wow4
 
 
-ls -l /home/ubuntu/workspace/android-sdk-linux/platforms
+ls -l /usr/local/android-sdk-linux/platforms
 
 echo "Type the number of the target your Android app is for"
 echo "See above folders of installed platforms"
@@ -21,6 +21,8 @@ echo "Type 23 for --target android-23    Android 6.0    Marshmallow, type 23"
 
 read myNum
 
+
+cd /home/ubuntu/workspace/
 
 #Good site to check
 #http://socialcompare.com/en/comparison/android-versions-comparison
@@ -37,12 +39,12 @@ android create project \
 
 
 
-cd $wow4
+cd /home/ubuntu/workspace/$wow4
 
 
 chmod a+x gradlew
 
-./gradlew assembleDebug
+sudo ./gradlew assembleDebug
 
 printf "\n\n<a href='$wow4/build/outputs/apk/$wow4-debug.apk'>$wow4/build/outputs/apk/$wow4-debug.apk</a><br><br>"  >> /home/ubuntu/workspace/index.html
 
