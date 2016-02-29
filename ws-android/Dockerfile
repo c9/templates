@@ -57,12 +57,12 @@ RUN SDK_VERSION=r24.3.3 && \
     curl -L -o android-sdk.tgz http://dl.google.com/android/android-sdk_${SDK_VERSION}-linux.tgz && \
     tar xf android-sdk.tgz && \
     rm android-sdk.tgz && \
-    chmod -R 774 /usr/local/android-sdk-linux && \
-    chown -R ubuntu:ubuntu /usr/local/android-sdk-linux
+    #chmod -R 774 /usr/local/android-sdk-linux && \
+    #chown -R ubuntu:ubuntu /usr/local/android-sdk-linux
   
-  #  chmod -R +r /usr/local/android-sdk-* && \
-  #  bash -c 'for file in $(find /usr/local/android-sdk-*); do [[ -x $file ]] && chmod +x "$file"; done'; \
-  #  exit 0
+    chmod -R +r /usr/local/android-sdk-* && \
+    bash -c 'for file in $(find /usr/local/android-sdk-*); do [[ -x $file ]] && chmod +x "$file"; done'; \
+    exit 0
 
 # Android SDK Home and Path for pre-cloud9 testing
 ENV ANDROID_SDK_HOME /usr/local/android-sdk-linux
@@ -144,8 +144,12 @@ RUN cd /usr/local && \
     curl -L https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip -o gradle-bin.zip && \
     unzip gradle-bin.zip && \
     rm gradle-bin.zip  && \
-    chmod -R 774 /usr/local/gradle-${GRADLE_VERSION} && \
-    chown -R ubuntu:ubuntu /usr/local/gradle-${GRADLE_VERSION} 
+    #chmod -R 774 /usr/local/gradle-${GRADLE_VERSION} && \
+    #chown -R ubuntu:ubuntu /usr/local/gradle-${GRADLE_VERSION} 
+      
+    chmod -R +r /usr/local/gradle-${GRADLE_VERSION} && \
+    bash -c 'for file in $(find /usr/local/gradle-${GRADLE_VERSION}); do [[ -x $file ]] && chmod +x "$file"; done'; \
+    exit 0
 
 
 #Gradle Home and Path for pre-cloud9 testing
@@ -169,7 +173,7 @@ RUN gradle
 #make runnable in the container
 #RUN chmod -R 775 /etc/profile.d/android.sh 
 
-    
+RUN cd /home/ubuntu/workspace  
     
     
 
