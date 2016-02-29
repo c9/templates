@@ -10,7 +10,7 @@
 echo "Enter a folder name, no spaces, no dashes, underscore allowed, for your app and folder example: helloAnt"
 read wow4
 
-ls -l /home/ubuntu/workspace/android-sdk-linux/platforms
+ls -l /usr/local/android-sdk-linux/platforms
 
 echo "Type the number of the target your Android app is for"
 echo "See above folders of installed platforms"
@@ -34,7 +34,7 @@ android create project \
 
 android update project --name $wow4 --target android-$myNum --path $wow4
 
-cd $wow4
+cd /home/ubuntu/workspace/$wow4
 
 ant clean
 
