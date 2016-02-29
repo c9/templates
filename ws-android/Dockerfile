@@ -57,10 +57,13 @@ RUN cd /usr/local && \
     exit 0
 
 # activate gradle by running it once    
-RUN /usr/local/gradle-${GRADLE_VERSION}/gradle
+#RUN /usr/local/gradle-${GRADLE_VERSION}/gradle
 
 
 # -------------------------- Final Cloud 9 Installation Actions -----------------------------------------
 
-RUN chown -R ubuntu:ubuntu /home/ubuntu
+RUN chown -R ubuntu:ubuntu /home/ubuntu && \
+    chmod 775 /home/ubuntu/start-here && \
+    sudo bash a00-auto-ant-gradle.sh
+    
 
