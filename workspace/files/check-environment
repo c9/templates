@@ -14,8 +14,8 @@ if X='() { :; }; echo Vulnerable' bash -c pwd | grep -q Vulnerable; then
 fi
  
 sudo apt-get -qq update
-sudo apt-get -qq -y install hello >/dev/null
-sudo apt-get -qq -y install hello-debhelper >/dev/null
+sudo apt-get -qq -y install hello
+sudo apt-get -qq -y install hello-debhelper
 
 if [[ $- == *i* ]]; then
     TMUXOUT=`/mnt/shared/sbin/tmux new ls`
@@ -29,8 +29,6 @@ popd
 
 node -e 'console.log("hello")' 
 
-set +x
-set -x
 node -v
 npm --version | grep -E '^2' || { echo "Expected NPM v2. Got $(npm --version)"; exit 1; }
 nvm use 0.8
@@ -91,9 +89,9 @@ heroku version | grep toolbelt
 mongo --version | grep -E '(2\.6|3\.0\.4)'
 
 # cloud9.sh needs to run in sh
-export C9_PORT=
-export LC_ALL=
-export C9_SH_EXECUTED=
+unset C9_PORT
+unset LC_ALL
+unset C9_SH_EXECUTED
 sh /etc/profile.d/cloud9.sh
 . /etc/profile.d/cloud9.sh
 [ "$C9_PORT" ] || (echo "cloud9.sh doesn't seem to set C9_PORT"; exit 1)
@@ -102,12 +100,9 @@ echo $PATH | grep /mnt/shared/sbin
 
 # .bashrc & .profile should work in sh and output nothing
 sh /home/ubuntu/.profile 
-[[ "$(. /home/ubuntu/.profile 2>&1)" == "" ]]
+[[ "$(sh /home/ubuntu/.profile 2>&1)" == "" ]]
 bash /home/ubuntu/.profile 
-[[ "$(. /home/ubuntu/.profile 2>&1)" == "" ]]
-
-# TODO: .profile should contain a hack to make nvm faster
-# tail -1 /home/ubuntu/.profile | grep hack
+[[ "$(bash /home/ubuntu/.profile 2>&1)" == "" ]]
 
 # Salesforce shared space
 node /mnt/shared/plugins/salesforce.sync/bin/git-c9-query --help
