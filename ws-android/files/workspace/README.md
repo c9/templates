@@ -18,6 +18,9 @@ Happy coding!
 The Cloud9 IDE team
 
 
-The four workspace helper files (starting with a01, a02, a03, a04) can be used to make ant, gradle builds as well as updating the android sdk or viewing the paths.
 
-Right click on each of them and select run. The final .apk can be view on the webpage index.html
+A good starting place is the folder called "start-here"
+The four workspace helper files (a01-create-ant-android-apk.sh, a02-create-gradle-android-apk.sh, a03-install-more-platforms.sh) can be used to make ant and gradle builds as well as updating the android sdk.
+
+Right click on each of them and select run. The final .apk can be viewed on the webpage index.html to be immediately installed on your tester's android phones.
+Note: The free version of cloud9 will allow the index.html site to run for about 24 hours, before it needs to be restarted. Premium users can have three workspace websites running continuously!.
