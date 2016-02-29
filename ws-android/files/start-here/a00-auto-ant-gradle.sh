@@ -1,5 +1,3 @@
-
-
 #!/bin/bash  
 
 #  only need to run this script with the command (do not type the #)
@@ -22,7 +20,7 @@ echo "Lets make an android ant apk file"
 
 wow4=helloAnt
 
-ls -l /home/ubuntu/workspace/android-sdk-linux/platforms
+ls -l /usr/local/android-sdk-linux/platforms
 
 echo "Type the number of the target your Android app is for"
 echo "See above folders of installed platforms"
@@ -46,11 +44,11 @@ android create project \
 
 android update project --name $wow4 --target android-$myNum --path $wow4
 
-cd $wow4
+cd /home/ubuntu/workspace/$wow4
 
 ant clean
 
-ant debug
+sudo ant debug
 
 cd bin
 
@@ -65,7 +63,7 @@ echo "Finally lets make a Gradle Android apk and show the website to download al
 wow4=helloGradle
 
 
-ls -l /home/ubuntu/workspace/android-sdk-linux/platforms
+ls -l /usr/local/android-sdk-linux/platforms
 
 echo "Type the number of the target your Android app is for"
 echo "See above folders of installed platforms"
@@ -91,12 +89,12 @@ android create project \
 
 
 
-cd $wow4
+cd /home/ubuntu/workspace/$wow4
 
 
 chmod a+x gradlew
 
-./gradlew assembleDebug
+sudo ./gradlew assembleDebug
 
 printf "\n\n<a href='$wow4/build/outputs/apk/$wow4-debug.apk'>$wow4/build/outputs/apk/$wow4-debug.apk</a><br><br>"  >> /home/ubuntu/workspace/index.html
 
