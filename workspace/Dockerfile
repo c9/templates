@@ -139,6 +139,7 @@ RUN apt-get install -y apache2
 
 ADD ./files/etc /etc
 ADD ./files/home /home
+ADD ./files/gitignore /home/ubuntu/.gitignore
 RUN cp /home/ubuntu/.gitignore /home/ubuntu/.hgignore && \
     mkdir -p /home/ubuntu/lib/apache2/lock /home/ubuntu/lib/apache2/log /home/ubuntu/lib/apache2/run && \
     chown -R ubuntu:ubuntu /home/ubuntu
