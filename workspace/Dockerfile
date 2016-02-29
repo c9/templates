@@ -142,7 +142,9 @@ ADD ./files/home /home
 ADD ./files/gitignore /home/ubuntu/.gitignore
 RUN cp /home/ubuntu/.gitignore /home/ubuntu/.hgignore && \
     mkdir -p /home/ubuntu/lib/apache2/lock /home/ubuntu/lib/apache2/log /home/ubuntu/lib/apache2/run && \
-    chown -R ubuntu:ubuntu /home/ubuntu
+    cd /home/ubuntu && \
+    chown -R ubuntu: .bash* .gemrc lib .*ignore && \
+    chown ubuntu: .
 
 RUN echo "Configure apache2" && \
     a2enmod rewrite && \
