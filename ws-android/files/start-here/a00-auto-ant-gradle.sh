@@ -33,6 +33,7 @@ myNum=20
 
 #http://socialcompare.com/en/comparison/android-versions-comparison
 
+cd /home/ubuntu/workspace/
 
 android create project \
 --target android-$myNum \
@@ -77,6 +78,7 @@ myNum=20
 #Good site to check
 #http://socialcompare.com/en/comparison/android-versions-comparison
 
+cd /home/ubuntu/workspace/
 
 android create project \
 --target android-$myNum \
