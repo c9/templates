@@ -22,7 +22,7 @@ read myNum
 
 
 #http://socialcompare.com/en/comparison/android-versions-comparison
-
+cd /home/ubuntu/workspace/
 
 android create project \
 --target android-$myNum \
