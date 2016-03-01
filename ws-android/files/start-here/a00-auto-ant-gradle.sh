@@ -123,28 +123,15 @@ printf "\n\n<a href='$wow4/build/outputs/apk/$wow4-debug.apk'>$wow4/build/output
 
 ls -l build/outputs/apk
 
-echo "Setting up an alias for fast folder navigation"
+
+echo "Look for your new android apk at $wow4/build/outputs/apk/$wow4-debug.apk"
 echo ""
 
-echo "Look for your new android $wow4/build/outputs/apk/$wow4-debug.apk"
-echo ""
-
-
-printf "\n\nalias myapk$wow4='cd $wow4/build/outputs/apk && echo \"Your .apk file is in the $wow4/build/outputs/apk folder \"  && echo \"The file list is\" && ls -l'"  >> ~/.profile
-
-echo "Look for your MainActivity.java file at  $wow4/src/main/java/com/example/sss"
-echo ""
-
-printf "\n\nalias mysrc$wow4='cd $wow4/src/main/java/com/example/$wow4 && echo \"Your .apk file is in the $wow4/src/main/java/com/example/$wow4 folder \"  && echo \"The file list is\" && ls -l'"  >> ~/.profile
 
 
 echo "Look for your MainActivity.java file at  $wow4/src/main/java/com/example/$wow4"
 echo ""
-echo "Your two alias' are myapp and mysrc. Type that in any terminal."
-echo ""
-
-
-echo "type myapp to find your debug .apk and the time it was made"
+de"
 echo ""
 echo "right-click run index.html, then preview-preview running application to view webpage with .apk"
 echo "Or just click this link and open the web page"
