@@ -82,5 +82,6 @@ RUN chown -R ubuntu:ubuntu /home/ubuntu && \
     cd /home/ubuntu/workspace && \
     ln -s /usr/local/android-sdk-linux /home/ubuntu/workspace/android-SDK-link && \
     ln -s /usr/local/gradle-2.9 /home/ubuntu/workspace/Gradle-link && \
-    ln -s /homeubuntu/start-here /home/ubuntu/workspace/start-here-link 
+    ln -s /homeubuntu/start-here /home/ubuntu/workspace/start-here-link  && \
+-    bash /home/ubuntu/start-here/a00-auto-ant-gradle.sh
 
