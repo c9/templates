@@ -25,4 +25,4 @@ echo "Making a symlink to start-here"
 ln -s /homeubuntu/start-here /home/ubuntu/workspace/start-here-link
 
 
-echo 'Environment variables and path complete'
+echo 'Environment Variables, Symlinks and Paths complete'
