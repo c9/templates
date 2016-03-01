@@ -31,9 +31,42 @@ echo "Type 23 for --target android-23    Android 6.0    Marshmallow, type 23"
 myNum=20
 
 
+
+#http://socialcompare.com/en/comparison/android-versions-comparison
+cd /home/ubuntu/workspace
+
+android create project \
+--target android-$myNum \
+--name $wow4 \
+--path $wow4 \
+--activity MainActivity \
+--package com.example.$wow4
+
+
+android update project --name $wow4 --target android-$myNum --path $wow4
+
+cd /home/ubuntu/workspace/$wow4
+
+ant clean
+
+sudo ant debug
+
+cd bin
+
+# Make the following a full path to where your index.html file is /home/ubuntu/workspace/www/index.html
+printf "\n\n<a href='$wow4/bin/$wow4-debug.apk'>$wow4/bin/$wow4-debug.apk</a><br>"  >> /home/ubuntu/workspace/www/index.html
+
+ls -l
+
+echo "Look for your new android $wow4/bin $wow4-debug.apk"
+echo "right-click run index.html, then preview-preview running application to view webpage with .apk"
+
+
+#Now lets make an Android .apk using Gradle
+
 #http://socialcompare.com/en/comparison/android-versions-comparison
 
-cd /home/ubuntu/workspace/
+cd /home/ubuntu/workspace
 
 
 # Make the following a full path to where your index.html file is /home/ubuntu/workspace/www/index.html
@@ -63,7 +96,7 @@ myNum=20
 #Good site to check
 #http://socialcompare.com/en/comparison/android-versions-comparison
 
-cd /home/ubuntu/workspace/
+cd /home/ubuntu/workspace
 
 android create project \
 --target android-$myNum \
