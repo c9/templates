@@ -11,9 +11,7 @@ RUN chmod -R g+w /home/ubuntu/workspace && \
     chown -R ubuntu:ubuntu /home/ubuntu/workspace
     
 # Update, upgrade and install packages
-RUN \
-    apt-get update && \
-    apt-get -y install curl unzip python-software-properties software-properties-common lib32stdc++6 lib32z1
+RUN apt-get -y install curl unzip python-software-properties software-properties-common lib32stdc++6 lib32z1
 
 # Install Android SDK
 # https://developer.android.com/sdk/index.html#Other
