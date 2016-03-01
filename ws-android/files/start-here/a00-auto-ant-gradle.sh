@@ -8,9 +8,9 @@
 
 
 
-echo "Activating apache2 webserver"
+#echo "Activating apache2 webserver"
 
-service apache2 start
+#service apache2 start
 
 
 
@@ -131,14 +131,13 @@ echo ""
 
 echo "Look for your MainActivity.java file at  $wow4/src/main/java/com/example/$wow4"
 echo ""
-de"
 echo ""
-echo "right-click run index.html, then preview-preview running application to view webpage with .apk"
-echo "Or just click this link and open the web page"
+#echo "right-click run index.html, then preview-preview running application to view webpage with .apk"
+#echo "Or just click this link and open the web page"
 echo ""
 echo ""
 echo ""
 
-echo "http://$C9_HOSTNAME"
+#echo "http://$C9_HOSTNAME"
 
 
