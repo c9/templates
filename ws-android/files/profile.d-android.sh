@@ -13,16 +13,7 @@ PATH $PATH:$ANDROID_SDK_HOME/platform-tools
 GRADLE_HOME /usr/local/gradle-2.9
 PATH $PATH:$GRADLE_HOME/bin
 
-# now make some symlinks, fake folders
 
-echo "Making a symlink to the Android-SDK"
-ln -s /usr/local/android-sdk-linux /home/ubuntu/workspace/android-SDK-link
-
-echo "Making a symlink to Gradle"
-ln -s /usr/local/gradle-2.9 /home/ubuntu/workspace/Gradle-link
-
-echo "Making a symlink to start-here"
-ln -s /homeubuntu/start-here /home/ubuntu/workspace/start-here-link
 
 
 echo 'Environment Variables, Symlinks and Paths complete'
