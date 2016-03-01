@@ -131,13 +131,8 @@ echo ""
 
 echo "Look for your MainActivity.java file at  $wow4/src/main/java/com/example/$wow4"
 echo ""
-echo ""
-#echo "right-click run index.html, then preview-preview running application to view webpage with .apk"
-#echo "Or just click this link and open the web page"
-echo ""
-echo ""
-echo ""
 
-#echo "http://$C9_HOSTNAME"
+
+
 
 
