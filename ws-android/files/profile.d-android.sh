@@ -13,7 +13,15 @@ PATH $PATH:$ANDROID_SDK_HOME/platform-tools
 GRADLE_HOME /usr/local/gradle-2.9
 PATH $PATH:$GRADLE_HOME/bin
 
-
-
-
 echo 'Environment Variables, Symlinks and Paths complete'
+
+
+echo "Activating apache2 webserver"
+service apache2 start
+
+echo ""
+echo "right-click run index.html, then preview-preview running application to view webpage with .apk"
+echo "Or just click this link and open the web page"
+echo ""
+echo ""
+echo "http://$C9_HOSTNAME"
