@@ -7,6 +7,7 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN echo "Version 1.11"
 
 # Set mirrors to automatic based off location
+RUN apt-get install -y curl
 ADD files/auto-sources.sh /var/tmp/auto-sources.sh
 RUN bash /var/tmp/auto-sources.sh && rm /var/tmp/auto-sources.sh
 
