@@ -1,7 +1,7 @@
 #!/bin/bash  
 
 #  only need to run this script with the command (do not type the #)
-#  bash a05-clone-android-studio-project.sh
+#  bash a05-clone-github-android-studio-project.sh
 #  best in cloud 9 to just right click this file and select run
 
 
@@ -23,16 +23,31 @@ sudo git clone $MY_GIT_TO_CLONE $MY_FOLDER_NAME
 
 
 
-
-
-
-cd /home/ubuntu/workspace/$MY_FOLDER_NAME
-
 echo "Need to direct gradle to the Android SDK"
 
 printf "sdk.dir=/usr/local/android-sdk-linux" > local.preperties
 
 
+
+echo "Here are your installed SDK platforms"
+ls -l /usr/local/android-sdk-linux/platforms
+echo ""
+echo "Now in another terminal have a look at your new folders build.gradle file"
+echo "Compare it to the build.gradle file in the folder helloGradle"
+echo "The important lines are:"
+echo "compileSdkVersion 20"
+echo "buildToolsVersion "23.0.2"
+echo "The SDK version simply has to be an sdk platform you have already installed. See the above list"
+echo ""
+echo "The buildToolsVersion simply must be the same as the helloGradle buildtoolsversion as that is what is installed in this workspace"
+echo ""
+echo "You may want to also check that the file local.properites looks correct for this workspace"
+echo "hit enter when those lines are OK"
+read
+
+
+
+cd /home/ubuntu/workspace/$MY_FOLDER_NAME
 chmod a+x gradlew
 
 sudo ./gradlew assembleDebug
