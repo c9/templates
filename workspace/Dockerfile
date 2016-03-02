@@ -107,13 +107,8 @@ RUN sudo -u ubuntu -i bash -l -c " \
 # sudo -u ubuntu -i bash -l -c "npm install -g npm@3.3.6" && \
 RUN wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh -e
 RUN sudo -u ubuntu -i heroku
-RUN sudo -u ubuntu -i bash -l -c "npm install jitsu@0.15.0 -g && \
-                                  npm install azure-cli@0.9.9 -g && \
-                                  npm install grunt@0.4.5 -g && \
-                                  npm install grunt-cli@0.1.13  -g && \
-                                  npm install bower@1.5.3  -g && \
-                                  gem install rhc -v 1.38.4 && \
-                                  gem install compass -v 1.0.3"
+RUN sudo -u ubuntu -i bash -l -c "npm install azure-cli -g && \
+                                  gem install rhc -v 1.38.4"
 
 # MongoDB
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 && \
