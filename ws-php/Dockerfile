@@ -1,10 +1,10 @@
 FROM cloud9/workspace
 MAINTAINER Cloud9 IDE, inc. <info@c9.io>
 
-ADD ./files /home/ubuntu
+ADD ./files/home /home/ubuntu
 
-RUN chmod -R g+w /home/ubuntu/workspace && \
-    chown -R ubuntu:ubuntu /home/ubuntu
+RUN bash -c 'chmod -R g+w /home/ubuntu/{workspace,sessions} && \
+    chown -R ubuntu:ubuntu /home/ubuntu/{workspace,sessions}'
 
 # PHP based on defaults from
 #   http://docs.travis-ci.com/user/ci-environment/#Extensions
@@ -24,3 +24,5 @@ RUN apt-get install -y php5 php5-cli php5-fpm \
     && cd /etc/php5/mods-available && ls *.ini | sed 's/\.ini$//' | xargs php5enmod \
     && curl -sS https://getcomposer.org/installer | php \
         && mv composer.phar /usr/bin/composer
+
+RUN chown -R ubuntu: /home/ubuntu/lib

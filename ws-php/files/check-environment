@@ -2,6 +2,7 @@
 set -ex
 
 cd ~/workspace
+echo Success > file
 php -S localhost:9090 &
 START=`date +'%s'`
 while true; do
