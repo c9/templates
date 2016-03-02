@@ -138,7 +138,7 @@ ADD ./files/gitignore /home/ubuntu/.gitignore
 RUN cp /home/ubuntu/.gitignore /home/ubuntu/.hgignore && \
     mkdir -p /home/ubuntu/lib/apache2/lock /home/ubuntu/lib/apache2/log /home/ubuntu/lib/apache2/run && \
     cd /home/ubuntu && \
-    chown -R ubuntu: .bash* .gemrc lib .*ignore && \
+    chown -R ubuntu: .bash* .gemrc lib .*ignore .ssh && \
     chown ubuntu: .
 
 RUN echo "Configure apache2" && \
