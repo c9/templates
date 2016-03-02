@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -l
 set -ex
 
 ruby --version | grep 2\..\..
@@ -9,11 +9,9 @@ for rubyversion in 1.9.3 2.1.5 2.2.4 2.3.0; do
 	set +x;
 	echo "+ rvm use $rubyversion"
 	rvm use $rubyversion
-	echo "+ ruby --version | grep $rubyversion"
+	set -x
 	ruby --version | grep $rubyversion
 	rails -v
-	echo "+ puts "hello" | ruby"
 	echo 'puts "hello"' | ruby
-	set -x
 done
 
