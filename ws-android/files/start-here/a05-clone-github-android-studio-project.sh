@@ -23,6 +23,7 @@ sudo git clone $MY_GIT_TO_CLONE $MY_FOLDER_NAME
 
 
 
+cd /home/ubuntu/workspace/$MY_FOLDER_NAME
 
 echo "Need to direct gradle to the Android SDK"
 
@@ -48,7 +49,6 @@ read
 
 
 
-cd /home/ubuntu/workspace/$MY_FOLDER_NAME
 chmod a+x gradlew
 
 sudo ./gradlew assembleDebug
