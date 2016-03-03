@@ -72,7 +72,7 @@ ENV PATH $PATH:$GRADLE_HOME/bin
 
 
 # activate gradle by running it once    
-RUN gradle
+#RUN gradle
 
 
 # -------------------------- Final Cloud 9 Installation Actions -----------------------------------------
