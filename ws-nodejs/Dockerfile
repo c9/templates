@@ -1,7 +1,7 @@
 FROM cloud9/workspace
 MAINTAINER Cloud9 IDE, inc. <info@c9.io>
 
-RUN bash -l -c " \
+RUN sudo -u ubuntu -i bash -l -c " \
     nvm install 0.8 && \
     nvm install 0.10 && \
     nvm install 0.12 && \
