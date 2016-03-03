@@ -9,6 +9,7 @@
 
 echo "Enter a github repository URL, must end in .git example:"
 echo "https://github.com/codepath/android_hello_world.git"
+echo ""
 read MY_GIT_TO_CLONE
 
 echo "What would you like to call the directory. Usually called the name just before the .git"
@@ -25,7 +26,7 @@ sudo git clone $MY_GIT_TO_CLONE $MY_FOLDER_NAME
 
 echo "Need to direct gradle to the Android SDK"
 
-printf "sdk.dir=/usr/local/android-sdk-linux" > local.preperties
+printf "sdk.dir=/usr/local/android-sdk-linux" > local.properties
 
 
 
@@ -36,7 +37,7 @@ echo "Now in another terminal have a look at your new folders build.gradle file"
 echo "Compare it to the build.gradle file in the folder helloGradle"
 echo "The important lines are:"
 echo "compileSdkVersion 20"
-echo "buildToolsVersion "23.0.2"
+echo "buildToolsVersion 23.0.2"
 echo "The SDK version simply has to be an sdk platform you have already installed. See the above list"
 echo ""
 echo "The buildToolsVersion simply must be the same as the helloGradle buildtoolsversion as that is what is installed in this workspace"
@@ -72,7 +73,7 @@ echo "Or just click this link and open the web page"
 echo ""
 echo "IF YOU HAD AN ERROR, THE CORRECT PLATFORM MIGHT NOT BE INSTALLED. sudo bash a03-install-more-platforms.sh to correct it "
 echo "or change the build.gradle file line:"
-echo "    compileSdkVersion 21"
-echo "    buildToolsVersion "23.0.0"
+echo "    compileSdkVersion 20"
+echo "    buildToolsVersion 23.0.2"
 echo ""
 echo "http://$C9_HOSTNAME"
