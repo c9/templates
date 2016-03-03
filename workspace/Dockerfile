@@ -56,9 +56,6 @@ RUN apt-get install -y ant maven2
 # editors
 RUN apt-get install -y nano vim vim-addon-manager vim-vimoutliner vim-doc ctags indent
 
-# X11
-RUN apt-get install -y xvfb tightvncserver x11vnc novnc xterm fluxbox
-
 # servers
 RUN apt-get install -y redis-server redis-tools nginx postgresql-9.3
 RUN apt-get install -y mysql-server rabbitmq-server couchdb
