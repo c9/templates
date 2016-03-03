@@ -19,7 +19,7 @@ ENV PATH $PATH:$JAVA_HOME/bin
 
 # -------------------------- Install necessary base packages ----------------------------------------- 
 
-RUN \
+RUN chown -R ubuntu:ubuntu /home/ubuntu && \
     apt-get update && \
     apt-get -y install curl unzip python-software-properties software-properties-common lib32stdc++6 lib32z1
 
@@ -77,8 +77,7 @@ RUN gradle
 
 # -------------------------- Final Cloud 9 Installation Actions -----------------------------------------
 #set ownership, a few symlinks and auto activate the startup a00-auto-ant-gradle.sh bash file
-RUN chown -R ubuntu:ubuntu /home/ubuntu && \
-    chmod 775 /home/ubuntu/start-here && \
+RUN chmod 775 /home/ubuntu/start-here && \
     cd /home/ubuntu/workspace && \
     ln -s /usr/local/android-sdk-linux /home/ubuntu/workspace/android-SDK-link && \
     ln -s /usr/local/gradle-2.9 /home/ubuntu/workspace/Gradle-link && \
