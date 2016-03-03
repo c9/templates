@@ -80,8 +80,13 @@ RUN apt-get install -y xvfb tightvncserver x11vnc novnc xterm fluxbox
 RUN apt-get install -y firefox chromium-browser
 
 # servers
-RUN apt-get install -y redis-server redis-tools nginx postgresql-9.3
-RUN apt-get install -y mysql-server rabbitmq-server couchdb
+RUN apt-get install -y redis-server redis-tools nginx mysql-server \
+    rabbitmq-server couchdb
+
+# Postgres
+RUN apt-get install -y postgresql-9.3 && \
+    sudo -u postgres createuser -srd ubuntu && \
+    sudo -u postgres psql -c "create database ubuntu owner=ubuntu"
 
 # tools
 RUN apt-get install -y dnsutils bash-completion xsltproc \
