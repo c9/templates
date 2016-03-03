@@ -15,6 +15,8 @@ PATH $PATH:$GRADLE_HOME/bin
 
 echo 'Environment Variables, Symlinks and Paths complete'
 
+echo "Running Gradle once to set it up"
+sudo gradle
 
 echo "Activating apache2 webserver"
 service apache2 start
