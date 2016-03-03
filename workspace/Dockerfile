@@ -99,8 +99,6 @@ RUN sudo -u ubuntu -i bash -l -c " \
 # sudo -u ubuntu -i bash -l -c "npm install -g npm@3.3.6" && \
 RUN wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh -e
 RUN sudo -u ubuntu -i heroku
-RUN sudo -u ubuntu -i bash -l -c "npm install azure-cli -g && \
-                                  gem install rhc -v 1.38.4"
 
 # MongoDB
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 && \
