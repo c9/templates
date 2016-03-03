@@ -1,0 +1,14 @@
+#!/bin/bash -l
+set -ex
+
+for nodeversion in 0.8 0.10 0.12 4 5; do
+	set +x;
+	echo "+ nvm use $nodeversion"
+	nvm use $nodeversion
+	set -x
+	node --version | grep $nodeversion
+	npm -v
+	node -e 'console.log("hello")' 
+done
+
+iojs -v

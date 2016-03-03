@@ -30,20 +30,7 @@ popd
 node -e 'console.log("hello")' 
 
 node -v
-npm --version | grep -E '^2' || { echo "Expected NPM v2. Got $(npm --version)"; exit 1; }
-nvm use 0.8
-node --version | grep 'v0.8'
-npm --version | grep -E '^1'
-nvm use 0.10
-node --version | grep 'v0.10'
-npm --version | grep -E '^1'
-nvm use 0.12
-node --version | grep 'v0.12'
-npm --version | grep -E '^2'
-nvm use default
-npm --version | grep -E '^2'
-
-iojs -v
+npm --version
 
 # npm is not in a directory whitelisted for sudo usage, so it won't work
 # sudo npm install -g test || sudo npm install -g test

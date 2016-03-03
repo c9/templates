@@ -1,6 +1,13 @@
 FROM cloud9/workspace
 MAINTAINER Cloud9 IDE, inc. <info@c9.io>
 
+RUN bash -l -c " \
+    nvm install 0.8 && \
+    nvm install 0.10 && \
+    nvm install 0.12 && \
+    nvm install iojs-v3.3.1 && \
+    nvm install 5"
+
 RUN rm -rf /home/ubuntu/workspace && \
     env GIT_SSL_NO_VERIFY=true git clone https://github.com/c9/chat-example.git /home/ubuntu/workspace
 
