@@ -1,14 +1,10 @@
-#!/bin/bash -l
+#!/bin/bash
 set -ex
 
-for nodeversion in 0.8 0.10 0.12 4 5; do
-	set +x;
-	echo "+ nvm use $nodeversion"
-	nvm use $nodeversion
-	set -x
-	node --version | grep $nodeversion
-	npm -v
-	node -e 'console.log("hello")' 
-done
+npm install -g npm
 
-iojs -v
+npm install coffee-script
+node_modules/coffee-script/bin/coffee -e '1'
+
+npm install -g express-generator
+express --version
