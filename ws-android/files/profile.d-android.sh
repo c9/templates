@@ -15,7 +15,7 @@ export PATH $PATH:$GRADLE_HOME/bin
 
 echo 'Environment Variables, Symlinks and Paths complete'
 
-
+sudo bash /home/ubuntu/start-here/a00-auto-ant-gradle.sh 
 
 echo "Activating apache2 webserver"
 service apache2 start
