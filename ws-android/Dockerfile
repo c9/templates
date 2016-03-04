@@ -39,11 +39,11 @@ RUN SDK_VERSION=r24.3.3 && \
     exit 0
 
 # Android SDK Home and Path for pre-cloud9 testing
-ENV ANDROID_SDK_HOME /usr/local/android-sdk-linux
-ENV ANDROID_HOME /usr/local/android-sdk-linux
-ENV PATH $PATH:$ANDROID_SDK_HOME
-ENV PATH $PATH:$ANDROID_SDK_HOME/tools
-ENV PATH $PATH:$ANDROID_SDK_HOME/platform-tools
+#ENV ANDROID_SDK_HOME /usr/local/android-sdk-linux
+#ENV ANDROID_HOME /usr/local/android-sdk-linux
+#ENV PATH $PATH:$ANDROID_SDK_HOME
+#ENV PATH $PATH:$ANDROID_SDK_HOME/tools
+#ENV PATH $PATH:$ANDROID_SDK_HOME/platform-tools
 
 # -------------------------- Install the Android Platforms -----------------------------------------
 
@@ -67,8 +67,8 @@ RUN cd /usr/local && \
     exit 0
 
 #Gradle Home and Path for pre-cloud9 testing
-ENV GRADLE_HOME /usr/local/gradle-${GRADLE_VERSION}
-ENV PATH $PATH:$GRADLE_HOME/bin
+#ENV GRADLE_HOME /usr/local/gradle-${GRADLE_VERSION}
+#ENV PATH $PATH:$GRADLE_HOME/bin
 
 
 # activate gradle by running it once    
@@ -79,7 +79,7 @@ ENV PATH $PATH:$GRADLE_HOME/bin
 #set ownership, a few symlinks and auto activate the startup a00-auto-ant-gradle.sh bash file
 RUN chmod 775 /home/ubuntu/start-here && \
     cd /home/ubuntu/workspace && \
-    gradle && \
+    /usr/local/gradle-${GRADLE_VERSION}/bin/gradle && \
     ln -s /usr/local/android-sdk-linux /home/ubuntu/workspace/android-SDK-link && \
     ln -s /usr/lib/jvm/java-7-openjdk-amd64 /home/ubuntu/workspace/openjdk-link && \
     ln -s /usr/local/gradle-2.9 /home/ubuntu/workspace/Gradle-link && \
