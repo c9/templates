@@ -12,8 +12,8 @@ ADD ./files /home/ubuntu
 ADD ./files/profile.d-android.sh /etc/profile.d/android.sh
 
 # These commands just let us test the enviornment before submitting to cloud 9    
-ENV JAVA_HOME /usr/lib/jvm/java-7-openjdk-amd64
-ENV PATH $PATH:$JAVA_HOME/bin
+#ENV JAVA_HOME /usr/lib/jvm/java-7-openjdk-amd64
+#ENV PATH $PATH:$JAVA_HOME/bin
 
 
 
