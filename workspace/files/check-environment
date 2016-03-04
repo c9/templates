@@ -13,9 +13,7 @@ if X='() { :; }; echo Vulnerable' bash -c pwd | grep -q Vulnerable; then
     exit 1
 fi
  
-sudo apt-get -qq update
 sudo apt-get -qq -y install hello
-sudo apt-get -qq -y install hello-debhelper
 
 if [[ $- == *i* ]]; then
     TMUXOUT=`/mnt/shared/sbin/tmux new ls`
