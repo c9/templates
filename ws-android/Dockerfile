@@ -79,6 +79,7 @@ ENV PATH $PATH:$GRADLE_HOME/bin
 #set ownership, a few symlinks and auto activate the startup a00-auto-ant-gradle.sh bash file
 RUN chmod 775 /home/ubuntu/start-here && \
     cd /home/ubuntu/workspace && \
+    gradle && \
     ln -s /usr/local/android-sdk-linux /home/ubuntu/workspace/android-SDK-link && \
     ln -s /usr/lib/jvm/java-7-openjdk-amd64 /home/ubuntu/workspace/openjdk-link && \
     ln -s /usr/local/gradle-2.9 /home/ubuntu/workspace/Gradle-link && \
