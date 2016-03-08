@@ -140,6 +140,7 @@ RUN cp /home/ubuntu/.gitignore /home/ubuntu/.hgignore && \
 
 RUN echo "Configure apache2" && \
     a2enmod rewrite && \
+    ln -s ../sites-available/001-cloud9.conf /etc/apache2/sites-enabled/001-cloud9.conf && \
     sed -i 's/Listen 80\b/Listen 8080/' /etc/apache2/ports.conf && \
     sed -Ei 's/(.*)secure_path.*/\1!secure_path/' /etc/sudoers && \
     touch /etc/init.d/systemd-logind
