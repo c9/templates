@@ -62,6 +62,7 @@ RUN apt-get install -y redis-server redis-tools nginx mysql-server \
 
 # Postgres
 RUN apt-get install -y postgresql-9.3 && \
+    /etc/init.d/postgresql start && \
     sudo -u postgres createuser -srd ubuntu && \
     sudo -u postgres psql -c "create database ubuntu owner=ubuntu"
 
