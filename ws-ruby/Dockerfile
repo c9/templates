@@ -27,3 +27,5 @@ RUN bash -l -c "rvm install ruby-2.3.0 && \
     NOKOGIRI_USE_SYSTEM_LIBRARIES=1 gem install rails -v 5.0.0.beta3"
 
 RUN bash -l -c "rails new /home/ubuntu/workspace"
+
+USER root
