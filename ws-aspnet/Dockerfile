@@ -1,11 +1,6 @@
 FROM cloud9/workspace
 MAINTAINER Peter Bozovic <peter.bozovic@ogilvy.com>
 
-RUN sudo -u ubuntu -i bash -l -c "cd ~/ \
-	&& git clone https://github.com/c9/core.git c9sdk \
-	&& cd c9sdk \
-	&& ./scripts/install-sdk.sh"
-
 # Getting CoreClr dependencies
 RUN apt-get -y install libunwind8 gettext libssl-dev libcurl3-dev zlib1g libicu-dev
 
