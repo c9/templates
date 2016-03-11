@@ -37,6 +37,9 @@ RUN apt-get install -y bash console-setup sudo wget curl git python python-pip p
     sed -i 's/%sudo\s.*/%sudo ALL=NOPASSWD:ALL/' /etc/sudoers && \
     usermod -a -G sudo ubuntu
 
+# Enable some UTF-8 support
+RUN locale-gen en_US.UTF-8
+
 # node.js and nvm
 USER ubuntu
 RUN curl https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh | sh -e && \

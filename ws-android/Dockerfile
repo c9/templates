@@ -60,10 +60,4 @@ RUN yes | (\
     /usr/local/android-sdk-linux/tools/android update sdk --all --filter build-tools-23.0.2 --no-ui --force) 
 
 # Set PATH
-RUN \
-    echo 'export ANDROID_HOME=/usr/local/android-sdk-linux' > /etc/profile.d/android.sh && \
-    echo 'export ANDROID_SDK_HOME=/usr/local/android-sdk-linux' >> /etc/profile.d/android.sh && \
-    echo 'export ANDROID_NDK_HOME=/usr/local/android-ndk-r10e' >> /etc/profile.d/android.sh && \
-    echo 'export GRADLE_HOME=/usr/local/gradle-2.5' >> /etc/profile.d/android.sh && \
-    echo 'export NDK_PROJECT_PATH=/home/ubuntu/workspace' >> /etc/profile.d/android.sh && \
-    echo 'export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_NDK_HOME/platform-tools:$ANDROID_NDK_HOME:$GRADLE_HOME/bin' >> /etc/profile.d/android.sh
+ADD ./files/android-profile /etc/profile.d/android.sh
