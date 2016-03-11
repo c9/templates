@@ -1,8 +1,8 @@
 #!/bin/bash
 set -ex
 
-dnvm
-dnx
-dnu
-yo
-npm
+dnvm -h
+dnx -h
+dnu -h
+yo --help
+npm faq
