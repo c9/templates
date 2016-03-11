@@ -1,0 +1,34 @@
+{
+    "run": {
+        "@path": "/.c9/runners",
+        "configs": {
+            "@inited": "true",
+            "json()": {
+                "ConsoleApplication": {
+                    "command": "run",
+                    "cwd": "/ConsoleApplication",
+                    "name": "ConsoleApplication",
+                    "runner": "dnx"
+                },
+                "WebBasicApplication": {
+                    "command": "web",
+                    "cwd": "/WebBasicApplication",
+                    "name": "WebBasicApplication",
+                    "runner": "dnx"
+                },
+                "WebApplication": {
+                    "command": "web",
+                    "cwd": "/WebApplication",
+                    "name": "WebApplication",
+                    "runner": "dnx"
+                },
+                "WebApiApplication": {
+                    "command": "web",
+                    "cwd": "/WebApiApplication",
+                    "name": "WebApiApplication",
+                    "runner": "dnx"
+                }
+            }
+        }
+    }
+}
