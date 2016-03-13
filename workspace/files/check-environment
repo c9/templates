@@ -21,6 +21,11 @@ if [[ $- == *i* ]]; then
     /mnt/shared/sbin/tmux -V | grep 1.8
 fi
 
+if ! [[ -e ~/.ssh/config ]]; then
+    echo '~.ssh/config is missing'
+    exit 1
+fi
+
 pushd /mnt/shared/lib
 ../sbin/node -e 'require("pty.js").createTerminal(); process.exit()'
 popd
