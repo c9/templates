@@ -146,6 +146,8 @@ RUN echo "Configure apache2" && \
     touch /etc/init.d/systemd-logind
 
 RUN echo "Configure php" && \
+    /etc/init.d/mysql start && \
+    /etc/init.d/postgresql start && \
     apt-get install -y php5 php5-cli php5-fpm php5-pgsql php5-mysql phpmyadmin phppgadmin && \
     php5enmod c9 && \
     chmod 777 /var/lib/phpmyadmin/tmp && \
