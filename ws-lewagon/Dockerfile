@@ -49,3 +49,5 @@ RUN chmod -R g-w /home/ubuntu/lib && chown -R root:root /home/ubuntu/lib
 USER ubuntu
 RUN rails new -T --database=postgresql to-be-removed
 RUN rm -rf to-be-removed
+
+USER root
