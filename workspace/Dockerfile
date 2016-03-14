@@ -145,6 +145,14 @@ RUN echo "Configure apache2" && \
     sed -Ei 's/(.*)secure_path.*/\1!secure_path/' /etc/sudoers && \
     touch /etc/init.d/systemd-logind
 
+RUN echo "Configure php" && \
+    /etc/init.d/mysql start && \
+    /etc/init.d/postgresql start && \
+    apt-get install -y php5 php5-cli php5-fpm php5-pgsql php5-mysql phpmyadmin phppgadmin && \
+    php5enmod c9 && \
+    chmod 777 /var/lib/phpmyadmin/tmp && \
+    cd /etc/php5/mods-available && ls *.ini | sed 's/\.ini$//' | xargs php5enmod
+
 # re-enable service startup. This line must come after all apt-get installs
 RUN rm -f /usr/sbin/policy-rc.d
 
