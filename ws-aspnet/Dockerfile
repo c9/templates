@@ -5,17 +5,18 @@ MAINTAINER Peter Bozovic <peter.bozovic@ogilvy.com>
 RUN apt-get -y install libunwind8 gettext libssl-dev libcurl3-dev zlib1g libicu-dev
 
 # Installing Kestrel (web server)
+# To remove after update to 16.04
 RUN LIBUV_VERSION=1.8.0 \
-    && sudo apt-get install make automake libtool curl \
-	&& sudo curl -sSL https://github.com/libuv/libuv/archive/v${LIBUV_VERSION}.tar.gz | sudo tar zxfv - -C /usr/local/src \
+    && apt-get install make automake libtool curl \
+	&& curl -sSL https://github.com/libuv/libuv/archive/v${LIBUV_VERSION}.tar.gz | tar zxfv - -C /usr/local/src \
     && cd /usr/local/src/libuv-$LIBUV_VERSION \
-	&& sudo sh autogen.sh \
-	&& sudo ./configure \
-	&& sudo make \
-	&& sudo make install \
-    && sudo rm -rf /usr/local/src/libuv-$LIBUV_VERSION \
+	&& sh autogen.sh \
+	&& ./configure \
+	&& make \
+	&& make install \
+    && rm -rf /usr/local/src/libuv-$LIBUV_VERSION \
 	&& cd ~/ \
-	&& sudo ldconfig
+	&& ldconfig
 	
 # Installing DNVM
 RUN sudo -u ubuntu -i bash -l -c "curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | DNX_BRANCH=dev sh"
