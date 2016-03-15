@@ -22,7 +22,7 @@ RUN LIBUV_VERSION=1.8.0 \
 RUN sudo -u ubuntu -i bash -l -c "curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | DNX_BRANCH=dev sh"
 
 # Installing Yeoman to hande project templates
-RUN sudo -u ubuntu -i bash -l -c "sudo npm install -g npm"
+RUN sudo -u ubuntu -i bash -l -c "npm install -g npm"
 RUN sudo -u ubuntu -i bash -l -c "npm install -g yo generator-aspnet"
 
 ADD ./files/workspace /home/ubuntu/workspace
