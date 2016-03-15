@@ -22,7 +22,7 @@ if [[ $- == *i* ]]; then
 fi
 
 if ! [[ -e ~/.ssh/config ]]; then
-    echo '~.ssh/config is missing'
+    echo '~/.ssh/config is missing'
     exit 1
 fi
 
