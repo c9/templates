@@ -36,16 +36,15 @@ deb-src http://security.ubuntu.com/ubuntu trusty-security universe"
 
 if curl -Ss metadata &>/dev/null; then
 	REGION=$(curl -Ss -H "Metadata-Flavor: Google" metadata/computeMetadata/v1/instance/zone | sed -r 's#.*zones/((europe|us|asia)-[a-z0-9]*).*#\1#')
-
-	if [[ $stdout ]]; then
-		echo "${GCE//REPLACE/$REGION}"
-	else
-		echo "${GCE//REPLACE/$REGION}" > /etc/apt/sources.list
-	fi
+	OUT="${GCE//REPLACE/$REGION}"
 else
-	if [[ $stdout ]]; then
-		echo "$DEFAULT"
-	else
-		echo "$DEFAULT" > /etc/apt/sources.list
-	fi
+	OUT="$DEFAULT"
+fi
+
+if [[ $stdout ]]; then
+	echo "$OUT"
+else
+	rm /etc/apt/sources.list
+	touch /etc/apt/sources.list
+	echo "$OUT" > /etc/apt/sources.list.d/c9.list
 fi
