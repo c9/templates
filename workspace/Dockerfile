@@ -132,8 +132,9 @@ ADD ./files/etc /etc
 ADD ./files/home /home
 ADD ./files/gitignore /home/ubuntu/.gitignore
 RUN cp /home/ubuntu/.gitignore /home/ubuntu/.hgignore && \
-    mkdir -p /home/ubuntu/lib/apache2/lock /home/ubuntu/lib/apache2/log /home/ubuntu/lib/apache2/run /home/ubuntu/.ssh && \
+    mkdir -p /home/ubuntu/lib/apache2/lock /home/ubuntu/lib/apache2/log /home/ubuntu/lib/apache2/run && \
     cd /home/ubuntu && \
+    mv ssh .ssh && \
     chmod 700 .ssh && \
     chown -R ubuntu: .bash* .gemrc lib .*ignore .ssh && \
     chown ubuntu: .
