@@ -14,6 +14,11 @@ export GRADLE_HOME=/usr/local/gradle-2.9
 export PATH=$GRADLE_HOME/bin:$PATH
 
 echo 'Environment Variables, Symlinks and Paths complete'
+echo '$PATH'
+echo ''
+echo 'JAVA_HOME at $JAVA_HOME'
+echo 'ANDROID_SDK_HOME at  $ANDROID_SDK_HOME'
+echo 'GRADLE_HOME at $GRADLE_HOME'
 
 sudo bash /home/ubuntu/start-here/a00-auto-ant-gradle.sh 
 
