@@ -21,8 +21,6 @@ ADD ./files/profile.d-android.sh /etc/profile.d/android.sh
 # -------------------------- Install necessary base packages ----------------------------------------- 
 
 RUN chown -R ubuntu:ubuntu /home/ubuntu && \
-    chown -R ubuntu:ubuntu /etc/profile.d/android.sh && \
-    chmod a+x /etc/profile.d/android.sh && \
     apt-get update && \
     apt-get -y install curl unzip python-software-properties software-properties-common lib32stdc++6 lib32z1
 
