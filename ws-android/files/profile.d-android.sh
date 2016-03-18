@@ -1,17 +1,17 @@
 #!/bin/bash
 
 echo 'Setting up environment variables etc..'
-export JAVA_HOME /usr/lib/jvm/java-7-openjdk-amd64
-export PATH $PATH:$JAVA_HOME/bin
+export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
+export PATH=$PATH:$JAVA_HOME/bin
 
-export ANDROID_SDK_HOME /usr/local/android-sdk-linux
-export ANDROID_HOME /usr/local/android-sdk-linux
-export PATH $PATH:$ANDROID_SDK_HOME
-export PATH $PATH:$ANDROID_SDK_HOME/tools
-export PATH $PATH:$ANDROID_SDK_HOME/platform-tools
+export ANDROID_SDK_HOME=/usr/local/android-sdk-linux
+export ANDROID_HOME=/usr/local/android-sdk-linux
+export PATH=$PATH:$ANDROID_SDK_HOME
+export PATH=$PATH:$ANDROID_SDK_HOME/tools
+export PATH=$PATH:$ANDROID_SDK_HOME/platform-tools
 
-export GRADLE_HOME /usr/local/gradle-2.9
-export PATH $PATH:$GRADLE_HOME/bin
+export GRADLE_HOME=/usr/local/gradle-2.9
+export PATH=$PATH:$GRADLE_HOME/bin
 
 echo 'Environment Variables, Symlinks and Paths complete'
 
