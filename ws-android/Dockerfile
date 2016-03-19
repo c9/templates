@@ -22,7 +22,7 @@ ADD ./files/profile.d-android.sh /etc/profile.d/android.sh
 
 RUN chown -R ubuntu:ubuntu /home/ubuntu && \
     apt-get update && \
-    apt-get -y install curl unzip python-software-properties software-properties-common lib32stdc++6 lib32z1
+    apt-get -y install curl unzip python-software-properties software-properties-common openjdk-7-jdk lib32stdc++6 lib32z1
 
 
 # -------------------------- Install the Android SDK -----------------------------------------
