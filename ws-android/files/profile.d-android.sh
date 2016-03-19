@@ -16,12 +16,15 @@ export PATH=$GRADLE_HOME/bin:$PATH
 echo 'Environment Variables, Symlinks and Paths complete'
 echo '$PATH'
 echo ''
-echo 'JAVA_HOME at $JAVA_HOME'
-echo 'ANDROID_SDK_HOME at  $ANDROID_SDK_HOME'
-echo 'GRADLE_HOME at $GRADLE_HOME'
+echo 'JAVA_HOME at '
+echo $JAVA_HOME
+echo 'ANDROID_SDK_HOME at  '
+echo $ANDROID_SDK_HOME
+echo 'GRADLE_HOME at '
+echo $GRADLE_HOME
 
 
-echo 'running default heloo world programs'
+echo 'running default Hello World programs'
 sudo bash /home/ubuntu/start-here/a00-auto-ant-gradle.sh 
 sudo mv /home/ubuntu/start-here/a00-auto-ant-gradle.sh /home/ubuntu/start-here/a00b-auto-ant-gradle.sh 
 
