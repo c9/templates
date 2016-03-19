@@ -24,14 +24,25 @@ echo 'GRADLE_HOME at '
 echo $GRADLE_HOME
 
 
-echo 'running default Hello World programs'
-sudo bash /home/ubuntu/start-here/a00-auto-ant-gradle.sh 
-sudo mv /home/ubuntu/start-here/a00-auto-ant-gradle.sh /home/ubuntu/start-here/a00b-auto-ant-gradle.sh 
+echo 'running default Hello World programs only once then moving them'
 
-echo "Activating apache2 webserver"
+if [ -e /home/ubuntu/start-here/a00-auto-ant-gradle.sh ]
+  then
+    sudo bash /home/ubuntu/start-here/a00-auto-ant-gradle.sh 
+    sudo mv /home/ubuntu/start-here/a00-auto-ant-gradle.sh /home/ubuntu/start-here/a00b-auto-ant-gradle.sh 
+fi
 
-sudo bash /home/ubuntu/start-here/a04-restart-webserver.sh
-sudo mv /home/ubuntu/start-here/a04-restart-webserver.sh /home/ubuntu/start-here/a04b-restart-webserver.sh
+
+
+echo "Activating Apache2 webserver only once then moving it"
+
+if [ -e /home/ubuntu/start-here/a04-restart-webserver.sh ]
+  then
+    sudo bash /home/ubuntu/start-here/a04-restart-webserver.sh
+    sudo mv /home/ubuntu/start-here/a04-restart-webserver.sh /home/ubuntu/start-here/a04b-restart-webserver.sh
+fi
+
+
 
 echo ""
 echo "right-click run index.html, then preview-preview running application to view webpage with .apk"
