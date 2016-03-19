@@ -1,9 +1,11 @@
 #!/bin/bash
+
 set -ex
 
 android list
-ndk-build --help
-ndk-depends --help
+gradle --version
+ant -v
+$JAVA_HOME
+$ANDROID_SDK_HOME
+$GRADLE_HOME
 
-gradle --version | grep "Gradle 2.5"
-gradle
