@@ -10,6 +10,11 @@ We welcome contributions from the community and are pleased to have them. Please
 5. Make a PR after you've completed testing
 
 
+## Style Guidelines
+We try to stick to 'Shiny new commit styles' from github: https://github.com/blog/926-shiny-new-commit-styles
+As well as git commit messages as you can find here: http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
+
+
 ## Guidelines
 We will review any updates to images presented in PRs; they may not all get merged. New workspace types are welcome but can take a little longer to be reviewed and released on to production systems than minor fixes.
 
