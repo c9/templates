@@ -19,7 +19,7 @@ read MY_FOLDER_NAME
 cd /home/ubuntu/workspace/
 
 
-sudo git clone $MY_GIT_TO_CLONE $MY_FOLDER_NAME
+git clone $MY_GIT_TO_CLONE $MY_FOLDER_NAME
 
 
 
@@ -36,6 +36,7 @@ ls -l /usr/local/android-sdk-linux/platforms
 echo ""
 echo "Now in another terminal have a look at your new folders build.gradle file"
 echo "Compare it to the build.gradle file in the folder helloGradle"
+echo "Change the following lines to work on this system"
 echo "The important lines are:"
 echo "compileSdkVersion 20"
 echo "buildToolsVersion 23.0.2"
