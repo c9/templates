@@ -44,6 +44,8 @@ bzr --version | grep 2\..\..
 svn --version
 cvs --version
 
+scss --help
+
 vim --version
 nano --version
 ctags --version
