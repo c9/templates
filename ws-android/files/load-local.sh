@@ -1,3 +1,5 @@
+#!/bin/bash
+
 cd /home/ubuntu
 
 git clone https://github.com/c9/core.git c9sdk
