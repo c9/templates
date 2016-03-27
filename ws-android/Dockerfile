@@ -68,12 +68,12 @@ RUN cd /usr/local && \
     exit 0
 
 #Gradle Home and Path for pre-cloud9 testing
-#ENV GRADLE_HOME /usr/local/gradle-${GRADLE_VERSION}
-#ENV PATH $PATH:$GRADLE_HOME/bin
+ENV GRADLE_HOME /usr/local/gradle-${GRADLE_VERSION}
+ENV PATH $PATH:$GRADLE_HOME/bin
 
 
 # activate gradle by running it once    
-#RUN gradle
+RUN gradle
 
 
 # -------------------------- Final Cloud 9 Installation Actions -----------------------------------------
@@ -83,5 +83,5 @@ RUN chmod 775 /home/ubuntu/start-here && \
     ln -s /usr/local/android-sdk-linux /home/ubuntu/workspace/z-android-SDK-link && \
     ln -s /usr/lib/jvm/java-7-openjdk-amd64 /home/ubuntu/workspace/z-openjdk-link && \
     ln -s /usr/local/gradle-2.9 /home/ubuntu/workspace/z-Gradle-link && \
-    ln -s /homeubuntu/start-here /home/ubuntu/workspace/a-start-here-link  
-
+    ln -s /homeubuntu/start-here /home/ubuntu/workspace/a-start-here-link  && \
+    chown -R ubuntu:ubuntu /home/ubuntu
