@@ -38,7 +38,7 @@ cd /home/ubuntu/workspace/$wow4
 
 ant clean
 
-sudo ant debug
+ant debug
 
 cd bin
 
