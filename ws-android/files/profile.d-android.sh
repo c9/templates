@@ -1,7 +1,8 @@
 #!/bin/bash
 
 echo 'Setting up environment variables etc..'
-export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64/jre
+#export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64/jre
+export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
 export PATH=$JAVA_HOME/bin:$PATH
 
 export ANDROID_SDK_HOME=/usr/local/android-sdk-linux
