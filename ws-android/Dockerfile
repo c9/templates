@@ -84,4 +84,8 @@ RUN chmod 775 /home/ubuntu/start-here && \
     ln -s /usr/lib/jvm/java-7-openjdk-amd64 /home/ubuntu/workspace/z-openjdk-link && \
     ln -s /usr/local/gradle-2.9 /home/ubuntu/workspace/z-Gradle-link && \
     ln -s /homeubuntu/start-here /home/ubuntu/workspace/a-start-here-link  && \
-    chown -R ubuntu:ubuntu /home/ubuntu
+    chown -R ubuntu:ubuntu /home/ubuntu && \
+    chown -R ubuntu:ubuntu /usr/local/android-sdk-linux && \
+    chown -R ubuntu:ubuntu /usr/local/gradle-2.9 && \
+    chown -R ubuntu:ubuntu /usr/lib/jvm/java-7-openjdk-amd64 
+    
