@@ -30,7 +30,7 @@ cd /home/ubuntu/workspace/$wow4
 
 ant clean
 
-sudo ant debug
+ant debug
 
 cd bin
 
@@ -76,7 +76,7 @@ android create project \
 
 cd /home/ubuntu/workspace/$wow4
 
-sudo ./gradlew assembleDebug
+./gradlew assembleDebug
 
 # Make the following a full path to where your index.html file is /home/ubuntu/workspace/www/index.html
 
