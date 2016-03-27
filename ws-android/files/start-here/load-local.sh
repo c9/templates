@@ -11,3 +11,6 @@ sudo ./scripts/install-sdk.sh
 . ~/.nvm/nvm.sh
 
 ./server.js -p 8080 -l 0.0.0.0 -a :
+  
+  
+  # /etc/apache2/ports.conf
