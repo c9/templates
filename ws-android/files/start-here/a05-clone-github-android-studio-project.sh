@@ -6,13 +6,22 @@
 
 
 
+echo "Best Method. Clone the Android Studio github Repository, Then in main folder edit"
+echo "build.gradle to include the lines (or an equivalent SDK version example 22, 23)"
+echo "compileSdkVersion 20"
+echo "buildToolsVersion 23.0.2"
+echo ""
+echo "And add a local.properties file with only this line"
+echo "sdk.dir=/usr/local/android-sdk-linux"
+echo ""
 
-echo "Enter a github repository URL, must end in .git example:"
+
+echo "Enter the Github repository URL, must end in .git example:"
 echo "https://github.com/codepath/android_hello_world.git"
 echo ""
 read MY_GIT_TO_CLONE
 
-echo "What would you like to call the directory. Usually called the name just before the .git"
+echo "What would you like to call the new directory. Usually it is called the name just before the .git"
 read MY_FOLDER_NAME
 
 
@@ -32,6 +41,7 @@ if [ -f  local.properties ]
     echo "The file local.properties already exists."
   else  
    printf "sdk.dir=/usr/local/android-sdk-linux" > local.properties
+    echo "I made a local.properties file for you"
 fi
 
 
@@ -44,9 +54,10 @@ echo "Change the following lines to work on this system"
 echo "The important lines are:"
 echo "compileSdkVersion 20"
 echo "buildToolsVersion 23.0.2"
+echo ""
 echo "The SDK version simply has to be an sdk platform you have already installed. See the above list"
 echo ""
-echo "The buildToolsVersion simply must be the same as the helloGradle buildtoolsversion as that is what is installed in this workspace"
+echo "The buildToolsVersion must be one that works for this system"
 echo ""
 echo "You may want to also check that the file local.properites looks correct for this workspace"
 echo "hit enter when those lines are OK"
@@ -73,7 +84,7 @@ echo ""
 echo "Look for your MainActivity.java file at  $MY_FOLDER_NAME/src/main/java/com/example/$MY_FOLDER_NAME"
 echo ""
 echo ""
-echo "right-click run index.html, then preview-preview running application to view webpage with .apk"
+echo "right-click run index.html, then preview-preview running application to view webpage with the file .apk"
 echo "Or just click this link and open the web page"
 echo ""
 echo "IF YOU HAD AN ERROR, THE CORRECT PLATFORM MIGHT NOT BE INSTALLED. sudo bash a03-install-more-platforms.sh to correct it "
