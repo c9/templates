@@ -13,9 +13,14 @@
 #echo "for --target android-23   Android 6.0    Marshmallow, type 23"
 
 echo "Finding code numbers for the Android SDK platform you wish to install"
-echo ""
+echo "Listing installed paltforms"
 
-sudo android list sdk
+android list targets -v
+
+echo ""
+echo "Listing platforms to install"
+
+android list sdk
 
 echo "------------------------------------------------------------------------"
 echo ""
