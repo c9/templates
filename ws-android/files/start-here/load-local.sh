@@ -13,4 +13,6 @@ sudo ./scripts/install-sdk.sh
 ./server.js -p 8080 -l 0.0.0.0 -a :
   
   
-  # /etc/apache2/ports.conf
+#Edit /etc/apache2/ports.conf and change 8080 to 8081
+#Edit /etc/apache2/sites-available/001-cloud9.conf and change 8080 to 8081.
+# sudo service apache2 restart 
