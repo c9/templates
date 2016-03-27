@@ -27,8 +27,12 @@ cd /home/ubuntu/workspace/$MY_FOLDER_NAME
 
 echo "Need to direct gradle to the Android SDK"
 
-printf "sdk.dir=/usr/local/android-sdk-linux" > local.properties
-
+if [ -f  local.properties ]
+  then
+    echo "The file local.properties already exists."
+  else  
+   printf "sdk.dir=/usr/local/android-sdk-linux" > local.properties
+fi
 
 
 echo "Here are your installed SDK platforms"
@@ -52,7 +56,7 @@ read
 
 chmod a+x gradlew
 
-sudo ./gradlew assembleDebug
+./gradlew assembleDebug
 
 # Make the following a full path to where your index.html file is /home/ubuntu/workspace/www/index.html
 printf "\n\n<a href='$MY_FOLDER_NAME/build/outputs/apk/$MY_FOLDER_NAME-debug.apk'>$MY_FOLDER_NAME/build/outputs/apk/$MY_FOLDER_NAME-debug.apk</a><br><br>"  >> /home/ubuntu/workspace/www/index.html
