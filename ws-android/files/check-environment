@@ -3,7 +3,7 @@
 set -ex
 
 android list
-gradle --version
+gradle -version
 java -version
 javac -version
 ant -v
