@@ -29,8 +29,8 @@ echo 'running default Hello World programs only once then moving them'
 
 if [ -e /home/ubuntu/start-here/a00-auto-ant-gradle.sh ]
   then
-    sudo bash /home/ubuntu/start-here/a00-auto-ant-gradle.sh 
-    sudo mv /home/ubuntu/start-here/a00-auto-ant-gradle.sh /home/ubuntu/start-here/a00b-auto-ant-gradle.sh 
+    bash /home/ubuntu/start-here/a00-auto-ant-gradle.sh 
+    mv /home/ubuntu/start-here/a00-auto-ant-gradle.sh /home/ubuntu/start-here/a00b-auto-ant-gradle.sh 
 fi
 
 
@@ -39,8 +39,8 @@ echo "Activating Apache2 webserver only once then moving it"
 
 if [ -e /home/ubuntu/start-here/a04-restart-webserver.sh ]
   then
-    sudo bash /home/ubuntu/start-here/a04-restart-webserver.sh
-    sudo mv /home/ubuntu/start-here/a04-restart-webserver.sh /home/ubuntu/start-here/a04b-restart-webserver.sh
+    bash /home/ubuntu/start-here/a04-restart-webserver.sh
+    mv /home/ubuntu/start-here/a04-restart-webserver.sh /home/ubuntu/start-here/a04b-restart-webserver.sh
 fi
 
 
