@@ -28,7 +28,7 @@ android create project \
 --target android-$myNum \
 --name $wow4 \
 --path $wow4 \
---activity MainActivity \
+--activity $wow4 \
 --package com.example.$wow4
 
 
