@@ -15,7 +15,7 @@
 echo "Finding code numbers for the Android SDK platform you wish to install"
 echo "Listing installed paltforms"
 
-android list targets -v
+android list targets
 
 echo ""
 echo "Listing platforms to install"
