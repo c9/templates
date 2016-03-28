@@ -43,7 +43,7 @@ ant debug
 cd bin
 
 # Make the following a full path to where your index.html file is /home/ubuntu/workspace/www/index.html
-printf "\n\n<a href='$wow4/bin/$wow4-debug.apk'>$wow4/bin/$wow4-debug.apk</a><br>"  >> /home/ubuntu/workspace/www/index.html
+printf "\n\n<a href='../$wow4/bin/$wow4-debug.apk'>../$wow4/bin/$wow4-debug.apk</a><br>"  >> /home/ubuntu/workspace/www/index.html
 
 ls -l
 
