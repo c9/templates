@@ -47,7 +47,7 @@ chmod a+x gradlew
 ./gradlew assembleDebug
 
 # Make the following a full path to where your index.html file is /home/ubuntu/workspace/www/index.html
-printf "\n\n<a href='$wow4/build/outputs/apk/$wow4-debug.apk'>$wow4/build/outputs/apk/$wow4-debug.apk</a><br><br>"  >> /home/ubuntu/workspace/www/index.html
+printf "\n\n<a href='../$wow4/build/outputs/apk/$wow4-debug.apk'>../$wow4/build/outputs/apk/$wow4-debug.apk</a><br><br>"  >> /home/ubuntu/workspace/www/index.html
 
 ls -l build/outputs/apk
 
