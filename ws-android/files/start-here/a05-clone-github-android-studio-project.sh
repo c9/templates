@@ -5,7 +5,8 @@
 #  best in cloud 9 to just right click this file and select run
 
 
-
+echo "Some Android Studio repositories are very difficult to get working"
+echo "Remember to load resources as well"
 echo "Best Method. Clone the Android Studio github Repository, Then in main folder edit"
 echo "build.gradle to include the lines (or an equivalent SDK version example 22, 23)"
 echo "compileSdkVersion 20"
