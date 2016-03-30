@@ -15,4 +15,9 @@ sudo ./scripts/install-sdk.sh
   
 #Edit /etc/apache2/ports.conf and change 8080 to 8081
 #Edit /etc/apache2/sites-available/001-cloud9.conf and change 8080 to 8081.
-# sudo service apache2 restart 
+
+sudo mv ports.conf /etc/apache2/ports.conf
+sudo mv 001-cloud9.conf  /etc/apache2/sites-available/001-cloud9.conf
+
+
+sudo service apache2 restart 
