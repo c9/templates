@@ -20,4 +20,4 @@ sudo mv ports.conf /etc/apache2/ports.conf
 sudo mv 001-cloud9.conf  /etc/apache2/sites-available/001-cloud9.conf
 
 
-sudo service apache2 restart 
+#sudo service apache2 restart 
