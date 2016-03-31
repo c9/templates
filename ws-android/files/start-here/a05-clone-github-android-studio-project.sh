@@ -15,7 +15,7 @@ echo "https://github.com/codepath/android_hello_world.git"
 echo ""
 read MY_GIT_TO_CLONE
 
-echo "What would you like to call the new directory. Usually it is called the name just before the .git"
+echo "What would you like to call the new directory. Usually it is called the name just before the .git example android_hello_world"
 read MY_FOLDER_NAME
 
 
