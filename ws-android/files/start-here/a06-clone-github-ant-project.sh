@@ -50,6 +50,7 @@ echo "right-click run index.html, then preview-preview running application to vi
 echo "Or just click this link and open the web page"
 echo ""
 echo ""
+echo "For help click on https://github.com/hpssjellis/online-android-sdk-cloud9-help/tree/master/version-1.0.0-android-sdk-help/importing-from-github-and-android-studio/a06-clone-github-ant-project-HELP.md"
 echo ""
 
 echo "http://$C9_HOSTNAME"
