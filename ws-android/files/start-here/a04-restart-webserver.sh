@@ -14,6 +14,9 @@ echo "Activating apache2 webserver"
 service apache2 start
 
 
+echo "For help click on https://github.com/hpssjellis/online-android-sdk-cloud9-help/blob/master/version-1.0.0-android-sdk-help/basic-operation-and-installation/a04-restart-webserver-HELP.md"
+
+
 echo "Click this link and select open to view your web page"
 echo ""
 echo ""
