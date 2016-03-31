@@ -38,3 +38,7 @@ sudo android update sdk --filter $myNum --no-ui --force
 
 #Good site to check
 #http://socialcompare.com/en/comparison/android-versions-comparison
+
+
+
+echo "For help click on https://github.com/hpssjellis/online-android-sdk-cloud9-help/tree/master/version-1.0.0-android-sdk-help/basic-operation-and-installation/a03-install-more-platforms-HELP.md"
