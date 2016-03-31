@@ -94,6 +94,6 @@ echo "Look for your MainActivity.java file at  $wow4/src/main/java/com/example/$
 echo ""
 
 
-
+echo "For help click on https://github.com/hpssjellis/online-android-sdk-cloud9-help/tree/master/version-1.0.0-android-sdk-help/basic-operation-and-installation/a00-auto-ant-gradle-HELP.md "
 
 
