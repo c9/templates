@@ -6,7 +6,7 @@
 
 
 echo ""
-echo "For help click on https://github.com/hpssjellis/online-android-sdk-cloud9-help/tree/master/version-1.0.0-android-sdk-help/importing-from-github-and-android-studio/a06-clone-github-ant-project-HELP.md"
+echo "For help click on https://github.com/hpssjellis/online-android-sdk-cloud9-help/tree/master/version-1.0.0-android-sdk-help/importing-from-github-and-android-studio/a05-clone-github-ant-project-HELP.md"
 echo ""
 
 echo "Enter the Github repository URL, must end in .git example:"
@@ -43,7 +43,7 @@ echo "right-click run index.html, then preview-preview running application to vi
 
 
 echo ""
-echo "For help click on https://github.com/hpssjellis/online-android-sdk-cloud9-help/tree/master/version-1.0.0-android-sdk-help/importing-from-github-and-android-studio/a06-clone-github-ant-project-HELP.md"
+echo "For help click on https://github.com/hpssjellis/online-android-sdk-cloud9-help/tree/master/version-1.0.0-android-sdk-help/importing-from-github-and-android-studio/a05-clone-github-ant-project-HELP.md"
 echo ""
 
 echo "Or just click this link and open the web page"
