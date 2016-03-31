@@ -5,14 +5,9 @@
 # best in cloud 9 to just right click this file and select run
 
 
-echo "After cloning the github site and copying the URL, find the AndroidManifest.xml file and set the line"
-echo "<uses-sdk android:minSdkVersion="16" android:targetSdkVersion="20"/>"
 echo ""
-echo "also find the project.properites file and change "
-echo "target=android-20"
-echo "Hit enter when ready to continue"
+echo "For help click on https://github.com/hpssjellis/online-android-sdk-cloud9-help/tree/master/version-1.0.0-android-sdk-help/importing-from-github-and-android-studio/a06-clone-github-ant-project-HELP.md"
 echo ""
-read
 
 echo "Enter the Github repository URL, must end in .git example:"
 echo "https://github.com/codepath/android_hello_world.git"
