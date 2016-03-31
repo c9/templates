@@ -21,6 +21,7 @@ All help is at the Github repository at [https://github.com/hpssjellis/online-an
 
 Basic Instructions:
 
+1. The workspace automatically makes an Ant and Gradle style Android App
 1. Preview -->Preview Running Application (To see your index.html web page)
 1. Click on the file to download to your Android Phone. 
 1. Install the .apk on your phone to test the Hello World App. 
