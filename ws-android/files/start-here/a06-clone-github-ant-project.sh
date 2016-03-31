@@ -10,11 +10,11 @@ echo "For help click on https://github.com/hpssjellis/online-android-sdk-cloud9-
 echo ""
 
 echo "Enter the Github repository URL, must end in .git example:"
-echo "https://github.com/codepath/android_hello_world.git"
+echo "https://github.com/sitepoint-editors/TodoList"
 echo ""
 read MY_GIT_TO_CLONE
 
-echo "What would you like to call the new directory. Usually it is called the name just before the .git"
+echo "What would you like to call the new directory. Usually it is called the name just before the .git example TodoList"
 read wow4
 
 
