@@ -5,7 +5,7 @@
 #  best in cloud 9 to just right click this file and select run
 
 echo ""
-echo "For help click on https://github.com/hpssjellis/online-android-sdk-cloud9-help/tree/master/version-1.0.0-android-sdk-help/importing-from-github-and-android-studio/a05-clone-github-android-studio-project-HELP.md"
+echo "For help click on https://github.com/hpssjellis/online-android-sdk-cloud9-help/tree/master/version-1.0.0-android-sdk-help/importing-from-github-and-android-studio/a06-clone-github-android-studio-project-HELP.md"
 echo ""
 
 
