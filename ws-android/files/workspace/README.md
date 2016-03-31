@@ -29,7 +29,10 @@ Basic Instructions:
 
 Settings-->More-->Security-->Unknown Sources
 
+1. check the folder called "Start-here" for other abilities
 
+
+Enjoy your ability to make Android Apps online!
 
 By Jeremy Ellis
 
