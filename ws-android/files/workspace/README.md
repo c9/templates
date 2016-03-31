@@ -23,8 +23,11 @@ Basic Instructions:
 
 1. Preview -->Preview Running Application (To see your index.html web page)
 1. Click on the file to download to your Android Phone. 
-1. Install the .pak on your phone to test the helloWorld App. (You may have to set your phone security to allow unknown sources
-Settings-->more-->security-->unknown Sources)
+1. Install the .apk on your phone to test the Hello World App. 
+
+(You may have to set your phone security to allow unknown sources)
+
+Settings-->More-->Security-->Unknown Sources
 
 
 
