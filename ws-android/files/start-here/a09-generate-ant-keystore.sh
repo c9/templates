@@ -135,7 +135,8 @@ ant release
 cd bin
 
 # Make the following a full path to where your index.html file is /home/ubuntu/workspace/www/index.html
-printf "\n\n<a href='../$wow4/bin/$wow4--release.apk'>../$wow4/bin/$wow4--release.apk</a><br>"  >> /home/ubuntu/workspace/index.html
+#printf "\n\n<a href='../$wow4/bin/$wow4--release.apk'>../$wow4/bin/$wow4--release.apk</a><br>"  >> /home/ubuntu/workspace/index.html
+printf "\n\n<a href='../$myStoreName/bin/$myStoreName-release.apk'>../$myStoreName/bin/$myStoreName-release.apk</a><br>"  >> /home/ubuntu/workspace/index.html
 
 ls -l
 
