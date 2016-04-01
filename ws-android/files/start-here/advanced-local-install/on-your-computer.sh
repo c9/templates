@@ -11,3 +11,10 @@ sudo docker images
 sudo docker rmi -f cloud9/ws-android
 sudo docker build --tag="cloud9/ws-android" https://github.com/c9/templates.git:master:ws-android
 sudo docker run -it -u ubuntu -p 8080:8080 cloud9/ws-android bash
+
+
+
+# when it is completed click on the link to run your local version of cloud9
+# run the file load-local.sh and restart apache. Finding apache may be a bit of a pain. I use the cloud9 local URL
+# and hange the extension to :8081
+
