@@ -140,7 +140,7 @@ printf "\n\n<a href='../$myStoreName/bin/$myStoreName-release.apk'>../$myStoreNa
 
 ls -l
 
-echo "Look for you new android $wow4/bin $wow4--release.apk"
+echo "Look for you new android $myStoreName/bin/$myStoreName-release.apk"
 echo "right-click run index.html, then preview-preview running application to view webpage with .apk"
 
 
