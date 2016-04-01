@@ -2,7 +2,7 @@
 
 # Find or copy this file to your cloud9 Android-SDK workspace
 # run it with the command
-# bash live-update-WARNING.sh
+# bash a07-live-update-WARNING.sh
 
 #grabs the live update repository from github and merges the folder ubuntu files with your /home/ubuntu files including your workspace.
 
