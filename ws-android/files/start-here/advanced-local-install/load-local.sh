@@ -10,6 +10,15 @@ sudo ./scripts/install-sdk.sh
 
 . ~/.nvm/nvm.sh
 
+
+
+# move pre-made apache2 config files to the correct location 
+# for Apache2 to run on port 8081 since cloud9 local is on port 8080
+
+sudo mv /home/ubuntu/start-here/advanced-local-install/ports.conf /etc/apache2/ports.conf
+sudo mv /home/ubuntu/start-here/advanced-local-install/001-cloud9.conf  /etc/apache2/sites-available/001-cloud9.conf
+
+
 ./server.js -p 8080 -l 0.0.0.0 -a :
   
   
