@@ -12,9 +12,6 @@ ADD ./files /home/ubuntu
 ADD ./files/profile.d-android.sh /etc/profile.d/android.sh
 
 
-# These commands just let us test the enviornment before submitting to cloud 9    
-#ENV JAVA_HOME /usr/lib/jvm/java-7-openjdk-amd64
-#ENV PATH $PATH:$JAVA_HOME/bin
 
 
 
@@ -39,12 +36,6 @@ RUN SDK_VERSION=r24.3.3 && \
     bash -c 'for file in $(find /usr/local/android-sdk-*); do [[ -x $file ]] && chmod +x "$file"; done'; \
     exit 0
 
-# Android SDK Home and Path for pre-cloud9 testing
-#ENV ANDROID_SDK_HOME /usr/local/android-sdk-linux
-#ENV ANDROID_HOME /usr/local/android-sdk-linux
-#ENV PATH $PATH:$ANDROID_SDK_HOME
-#ENV PATH $PATH:$ANDROID_SDK_HOME/tools
-#ENV PATH $PATH:$ANDROID_SDK_HOME/platform-tools
 
 # -------------------------- Install the Android Platforms -----------------------------------------
 
@@ -77,15 +68,15 @@ RUN gradle
 
 
 # -------------------------- Final Cloud 9 Installation Actions -----------------------------------------
-#set ownership, a few symlinks and auto activate the startup a00-auto-ant-gradle.sh bash file
+#set ownership, a few symlinks 
 RUN chmod 775 /home/ubuntu/start-here && \
     cd /home/ubuntu/workspace && \
     ln -s /usr/local/android-sdk-linux /home/ubuntu/workspace/z-android-SDK-link && \
     ln -s /usr/lib/jvm/java-7-openjdk-amd64 /home/ubuntu/workspace/z-openjdk-link && \
-    ln -s /usr/local/gradle-2.9 /home/ubuntu/workspace/z-Gradle-link && \
+    ln -s /usr/local/gradle-${GRADLE_VERSION} /home/ubuntu/workspace/z-Gradle-link && \
     ln -s /home/ubuntu/start-here /home/ubuntu/workspace/a-start-here-link  && \
     chown -R ubuntu:ubuntu /home/ubuntu && \
     chown -R ubuntu:ubuntu /usr/local/android-sdk-linux && \
-    chown -R ubuntu:ubuntu /usr/local/gradle-2.9 && \
+    chown -R ubuntu:ubuntu /usr/local/gradle-${GRADLE_VERSION} && \
     chown -R ubuntu:ubuntu /usr/lib/jvm/java-7-openjdk-amd64 
     
