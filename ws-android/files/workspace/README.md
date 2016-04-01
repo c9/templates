@@ -9,7 +9,7 @@
 
 Welcome to your Android SDK workspace on Cloud9 IDE!
 
-##This is version 1.0.0
+##This is the Android-SDK version 1.0.0
 
 The Android SDK is already setup and configured for you to use.
 
