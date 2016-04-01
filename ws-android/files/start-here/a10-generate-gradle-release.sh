@@ -44,20 +44,20 @@ echo "----------------------------------------------"
 ./gradlew assembleRelease
 
 echo "----------------------------------------------"
+echo "back to the keystore folder"
 echo "Signing the unaligned .apk"
 echo "----------------------------------------------"
 
-sudo jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1-keystore $myStoreName.keystore 
-/home/ubuntu/workspace/$myStoreName/build/outputs/apk/$myStoreName-release-unsigned.apk $myStoreName
+# helloGradle-release-unsigned.apk
+#cd /home/keystore
+
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore  /home/keystore/$myStoreName.keystore /home/ubuntu/workspace/$myStoreName/build/outputs/apk/$myStoreName-release-unsigned.apk $myStoreName
 
 
-#jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.keystore my_application.apk alias_name
-echo "----------------------------------------------"
-echo "Verifying the signed unaligned .apk"
-echo "----------------------------------------------"
 
 
-sudo jarsigner -verify -verbose -certs /home/ubuntu/workspace/$myStoreName/build/outputs/apk/$myStoreName-release.apk
+
+jarsigner -verify -verbose -certs /home/ubuntu/workspace/$myStoreName/build/outputs/apk/$myStoreName-release-unsigned.apk
 
 echo "----------------------------------------------"
 echo "Aligning and naming the final signed aligned .apk"
@@ -66,8 +66,8 @@ echo "----------------------------------------------"
 
 
 
-
-sudo zipalign -v 4 /home/ubuntu/workspace/$myStoreName/build/outputs/apk/$myStoreName-release-unsigned.apk /home/ubuntu/workspace/$myStoreName/build/outputs/apk/$myStoreName.apk
+/home/ubuntu/workspace/android-sdk-linux/build-tools/23.0.2/zipalign -v 4 /home/ubuntu/workspace/$myStoreName/build/outputs/apk/$myStoreName-release-unsigned.apk /home/ubuntu/workspace/$myStoreName/build/outputs/apk/$myStoreName.apk
+#sudo /home/ubuntu/workspace/android-sdk-linux/build-tools/23.0.2/zipalign -v 4 /home/ubuntu/workspace/helloGradle/build/outputs/apk/helloGradle-release-unsigned.apk /home/ubuntu/workspace/helloGradle/build/outputs/apk/helloGradle.apk
 
 
 # to view keystore information
