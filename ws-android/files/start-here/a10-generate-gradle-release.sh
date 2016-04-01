@@ -66,7 +66,7 @@ echo "----------------------------------------------"
 
 #
 #/usr/local/android-sdk-linux/build-tools/23.0.2
-/usr/local/android-sdk-linux/build-tools/23.0.2/zipalign -v 4 /home/ubuntu/workspace/$myStoreName/build/outputs/apk/$myStoreName-release-unsigned.apk /home/ubuntu/workspace/$myStoreName/build/outputs/apk/$myStoreName.apk
+/usr/local/android-sdk-linux/build-tools/23.0.2/zipalign -v 4 /home/ubuntu/workspace/$myStoreName/build/outputs/apk/$myStoreName-release-unsigned.apk /home/ubuntu/workspace/$myStoreName/build/outputs/apk/$myStoreName-release.apk
 
 #/home/ubuntu/workspace/android-sdk-linux/build-tools/23.0.2/zipalign -v 4 /home/ubuntu/workspace/$myStoreName/build/outputs/apk/$myStoreName-release-unsigned.apk /home/ubuntu/workspace/$myStoreName/build/outputs/apk/$myStoreName.apk
 #sudo /home/ubuntu/workspace/android-sdk-linux/build-tools/23.0.2/zipalign -v 4 /home/ubuntu/workspace/helloGradle/build/outputs/apk/helloGradle-release-unsigned.apk /home/ubuntu/workspace/helloGradle/build/outputs/apk/helloGradle.apk
@@ -96,5 +96,31 @@ echo "----------------------------------------------"
 #        }
 #    }
 #}
+
+
+
+
+cd build/outputs/apk
+
+# Make the following a full path to where your index.html file is /home/ubuntu/workspace/www/index.html
+#printf "\n\n<a href='../$wow4/bin/$wow4--release.apk'>../$wow4/bin/$wow4--release.apk</a><br>"  >> /home/ubuntu/workspace/index.html
+printf "\n\n<a href='../$myStoreName/build/outputs/apk/$myStoreName-release.apk'>../$myStoreName/build/outputs/apk/$myStoreName-release.apk</a><br>"  >> /home/ubuntu/workspace/index.html
+
+ls -l
+
+echo "Look for you new android $myStoreName/build/outputs/apk/$myStoreName-release.apk"
+echo "right-click run index.html, then preview-preview running application to view webpage with .apk"
+
+
+echo "Or just click this link and open the web page"
+echo ""
+echo ""
+echo ""
+
+echo "http://$C9_HOSTNAME"
+
+
+
+
 
 
