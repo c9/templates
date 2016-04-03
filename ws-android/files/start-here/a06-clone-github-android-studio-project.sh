@@ -49,8 +49,27 @@ chmod a+x gradlew
 ./gradlew assembleDebug
 
 # Make the following a full path to where your index.html file is /home/ubuntu/workspace/www/index.html
-printf "\n\n<a href='$MY_FOLDER_NAME/build/outputs/apk/$MY_FOLDER_NAME-debug.apk'>$MY_FOLDER_NAME/build/outputs/apk/$MY_FOLDER_NAME-debug.apk</a><br><br>"  >> /home/ubuntu/workspace/index.html
+# printf "\n\n<a href='$MY_FOLDER_NAME/build/outputs/apk/$MY_FOLDER_NAME-debug.apk'>$MY_FOLDER_NAME/build/outputs/apk/$MY_FOLDER_NAME-debug.apk</a><br><br>"  >> /home/ubuntu/workspace/index.html
+# to make  my life easier
 
+wow4=$MY_FOLDER_NAME
+
+
+
+BATCHFILE="a06-cloud9-remake-debug.sh"
+INDEXFILE="/home/ubuntu/workspace/index.html"
+
+
+
+printf "#!/bin/bash\n" >> /home/ubuntu/workspace/$wow4/$BATCHFILE
+printf "./gradlew assembleDebug\n" >> /home/ubuntu/workspace/$wow4/$BATCHFILE
+
+printf "printf \" $wow4-debug.apk, \$(date), <a href='../$wow4/build/outputs/apk/$wow4-debug.apk'>../$wow4/build/outputs/apk/$wow4-debug.apk</a><br>\"  >> $INDEXFILE"  >> /home/ubuntu/workspace/$wow4/$BATCHFILE
+
+
+
+# Make the following a full path to where your index.html file is /home/ubuntu/workspace/www/index.html
+printf "\n\n$wow4-debug.apk, $(date), <a href='../$wow4/build/outputs/apk/$wow4-debug.apk'>../$wow4/build/outputs/apk/$wow4-debug.apk</a><br>"  >> $INDEXFILE
 
 
 
