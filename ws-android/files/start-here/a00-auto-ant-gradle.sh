@@ -48,6 +48,7 @@ printf "ant debug\n" >> /home/ubuntu/workspace/$wow4/$BATCHFILE
 
 printf "printf \" $wow4-debug.apk, \$(date), <a href='../$wow4/bin/$wow4-debug.apk'>../$wow4/bin/$wow4-debug.apk</a><br>\"  >> $INDEXFILE"  >> /home/ubuntu/workspace/$wow4/$BATCHFILE
 
+printf "\n\n$wow4-debug.apk, $(date), <a href='../$wow4/bin/$wow4-debug.apk'>../$wow4/bin/$wow4-debug.apk</a><br>"  >> $INDEXFILE
 
 
 
@@ -114,7 +115,6 @@ printf "\n\n$wow4-debug.apk, $(date), <a href='../$wow4/build/outputs/apk/$wow4-
 
 
 
-
 ls -l build/outputs/apk
 
 
@@ -128,5 +128,4 @@ echo ""
 
 
 echo "For help click on https://github.com/hpssjellis/online-android-sdk-cloud9-help/tree/master/version-1.0.0-android-sdk-help/basic-operation-and-installation/a00-auto-ant-gradle-HELP.md "
-
 
