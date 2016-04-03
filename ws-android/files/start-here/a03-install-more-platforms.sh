@@ -5,6 +5,7 @@
 #  best in cloud 9 to just right click this file and select run
 
 
+cd /home/ubuntu/workspace/android-sdk-linux
 
 
 #echo "Type the number of the target your Android app is for"
