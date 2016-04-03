@@ -14,6 +14,12 @@ export PATH=$ANDROID_SDK_HOME/platform-tools:$PATH
 export GRADLE_HOME=/usr/local/gradle-2.9
 export PATH=$GRADLE_HOME/bin:$PATH
 
+# timezone
+# export TZ=America/New_York
+export TZ=America/Los_Angeles
+
+
+
 echo 'Environment Variables, Symlinks and Paths complete'
 echo '$PATH'
 echo ''
