@@ -18,8 +18,18 @@ read myStoreName
 #keytool -genkey -v -keystore $myStoreName.keystore -alias $myStoreName -keyalg RSA -validity 999999
 #keytool -genkey -v -keystore <App-Name>.keystore -alias <Alias Name> -keyalg RSA -keysize 2048 -validity 10000
 
-sudo keytool -genkey -v -keystore $myStoreName.keystore -alias $myStoreName -keyalg RSA -keysize 2048 -validity 10000
 
+
+
+echo "checking if keystore for this folder has been made"
+
+if [ -d /home/keystore/$myStoreName.keystore ]
+  then
+     echo "Making new keystore for $myStoreName"
+     sudo keytool -genkey -v -keystore $myStoreName.keystore -alias $myStoreName -keyalg RSA -keysize 2048 -validity 10000
+  else
+     echo "keystore for $myStoreName has already been made"
+fi
 
 
 
@@ -64,11 +74,9 @@ echo "Aligning and naming the final signed aligned .apk"
 echo "----------------------------------------------"
 
 
-#
-#/usr/local/android-sdk-linux/build-tools/23.0.2
-/usr/local/android-sdk-linux/build-tools/23.0.2/zipalign -v 4 /home/ubuntu/workspace/$myStoreName/build/outputs/apk/$myStoreName-release-unsigned.apk /home/ubuntu/workspace/$myStoreName/build/outputs/apk/$myStoreName-release.apk
 
-#/home/ubuntu/workspace/android-sdk-linux/build-tools/23.0.2/zipalign -v 4 /home/ubuntu/workspace/$myStoreName/build/outputs/apk/$myStoreName-release-unsigned.apk /home/ubuntu/workspace/$myStoreName/build/outputs/apk/$myStoreName.apk
+
+/home/ubuntu/workspace/android-sdk-linux/build-tools/23.0.2/zipalign -v 4 /home/ubuntu/workspace/$myStoreName/build/outputs/apk/$myStoreName-release-unsigned.apk /home/ubuntu/workspace/$myStoreName/build/outputs/apk/$myStoreName.apk
 #sudo /home/ubuntu/workspace/android-sdk-linux/build-tools/23.0.2/zipalign -v 4 /home/ubuntu/workspace/helloGradle/build/outputs/apk/helloGradle-release-unsigned.apk /home/ubuntu/workspace/helloGradle/build/outputs/apk/helloGradle.apk
 
 
@@ -100,27 +108,35 @@ echo "----------------------------------------------"
 
 
 
-cd build/outputs/apk
 
-# Make the following a full path to where your index.html file is /home/ubuntu/workspace/www/index.html
-#printf "\n\n<a href='../$wow4/bin/$wow4--release.apk'>../$wow4/bin/$wow4--release.apk</a><br>"  >> /home/ubuntu/workspace/index.html
-printf "\n\n<a href='../$myStoreName/build/outputs/apk/$myStoreName-release.apk'>../$myStoreName/build/outputs/apk/$myStoreName-release.apk</a><br>"  >> /home/ubuntu/workspace/index.html
 
-ls -l
 
-echo "Look for you new android $myStoreName/build/outputs/apk/$myStoreName-release.apk"
+
+
+cd /home/ubuntu/workspace/$myStoreName/build/outputs/apk
+
+sudo cp /home/ubuntu/start-here/a10-generate-gradle-release.sh /home/ubuntu/workspace/$myStoreName/a10-generate-gradle-release.sh
+
+
+ls
+
+
+
+
+
+INDEXFILE="/home/ubuntu/workspace/index.html"
+
+printf "\n\n$myStoreName-release.apk, $(date), <a href='../$myStoreName/build/outputs/apk/$myStoreName-release.apk'>../$myStoreName/build/outputs/apk/$myStoreName-release.apk</a><br>"  >> $INDEXFILE
+
+
+
+
+echo "Look for you new android /home/ubuntu/workspace/$myStoreName/build/outputs/apk/$myStoreName-release.apk"
 echo "right-click run index.html, then preview-preview running application to view webpage with .apk"
-
-
-echo "Or just click this link and open the web page"
 echo ""
+echo ""
+echo "Click this link to open your index.html web page"
 echo ""
 echo ""
 
 echo "http://$C9_HOSTNAME"
-
-
-
-
-
-
