@@ -5,7 +5,7 @@
 #  best in cloud 9 to just right click this file and select run
 
 # change date to los angeles time
-export TZ=America/Los_Angeles
+
 
 
 echo "Lets make an android ant apk file"
