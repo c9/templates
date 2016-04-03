@@ -43,31 +43,22 @@ ant debug
 
 # now make a file to re-debug the App
 
-#touch a01-cloud9-make-debug.sh
 
-# printf "" >> /home/ubuntu/workspace/$wow4/a01-cloud9-make-debug.sh
-
-printf "#!/bin/bash\n" >> /home/ubuntu/workspace/$wow4/a01-cloud9-make-debug.sh
-printf "ant debug\n" >> /home/ubuntu/workspace/$wow4/a01-cloud9-make-debug.sh
-#printf "printf \"\n\n<a href='../$wow4/bin/$wow4-debug.apk'>../$wow4/bin/$wow4-debug.apk</a><br>\"  >> /home/ubuntu/workspace/index.html\n\" >> /home/ubuntu/workspace/$wow4/a01-cloud9-make-debug.sh
-
-
-#PRINT2="printf \"\n\n<a href='../$wow4/bin/$wow4-debug.apk'>../$wow4/bin/$wow4-debug.apk</a><br>\"  >> /home/ubuntu/workspace/index.html"
-
-#printf "$PRINT2"  >> /home/ubuntu/workspace/$wow4/a01-cloud9-make-debug.sh
+BATCHFILE="a01-cloud9-make-debug.sh"
+INDEXFILE="/home/ubuntu/workspace/index.html"
 
 
 
-printf "printf \" $wow4-debug.apk, \$(date), <a href='../$wow4/bin/$wow4-debug.apk'>../$wow4/bin/$wow4-debug.apk</a><br>\"  >> /home/ubuntu/workspace/index.html"  >> /home/ubuntu/workspace/$wow4/a01-cloud9-make-debug.sh
+printf "#!/bin/bash\n" >> /home/ubuntu/workspace/$wow4/$BATCHFILE
+printf "ant debug\n" >> /home/ubuntu/workspace/$wow4/$BATCHFILE
 
-
-
+printf "printf \" $wow4-debug.apk, \$(date), <a href='../$wow4/bin/$wow4-debug.apk'>../$wow4/bin/$wow4-debug.apk</a><br>\"  >> $INDEXFILE"  >> /home/ubuntu/workspace/$wow4/$BATCHFILE
 
 
 cd bin
 
 # Make the following a full path to where your index.html file is /home/ubuntu/workspace/www/index.html
-printf "\n\n$wow4-debug.apk, $(date), <a href='../$wow4/bin/$wow4-debug.apk'>../$wow4/bin/$wow4-debug.apk</a><br>"  >> /home/ubuntu/workspace/index.html
+printf "\n\n$wow4-debug.apk, $(date), <a href='../$wow4/bin/$wow4-debug.apk'>../$wow4/bin/$wow4-debug.apk</a><br>"  >> $INDEXFILE
 
 ls -l
 
