@@ -35,12 +35,23 @@ ant clean
 
 ant debug
 
-cd bin
 
-# Make the following a full path to where your index.html file is /home/ubuntu/workspace/www/index.html
-printf "\n\n<a href='../$wow4/bin/$wow4-debug.apk'>../$wow4/bin/$wow4-debug.apk</a><br>"  >> /home/ubuntu/workspace/index.html
 
-ls -l
+
+BATCHFILE="a01-cloud9-make-debug.sh"
+INDEXFILE="/home/ubuntu/workspace/index.html"
+
+
+
+printf "#!/bin/bash\n" >> /home/ubuntu/workspace/$wow4/$BATCHFILE
+printf "ant debug\n" >> /home/ubuntu/workspace/$wow4/$BATCHFILE
+
+printf "printf \" $wow4-debug.apk, \$(date), <a href='../$wow4/bin/$wow4-debug.apk'>../$wow4/bin/$wow4-debug.apk</a><br>\"  >> $INDEXFILE"  >> /home/ubuntu/workspace/$wow4/$BATCHFILE
+
+
+
+
+ls -l bin
 
 echo "Look for your new android $wow4/bin $wow4-debug.apk"
 echo "right-click run index.html, then preview-preview running application to view webpage with .apk"
@@ -81,9 +92,28 @@ cd /home/ubuntu/workspace/$wow4
 
 ./gradlew assembleDebug
 
-# Make the following a full path to where your index.html file is /home/ubuntu/workspace/www/index.html
 
-printf "\n\n<a href='../$wow4/build/outputs/apk/$wow4-debug.apk'>../$wow4/build/outputs/apk/$wow4-debug.apk</a><br><br>"  >> /home/ubuntu/workspace/index.html
+
+
+BATCHFILE="a02-cloud9-make-debug.sh"
+INDEXFILE="/home/ubuntu/workspace/index.html"
+
+
+
+printf "#!/bin/bash\n" >> /home/ubuntu/workspace/$wow4/$BATCHFILE
+printf "./gradlew assembleDebug\n" >> /home/ubuntu/workspace/$wow4/$BATCHFILE
+
+printf "printf \" $wow4-debug.apk, \$(date), <a href='../$wow4/build/outputs/apk/$wow4-debug.apk'>../$wow4/build/outputs/apk/$wow4-debug.apk</a><br>\"  >> $INDEXFILE"  >> /home/ubuntu/workspace/$wow4/$BATCHFILE
+
+
+
+# Make the following a full path to where your index.html file is /home/ubuntu/workspace/www/index.html
+printf "\n\n$wow4-debug.apk, $(date), <a href='../$wow4/build/outputs/apk/$wow4-debug.apk'>../$wow4/build/outputs/apk/$wow4-debug.apk</a><br>"  >> $INDEXFILE
+
+
+
+
+
 
 ls -l build/outputs/apk
 
