@@ -54,13 +54,12 @@ printf "ant debug\n" >> /home/ubuntu/workspace/$wow4/$BATCHFILE
 
 printf "printf \" $wow4-debug.apk, \$(date), <a href='../$wow4/bin/$wow4-debug.apk'>../$wow4/bin/$wow4-debug.apk</a><br>\"  >> $INDEXFILE"  >> /home/ubuntu/workspace/$wow4/$BATCHFILE
 
-
-cd bin
-
-# Make the following a full path to where your index.html file is /home/ubuntu/workspace/www/index.html
 printf "\n\n$wow4-debug.apk, $(date), <a href='../$wow4/bin/$wow4-debug.apk'>../$wow4/bin/$wow4-debug.apk</a><br>"  >> $INDEXFILE
 
-ls -l
+
+
+
+ls -l bin
 
 echo "Look for you new android $wow4/bin $wow4-debug.apk"
 echo "right-click run index.html, then preview-preview running application to view webpage with .apk"
