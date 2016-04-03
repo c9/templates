@@ -11,6 +11,7 @@ echo "Enter a folder name, no spaces, no dashes, underscore allowed, for your ap
 read wow4
 
 ls -l /usr/local/android-sdk-linux/platforms
+#ls -l /home/ubuntu/workspace/android-sdk-linux/platforms
 
 echo "Type the number of the target your Android app is for"
 echo "See above folders of installed platforms"
@@ -40,10 +41,33 @@ ant clean
 
 ant debug
 
+# now make a file to re-debug the App
+
+#touch a01-cloud9-make-debug.sh
+
+# printf "" >> /home/ubuntu/workspace/$wow4/a01-cloud9-make-debug.sh
+
+printf "#!/bin/bash\n" >> /home/ubuntu/workspace/$wow4/a01-cloud9-make-debug.sh
+printf "ant debug\n" >> /home/ubuntu/workspace/$wow4/a01-cloud9-make-debug.sh
+#printf "printf \"\n\n<a href='../$wow4/bin/$wow4-debug.apk'>../$wow4/bin/$wow4-debug.apk</a><br>\"  >> /home/ubuntu/workspace/index.html\n\" >> /home/ubuntu/workspace/$wow4/a01-cloud9-make-debug.sh
+
+
+#PRINT2="printf \"\n\n<a href='../$wow4/bin/$wow4-debug.apk'>../$wow4/bin/$wow4-debug.apk</a><br>\"  >> /home/ubuntu/workspace/index.html"
+
+#printf "$PRINT2"  >> /home/ubuntu/workspace/$wow4/a01-cloud9-make-debug.sh
+
+
+
+printf "printf \" $wow4-debug.apk, \$(date), <a href='../$wow4/bin/$wow4-debug.apk'>../$wow4/bin/$wow4-debug.apk</a><br>\"  >> /home/ubuntu/workspace/index.html"  >> /home/ubuntu/workspace/$wow4/a01-cloud9-make-debug.sh
+
+
+
+
+
 cd bin
 
 # Make the following a full path to where your index.html file is /home/ubuntu/workspace/www/index.html
-printf "\n\n<a href='../$wow4/bin/$wow4-debug.apk'>../$wow4/bin/$wow4-debug.apk</a><br>"  >> /home/ubuntu/workspace/index.html
+printf "\n\n$wow4-debug.apk, $(date), <a href='../$wow4/bin/$wow4-debug.apk'>../$wow4/bin/$wow4-debug.apk</a><br>"  >> /home/ubuntu/workspace/index.html
 
 ls -l
 
