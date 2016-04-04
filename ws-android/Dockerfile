@@ -40,7 +40,8 @@ RUN SDK_VERSION=r24.3.3 && \
 # -------------------------- Install the Android Platforms -----------------------------------------
 
 # This fancy "for" loop solves an install issue
-RUN for filter in tools platform-tools android-20 android-22 android-23 extra build-tools-23.0.2; do \
+# build-tools-23.0.2   worked
+RUN for filter in tools platform-tools android-20 android-22 android-23 extra build-tools-23.0.3; do \
         echo y | /usr/local/android-sdk-linux/tools/android update sdk --filter $filter --no-ui --force --all; \
     done
 
