@@ -23,7 +23,15 @@ export PATH=$GRADLE_HOME/bin:$PATH
 
 # timezone
 # export TZ=America/New_York
+# can be changed using the ~/.profile file
 export TZ=America/Los_Angeles
+
+# For live update and Help Github Repositories
+
+export LIVE_UPDATE_GITHUB=https://github.com/hpssjellis/online-android-sdk-cloud9-live-update
+export HELP_GITHUB=https://github.com/hpssjellis/online-android-sdk-cloud9-help
+
+
 
 
 
