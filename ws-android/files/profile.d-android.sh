@@ -26,13 +26,15 @@ export PATH=$GRADLE_HOME/bin:$PATH
 # can be changed using the ~/.profile file
 export TZ=America/Los_Angeles
 
-# For live update and Help Github Repositories
+# For live update, Help Github Repositories
 
 export LIVE_UPDATE_GITHUB=https://github.com/hpssjellis/online-android-sdk-cloud9-live-update
 export HELP_GITHUB=https://github.com/hpssjellis/online-android-sdk-cloud9-help
 
 
+# for the location of the index.html file
 
+export INDEXFILE=/home/ubuntu/workspace/index.html
 
 
 echo 'Environment Variables, Symlinks and Paths complete'
