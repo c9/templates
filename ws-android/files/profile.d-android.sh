@@ -12,8 +12,9 @@ export PATH=$ANDROID_SDK_HOME/tools:$PATH
 export PATH=$ANDROID_SDK_HOME/platform-tools:$PATH
 
 
+
 #Strangley hard to find zipalign for signing without the adroid tools path
-export PATH=$ANDROID_SDK_HOME/platform-tools/23.0.2:$PATH
+export PATH=$ANDROID_SDK_HOME/build-tools/23.0.2:$PATH
 
 
 
