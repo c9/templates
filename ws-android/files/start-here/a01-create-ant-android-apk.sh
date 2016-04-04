@@ -45,7 +45,7 @@ ant debug
 
 
 BATCHFILE="a01-cloud9-make-debug.sh"
-INDEXFILE="/home/ubuntu/workspace/index.html"
+#INDEXFILE="/home/ubuntu/workspace/index.html"
 
 
 
