@@ -50,7 +50,7 @@ chmod a+x gradlew
 
 
 BATCHFILE="a02-cloud9-make-debug.sh"
-INDEXFILE="/home/ubuntu/workspace/index.html"
+#INDEXFILE="/home/ubuntu/workspace/index.html"
 
 
 
