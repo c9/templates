@@ -36,7 +36,7 @@ Settings-->More-->Security-->Unknown Sources
 
 1. For live updates check the Github Repository at [https://github.com/hpssjellis/online-android-sdk-cloud9-live-update](https://github.com/hpssjellis/online-android-sdk-cloud9-live-update) or find the file called a07-live-update-WARNING.sh in the start-here folder.
 
-Enjoy making Android Apps online!
+Enjoy making Android Apps online.
 
 By Jeremy Ellis
 
