@@ -25,6 +25,7 @@ android list sdk
 
 echo "------------------------------------------------------------------------"
 echo ""
+echo "Note: Installing the new build tools may break some links, so be careful"
 echo "Type the left hand side number of the SDK to install. example 1"
 
 read myNum
