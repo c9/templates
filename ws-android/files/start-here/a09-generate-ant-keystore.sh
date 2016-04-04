@@ -33,15 +33,15 @@ read myStoreName
 
 
 
-echo "checking if keystore for this folder has been made"
+#echo "checking if keystore for this folder has been made"
 
-if [ -d /home/keystore/$myStoreName.keystore ]
-  then
-     echo "Making new keystore for $myStoreName"
+#if [ -d /home/keystore/$myStoreName.keystore ]
+ # then
+ #    echo "Making new keystore for $myStoreName"
      sudo keytool -genkey -v -keystore $myStoreName.keystore -alias $myStoreName -keyalg RSA -keysize 2048 -validity 10000
-  else
-     echo "keystore for $myStoreName has already been made"
-fi
+ # else
+ #    echo "keystore for $myStoreName has already been made"
+#fi
 
 
 
