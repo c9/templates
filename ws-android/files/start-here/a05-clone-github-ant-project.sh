@@ -34,7 +34,7 @@ ant debug
 
 
 BATCHFILE="a05-clooud9-redo-build.sh"
-INDEXFILE="/home/ubuntu/workspace/index.html"
+#INDEXFILE="/home/ubuntu/workspace/index.html"
 
 
 
