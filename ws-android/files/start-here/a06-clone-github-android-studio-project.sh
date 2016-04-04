@@ -57,7 +57,7 @@ wow4=$MY_FOLDER_NAME
 
 
 BATCHFILE="a06-cloud9-remake-debug.sh"
-INDEXFILE="/home/ubuntu/workspace/index.html"
+#INDEXFILE="/home/ubuntu/workspace/index.html"
 
 
 
