@@ -82,7 +82,7 @@ ant release
 
 
 BATCHFILE="a09-cloud9-make-release.sh"
-INDEXFILE="/home/ubuntu/workspace/index.html"
+#INDEXFILE="/home/ubuntu/workspace/index.html"
 
 #making my life easier
 wow4=$myStoreName
