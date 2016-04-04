@@ -115,11 +115,38 @@ zipalign -v 4 /home/ubuntu/workspace/$myStoreName/build/outputs/apk/$myStoreName
 
 
 
+BATCHFILE="a09-cloud9-make-release.sh"
+#INDEXFILE="/home/ubuntu/workspace/index.html"
+
+#making my life easier
+wow4=$myStoreName
+
+
+
+
+printf "#!/bin/bash\n" >> /home/ubuntu/workspace/$wow4/$BATCHFILE
+printf "./gradlew assembleRelease\n" >> /home/ubuntu/workspace/$wow4/$BATCHFILE
+printf "\n" >> /home/ubuntu/workspace/$wow4/$BATCHFILE
+printf "\n" >> /home/ubuntu/workspace/$wow4/$BATCHFILE
+printf "\n" >> /home/ubuntu/workspace/$wow4/$BATCHFILE
+printf "\n" >> /home/ubuntu/workspace/$wow4/$BATCHFILE
+
+printf "printf \" $wow4-release.apk, \$(date), <a href='../$wow4/bin/$wow4-release.apk'>../$wow4/bin/$wow4-release.apk</a><br>\"  >> $INDEXFILE"  >> /home/ubuntu/workspace/$wow4/$BATCHFILE
+
+printf "\n\n$wow4-release.apk, $(date), <a href='../$wow4/bin/$wow4-release.apk'>../$wow4/bin/$wow4-release.apk</a><br>"  >> $INDEXFILE
+
+
+#printf "printf \" $wow4-release.apk, \$(date), <a href='../$wow4/bin/$wow4-release.apk'>../$wow4/bin/$wow4-release.apk</a><br>\"  >> $INDEXFILE"  >> /home/ubuntu/workspace/$wow4/$BATCHFILE
+
+#printf "\n\n$wow4-release.apk, $(date), <a href='../$wow4/bin/$wow4-release.apk'>../$wow4/bin/$wow4-release.apk</a><br>"  >> $INDEXFILE
+
+
+
 
 
 cd /home/ubuntu/workspace/$myStoreName/build/outputs/apk
 
-sudo cp /home/ubuntu/start-here/a10b-generate-gradle-release.sh /home/ubuntu/workspace/$myStoreName/a10-generate-gradle-release.sh
+#sudo cp /home/ubuntu/start-here/a10b-generate-gradle-release.sh /home/ubuntu/workspace/$myStoreName/a10-generate-gradle-release.sh
 
 
 ls
