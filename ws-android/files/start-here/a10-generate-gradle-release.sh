@@ -80,8 +80,7 @@ echo "----------------------------------------------"
 
 
 
-
-/home/ubuntu/workspace/android-sdk-linux/build-tools/23.0.2/zipalign -v 4 /home/ubuntu/workspace/$myStoreName/build/outputs/apk/$myStoreName-release-unsigned.apk /home/ubuntu/workspace/$myStoreName/build/outputs/apk/$myStoreName.apk
+zipalign -v 4 /home/ubuntu/workspace/$myStoreName/build/outputs/apk/$myStoreName-release-unsigned.apk /home/ubuntu/workspace/$myStoreName/build/outputs/apk/$myStoreName-release.apk
 #sudo /home/ubuntu/workspace/android-sdk-linux/build-tools/23.0.2/zipalign -v 4 /home/ubuntu/workspace/helloGradle/build/outputs/apk/helloGradle-release-unsigned.apk /home/ubuntu/workspace/helloGradle/build/outputs/apk/helloGradle.apk
 
 
