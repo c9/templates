@@ -4,8 +4,9 @@
 #  bash a01-create-ant-android-apk.sh
 # best in cloud 9 to just right click this file and select run
 
-
-#change hello-world to the name of your app and folder
+echo "For help click on "
+echo "$HELP_GITHUB/a01-create-ant-android-apk.sh.md"
+echo ""
 
 echo "Enter a folder name, no spaces, no dashes, underscore allowed, for your app and folder example: helloAnt"
 read wow4
@@ -64,7 +65,7 @@ echo "Look for you new android $wow4/bin $wow4-debug.apk"
 echo "right-click run index.html, then preview-preview running application to view webpage with .apk"
 
 echo "For help click on "
-echo "$HELP_GITHUB$LATEST_VERSIONa01-create-ant-android-apk.sh.md"
+echo "$HELP_GITHUB/a01-create-ant-android-apk.sh.md"
 echo ""
 
 echo "Click this link to open your index.html web page"
