@@ -8,6 +8,10 @@
 
 
 
+echo "For help click on "
+echo "$HELP_GITHUB/a02-generate-ant-release.sh.md"
+echo ""
+
 
 # make the keystore if it has not already been made
 
@@ -108,7 +112,7 @@ echo ""
 
 
 echo "For help click on "
-echo "$HELP_GITHUB$LATEST_VERSIONa02-generate-ant-release.sh.md"
+echo "$HELP_GITHUB/a02-generate-ant-release.sh.md"
 echo ""
 
 
