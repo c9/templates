@@ -8,7 +8,7 @@
 
 
 echo "For help click on "
-echo "$HELP_GITHUB$LATEST_VERSIONa03-clone-github-ant-project.sh.md"
+echo "$HELP_GITHUB/a03-clone-github-ant-project.sh.md"
 echo ""
 
 
@@ -59,7 +59,7 @@ echo "right-click run index.html, then preview-preview running application to vi
 
 
 echo "For help click on "
-echo "$HELP_GITHUB$LATEST_VERSIONa03-clone-github-ant-project.sh.md"
+echo "$HELP_GITHUB/a03-clone-github-ant-project.sh.md"
 echo ""
 
 
