@@ -26,5 +26,5 @@ sudo docker run -it -u ubuntu -p 8080:8080 cloud9/ws-android bash
 
 
 echo "For help click on "
-echo "$HELP_GITHUB$LATEST_VERSIONb01-on-your-computer.sh.md"
+echo "$HELP_GITHUB/advanced/local-cloud9-install/b01-on-your-computer.sh.md"
 echo ""
