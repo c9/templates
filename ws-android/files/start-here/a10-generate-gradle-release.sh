@@ -129,16 +129,9 @@ printf "./gradlew assembleRelease\n" >> /home/ubuntu/workspace/$wow4/$BATCHFILE
 printf "jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore /home/keystore/$myStoreName.keystore /home/ubuntu/workspace/$myStoreName/build/outputs/apk/$myStoreName-release-unsigned.apk $myStoreName\n" >> /home/ubuntu/workspace/$wow4/$BATCHFILE
 printf "jarsigner -verify -verbose -certs /home/ubuntu/workspace/$myStoreName/build/outputs/apk/$myStoreName-release-unsigned.apk\n" >> /home/ubuntu/workspace/$wow4/$BATCHFILE
 printf "zipalign -v 4 /home/ubuntu/workspace/$myStoreName/build/outputs/apk/$myStoreName-release-unsigned.apk /home/ubuntu/workspace/$myStoreName/build/outputs/apk/$myStoreName-release.apk\n" >> /home/ubuntu/workspace/$wow4/$BATCHFILE
-printf "\n" >> /home/ubuntu/workspace/$wow4/$BATCHFILE
-
-printf "printf \" $wow4-release.apk, \$(date), <a href='../$wow4/bin/$wow4-release.apk'>../$wow4/bin/$wow4-release.apk</a><br>\"  >> $INDEXFILE"  >> /home/ubuntu/workspace/$wow4/$BATCHFILE
-
-printf "\n\n$wow4-release.apk, $(date), <a href='../$wow4/bin/$wow4-release.apk'>../$wow4/bin/$wow4-release.apk</a><br>"  >> $INDEXFILE
+printf "printf \" $wow4-release.apk, \$(date), <a href='../$wow4/build/outputs/apk/$wow4-release.apk'>../$wow4/build/outputs/apk/$wow4-release.apk</a><br>\"  >> $INDEXFILE"  >> /home/ubuntu/workspace/$wow4/$BATCHFILE
 
 
-#printf "printf \" $wow4-release.apk, \$(date), <a href='../$wow4/bin/$wow4-release.apk'>../$wow4/bin/$wow4-release.apk</a><br>\"  >> $INDEXFILE"  >> /home/ubuntu/workspace/$wow4/$BATCHFILE
-
-#printf "\n\n$wow4-release.apk, $(date), <a href='../$wow4/bin/$wow4-release.apk'>../$wow4/bin/$wow4-release.apk</a><br>"  >> $INDEXFILE
 
 
 
