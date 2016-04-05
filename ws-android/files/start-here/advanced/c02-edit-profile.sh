@@ -7,7 +7,7 @@
 
 
 echo "For help click on "
-echo "$HELP_GITHUB$LATEST_VERSIONc02-edit-profile.sh.md"
+echo "$HELP_GITHUB/c02-edit-profile.sh.md"
 echo ""
 
 
