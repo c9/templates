@@ -2,7 +2,14 @@
 
 # Find or copy this file to your cloud9 Android-SDK workspace
 # run it with the command
-# bash a02-edit-profile.sh
+# bash c02-edit-profile
+
+
+
+echo "For help click on "
+echo "$HELP_GITHUB$LATEST_VERSIONc02-edit-profile.sh.md"
+echo ""
+
 
 
 sudo nano ~/.profile

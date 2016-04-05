@@ -17,7 +17,6 @@ export PATH=$ANDROID_SDK_HOME/platform-tools:$PATH
 export PATH=$ANDROID_SDK_HOME/build-tools/23.0.3:$PATH
 
 
-
 export GRADLE_HOME=/usr/local/gradle-2.9
 export PATH=$GRADLE_HOME/bin:$PATH
 
@@ -26,14 +25,21 @@ export PATH=$GRADLE_HOME/bin:$PATH
 # can be changed using the ~/.profile file
 export TZ=America/Los_Angeles
 
-# For live update, Help Github Repositories
 
+
+
+# For live update github at
 export LIVE_UPDATE_GITHUB=https://github.com/hpssjellis/online-android-sdk-cloud9-live-update
+
+
+
+# Help Github Repository at
 export HELP_GITHUB=https://github.com/hpssjellis/online-android-sdk-cloud9-help
+export LATEST_VERSION=ver-1.0.0
+
 
 
 # for the location of the index.html file
-
 export INDEXFILE=/home/ubuntu/workspace/index.html
 
 
@@ -50,20 +56,20 @@ echo $GRADLE_HOME
 
 echo 'running default Hello World programs only once then moving them'
 
-if [ -e /home/ubuntu/start-here/a00-auto-ant-gradle.sh ]
+if [ -e /home/ubuntu/start-here/advanced/c00-auto-ant-gradle.sh ]
   then
-    bash /home/ubuntu/start-here/a00-auto-ant-gradle.sh 
-    mv /home/ubuntu/start-here/a00-auto-ant-gradle.sh /home/ubuntu/start-here/a00b-auto-ant-gradle.sh 
+    bash /home/ubuntu/start-here/advanced/c00-auto-ant-gradle.sh 
+    mv /home/ubuntu/start-here/advanced/c00-auto-ant-gradle.sh  /home/ubuntu/start-here/advanced/c00b-auto-ant-gradle.sh 
 fi
 
 
 
 echo "Activating Apache2 webserver only once then moving it"
 
-if [ -e /home/ubuntu/start-here/a04-restart-webserver.sh ]
+if [ -e /home/ubuntu/start-here/z01-restart-webserver.sh ]
   then
-    bash /home/ubuntu/start-here/a04-restart-webserver.sh
-    mv /home/ubuntu/start-here/a04-restart-webserver.sh /home/ubuntu/start-here/a04b-restart-webserver.sh
+    bash /home/ubuntu/start-here/z01-restart-webserver.sh
+    mv /home/ubuntu/start-here/z01-restart-webserver.sh /home/ubuntu/start-here/z01b-restart-webserver.sh
 fi
 
 

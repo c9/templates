@@ -1,7 +1,7 @@
 #!/bin/bash  
 
 #  only need to run this script with the command (do not type the #)
-#  bash a09-generate-keystore.sh
+#  bash a02-generate-ant-release.sh
 #  best in cloud 9 to just right click this file and select run
 
 
@@ -105,6 +105,13 @@ cd /home/ubuntu/workspace/$wow4/bin
 echo "Look for you new android $wow4/bin $wow4-release.apk"
 echo "right-click run index.html, then preview-preview running application to view webpage with .apk"
 echo ""
+
+
+echo "For help click on "
+echo "$HELP_GITHUB$LATEST_VERSIONa02-generate-ant-release.sh.md"
+echo ""
+
+
 echo ""
 echo "Click this link to open your index.html web page"
 echo ""

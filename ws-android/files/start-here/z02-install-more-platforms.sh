@@ -1,8 +1,14 @@
 #!/bin/bash  
 
 #  only need to run this script with the command (do not type the #)
-#  bash a03-install-more-platforms.sh
+#  bash z02-install-more-platforms.sh
 #  best in cloud 9 to just right click this file and select run
+
+
+
+echo "For help click on "
+echo "$HELP_GITHUB$LATEST_VERSIONa03-clone-github-ant-project.sh.md"
+echo ""
 
 
 cd /home/ubuntu/workspace/android-sdk-linux
@@ -45,4 +51,6 @@ sudo android update sdk --filter $myNum --no-ui --force
 
 
 
-echo "For help click on https://github.com/hpssjellis/online-android-sdk-cloud9-help/tree/master/version-1.0.0-android-sdk-help/basic-operation-and-installation/a03-install-more-platforms-HELP.md"
+echo "For help click on "
+echo "$HELP_GITHUB$LATEST_VERSIONz02-install-more-platforms.sh.md"
+echo ""

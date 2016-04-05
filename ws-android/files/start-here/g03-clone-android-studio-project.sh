@@ -1,11 +1,11 @@
 #!/bin/bash  
 
 #  only need to run this script with the command (do not type the #)
-#  bash a05-clone-github-android-studio-project.sh
+#  bash g03-clone-android-studio-project.sh
 #  best in cloud 9 to just right click this file and select run
 
-echo ""
-echo "For help click on https://github.com/hpssjellis/online-android-sdk-cloud9-help/tree/master/version-1.0.0-android-sdk-help/importing-from-github-and-android-studio/a06-clone-github-android-studio-project-HELP.md"
+echo "For help click on "
+echo "$HELP_GITHUB$LATEST_VERSIONg03-clone-android-studio-project.sh.md"
 echo ""
 
 
@@ -84,7 +84,8 @@ echo "Look for your new android apk at $MY_FOLDER_NAME/build/outputs/apk/$MY_FOL
 echo ""
 
 
-
-echo "For help click on https://github.com/hpssjellis/online-android-sdk-cloud9-help/tree/master/version-1.0.0-android-sdk-help/importing-from-github-and-android-studio/a06-clone-github-android-studio-project-HELP.md"
+echo "For help click on "
+echo "$HELP_GITHUB$LATEST_VERSIONg03-clone-android-studio-project.sh.md"
 echo ""
+
 echo "http://$C9_HOSTNAME"

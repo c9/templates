@@ -1,7 +1,7 @@
 #!/bin/bash  
 
 #  only need to run this script with the command (do not type the #)
-#  bash a00-auto-ant-gradle.sh
+#  bash c00-auto-ant-gradle.sh
 #  best in cloud 9 to just right click this file and select run
 
 # change date to los angeles time
@@ -127,5 +127,6 @@ echo "Look for your MainActivity.java file at  $wow4/src/main/java/com/example/$
 echo ""
 
 
-echo "For help click on https://github.com/hpssjellis/online-android-sdk-cloud9-help/tree/master/version-1.0.0-android-sdk-help/basic-operation-and-installation/a00-auto-ant-gradle-HELP.md "
-
+echo "For help click on "
+echo "$HELP_GITHUB$LATEST_VERSIONc00-auto-ant-gradle.sh.md"
+echo ""

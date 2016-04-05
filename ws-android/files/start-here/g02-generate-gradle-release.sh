@@ -2,7 +2,16 @@
 
 # Find or copy this file to your cloud9 Android-SDK workspace
 # run it with the command
-# bash a10-generate-gradle-release.sh
+# bash g02-generate-gradle-release.sh
+
+
+
+echo "For help click on "
+echo "$HELP_GITHUB$LATEST_VERSIONg02-generate-gradle-release.sh.md"
+echo ""
+
+
+
 
 sudo mkdir /home/keystore
 cd /home/keystore
@@ -160,6 +169,14 @@ echo "right-click run index.html, then preview-preview running application to vi
 echo ""
 echo ""
 echo "Click this link to open your index.html web page"
+
+
+
+echo "For help click on "
+echo "$HELP_GITHUB$LATEST_VERSIONg02-generate-gradle-release.sh.md"
+echo ""
+
+
 echo ""
 echo ""
 

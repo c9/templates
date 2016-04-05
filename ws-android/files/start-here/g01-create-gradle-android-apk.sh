@@ -1,10 +1,14 @@
 #!/bin/bash  
 
 #  only need to run this script with the command (do not type the #)
-#  bash a02-create-gradle-android-apk.sh
+#  bash g01-create-gradle-android-apk.sh
 #  best in cloud 9 to just right click this file and select run
 
 
+
+echo "For help click on "
+echo "$HELP_GITHUB$LATEST_VERSIONg01-create-gradle-android-apk.sh.md"
+echo ""
 
 
 echo "Enter a folder name, no spaces, no dashes, underscore allowed, for your app and folder example: helloGradle"
@@ -84,10 +88,17 @@ echo ""
 echo "Look for your MainActivity.java file at  $wow4/src/main/java/com/example/$wow4"
 echo ""
 echo ""
+
+
+
 echo "right-click run index.html, then preview-preview running application to view webpage with .apk"
 echo "Or just click this link and open the web page"
 echo ""
 echo ""
+echo "For help click on "
+echo "$HELP_GITHUB$LATEST_VERSIONg01-create-gradle-android-apk.sh.md"
+echo ""
+
 echo ""
 
 echo "http://$C9_HOSTNAME"

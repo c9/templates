@@ -58,14 +58,15 @@ printf "\n\n$wow4-debug.apk, $(date), <a href='../$wow4/bin/$wow4-debug.apk'>../
 
 
 
-
 ls -l bin
 
 echo "Look for you new android $wow4/bin $wow4-debug.apk"
 echo "right-click run index.html, then preview-preview running application to view webpage with .apk"
+
+echo "For help click on "
+echo "$HELP_GITHUB$LATEST_VERSIONa01-create-ant-android-apk.sh.md"
 echo ""
-echo "For help click on https://github.com/hpssjellis/online-android-sdk-cloud9-help/tree/master/version-1.0.0-android-sdk-help/basic-operation-and-installation/a01-create-ant-android-apk-HELP.md"
-echo ""
+
 echo "Click this link to open your index.html web page"
 echo ""
 echo ""

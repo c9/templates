@@ -1,5 +1,11 @@
 #!/bin/bash
 
+
+#run with
+# bash b02-load-local.sh
+
+
+
 cd /home/ubuntu
 
 git clone https://github.com/c9/core.git c9sdk
@@ -30,3 +36,11 @@ sudo mv /home/ubuntu/start-here/advanced-local-install/001-cloud9.conf  /etc/apa
 
 
 #sudo service apache2 restart 
+
+
+
+
+
+echo "For help click on "
+echo "$HELP_GITHUB$LATEST_VERSIONb02-load-local.sh.md"
+echo ""

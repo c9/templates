@@ -1,6 +1,9 @@
 #!/bin/bash
 
 
+# run with 
+# bash b01-on-your-computer.sh
+
 # save this file to your Docker capable computer
 # Not sure if it will work on windows. Probably have to shange extension .sh to .bat
 # Note: comment out the line 
@@ -18,3 +21,10 @@ sudo docker run -it -u ubuntu -p 8080:8080 cloud9/ws-android bash
 # run the file load-local.sh and restart apache. Finding apache may be a bit of a pain. I use the cloud9 local URL
 # and hange the extension to :8081
 
+
+
+
+
+echo "For help click on "
+echo "$HELP_GITHUB$LATEST_VERSIONb01-on-your-computer.sh.md"
+echo ""

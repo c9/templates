@@ -1,13 +1,16 @@
 #!/bin/bash  
 
 #  only need to run this script with the command (do not type the #)
-#  bash a06-clone-github-ant-project.sh
+#  bash a03-clone-github-ant-project.sh
 # best in cloud 9 to just right click this file and select run
 
 
+
+
+echo "For help click on "
+echo "$HELP_GITHUB$LATEST_VERSIONa03-clone-github-ant-project.sh.md"
 echo ""
-echo "For help click on https://github.com/hpssjellis/online-android-sdk-cloud9-help/tree/master/version-1.0.0-android-sdk-help/importing-from-github-and-android-studio/a05-clone-github-ant-project-HELP.md"
-echo ""
+
 
 echo "Enter the Github repository URL, must end in .git example:"
 echo "https://github.com/sitepoint-editors/TodoList"
@@ -54,9 +57,12 @@ echo "Look for you new android $wow4/bin $wow4-debug.apk"
 echo "right-click run index.html, then preview-preview running application to view webpage with .apk"
 
 
+
+echo "For help click on "
+echo "$HELP_GITHUB$LATEST_VERSIONa03-clone-github-ant-project.sh.md"
 echo ""
-echo "For help click on https://github.com/hpssjellis/online-android-sdk-cloud9-help/tree/master/version-1.0.0-android-sdk-help/importing-from-github-and-android-studio/a05-clone-github-ant-project-HELP.md"
-echo ""
+
+
 
 echo "Or just click this link and open the web page"
 echo ""
