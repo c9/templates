@@ -60,7 +60,7 @@ if [ -e /home/ubuntu/start-here/advanced/c00-auto-ant-gradle.sh ]
   then
     bash /home/ubuntu/start-here/advanced/c00-auto-ant-gradle.sh 
     mv /home/ubuntu/start-here/advanced/c00-auto-ant-gradle.sh  /home/ubuntu/start-here/advanced/c00b-auto-ant-gradle.sh 
-    sleep 2s
+    #sleep 2s
 fi
 
 
