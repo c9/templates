@@ -7,7 +7,7 @@
 
 
 echo "For help click on "
-echo "$HELP_GITHUB$LATEST_VERSIONg01-create-gradle-android-apk.sh.md"
+echo "$HELP_GITHUB/g01-create-gradle-android-apk.sh.md"
 echo ""
 
 
@@ -96,7 +96,7 @@ echo "Or just click this link and open the web page"
 echo ""
 echo ""
 echo "For help click on "
-echo "$HELP_GITHUB$LATEST_VERSIONg01-create-gradle-android-apk.sh.md"
+echo "$HELP_GITHUB/g01-create-gradle-android-apk.sh.md"
 echo ""
 
 echo ""
