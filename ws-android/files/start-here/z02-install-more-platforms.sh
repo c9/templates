@@ -7,7 +7,7 @@
 
 
 echo "For help click on "
-echo "$HELP_GITHUB$LATEST_VERSIONa03-clone-github-ant-project.sh.md"
+echo "$HELP_GITHUB/a03-clone-github-ant-project.sh.md"
 echo ""
 
 
@@ -52,5 +52,5 @@ sudo android update sdk --filter $myNum --no-ui --force
 
 
 echo "For help click on "
-echo "$HELP_GITHUB$LATEST_VERSIONz02-install-more-platforms.sh.md"
+echo "$HELP_GITHUB/z02-install-more-platforms.sh.md"
 echo ""
