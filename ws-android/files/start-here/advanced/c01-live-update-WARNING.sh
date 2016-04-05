@@ -32,5 +32,5 @@ echo ""
 
 
 echo "For help click on "
-echo "$HELP_GITHUB/c01-live-update-WARNING.sh.md"
+echo "$HELP_GITHUB/advanced/c01-live-update-WARNING.sh.md"
 echo ""
