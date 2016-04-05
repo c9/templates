@@ -29,7 +29,7 @@ sudo cp /home/ubuntu/start-here/advanced/local-cloud9-install/001-cloud9.conf  /
 
 
 echo "For help click on "
-echo "$HELP_GITHUB$LATEST_VERSIONb02-load-local.sh.md"
+echo "$HELP_GITHUB/advanced/local-cloud9-install/b02-load-local.sh.md"
 echo ""
 
 ./server.js -p 8080 -l 0.0.0.0 -a :
