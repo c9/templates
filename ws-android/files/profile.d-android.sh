@@ -34,7 +34,7 @@ export LIVE_UPDATE_GITHUB=https://github.com/hpssjellis/online-android-sdk-cloud
 
 
 # Help Github and version Repository at
-export HELP_GITHUB=https://github.com/hpssjellis/online-android-sdk-cloud9-help/tree/master/ver-1.0.0/
+export HELP_GITHUB=https://github.com/hpssjellis/online-android-sdk-cloud9-help/tree/master/ver-1.0.0
 
 
 
