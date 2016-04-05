@@ -29,7 +29,7 @@ export TZ=America/Los_Angeles
 
 
 # For live update github at
-export LIVE_UPDATE_GITHUB=https://github.com/hpssjellis/online-android-sdk-cloud9-live-update
+export LIVE_UPDATE_GITHUB=https://github.com/hpssjellis/online-android-sdk-cloud9-live-update.git
 
 
 
