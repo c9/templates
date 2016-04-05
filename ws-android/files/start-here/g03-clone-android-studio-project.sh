@@ -5,7 +5,7 @@
 #  best in cloud 9 to just right click this file and select run
 
 echo "For help click on "
-echo "$HELP_GITHUB$LATEST_VERSIONg03-clone-android-studio-project.sh.md"
+echo "$HELP_GITHUB/g03-clone-android-studio-project.sh.md"
 echo ""
 
 
@@ -85,7 +85,7 @@ echo ""
 
 
 echo "For help click on "
-echo "$HELP_GITHUB$LATEST_VERSIONg03-clone-android-studio-project.sh.md"
+echo "$HELP_GITHUB/g03-clone-android-studio-project.sh.md"
 echo ""
 
 echo "http://$C9_HOSTNAME"
