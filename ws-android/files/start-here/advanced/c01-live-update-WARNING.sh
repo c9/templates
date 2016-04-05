@@ -11,7 +11,7 @@ echo "Warning. This bash program updates your Docker Cloud9 Workspace potential 
 echo "https://github.com/hpssjellis/online-android-sdk-cloud9-live-update"
 echo ""
 echo "Please check the repository to make sure you want those files"
-echo "Proceed Y/n"
+echo "Proceed [Y/n]"
 read myAnswer
 if [ $myAnswer == 'y' ] || [ $myAnswer == 'Y' ]
   then
