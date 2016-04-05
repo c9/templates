@@ -16,7 +16,7 @@ read myAnswer
 if [ $myAnswer == 'y' ] || [ $myAnswer == 'Y' ]
   then
     echo "Installing live update files from github"
-    sudo git clone https://github.com/hpssjellis/online-android-sdk-cloud9-live-update.git /home/temp
+    sudo git clone $LIVE_UPDATE_GITHUB /home/temp
     rsync -avh --progress /home/temp/ubuntu /home
     sudo rm -rf /home/temp
 
@@ -25,12 +25,12 @@ if [ $myAnswer == 'y' ] || [ $myAnswer == 'Y' ]
 fi
   
 echo "Live update files in the repository at"
-echo "https://github.com/hpssjellis/online-android-sdk-cloud9-live-update"
+echo "$LIVE_UPDATE_GITHUB"
 echo ""  
 
 
 
 
 echo "For help click on "
-echo "$HELP_GITHUB$LATEST_VERSIONc01-live-update-WARNING.sh.md"
+echo "$HELP_GITHUB/c01-live-update-WARNING.sh.md"
 echo ""
