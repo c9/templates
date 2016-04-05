@@ -38,7 +38,7 @@ ant debug
 
 
 
-BATCHFILE="a01-cloud9-make-debug.sh"
+BATCHFILE="c00-cloud9-make-debug.sh"
 #INDEXFILE="/home/ubuntu/workspace/index.html"
 
 
@@ -96,7 +96,7 @@ cd /home/ubuntu/workspace/$wow4
 
 
 
-BATCHFILE="a02-cloud9-make-debug.sh"
+BATCHFILE="c00-cloud9-make-debug.sh"
 #INDEXFILE="/home/ubuntu/workspace/index.html"
 
 
@@ -128,5 +128,5 @@ echo ""
 
 
 echo "For help click on "
-echo "$HELP_GITHUB$LATEST_VERSIONc00-auto-ant-gradle.sh.md"
+echo "$HELP_GITHUB/advanced/c00-auto-ant-gradle.sh.md"
 echo ""
