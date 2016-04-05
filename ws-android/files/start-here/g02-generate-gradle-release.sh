@@ -7,7 +7,7 @@
 
 
 echo "For help click on "
-echo "$HELP_GITHUB$LATEST_VERSIONg02-generate-gradle-release.sh.md"
+echo "$HELP_GITHUB/g02-generate-gradle-release.sh.md"
 echo ""
 
 
@@ -173,7 +173,7 @@ echo "Click this link to open your index.html web page"
 
 
 echo "For help click on "
-echo "$HELP_GITHUB$LATEST_VERSIONg02-generate-gradle-release.sh.md"
+echo "$HELP_GITHUB/g02-generate-gradle-release.sh.md"
 echo ""
 
 
