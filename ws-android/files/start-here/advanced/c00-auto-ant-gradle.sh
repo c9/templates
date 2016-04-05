@@ -38,7 +38,7 @@ ant debug
 
 
 
-BATCHFILE="c00-cloud9-make-debug.sh"
+BATCHFILE="a00-cloud9-make-debug.sh"
 #INDEXFILE="/home/ubuntu/workspace/index.html"
 
 
@@ -96,7 +96,7 @@ cd /home/ubuntu/workspace/$wow4
 
 
 
-BATCHFILE="c00-cloud9-make-debug.sh"
+BATCHFILE="a00-cloud9-make-debug.sh"
 #INDEXFILE="/home/ubuntu/workspace/index.html"
 
 
