@@ -9,7 +9,9 @@
 echo "For help click on "
 echo "$HELP_GITHUB/c02-edit-profile.sh.md"
 echo ""
-
+echo "press enter to continue"
+echo "close the terminal to quit"
+read
 
 
 sudo nano ~/.profile
