@@ -43,18 +43,11 @@ export HELP_GITHUB=https://github.com/hpssjellis/online-android-sdk-cloud9-help/
 export INDEXFILE=/home/ubuntu/workspace/index.html
 
 
-echo 'Environment Variables, Symlinks and Paths complete'
-echo '$PATH'
-echo ''
-echo 'JAVA_HOME at '
-echo $JAVA_HOME
-echo 'ANDROID_SDK_HOME at  '
-echo $ANDROID_SDK_HOME
-echo 'GRADLE_HOME at '
-echo $GRADLE_HOME
+#echo 'Environment Variables, Symlinks and Paths complete'
 
 
-echo 'running default Hello World programs only once then moving them'
+
+#echo 'running default Hello World programs only once then moving them'
 
 if [ -e /home/ubuntu/start-here/advanced/c00-auto-ant-gradle.sh ]
   then
@@ -65,7 +58,7 @@ fi
 
 
 
-echo "Activating Apache2 webserver only once then moving it"
+#echo "Activating Apache2 webserver only once then moving it"
 
 if [ -e /home/ubuntu/start-here/z01-restart-webserver.sh ]
   then
@@ -73,11 +66,10 @@ if [ -e /home/ubuntu/start-here/z01-restart-webserver.sh ]
     mv /home/ubuntu/start-here/z01-restart-webserver.sh /home/ubuntu/start-here/z01b-restart-webserver.sh
 fi
 
-
-
+echo "Your terminal has been set up on Cloud 9 https://c9.io"
+echo "For version specific help click the link at"
+echo "$HELP_GITHUB"
 echo ""
-echo "right-click run index.html, then preview-preview running application to view webpage with .apk"
-echo "Or just click this link and open the web page"
-echo ""
+echo "Click the following link to open the web page at $INDEXFILE"
 echo ""
 echo "http://$C9_HOSTNAME"
