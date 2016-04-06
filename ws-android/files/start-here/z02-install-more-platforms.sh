@@ -35,6 +35,7 @@ echo "Note: Installing the new build tools may break some links, so be careful"
 echo "Might be best with the build tools to wait for the newer version of the workspace"
 echo ""
 echo "Type the left hand side number of the SDK to install. example 1"
+echo "zero to exit. example 0"
 
 read myNum
 sudo android update sdk --filter $myNum --no-ui --force 
