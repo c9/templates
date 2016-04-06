@@ -44,10 +44,6 @@ ls -l /usr/local/android-sdk-linux/platforms
 
 
 
-chmod a+x gradlew
-
-./gradlew assembleDebug
-
 # Make the following a full path to where your index.html file is /home/ubuntu/workspace/www/index.html
 # printf "\n\n<a href='$MY_FOLDER_NAME/build/outputs/apk/$MY_FOLDER_NAME-debug.apk'>$MY_FOLDER_NAME/build/outputs/apk/$MY_FOLDER_NAME-debug.apk</a><br><br>"  >> /home/ubuntu/workspace/index.html
 # to make  my life easier
@@ -73,6 +69,10 @@ printf "\n\n$wow4-debug.apk, $(date), <a href='../$wow4/build/outputs/apk/$wow4-
 
 
 
+
+chmod a+x gradlew
+
+./gradlew assembleDebug
 
 
 
