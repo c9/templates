@@ -30,9 +30,6 @@ git clone $MY_GIT_TO_CLONE $wow4
 
 cd /home/ubuntu/workspace/$wow4
 
-ant clean
-
-ant debug
 
 
 
@@ -48,6 +45,9 @@ printf "printf \" $wow4-debug.apk, \$(date), <a href='../$wow4/bin/$wow4-debug.a
 
 
 
+ant clean
+
+ant debug
 
 
 
