@@ -57,8 +57,9 @@ mvn --version
 ruby --version | grep 2\..\..
 
 python --version 2>&1 | grep 'Python 2'
-pip --version | grep 1.5
-pylint --version | grep 1.4
+python3 --version 2>&1 | grep 'Python 3'
+pip --version
+pylint --version
 
 mkdir -p ~/workspace
 echo "Success" > ~/workspace/file
