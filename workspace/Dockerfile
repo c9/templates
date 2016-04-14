@@ -152,7 +152,10 @@ RUN echo "Configure php" && \
     apt-get install -y php5 php5-cli php5-fpm php5-pgsql php5-mysql phpmyadmin phppgadmin && \
     php5enmod c9 && \
     chmod 777 /var/lib/phpmyadmin/tmp && \
-    cd /etc/php5/mods-available && ls *.ini | sed 's/\.ini$//' | xargs php5enmod
+    cd /etc/php5/mods-available && ls *.ini | sed 's/\.ini$//' | xargs php5enmod && \
+    curl -sS https://getcomposer.org/installer | php && \
+    mv composer.phar /usr/bin/composer
+
 
 # re-enable service startup. This line must come after all apt-get installs
 RUN rm -f /usr/sbin/policy-rc.d

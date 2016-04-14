@@ -1,6 +1,7 @@
 #!/bin/bash
 set -ex
 
+composer
 cd ~/workspace
 echo Success > file
 php -S localhost:9090 &

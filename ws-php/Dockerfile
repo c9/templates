@@ -18,8 +18,5 @@ RUN apt-get install -y php5 php5-cli php5-fpm \
     && apt-get install -y php5-dev \
         && pecl install xdebug \
         && php5enmod xdebug \
-    && cd /etc/php5/mods-available && ls *.ini | sed 's/\.ini$//' | xargs php5enmod \
-    && curl -sS https://getcomposer.org/installer | php \
-        && mv composer.phar /usr/bin/composer
-
+    && cd /etc/php5/mods-available && ls *.ini | sed 's/\.ini$//' | xargs php5enmod
 RUN chown -R ubuntu: /home/ubuntu/lib
