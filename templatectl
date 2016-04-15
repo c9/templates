@@ -67,7 +67,6 @@ list_check_environment_scripts() {
 }
 
 check_environment() {
-	# copy to bindir
 	local SCRIPT=$1
 	local CUSTOM=''
 	[[ $CUSTOM_CHECK_ENVIRONMENT ]] && CUSTOM='custom-'
