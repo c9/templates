@@ -67,14 +67,15 @@ list_check_environment_scripts() {
 }
 
 check_environment() {
-	local SCRIPT=$1
+	local NAME=$1-check-environment
+	local SCRIPT=$2
 	local CUSTOM=''
 	local CHECK=${SCRIPT%%/files/check-environment}
 	CHECK=${CHECK##*[./]}
 	[[ $CUSTOM_CHECK_ENVIRONMENT ]] && CUSTOM='custom-'
 
-	$SUDO cp $SCRIPT $BINDIR/${TEMPLATE}-${custom}check-environment
-	if ! OUT=$(docker_run $IMAGE bash -lc ${TEMPLATE}-${custom}check-environment 2>&1); then
+	$SUDO cp $SCRIPT $BINDIR/${NAME}
+	if ! OUT=$(docker_run $IMAGE bash -lc ${NAME} 2>&1); then
 		err "$OUT"
 		err "Error: templatectl test $IMAGE failed on $CHECK checks"
 		return 1
@@ -88,11 +89,11 @@ clean_template_variable() {
 
 check_environment_recursive() {
 	if [[ $CUSTOM_CHECK_ENVIRONMENT ]]; then
-		check_environment $CUSTOM_CHECK_ENVIRONMENT
+		check_environment $TEMPLATE-custom $CUSTOM_CHECK_ENVIRONMENT
 	else
 		check_environment_scripts=$(list_check_environment_scripts)
 		for script in $check_environment_scripts; do
-			check_environment $script
+			check_environment ${script%%/*} $script
 		done
 		echo "Successfully checked $IMAGE"
 		echo "------------------------------------------------------"
