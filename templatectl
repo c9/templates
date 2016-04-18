@@ -148,7 +148,7 @@ detect_d9
 for arg in "$@"; do
 	case $arg in
 		--check-environment=*)
-			CUSTOM_CHECK_ENVIRONMENT="${ARG#*=}"
+			CUSTOM_CHECK_ENVIRONMENT="${arg#*=}"
 			shift
 			;;
 		test)
