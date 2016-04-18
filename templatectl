@@ -69,12 +69,14 @@ list_check_environment_scripts() {
 check_environment() {
 	local SCRIPT=$1
 	local CUSTOM=''
+	local CHECK=${SCRIPT%%/files/check-environment}
+	CHECK=${CHECK##*[./]}
 	[[ $CUSTOM_CHECK_ENVIRONMENT ]] && CUSTOM='custom-'
 
 	$SUDO cp $SCRIPT $BINDIR/${TEMPLATE}-${custom}check-environment
 	if ! OUT=$(docker_run $IMAGE bash -lc ${TEMPLATE}-${custom}check-environment 2>&1); then
 		err "$OUT"
-		err "Error: templatectl test $IMAGE failed on ${SCRIPT%%/*} checks"
+		err "Error: templatectl test $IMAGE failed on $CHECK checks"
 		return 1
 	fi
 }
