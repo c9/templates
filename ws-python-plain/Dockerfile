@@ -14,6 +14,6 @@ RUN apt-get install -y python3.5-complete
 
 RUN pip install lpthw.web
 
-ADD ./files /home/ubuntu
+ADD ./files/workspace /home/ubuntu/workspace
 
 RUN chown -R ubuntu:ubuntu /home/ubuntu/workspace

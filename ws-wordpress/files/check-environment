@@ -1,0 +1,16 @@
+#!/bin/bash
+export C9_USER=foo
+mysql-ctl start
+run-apache2 &
+
+START=$(date +%s)
+while true; do
+	if curl -vvv localhost:8080 2>&1 | grep '302 Found'; then
+		break
+	fi
+	if (($START + 10 < $(date +%s))); then
+		echo "Can't reach wordpress installation page after 10 seconds. Aborting."
+		exit 1
+	fi
+	sleep 1
+done
