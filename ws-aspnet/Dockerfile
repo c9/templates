@@ -1,7 +1,8 @@
 FROM cloud9/workspace
-MAINTAINER Peter Bozovic <peter.bozovic@ogilvy.com>
+MAINTAINER Peter Bozovic <pbozovic@gmail.com>
 
 # Getting CoreClr dependencies
+RUN apt-get update
 RUN apt-get -y install libunwind8 gettext libssl-dev libcurl3-dev zlib1g libicu-dev
 
 # Installing Kestrel (web server)
@@ -48,3 +49,4 @@ RUN sudo -u ubuntu -i bash -l -c "source ~/.dnx/dnvm/dnvm.sh && dnvm upgrade -r 
 	&& cd ~/workspace/ConsoleApplication \
 	&& dnvm exec default dnu restore \
 	"
+RUN sudo -u ubuntu -i bash -l -c "echo '[ -s \"/home/ubuntu/.dnx/dnvm/dnvm.sh\" ] && . \"/home/ubuntu/.dnx/dnvm/dnvm.sh\" # Load dnvm' >> ~/.profile"
