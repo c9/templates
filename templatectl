@@ -144,7 +144,7 @@ cleanup() {
 
 cd "$(dirname "$0")"
 
-if [[ $1 =~ --?h(elp)? ]] || [[ ! $2 ]]; then
+if [[ $1 =~ ^--?h(elp)?$ ]] || [[ ! $2 ]]; then
 	usage
 	exit 1
 fi
