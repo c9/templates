@@ -76,6 +76,8 @@ check_environment() {
 
 	$SUDO cp $SCRIPT $BINDIR/${NAME}
 	if ! OUT=$(docker_run $IMAGE bash -lc ${NAME} 2>&1); then
+	$SUDO cp $SCRIPT $BINDIR/${TEMPLATE}-${custom}check-environment
+	if ! OUT=$(docker_run $IMAGE bash -lc ${TEMPLATE}-${custom}check-environment 2>&1); then
 		err "$OUT"
 		err "Error: templatectl test $IMAGE failed on $CHECK checks"
 		return 1
