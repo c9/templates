@@ -1,0 +1,226 @@
+#!/bin/bash
+set -e
+
+usage() {
+	cat <<-EOF
+		Usage: $(basename "$0") template-name (test|run)
+
+		test
+			Run the check-environment scripts on the selected workspace.
+			If specified by 'cloud9/ws-ruby:version' it will use the specified version,
+			otherwise it will attempt to build and test the one on the filesystem when
+			used with 'ws-ruby'.
+		run
+			Run the workspace with a local instance of cloud9 for testing
+	EOF
+}
+
+err() {
+	echo "$@" >&2
+}
+
+dockerfile_exists() {
+	[[ -d "$(dirname "$0")/$TEMPLATE" ]]
+}
+
+docker_run() {
+	if [[ $D9 ]]; then
+		$D9 dry --no-tty $@
+	else
+		docker run --rm -u=ubuntu -v $BINDIR:/mnt/shared/bin -w=/home/ubuntu -e HOME=/home/ubuntu $@
+	fi
+}
+
+check_run_as_root() {
+	err "Checking $IMAGE runs as root..."
+	if ! [[ $(docker run --rm $IMAGE whoami) == root ]]; then
+		err "Error: d9 check $IMAGE failed - Container is not running as root by default!"
+		return 1
+	fi
+}
+
+build_template() {
+	docker build -t cloud9/$TEMPLATE --rm=true ./$TEMPLATE
+}
+
+image_exists() {
+	docker images | grep -q ${IMAGE%%:*}
+}
+
+get_parent_image() {
+	perl -ne '/^FROM ?(.*)$/ && print $1 . "\n"' $1/Dockerfile 2>/dev/null
+}
+
+list_check_environment_scripts() {
+	local current_template=$TEMPLATE
+	local scripts=()
+	while true; do
+		scripts+=("${current_template/}/files/check-environment")
+		parent_image=$(get_parent_image $current_template)
+		if [[ $parent_image =~ cloud9 ]]; then
+			current_template=${parent_image#cloud9/}
+		else
+			break
+		fi
+	done
+	echo "${scripts[@]}"
+}
+
+verify_check_environment_script() {
+	local SCRIPT=$1
+
+	if ! [[ -e $SCRIPT ]]; then
+		err "'$SCRIPT' cannot be found. Aborting."
+		return 1
+	fi
+
+	if ! [[ -x $SCRIPT ]]; then
+		err "'$SCRIPT' is not executable. Aborting."
+		return 1
+	fi
+}
+
+check_environment() {
+	local SCRIPT=$1
+	local CUSTOM=''
+	[[ $CUSTOM_CHECK_ENVIRONMENT ]] && CUSTOM='custom-'
+
+	verify_check_environment_script "$SCRIPT"
+	$SUDO cp $SCRIPT $BINDIR/${TEMPLATE}-${custom}check-environment
+	if ! OUT=$(docker_run $IMAGE bash -lc ${TEMPLATE}-${custom}check-environment 2>&1); then
+		err "$OUT"
+		err "Error: templatectl test $IMAGE failed on $CHECK checks"
+		return 1
+	fi
+}
+
+clean_template_variable() {
+	TEMPLATE=${TEMPLATE#cloud9/}
+	TEMPLATE=${TEMPLATE%:*}
+}
+
+check_environment_recursive() {
+	if [[ $CUSTOM_CHECK_ENVIRONMENT ]]; then
+		check_environment $TEMPLATE-custom $CUSTOM_CHECK_ENVIRONMENT
+	else
+		check_environment_scripts=$(list_check_environment_scripts)
+		for script in $check_environment_scripts; do
+			check_environment ${script%%/*} $script
+		done
+		echo "Successfully checked $IMAGE"
+		echo "------------------------------------------------------"
+	fi
+}
+
+test_template() {
+	if dockerfile_exists; then
+		build_template
+	fi
+	clean_template_variable
+
+	if ! image_exists; then
+		err "Could not find image '$image'. Aborting"
+		return 1
+	fi
+
+	check_environment_recursive
+}
+
+update_sdk() {
+	cat <<-EOF | docker run --rm -i -v $CACHE/c9sdk:/c9sdk $IMAGE bash
+	if [[ -d /c9sdk/.git ]]; then
+		git -C /c9sdk fetch
+		git -C /c9sdk reset --hard origin/master
+	else
+		git clone https://github.com/c9/core.git /c9sdk
+	fi
+	chown -R ubuntu. /c9sdk
+	EOF
+}
+
+update_sdk_wrapper() {
+	cat <<-EOF > $CACHE/c9sdk-wrapper
+		#!/bin/bash
+
+		sudo chown ubuntu. /home/ubuntu/.c9
+		cd /c9-cache/c9sdk
+		./scripts/install-sdk.sh
+
+		# Run SDK
+		[[ -f ~/.nvm/nvm.sh ]] && . ~/.nvm/nvm.sh
+		node server.js -p 8080 -a : -w /home/ubuntu/workspace --listen 0.0.0.0
+	EOF
+}
+
+run_sdk_wrapper() {
+	docker run -it \
+	           --rm \
+	           -p 8080:8080 \
+	           -v $CACHE:/c9-cache \
+	           -v $CACHE/.c9:/home/ubuntu/.c9 \
+	           --user ubuntu \
+	           $IMAGE bash /c9-cache/c9sdk-wrapper
+}
+
+run_template() {
+	if dockerfile_exists; then
+		build_template
+	fi
+	clean_template_variable
+
+	update_sdk
+	update_sdk_wrapper
+	run_sdk_wrapper
+}
+
+detect_d9() {
+	D9=${D9:-$(which d9 2>/dev/null)} || :
+	if [[ $D9 ]]; then
+		BINDIR=/var/lib/docker/shared-space/bin
+		SUDO='sudo'
+	fi
+}
+
+cleanup() {
+	rm -rf $TEMP
+}
+
+cd "$(dirname "$0")"
+
+if [[ $1 =~ ^--?h(elp)?$ ]] || [[ ! $2 ]]; then
+	usage
+	exit 1
+fi
+
+CACHE=$(cd $(dirname "$0")/.templatectl-cache; pwd)
+TEMP=$(mktemp -d)
+BINDIR=$TEMP
+SUDO=''
+CUSTOM_CHECK_ENVIRONMENT=''
+TEMPLATE=$1
+IMAGE="cloud9/${1#cloud9/}"
+shift
+
+detect_d9
+
+
+for arg in "$@"; do
+	case $arg in
+		--check-environment=*)
+			CUSTOM_CHECK_ENVIRONMENT="${arg#*=}"
+			shift
+			;;
+		test)
+			test_template
+			exit
+			;;
+		run)
+			run_template
+			exit
+			;;
+		*)
+			usage
+			exit 1
+			;;
+	esac
+done

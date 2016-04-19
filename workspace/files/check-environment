@@ -1,0 +1,108 @@
+#!/bin/bash -l
+
+set -e
+set -x
+
+cd
+rm -rf environment-test
+mkdir -p environment-test
+cd environment-test
+
+if X='() { :; }; echo Vulnerable' bash -c pwd | grep -q Vulnerable; then
+    echo "Vulnerable to shellshock bug: http://blog.erratasec.com/2014/09/bash-bug-as-big-as-heartbleed.html"
+    exit 1
+fi
+ 
+sudo apt-get -qq -y install hello
+
+if ! [[ -e ~/.ssh/config ]]; then
+    echo '~/.ssh/config is missing'
+    exit 1
+fi
+
+node -e 'console.log("hello")' 
+
+node -v
+npm --version
+
+# npm is not in a directory whitelisted for sudo usage, so it won't work
+# sudo npm install -g test || sudo npm install -g test
+
+git --version | grep 2\..\..
+hg --version | grep 3\..\..
+bzr --version | grep 2\..\..
+svn --version
+cvs --version
+
+vim --version
+nano --version
+ctags --version
+
+java -version
+ant -version
+mvn --version
+
+ruby --version | grep 2\..\..
+
+python --version 2>&1 | grep 'Python 2'
+python3 --version 2>&1 | grep 'Python 3'
+pip --version
+
+mkdir -p ~/workspace
+echo "Success" > ~/workspace/file
+apache2 -X &
+START=`date +'%s'`
+while true; do
+    if curl -L http://localhost:8080/file 2>/dev/null | grep Success; then
+        break
+    fi
+    if (($START + 10 < `date +'%s'`)); then
+        echo "Can't reach localhost:8080 :( Apache seems to be b0rked"
+        exit 1
+    fi
+    sleep 1
+done
+
+composer
+cd ~/workspace
+echo Success > file
+php -S localhost:9090 &
+START=`date +'%s'`
+while true; do
+	if curl -L http://localhost:9090/file 2>/dev/null | grep Success; then
+		break
+	fi
+	if (($START + 10 < `date +'%s'`)); then
+		echo "Can't reach localhost:9090 :( php -S seems to be b0rked"
+		exit 1
+	fi
+	sleep 1
+done
+
+go version
+
+heroku version | grep toolbelt
+mongo --version | grep -E '(2\.6|3\.0\.4)'
+
+# cloud9.sh needs to run in sh
+unset C9_PORT
+unset LC_ALL
+unset C9_SH_EXECUTED
+sh /etc/profile.d/cloud9.sh
+. /etc/profile.d/cloud9.sh
+[ "$C9_PORT" ] || (echo "cloud9.sh doesn't seem to set C9_PORT"; exit 1)
+[ "$LC_ALL" ] || (echo "cloud9.sh doesn't seem to set LC_ALL"; exit 1)
+echo $PATH | grep /mnt/shared/sbin
+
+# .bashrc & .profile should work in sh and output nothing
+sh /home/ubuntu/.profile 
+[[ "$(sh /home/ubuntu/.profile 2>&1)" == "" ]]
+bash /home/ubuntu/.profile 
+[[ "$(bash /home/ubuntu/.profile 2>&1)" == "" ]]
+
+# Patched procps from https://github.com/cloud9ide/procps
+# [ -e /var/lib/c9/memory ]
+ps aux >/dev/null
+free >/dev/null
+
+echo "Success"
