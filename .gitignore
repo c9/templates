@@ -7,3 +7,5 @@ Session.vim
 # temporary
 .netrwhist
 *~
+
+.templatectl-cache

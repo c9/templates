@@ -19,7 +19,7 @@ err() {
 	echo "$@" >&2
 }
 
-template_exists() {
+dockerfile_exists() {
 	[[ -d "$(dirname "$0")/$TEMPLATE" ]]
 }
 
@@ -101,7 +101,7 @@ check_environment_recursive() {
 }
 
 test_template() {
-	if template_exists; then
+	if dockerfile_exists; then
 		build_template
 	fi
 	clean_template_variable
@@ -114,8 +114,51 @@ test_template() {
 	check_environment_recursive
 }
 
+update_sdk() {
+	cat <<-EOF | docker run --rm -i -v $CACHE/c9sdk:/c9sdk $IMAGE bash
+	if [[ -d /c9sdk/.git ]]; then
+		git -C /c9sdk fetch
+		git -C /c9sdk reset --hard origin/master
+	else
+		git clone https://github.com/c9/core.git /c9sdk
+	fi
+	chown -R ubuntu. /c9sdk
+	EOF
+}
+
+update_sdk_wrapper() {
+	cat <<-EOF > $CACHE/c9sdk-wrapper
+		#!/bin/bash
+
+		sudo chown ubuntu. /home/ubuntu/.c9
+		cd /c9-cache/c9sdk
+		./scripts/install-sdk.sh
+
+		# Run SDK
+		[[ -f ~/.nvm/nvm.sh ]] && . ~/.nvm/nvm.sh
+		node server.js -p 8080 -a : -w /home/ubuntu/workspace --listen 0.0.0.0
+	EOF
+}
+
+run_sdk_wrapper() {
+	docker run -it \
+	           --rm \
+	           -p 8080:8080 \
+	           -v $CACHE:/c9-cache \
+	           -v $CACHE/.c9:/home/ubuntu/.c9 \
+	           --user ubuntu \
+	           $IMAGE bash /c9-cache/c9sdk-wrapper
+}
+
 run_template() {
-	err "Coming soon..."
+	if dockerfile_exists; then
+		build_template
+	fi
+	clean_template_variable
+
+	update_sdk
+	update_sdk_wrapper
+	run_sdk_wrapper
 }
 
 detect_d9() {
@@ -137,6 +180,7 @@ if [[ $1 =~ --?h(elp)? ]] || [[ ! $2 ]]; then
 	exit 1
 fi
 
+CACHE=$(cd $(dirname "$0")/.templatectl-cache; pwd)
 TEMP=$(mktemp -d)
 BINDIR=$TEMP
 SUDO=''
