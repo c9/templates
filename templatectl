@@ -112,7 +112,7 @@ test_template() {
 }
 
 update_sdk() {
-	cat <<-EOF | docker run -i -v $CACHE/c9sdk:/c9sdk $IMAGE bash
+	cat <<-EOF | docker run --rm -i -v $CACHE/c9sdk:/c9sdk $IMAGE bash
 	if [[ -d /c9sdk/.git ]]; then
 		git -C /c9sdk fetch
 		git -C /c9sdk reset --hard origin/master
@@ -139,6 +139,7 @@ update_sdk_wrapper() {
 
 run_sdk_wrapper() {
 	docker run -it \
+	           --rm \
 	           -p 8080:8080 \
 	           -v $CACHE:/c9-cache \
 	           -v $CACHE/.c9:/home/ubuntu/.c9 \
