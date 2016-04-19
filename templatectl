@@ -66,16 +66,28 @@ list_check_environment_scripts() {
 	echo "${scripts[@]}"
 }
 
+verify_check_environment_script() {
+	local SCRIPT=$1
+
+	if ! [[ -e $SCRIPT ]]; then
+		err "'$SCRIPT' cannot be found. Aborting."
+		return 1
+	fi
+
+	if ! [[ -x $SCRIPT ]]; then
+		err "'$SCRIPT' is not executable. Aborting."
+		return 1
+	fi
+}
+
 check_environment() {
-	local NAME=$1-check-environment
-	local SCRIPT=$2
+	local SCRIPT=$1
 	local CUSTOM=''
-	local CHECK=${SCRIPT%%/files/check-environment}
-	CHECK=${CHECK##*[./]}
 	[[ $CUSTOM_CHECK_ENVIRONMENT ]] && CUSTOM='custom-'
 
-	$SUDO cp $SCRIPT $BINDIR/${NAME}
-	if ! OUT=$(docker_run $IMAGE bash -lc ${NAME} 2>&1); then
+	verify_check_environment_script "$SCRIPT"
+	$SUDO cp $SCRIPT $BINDIR/${TEMPLATE}-${custom}check-environment
+	if ! OUT=$(docker_run $IMAGE bash -lc ${TEMPLATE}-${custom}check-environment 2>&1); then
 		err "$OUT"
 		err "Error: templatectl test $IMAGE failed on $CHECK checks"
 		return 1
@@ -175,7 +187,7 @@ cleanup() {
 
 cd "$(dirname "$0")"
 
-if [[ $1 =~ --?h(elp)? ]] || [[ ! $2 ]]; then
+if [[ $1 =~ ^--?h(elp)?$ ]] || [[ ! $2 ]]; then
 	usage
 	exit 1
 fi
