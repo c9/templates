@@ -2,8 +2,10 @@
 // For more information see http://docs.c9.io:8080/#!/api/run-method-run
 {
   "cmd": [
-    "dnx",
-    "$command"
+    "bash",
+    "-l",
+    "-c",
+    "dnx $command"
   ],
   "info": "Running DNX Command: $command",
   "env": {}
