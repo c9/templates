@@ -18,3 +18,7 @@ RUN cd /home/ubuntu/workspace && \
     $_SERVER["HTTP_HOST"] = $_SERVER["SERVER_NAME"];' wp-config.php && \
     sed -i '2iif (isset($_SERVER["HTTP_X_FORWARDED_PROTO"]) && $_SERVER["HTTP_X_FORWARDED_PROTO"] == "https") $_SERVER["HTTPS"] = "on";' wp-config.php && \
     chown -R ubuntu:ubuntu /home/ubuntu
+
+# Install wp-cli
+RUN curl -o /usr/local/bin/wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
+    chmod +x /usr/local/bin/wp
