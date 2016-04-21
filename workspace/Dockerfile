@@ -113,7 +113,7 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 && \
     apt-get install -y mongodb-org
 RUN echo "Configure mongodb" && \
     mkdir -p /data/db && \
-    chown ubuntu:ubuntu /data/db
+    chown -R ubuntu:ubuntu /data
 
 # /opt packages
 RUN curl https://storage.googleapis.com/golang/go1.6.linux-amd64.tar.gz | tar -C /opt -xz
