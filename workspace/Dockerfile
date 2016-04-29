@@ -104,7 +104,7 @@ RUN sudo -u ubuntu -i bash -l -c " \
 # Can't include new npm since it makes "npm install -g npm" fail:
 # sudo -u ubuntu -i bash -l -c "npm install -g npm@3.3.6" && \
 RUN wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh -e
-RUN sudo -u ubuntu -i heroku
+RUN sudo -u ubuntu -i heroku --help
 
 # MongoDB
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 && \
