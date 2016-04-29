@@ -149,12 +149,12 @@ RUN echo "Configure apache2" && \
 RUN echo "Configure php" && \
     /etc/init.d/mysql start && \
     /etc/init.d/postgresql start && \
-    apt-get install -y php5 php5-cli php5-fpm php5-pgsql php5-mysql phpmyadmin phppgadmin && \
+    apt-get install -y php5 php5-cli php5-fpm php5-pgsql php5-mysql phpmyadmin phppgadmin libmcrypt-dev && \
     php5enmod c9 && \
     chmod 777 /var/lib/phpmyadmin/tmp && \
-    cd /etc/php5/mods-available && ls *.ini | sed 's/\.ini$//' | xargs php5enmod && \
-    curl -sS https://getcomposer.org/installer | php && \
-    mv composer.phar /usr/bin/composer
+    cd /etc/php5/mods-available && ls *.ini | sed 's/\.ini$//' | xargs php5enmod
+RUN curl -Ss -o /usr/local/bin/phpbrew https://github.com/phpbrew/phpbrew/raw/master/phpbrew && \
+    sudo -u ubuntu bash -l -c "phpbrew init && phpbrew app get composer"
 
 
 # re-enable service startup. This line must come after all apt-get installs
