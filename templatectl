@@ -25,9 +25,9 @@ dockerfile_exists() {
 
 docker_run() {
 	if [[ $D9 ]]; then
-		$D9 dry --no-tty $@
+		$D9 dry --no-tty "$@"
 	else
-		docker run --rm -u=ubuntu -v $BINDIR:/mnt/shared/bin -w=/home/ubuntu -e HOME=/home/ubuntu $@
+		docker run --rm -u=ubuntu -v $BINDIR:/mnt/shared/bin -w=/home/ubuntu -e HOME=/home/ubuntu bash -lc "$@"
 	fi
 }
 
@@ -87,7 +87,7 @@ check_environment() {
 
 	verify_check_environment_script "$SCRIPT"
 	$SUDO cp $SCRIPT $BINDIR/$NAME-check-environment
-	if ! OUT=$(docker_run $IMAGE bash -lc $NAME-check-environment 2>&1); then
+	if ! OUT=$(docker_run $IMAGE $NAME-check-environment 2>&1); then
 		err "$OUT"
 		err "Error: templatectl test $IMAGE failed on $NAME checks"
 		return 1
