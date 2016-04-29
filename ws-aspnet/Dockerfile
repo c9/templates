@@ -49,4 +49,3 @@ RUN sudo -u ubuntu -i bash -l -c "source ~/.dnx/dnvm/dnvm.sh && dnvm upgrade -r 
 	&& cd ~/workspace/ConsoleApplication \
 	&& dnvm exec default dnu restore \
 	"
-RUN sudo -u ubuntu -i bash -l -c "echo '[ -s \"/home/ubuntu/.dnx/dnvm/dnvm.sh\" ] && . \"/home/ubuntu/.dnx/dnvm/dnvm.sh\" # Load dnvm' >> ~/.profile"

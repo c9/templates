@@ -1,8 +1,8 @@
 #!/bin/bash
 set -ex
 
+source ~/.dnx/dnvm/dnvm.sh
 dnvm -h
 dnx -h
 dnu -h
 yo --help
-npm faq
