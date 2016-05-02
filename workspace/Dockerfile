@@ -4,7 +4,7 @@ MAINTAINER Cloud9 IDE, inc. <info@c9.io>
 ENV DEBIAN_FRONTEND noninteractive
 
 # increment version to force flushing the cache
-RUN echo "Version 1.11"
+RUN echo "Version 1.12"
 
 # Set mirrors to automatic based off location
 RUN apt-get install -y curl
