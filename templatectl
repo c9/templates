@@ -192,7 +192,7 @@ if [[ $1 =~ ^--?h(elp)?$ ]] || [[ ! $2 ]]; then
 	exit 1
 fi
 
-CACHE=$(cd $(dirname "$0")/.templatectl-cache; pwd)
+CACHE="$(dirname "$0")/.templatectl-cache"
 TEMP=$(mktemp -d)
 BINDIR=$TEMP
 SUDO=''
