@@ -1,4 +1,4 @@
-FROM ubuntu:14.04.3
+FROM debian:8.4
 MAINTAINER Cloud9 IDE, inc. <info@c9.io>
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -6,20 +6,16 @@ ENV DEBIAN_FRONTEND noninteractive
 # increment version to force flushing the cache
 RUN echo "Version 1.12"
 
-# Set mirrors to automatic based off location
-RUN apt-get install -y curl
-ADD files/auto-sources.sh /var/tmp/auto-sources.sh
-RUN bash /var/tmp/auto-sources.sh && rm /var/tmp/auto-sources.sh
-
 # Install add-apt-repository script
 RUN apt-get update --fix-missing && apt-get install -y software-properties-common
-# Add a recent version of git
-RUN add-apt-repository -y ppa:git-core/ppa
+
 # 32-bit support
 RUN dpkg --add-architecture i386 && \
     apt-get update --fix-missing && \
     apt-get install -y libc6:i386 libncurses5:i386 libstdc++6:i386
-RUN apt-get install -y bash console-setup sudo wget curl git python python-pip python3 python3-pip man-db && \
+
+RUN apt-get update --fix-missing && \
+    apt-get install -y bash console-setup sudo wget curl git python python-pip python3 python3-pip man-db && \
     echo "install console-setup" && \
     echo "console-setup   console-setup/codeset47 select  # Latin1 and Latin5 - western Europe and Turkic languages" | debconf-set-selections && \
     echo "console-setup   console-setup/fontface47        select  Fixed" | debconf-set-selections && \
@@ -42,8 +38,8 @@ USER ubuntu
 RUN curl https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh | sh -e && \
     echo '[ -s "/home/ubuntu/.nvm/nvm.sh" ] && . "/home/ubuntu/.nvm/nvm.sh" # This loads nvm' >> /home/ubuntu/.profile
 RUN bash -l -c " \
-    nvm install 4 && \
-    nvm alias default 4"
+    nvm install 6 && \
+    nvm alias default 6"
 
 # Disable progress bars by default: https://github.com/npm/npm/issues/11283
 RUN bash -l -c "npm set progress=false"
@@ -58,10 +54,12 @@ RUN apt-get install -y nano vim vim-addon-manager vim-vimoutliner vim-doc ctags 
 
 # servers
 RUN apt-get install -y redis-server redis-tools nginx mysql-server \
-    rabbitmq-server couchdb
+    rabbitmq-server
+    
+# TODO  couchdb
 
 # Postgres
-RUN apt-get install -y postgresql-9.3 && \
+RUN apt-get install -y postgresql-9.4 && \
     /etc/init.d/postgresql start && \
     sudo -u postgres createuser -srd ubuntu && \
     sudo -u postgres psql -c "create database ubuntu owner=ubuntu"
@@ -78,22 +76,20 @@ RUN apt-get install -y git-all tig subversion subversion-tools cvs \
     mercurial bzr bzrtools git-svn
 
 # libraries and headers
-RUN apt-get install -y libcairo2-dev libjpeg62-dev libgif-dev libpq-dev \
+RUN apt-get install -y libcairo2-dev libjpeg62-turbo-dev libgif-dev libpq-dev \
     libboost-all-dev libzmq-dev libwww-curl-perl libbz2-dev dpkg-dev \
-    ruby1.9.1-dev dialog python-gtk2 libpango1.0 libpango1.0-dev \
+    ruby2.1-dev dialog python-gtk2 libpango1.0 libpango1.0-dev \
     libmysqlclient-dev
 
 # Enable repo for alternative python versions
-RUN yes | add-apt-repository ppa:fkrull/deadsnakes
+# TODO
+#RUN yes | add-apt-repository ppa:fkrull/deadsnakes
 
 # install ruby/rails/rvm
 ADD ./files/etc/gemrc /etc/gemrc
 RUN apt-get install -y gawk libxml2-dev libxslt-dev libgdbm-dev libgmp-dev sqlite3
-RUN sudo -u ubuntu -i bash -l -c " \
-        echo 'Installing rvm...' \
-            && gpg -q --keyserver hkp://pgp.mit.edu --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 \
-            && (curl -sSL https://get.rvm.io | sudo bash -s stable --autolibs=enabled) \
-    " \
+RUN gpg2 --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+RUN curl -sSL https://get.rvm.io | sudo bash -s stable --autolibs=enabled \
     && usermod -a -G rvm ubuntu
 RUN sudo -u ubuntu -i bash -l -c " \
         echo 'Installing stable ruby version...' \
@@ -107,8 +103,8 @@ RUN wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh -e
 RUN sudo -u ubuntu -i heroku --help
 
 # MongoDB
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 && \
-    echo "deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen" > /etc/apt/sources.list.d/mongodb.list && \
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10 && \
+    echo "deb http://repo.mongodb.org/apt/debian wheezy/mongodb-org/3.0 main" > /etc/apt/sources.list.d/mongodb-org-3.0.list && \
     apt-get update && \
     apt-get install -y mongodb-org
 RUN echo "Configure mongodb" && \
