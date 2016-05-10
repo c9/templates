@@ -82,8 +82,10 @@ RUN apt-get install -y libcairo2-dev libjpeg62-turbo-dev libgif-dev libpq-dev \
     libmysqlclient-dev
 
 # Enable repo for alternative python versions
-# TODO
-#RUN yes | add-apt-repository ppa:fkrull/deadsnakes
+RUN echo "deb http://ppa.launchpad.net/fkrull/deadsnakes/ubuntu trusty main" > /etc/apt/sources.list.d/deadsnakes.list && \
+    echo "deb-src http://ppa.launchpad.net/fkrull/deadsnakes/ubuntu trusty main" >> /etc/apt/sources.list.d/deadsnakes.list && \
+    gpg --keyserver keyserver.ubuntu.com --recv-keys DB82666C && \
+    gpg --export DB82666C | sudo apt-key add -
 
 # install ruby/rails/rvm
 ADD ./files/etc/gemrc /etc/gemrc
