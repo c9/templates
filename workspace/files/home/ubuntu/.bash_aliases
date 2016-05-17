@@ -9,5 +9,4 @@ alias less="less -R "
 
 alias mysqldump="mysqldump --user=$C9_USER --host=$IP"
 alias php="php -c ~/workspace/php.ini"
-alias mongod="mongod --bind_ip=$IP --small --rest '$@'"
 alias ..="cd .."
