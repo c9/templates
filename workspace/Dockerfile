@@ -61,7 +61,10 @@ RUN apt-get install -y nano vim vim-addon-manager vim-vimoutliner vim-doc ctags 
 RUN apt-get install -y redis-server redis-tools nginx mysql-server \
     rabbitmq-server
     
-# TODO  couchdb
+RUN echo "deb http://ppa.launchpad.net/couchdb/stable/ubuntu xenial main" > /etc/apt/sources.list.d/couchdb.list && \
+    gpg --keyserver keyserver.ubuntu.com --recv-keys D69548E1C17EAB57 && \
+    gpg --export D69548E1C17EAB57 | apt-key add - && \
+    apt install -y -t testing couchdb
 
 # Postgres
 RUN apt-get install -y postgresql-9.4 && \
