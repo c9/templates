@@ -6,16 +6,21 @@ ENV DEBIAN_FRONTEND noninteractive
 # increment version to force flushing the cache
 RUN echo "Version 1.12"
 
+# Enable repos
+ADD ./files/etc/apt /etc/apt
+
 # Install add-apt-repository script
 RUN apt-get update --fix-missing && apt-get install -y software-properties-common
+
+# Install a newer version of git
+RUN apt install -t testing git
 
 # 32-bit support
 RUN dpkg --add-architecture i386 && \
     apt-get update --fix-missing && \
     apt-get install -y libc6:i386 libncurses5:i386 libstdc++6:i386
 
-RUN apt-get update --fix-missing && \
-    apt-get install -y bash console-setup sudo wget curl git python python-pip python3 python3-pip man-db && \
+RUN apt-get install -y bash console-setup sudo wget curl git python python-pip python3 python3-pip man-db && \
     echo "install console-setup" && \
     echo "console-setup   console-setup/codeset47 select  # Latin1 and Latin5 - western Europe and Turkic languages" | debconf-set-selections && \
     echo "console-setup   console-setup/fontface47        select  Fixed" | debconf-set-selections && \
