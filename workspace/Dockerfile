@@ -87,15 +87,14 @@ RUN apt-get install -y libcairo2-dev libjpeg62-turbo-dev libgif-dev libpq-dev \
     libmysqlclient-dev
 
 # Enable repo for alternative python versions
-RUN echo "deb http://ppa.launchpad.net/fkrull/deadsnakes/ubuntu trusty main" > /etc/apt/sources.list.d/deadsnakes.list && \
-    echo "deb-src http://ppa.launchpad.net/fkrull/deadsnakes/ubuntu trusty main" >> /etc/apt/sources.list.d/deadsnakes.list && \
+RUN echo "deb http://ppa.launchpad.net/fkrull/deadsnakes/ubuntu xenial main" > /etc/apt/sources.list.d/deadsnakes.list && \
     gpg --keyserver keyserver.ubuntu.com --recv-keys DB82666C && \
-    gpg --export DB82666C | sudo apt-key add -
+    gpg --export DB82666C | apt-key add -
 
 # install ruby/rails/rvm
 ADD ./files/etc/gemrc /etc/gemrc
 RUN apt-get install -y gawk libxml2-dev libxslt-dev libgdbm-dev libgmp-dev sqlite3
-RUN gpg2 --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+RUN gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
 RUN curl -sSL https://get.rvm.io | sudo bash -s stable --autolibs=enabled \
     && usermod -a -G rvm ubuntu
 RUN sudo -u ubuntu -i bash -l -c " \
@@ -110,6 +109,7 @@ RUN wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh -e
 RUN sudo -u ubuntu -i heroku --help
 
 # MongoDB
+# (No repo exists for jessie at this time so we'll stick to wheezy releases)
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10 && \
     echo "deb http://repo.mongodb.org/apt/debian wheezy/mongodb-org/3.0 main" > /etc/apt/sources.list.d/mongodb-org-3.0.list && \
     apt-get update && \
