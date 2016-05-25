@@ -12,9 +12,6 @@ ADD ./files/etc/apt /etc/apt
 # Install add-apt-repository script
 RUN apt-get update --fix-missing && apt-get install -y software-properties-common
 
-# Install a newer version of git
-RUN apt install -y -t testing git
-
 # 32-bit support
 RUN dpkg --add-architecture i386 && \
     apt-get update --fix-missing && \
@@ -64,7 +61,8 @@ RUN apt-get install -y redis-server redis-tools nginx mysql-server \
 RUN echo "deb http://ppa.launchpad.net/couchdb/stable/ubuntu xenial main" > /etc/apt/sources.list.d/couchdb.list && \
     gpg --keyserver keyserver.ubuntu.com --recv-keys D69548E1C17EAB57 && \
     gpg --export D69548E1C17EAB57 | apt-key add - && \
-    apt install -y -t testing couchdb
+    apt-get update && \
+    apt-get install -y -t testing couchdb
 
 # Postgres
 RUN apt-get install -y postgresql-9.4 && \
@@ -78,10 +76,6 @@ RUN apt-get install -y dnsutils bash-completion xsltproc \
     parallel strace ltrace flex jq ack-grep gdb valgrind locate tree time \
     zip unp cmake
 RUN apt-file update
-
-# Version control
-RUN apt-get install -y git-all tig subversion subversion-tools cvs \
-    mercurial bzr bzrtools git-svn
 
 # libraries and headers
 RUN apt-get install -y libcairo2-dev libjpeg62-turbo-dev libgif-dev libpq-dev \
@@ -156,6 +150,11 @@ RUN echo "Configure php" && \
     cd /etc/php5/mods-available && ls *.ini | sed 's/\.ini$//' | xargs php5enmod && \
     curl -sS https://getcomposer.org/installer | php && \
     mv composer.phar /usr/bin/composer
+
+# Version control
+RUN apt-get install -y tig subversion subversion-tools cvs \
+    mercurial bzr bzrtools git-svn && \
+    apt-get install -y -t testing git
 
 
 # re-enable service startup. This line must come after all apt-get installs
