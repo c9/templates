@@ -1,9 +1,7 @@
 FROM cloud9/workspace
 MAINTAINER Cloud9 IDE, inc. <info@c9.io>
 
-RUN add-apt-repository ppa:ubuntu-toolchain-r/test && \
-    apt-get update && \
-    apt-get install -y g++-5
+RUN apt install -t testing g++-5
 
 ADD ./files/workspace /home/ubuntu/workspace
 
