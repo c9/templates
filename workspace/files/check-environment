@@ -82,7 +82,6 @@ done
 go version
 
 heroku version | grep toolbelt
-mongo --version | grep -E '(2\.6|3\.0\.4)'
 
 # cloud9.sh needs to run in sh
 unset C9_PORT

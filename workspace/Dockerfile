@@ -106,15 +106,6 @@ RUN sudo -u ubuntu -i bash -l -c " \
 RUN wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh -e
 RUN sudo -u ubuntu -i heroku --help
 
-# MongoDB
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 && \
-    echo "deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen" > /etc/apt/sources.list.d/mongodb.list && \
-    apt-get update && \
-    apt-get install -y mongodb-org
-RUN echo "Configure mongodb" && \
-    mkdir -p /data/db && \
-    chown -R ubuntu:ubuntu /data
-
 # /opt packages
 RUN curl https://storage.googleapis.com/golang/go1.6.linux-amd64.tar.gz | tar -C /opt -xz
 RUN git clone https://github.com/lennartcl/gitl.git /opt/gitl
@@ -155,6 +146,14 @@ RUN echo "Configure php" && \
     cd /etc/php5/mods-available && ls *.ini | sed 's/\.ini$//' | xargs php5enmod && \
     curl -sS https://getcomposer.org/installer | php && \
     mv composer.phar /usr/bin/composer
+
+# Add additional repos for users
+# MongoDB (Create the default data dir with correct permissions)
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 && \
+    echo "deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen" > /etc/apt/sources.list.d/mongodb.list && \
+    apt-get update && \
+    mkdir -p /data/db && \
+    chown -R ubuntu:ubuntu /data
 
 
 # re-enable service startup. This line must come after all apt-get installs
