@@ -8,8 +8,8 @@ RUN sudo -u ubuntu -i bash -l -c " \
     nvm install iojs-v3.3.1 && \
     nvm install 5"
 
-RUN rm -rf /home/ubuntu/workspace && \
-    env GIT_SSL_NO_VERIFY=true git clone https://github.com/c9/chat-example.git /home/ubuntu/workspace
+RUN rm -rf /home/ubuntu/workspace
+ADD ./files/workspace /home/ubuntu/workspace
 
 RUN chown -R ubuntu:ubuntu /home/ubuntu/workspace && \
     sudo -u ubuntu -i bash -l -c "cd /home/ubuntu/workspace && npm install" && \
