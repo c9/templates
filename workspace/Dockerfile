@@ -9,7 +9,7 @@ RUN echo "Version 1.12"
 # Set mirrors to automatic based off location
 RUN apt-get install -y curl
 ADD files/auto-sources.sh /var/tmp/auto-sources.sh
-RUN bash /var/tmp/auto-sources.sh && rm /var/tmp/auto-sources.sh
+#RUN bash /var/tmp/auto-sources.sh && rm /var/tmp/auto-sources.sh
 
 # Install add-apt-repository script
 RUN apt-get update --fix-missing && apt-get install -y software-properties-common
