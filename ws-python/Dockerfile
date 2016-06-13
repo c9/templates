@@ -8,3 +8,5 @@ ADD ./files /home/ubuntu
 
 RUN chown -R ubuntu:ubuntu /home/ubuntu/workspace && \
     chown -R ubuntu:ubuntu /home/ubuntu/init.sh
+
+ADD ./files/check-environment /.check-environment/python

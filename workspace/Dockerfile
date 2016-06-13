@@ -159,4 +159,8 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 && \
 # re-enable service startup. This line must come after all apt-get installs
 RUN rm -f /usr/sbin/policy-rc.d
 
+# Set up /.check-environment folder
+RUN mkdir -p /.check-environment
+ADD ./files/check-environment /.check-environment/workspace
+
 CMD /bin/bash -l

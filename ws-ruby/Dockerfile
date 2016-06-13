@@ -29,3 +29,5 @@ RUN bash -l -c "rvm install ruby-2.3.0 && \
 RUN bash -l -c "rails new /home/ubuntu/workspace"
 
 USER root
+
+ADD ./files/check-environment /.check-environment/ruby

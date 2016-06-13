@@ -67,3 +67,5 @@ RUN \
     echo 'export GRADLE_HOME=/usr/local/gradle-2.5' >> /etc/profile.d/android.sh && \
     echo 'export NDK_PROJECT_PATH=/home/ubuntu/workspace' >> /etc/profile.d/android.sh && \
     echo 'export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_NDK_HOME/platform-tools:$ANDROID_NDK_HOME:$GRADLE_HOME/bin' >> /etc/profile.d/android.sh
+
+ADD ./files/check-environment /.check-environment/android

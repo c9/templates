@@ -17,3 +17,5 @@ RUN pip install lpthw.web
 ADD ./files/workspace /home/ubuntu/workspace
 
 RUN chown -R ubuntu:ubuntu /home/ubuntu/workspace
+
+ADD ./files/check-environment /.check-environment/python-plain
