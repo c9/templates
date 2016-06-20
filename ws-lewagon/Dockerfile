@@ -51,3 +51,5 @@ RUN rails new -T --database=postgresql to-be-removed
 RUN rm -rf to-be-removed
 
 USER root
+
+ADD ./files/check-environment /.check-environment/lewagon

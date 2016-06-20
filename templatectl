@@ -47,69 +47,28 @@ image_exists() {
 	docker images | grep -q ${IMAGE%%:*}
 }
 
-get_parent_image() {
-	perl -ne '/^FROM ?(.*)$/ && print $1 . "\n"' $1/Dockerfile 2>/dev/null
-}
-
 list_check_environment_scripts() {
-	local current_template=$TEMPLATE
-	local scripts=()
-	while true; do
-		scripts+=("${current_template/}/files/check-environment")
-		parent_image=$(get_parent_image $current_template)
-		if [[ $parent_image =~ cloud9 ]]; then
-			current_template=${parent_image#cloud9/}
-		else
-			break
-		fi
-	done
-	echo "${scripts[@]}"
-}
-
-verify_check_environment_script() {
-	local SCRIPT=$1
-
-	if ! [[ -e $SCRIPT ]]; then
-		err "'$SCRIPT' cannot be found. Aborting."
-		return 1
-	fi
-
-	if ! [[ -x $SCRIPT ]]; then
-		err "'$SCRIPT' is not executable. Aborting."
-		return 1
-	fi
+	docker_run $IMAGE ls /.check-environment
 }
 
 check_environment() {
-	local NAME=$1
-	local SCRIPT=$2
-	local CUSTOM=''
+	local check_environment_scripts
+	check_environment_scripts=$(list_check_environment_scripts)
 
-	verify_check_environment_script "$SCRIPT"
-	$SUDO cp $SCRIPT $BINDIR/$NAME-check-environment
-	if ! OUT=$(docker_run $IMAGE $NAME-check-environment 2>&1); then
-		err "$OUT"
-		err "Error: templatectl test $IMAGE failed on $NAME checks"
-		return 1
-	fi
+	for script in $check_environment_scripts; do
+		if ! OUT=$(docker_run $IMAGE /.check-environment/$script 2>&1); then
+			err "$OUT"
+			err "Error: templatectl test $IMAGE failed on $NAME checks"
+			return 1
+		fi
+	done
+	echo "Successfully checked $IMAGE"
+	echo "------------------------------------------------------"
 }
 
 clean_template_variable() {
 	TEMPLATE=${TEMPLATE#cloud9/}
 	TEMPLATE=${TEMPLATE%:*}
-}
-
-check_environment_recursive() {
-	if [[ $CUSTOM_CHECK_ENVIRONMENT ]]; then
-		check_environment $TEMPLATE-custom $CUSTOM_CHECK_ENVIRONMENT
-	else
-		check_environment_scripts=$(list_check_environment_scripts)
-		for script in $check_environment_scripts; do
-			check_environment ${script%%/*} $script
-		done
-		echo "Successfully checked $IMAGE"
-		echo "------------------------------------------------------"
-	fi
 }
 
 test_template() {
@@ -123,7 +82,7 @@ test_template() {
 		return 1
 	fi
 
-	check_environment_recursive
+	check_environment
 }
 
 update_sdk() {
