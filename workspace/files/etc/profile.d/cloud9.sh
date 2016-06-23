@@ -32,8 +32,8 @@ export IP="$C9_IP"
 if [ -d "$HOME/lib/python/site-packages" ]; then
     export PYTHONPATH="$PYTHONPATH:$HOME/lib/python/site-packages"
 fi
-if [ -d "/mnt/shared/lib/ruby" ]; then
-    export GEM_PATH="$GEM_PATH:/mnt/shared/lib/ruby"
+if [ -d "/nix/.nix-profile/lib/ruby/gems" ]; then
+    export GEM_PATH="$GEM_PATH:/nix/.nix-profile/lib/ruby/gems"
 fi
 
 export METEOR_IP="$IP"
@@ -47,10 +47,6 @@ export METEOR_PORT="$PORT"
 # remove nada-nix-compat.sh in old workspaces
 if [ -e /etc/profile.d/nada-nix-compat.sh ]; then
     sudo rm -f /etc/profile.d/nada-nix-compat.sh & 
-fi
-
-if [ ! -e /usr/bin/iojs ] &&  [ ! -L /usr/bin/iojs ]; then
-    sudo ln -s /mnt/shared/lib/iojs/bin/iojs /usr/bin/iojs
 fi
 
 LAST_LINE=$(tail -1 /home/ubuntu/.profile)
