@@ -32,10 +32,6 @@ export IP="$C9_IP"
 if [ -d "$HOME/lib/python/site-packages" ]; then
     export PYTHONPATH="$PYTHONPATH:$HOME/lib/python/site-packages"
 fi
-if [ -d "/nix/.nix-profile/lib/ruby/gems" ]; then
-    export GEM_PATH="$GEM_PATH:/nix/.nix-profile/lib/ruby/gems"
-    export GEM_HOME="/nix/.nix-profile/lib/ruby/gems"
-fi
 
 export METEOR_IP="$IP"
 export METEOR_PORT="$PORT"
