@@ -18,7 +18,6 @@ Thumbs.db
 *.dll
 *.exe
 *.out
-*.app
 install_manifest.txt
 CMakeCache.txt
 CMakeFiles
