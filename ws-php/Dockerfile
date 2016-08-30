@@ -11,6 +11,7 @@ RUN bash -c 'chmod -R g+w /home/ubuntu/{workspace,sessions} && \
 #   https://devcenter.heroku.com/articles/php-support
 # Xdebug, most recent PECL version
 ADD ./files/etc/php5 /etc/php5
+RUN apt-get update
 RUN apt-get install -y php5 php5-cli php5-fpm \
         php5-curl php5-gd php5-json php5-pgsql php5-readline php5-sqlite \
         php5-tidy php5-xmlrpc php5-xsl php5-intl php5-mcrypt php5-mysqlnd \
