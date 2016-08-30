@@ -1,8 +1,6 @@
 FROM cloud9/workspace
 MAINTAINER Cloud9 IDE, inc. <info@c9.io>
 
-RUN apt-get update
-
 # Python2
 RUN apt-get install -y python python-dev python-pip python-setuptools ipython \
     python-scipy python-matplotlib python-virtualenv virtualenvwrapper
