@@ -24,10 +24,13 @@ dockerfile_exists() {
 }
 
 docker_run() {
+	local IMAGE
+	IMAGE=$1
+	shift || :
 	if [[ $D9 ]]; then
-		$D9 dry --no-tty "$@"
+		$D9 dry --no-tty "$IMAGE $@"
 	else
-		docker run --rm -u=ubuntu -v $BINDIR:/mnt/shared/bin -w=/home/ubuntu -e HOME=/home/ubuntu bash -lc "$@"
+		docker run --rm -u=ubuntu -v $BINDIR:/mnt/shared/bin -w=/home/ubuntu -e HOME=/home/ubuntu $IMAGE bash -lc "$@"
 	fi
 }
 
@@ -48,7 +51,7 @@ image_exists() {
 }
 
 list_check_environment_scripts() {
-	docker_run $IMAGE ls /.check-environment
+	docker_run $IMAGE "ls /.check-environment"
 }
 
 check_environment() {
