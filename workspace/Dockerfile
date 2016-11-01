@@ -107,7 +107,7 @@ RUN wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh -e
 RUN sudo -u ubuntu -i heroku --help
 
 # /opt packages
-RUN curl https://storage.googleapis.com/golang/go1.6.linux-amd64.tar.gz | tar -C /opt -xz
+RUN curl https://storage.googleapis.com/golang/go1.7.3.linux-amd64.tar.gz | tar -C /opt -xz
 RUN git clone https://github.com/lennartcl/gitl.git /opt/gitl
 
 # setup the system
