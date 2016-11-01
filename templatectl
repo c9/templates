@@ -28,7 +28,7 @@ docker_run() {
 	IMAGE=$1
 	shift || :
 	if [[ $D9 ]]; then
-		$D9 dry --no-tty "$IMAGE $@"
+		$D9 dry --no-tty "$IMAGE" "$@"
 	else
 		docker run --rm -u=ubuntu -v $BINDIR:/mnt/shared/bin -w=/home/ubuntu -e HOME=/home/ubuntu $IMAGE bash -lc "$@"
 	fi
