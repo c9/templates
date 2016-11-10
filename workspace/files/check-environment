@@ -13,6 +13,7 @@ if X='() { :; }; echo Vulnerable' bash -c pwd | grep -q Vulnerable; then
     exit 1
 fi
  
+sudo apt-get update
 sudo apt-get -qq -y install hello
 
 if ! [[ -e ~/.ssh/config ]]; then
