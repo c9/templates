@@ -7,33 +7,18 @@ RUN chmod -R g+w /home/ubuntu/workspace && \
     chown -R ubuntu:ubuntu /home/ubuntu/workspace
 
 # Install .NET CLI dependencies
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-        libc6 \
-        libcurl3 \
-        libgcc1 \
-        libgssapi-krb5-2 \
-        libicu52 \
-        liblttng-ust0 \
-        libssl1.0.0 \
-        libstdc++6 \
-        libunwind8 \
-        libuuid1 \
-        zlib1g \
-    && rm -rf /var/lib/apt/lists/*
+RUN sudo apt-get update && \
+    sudo apt-get install apt-transport-https -y && \
+    echo "deb [arch=amd64] https://apt-mo.trafficmanager.net/repos/dotnet-release/ trusty main" | sudo tee --append /etc/apt/sources.list.d/dotnetdev.list && \
+    sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 417A0893 &&\
+    sudo apt-get update && \
+    sudo apt-get install dotnet-dev-1.0.0-preview2.1-003177 -y && \
+    sudo apt-get clean && \
+    sudo apt-get -y autoremove && \
+    sudo apt-get -y clean && \
+    sudo rm -rf /var/lib/apt/lists/*
 
-# Install .NET Core SDK
-ENV DOTNET_SDK_VERSION 1.0.0-preview2.1-003155
-ENV DOTNET_SDK_DOWNLOAD_URL https://dotnetcli.blob.core.windows.net/dotnet/preview/Binaries/$DOTNET_SDK_VERSION/dotnet-dev-debian-x64.$DOTNET_SDK_VERSION.tar.gz
-
-RUN curl -SL $DOTNET_SDK_DOWNLOAD_URL --output dotnet.tar.gz \
-    && mkdir -p /usr/share/dotnet \
-    && tar -zxf dotnet.tar.gz -C /usr/share/dotnet \
-    && rm dotnet.tar.gz \
-    && ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet
-
-# Trigger the population of the local package cache
-ENV NUGET_XMLDOC_MODE skip
+# Start up .NET for quick start
 RUN mkdir warmup \
     && cd warmup \
     && dotnet new \
