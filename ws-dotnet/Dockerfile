@@ -25,3 +25,8 @@ RUN mkdir warmup \
     && cd .. \
     && rm -rf warmup \
     && rm -rf /tmp/NuGetScratch
+
+RUN mkdir aspnet-web && \
+    cd aspnet-web && \
+    dotnet new -t web && \
+    dotnet restore
