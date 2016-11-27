@@ -5,7 +5,7 @@
     "bash",
     "-l",
     "-c",
-    "ASPNETCORE_URLS="https://*:5123" dotnet run"
+    "ASPNETCORE_URLS="https://*:8080" dotnet run"
   ],
   "info": "Running .NET Core Command: $command",
   "env": {}
