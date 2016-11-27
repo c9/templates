@@ -1,0 +1,16 @@
+{
+    "run": {
+        "@path": "/.c9/runners",
+        "configs": {
+            "@inited": "true",
+            "json()": {
+                "aspnet-web": {
+                    "command": "run",
+                    "cwd": "/ConsoleApplication",
+                    "name": "ConsoleApplication",
+                    "runner": "aspnet"
+                }
+            }
+        }
+    }
+}
