@@ -13,7 +13,7 @@ ADD files/auto-sources.sh /var/tmp/auto-sources.sh
 #RUN bash /var/tmp/auto-sources.sh && rm /var/tmp/auto-sources.sh
 
 # Install add-apt-repository script
-RUN apt-get install -y software-properties-common
+RUN apt-get install -y software-properties-common apt-transport-https
 # Add a recent version of git
 RUN add-apt-repository -y ppa:git-core/ppa
 # 32-bit support
