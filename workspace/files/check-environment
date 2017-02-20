@@ -15,6 +15,7 @@ fi
  
 sudo apt-get update
 sudo apt-get -qq -y install hello
+dpkg -l apt-transport-https
 
 if ! [[ -e ~/.ssh/config ]]; then
     echo '~/.ssh/config is missing'
