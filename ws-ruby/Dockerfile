@@ -22,9 +22,9 @@ RUN bash -l -c "rvm install ruby-2.2.4 && \
 RUN bash -l -c "rvm install ruby-2.3.0 && \
     rvm use ruby-2.3.0 --default && \
     NOKOGIRI_USE_SYSTEM_LIBRARIES=1 gem install rails -v 4.2.5"
-RUN bash -l -c "rvm install ruby-2.3.0 && \
-    rvm use 2.3.0@rails5 --create && \
-    NOKOGIRI_USE_SYSTEM_LIBRARIES=1 gem install rails -v 5.0.0.beta3"
+RUN bash -l -c "rvm install ruby-2.3.4 && \
+    rvm use 2.3.4@rails5 --create && \
+    NOKOGIRI_USE_SYSTEM_LIBRARIES=1 gem install rails -v 5.1.0.rc2"
 
 RUN bash -l -c "rails new /home/ubuntu/workspace"
 
