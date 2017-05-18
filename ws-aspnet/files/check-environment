@@ -1,0 +1,8 @@
+#!/bin/bash
+set -ex
+
+dnvm -h
+dnx -h
+dnu -h
+yo --help
+npm faq

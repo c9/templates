@@ -1,0 +1,127 @@
+{
+    "console": {
+        "@expanded": true,
+        "@height": "200",
+        "@maximized": "false",
+        "json()": {
+            "meta": {
+                "accessList": [
+                    "tab2",
+                    "tab1"
+                ]
+            },
+            "name": "pane1",
+            "nodes": [
+                {
+                    "type": "tab",
+                    "name": "tab1",
+                    "path": "",
+                    "className": [
+                        "tab1"
+                    ],
+                    "document": {
+                        "changed": false,
+                        "meta": {
+                            "timestamp": 1457707386005
+                        },
+                        "filter": true,
+                        "title": "bash - \"da66ea34f3fb\"",
+                        "tooltip": "bash - \"da66ea34f3fb\"",
+                        "terminal": {
+                            "id": "devel_784",
+                            "cwd": "",
+                            "width": 1328,
+                            "height": 127
+                        }
+                    },
+                    "editorType": "terminal",
+                    "active": true
+                },
+                {
+                    "type": "tab",
+                    "name": "tab2",
+                    "path": "",
+                    "className": [],
+                    "document": {
+                        "title": "Immediate",
+                        "changed": false,
+                        "meta": {
+                            "timestamp": 1457707386005
+                        },
+                        "filter": true
+                    },
+                    "editorType": "immediate",
+                    "active": false
+                }
+            ],
+            "skin": "editor_tab",
+            "skinset": "default",
+            "type": "pane"
+        }
+    },
+    "tabs": {
+        "json()": {
+            "focus": "preview-/README.md",
+            "meta": {
+                "accessList": [
+                    "preview-/README.md",
+                    "tab0"
+                ]
+            },
+            "name": "pane0",
+            "nodes": [
+                {
+                    "type": "tab",
+                    "name": "preview-/README.md",
+                    "path": "",
+                    "className": [
+                        "preview--README-md",
+                        "focus"
+                    ],
+                    "document": {
+                        "changed": false,
+                        "meta": {
+                            "timestamp": 1457707404928
+                        },
+                        "filter": true,
+                        "title": "[P] /README.md",
+                        "preview": {
+                            "path": "/README.md",
+                            "previewer": "preview.markdown"
+                        }
+                    },
+                    "editorType": "preview",
+                    "active": true
+                },
+                {
+                    "type": "tab",
+                    "name": "tab0",
+                    "path": "",
+                    "className": [
+                        "tab0"
+                    ],
+                    "document": {
+                        "changed": false,
+                        "meta": {
+                            "welcome": true,
+                            "timestamp": 1457707386003
+                        },
+                        "filter": true,
+                        "title": "Welcome",
+                        "welcome": {}
+                    },
+                    "editorType": "welcome",
+                    "active": false
+                }
+            ],
+            "skin": "editor_tab",
+            "skinset": "default",
+            "type": "pane"
+        }
+    },
+    "tree_selection": {
+        "json()": [
+            "/README.md"
+        ]
+    }
+}

@@ -1,0 +1,12 @@
+// This file overrides the built-in dnx runner
+// For more information see http://docs.c9.io:8080/#!/api/run-method-run
+{
+  "cmd": [
+    "bash",
+    "-l",
+    "-c",
+    "dnx $command"
+  ],
+  "info": "Running DNX Command: $command",
+  "env": {}
+}
