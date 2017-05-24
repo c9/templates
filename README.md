@@ -2,6 +2,9 @@
 
 Welcome to the open source repository for all public Cloud9 workspace templates.
 
+## Pull Requests
+Currently we are accepting PRs for existing workspace types, but not for additional workspace types
+
 ## Building your own
 
 Suggesting an update to an existing template or proposing a new one is super simple:
