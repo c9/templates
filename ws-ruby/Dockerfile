@@ -15,8 +15,8 @@ RUN bash -l -c "rvm install ruby-2.1.5 && \
 RUN bash -l -c "rvm install ruby-2.2.4 && \
     rvm use 2.2.4 --create && \
     NOKOGIRI_USE_SYSTEM_LIBRARIES=1 gem install rails -v 4.2.5"
-RUN bash -l -c "rvm install ruby-2.3.0 && \
-    rvm use ruby-2.3.0 --default && \
+RUN bash -l -c "rvm install ruby-2.3.4 && \
+    rvm use ruby-2.3.4 --default && \
     NOKOGIRI_USE_SYSTEM_LIBRARIES=1 gem install rails -v 4.2.5"
 RUN bash -l -c "rvm install ruby-2.3.4 && \
     rvm use 2.3.4@rails5 --create && \
