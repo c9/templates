@@ -33,6 +33,7 @@ RUN apt-get install -y bash console-setup sudo wget curl git python python-pip p
     echo "console-setup   console-setup/store_defaults_in_debconf_db      boolean true" | debconf-set-selections && \
     echo "console-setup   console-setup/fontsize-fb47     select  16" | debconf-set-selections && \
     echo "console-setup   console-setup/fontsize  string  16" | debconf-set-selections && \
+    locale-gen en_US.UTF-8 && \
     echo "Create user and enable root access" && \
     useradd --uid 1000 --shell /bin/bash -m --home-dir /home/ubuntu ubuntu && \
     sed -i 's/%sudo\s.*/%sudo ALL=NOPASSWD:ALL/' /etc/sudoers && \
