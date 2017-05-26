@@ -1,0 +1,12 @@
+// This file overrides the built-in runner
+// For more information see http://docs.c9.io:8080/#!/api/run-method-run
+{
+  "cmd": [
+    "bash",
+    "-l",
+    "-c",
+    "ASPNETCORE_URLS="https://*:8080" dotnet run"
+  ],
+  "info": "Running .NET Core Command: $command",
+  "env": {}
+}
