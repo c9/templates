@@ -1,4 +1,4 @@
-FROM ubuntu:14.04.5
+FROM ubuntu:16.04
 MAINTAINER Cloud9 IDE, inc. <info@c9.io>
 
 ENV DEBIAN_FRONTEND noninteractive
