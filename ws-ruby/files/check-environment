@@ -5,7 +5,7 @@ ruby --version | grep 2\..\..
 
 rails -v
 
-for rubyversion in 1.9.3 2.1.5 2.2.4 2.3.0; do
+for rubyversion in 1.9.3 2.1.5 2.2.4 2.3.4; do
 	set +x;
 	echo "+ rvm use $rubyversion"
 	rvm use $rubyversion

@@ -3,10 +3,6 @@ MAINTAINER Cloud9 IDE, inc. <info@c9.io>
 
 RUN echo "Version 1.0"
 
-RUN rm -rf /home/ubuntu/workspace
-ADD ./files /home/ubuntu
-
-RUN chown -R ubuntu:ubuntu /home/ubuntu
     
 USER ubuntu
 
@@ -19,15 +15,22 @@ RUN bash -l -c "rvm install ruby-2.1.5 && \
 RUN bash -l -c "rvm install ruby-2.2.4 && \
     rvm use 2.2.4 --create && \
     NOKOGIRI_USE_SYSTEM_LIBRARIES=1 gem install rails -v 4.2.5"
-RUN bash -l -c "rvm install ruby-2.3.0 && \
-    rvm use ruby-2.3.0 --default && \
+RUN bash -l -c "rvm install ruby-2.3.4 && \
+    rvm use ruby-2.3.4 --default && \
     NOKOGIRI_USE_SYSTEM_LIBRARIES=1 gem install rails -v 4.2.5"
-RUN bash -l -c "rvm install ruby-2.3.0 && \
-    rvm use 2.3.0@rails5 --create && \
-    NOKOGIRI_USE_SYSTEM_LIBRARIES=1 gem install rails -v 5.0.0.beta3"
+RUN bash -l -c "rvm install ruby-2.3.4 && \
+    rvm use 2.3.4@rails5 --create && \
+    NOKOGIRI_USE_SYSTEM_LIBRARIES=1 gem install rails -v 5.1.0.rc2"
 
+USER root
+RUN rm -rf /home/ubuntu/workspace
+ADD ./files/workspace /home/ubuntu/workspace
+RUN chown -R ubuntu:ubuntu /home/ubuntu
+
+USER ubuntu
 RUN bash -l -c "rails new /home/ubuntu/workspace"
 
 USER root
+
 
 ADD ./files/check-environment /.check-environment/ruby
