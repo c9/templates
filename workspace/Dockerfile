@@ -7,7 +7,7 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN echo "Version 1.13"
 
 # Set mirrors to automatic based off location
-RUN apt-get update
+RUN apt-get update --fix-missing
 RUN apt-get install -y curl
 ADD files/auto-sources.sh /var/tmp/auto-sources.sh
 #RUN bash /var/tmp/auto-sources.sh && rm /var/tmp/auto-sources.sh
@@ -43,8 +43,8 @@ USER ubuntu
 RUN curl https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh | sh -e && \
     echo '[ -s "/home/ubuntu/.nvm/nvm.sh" ] && . "/home/ubuntu/.nvm/nvm.sh" # This loads nvm' >> /home/ubuntu/.profile
 RUN bash -l -c " \
-    nvm install 4 && \
-    nvm alias default 4"
+    nvm install stable && \
+    nvm alias default stable"
 
 # Disable progress bars by default: https://github.com/npm/npm/issues/11283
 RUN bash -l -c "npm set progress=false"
@@ -98,8 +98,8 @@ RUN sudo -u ubuntu -i bash -l -c " \
     && usermod -a -G rvm ubuntu
 RUN sudo -u ubuntu -i bash -l -c " \
         echo 'Installing stable ruby version...' \
-            && rvm install ruby-2.3.0 \
-                && rvm use ruby-2.3.0 --default"
+            && rvm install ruby-2 \
+                && rvm use ruby-2 --default"
 
 # Deployment
 # Can't include new npm since it makes "npm install -g npm" fail:
