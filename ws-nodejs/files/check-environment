@@ -1,8 +1,6 @@
 #!/bin/bash
 set -ex
 
-npm install -g npm
-
 npm install coffee-script
 node_modules/coffee-script/bin/coffee -e '1'
 
