@@ -83,7 +83,7 @@ done
 
 go version
 
-heroku version | grep toolbelt
+heroku version | grep heroku-cli
 
 # cloud9.sh needs to run in sh
 unset C9_PORT
