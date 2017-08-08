@@ -46,7 +46,8 @@ mvn --version
 
 ruby --version | grep 2\..\..
 
-python --version 2>&1 | grep 'Python 2'
+python --version 2>&1 | grep 'Python'
+python2 --version 2>&1 | grep 'Python 2'
 python3 --version 2>&1 | grep 'Python 3'
 pip --version
 
