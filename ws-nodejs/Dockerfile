@@ -8,7 +8,7 @@ RUN sudo -u ubuntu -i bash -l -c " \
     nvm install 4 && \
     nvm install 6 && \
     nvm install 8 && \
-    nvm use 8"
+    nvm use 6"
 
 RUN rm -rf /home/ubuntu/workspace
 ADD ./files/workspace /home/ubuntu/workspace
