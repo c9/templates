@@ -42,9 +42,19 @@ RUN apt-get install -y bash console-setup sudo wget curl git python python-pip p
 USER ubuntu
 RUN curl https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh | sh -e && \
     echo '[ -s "/home/ubuntu/.nvm/nvm.sh" ] && . "/home/ubuntu/.nvm/nvm.sh" # This loads nvm' >> /home/ubuntu/.profile
+
 RUN bash -l -c " \
     nvm install stable && \
     nvm alias default stable"
+
+RUN sudo -u ubuntu -i bash -l -c " \
+    nvm install 0.8 && \
+    nvm install 0.10 && \
+    nvm install 0.12 && \
+    nvm install 4 && \
+    nvm install 6 && \
+    nvm install 8 && \
+    nvm use 6"
 
 # Disable progress bars by default: https://github.com/npm/npm/issues/11283
 RUN bash -l -c "npm set progress=false"
