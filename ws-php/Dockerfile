@@ -20,6 +20,7 @@ RUN apt-get install -y php5 php5-cli php5-fpm \
         && pecl install xdebug \
         && php5enmod xdebug \
     && cd /etc/php5/mods-available && ls *.ini | sed 's/\.ini$//' | xargs php5enmod
+RUN sudo -u ubuntu bash -l -c "phpbrew install 7.0"
 RUN chown -R ubuntu: /home/ubuntu/lib
 
 ADD ./files/check-environment /.check-environment/php
